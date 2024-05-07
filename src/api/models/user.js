@@ -19,12 +19,24 @@ let userSchema = new Schema({
     },
     password: String,
     email: String,
-    role: String,
+    role: {
+        type: String,
+        default: "normal",
+    },
     displayName: String,
-    selfIntroduction: String,
+    selfIntroduction: {
+        type: String,
+        default: "",
+    },
     dateOfBirth: String,
-    favGenreKeywords: String,
-    accountBalance: Number,
+    favGenreKeywords: {
+        type: String,
+        default: "",
+    },
+    accountBalance: {
+        type: Number,
+        default: 0,
+    },
     
 }, { versionKey: false });
 

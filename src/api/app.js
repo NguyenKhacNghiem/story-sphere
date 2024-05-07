@@ -1,26 +1,23 @@
-// import packages
+// Import packages
 const express = require('express')
 const mongoose = require("mongoose");
 require("dotenv").config();
-const bcrypt = require('bcryptjs');
-let User = require("./models/user");
+
+// Import routers
+const userRouter = require('./routers/user-router');
 
 // Get data from .env file
 const PORT = process.env.PORT;
 const CONNECTION_STRING = process.env.CONNECTION_STRING;
-
-// Import các module controller
-// const accountController = require('./controllers/AccountController')
-// const productController = require('./controllers/ProductController')
-// const orderController = require('./controllers/OrderController')
-// const orderDetailController = require('./controllers/OrderDetailController')
-// const customerController = require('./controllers/CustomerController')
 
 // Config projects
 const app = express()
 app.use(express.static(__dirname + '/public')) // access folder public to use img, ...
 app.use(express.json());  // get data from request in JSON format
 app.use(express.urlencoded({ extended: true })); // get data from request in URL-ENCODED format 
+
+// Use routers
+app.use('/user', userRouter);
 
 // Middle ware 404 error
 app.use((req, res) => {
@@ -40,13 +37,7 @@ mongoose.connect(CONNECTION_STRING, {
     useUnifiedTopology: true 
 })
 .then(async () => {
-    // accountController.initData();
-    // productController.initData();
-    // customerController.initData();
-    // orderController.initData();
-    // orderDetailController.initData();
-
-    console.log('[INFO] Database connected');
+    console.log('[INFO] Database has been connected');
     app.listen(PORT); // Server run on port 3000
 })
 .catch((error) => {

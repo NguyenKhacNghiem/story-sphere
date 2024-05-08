@@ -8,4 +8,8 @@ router.post("/register", userValidator.registerValidator, (req, res) => {
     userController.register(req, res);
 })
 
+router.post("/login", userValidator.loginValidator, (req, res) => {
+    userController.login(req, res);
+})
+
 module.exports = router;

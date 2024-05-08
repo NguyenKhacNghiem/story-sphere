@@ -31,5 +31,15 @@ module.exports = {
         check("dateOfBirth")
         .notEmpty()
         .withMessage("Vui lòng nhập ngày sinh"),
+    ],
+
+    loginValidator: [
+        check("username")
+        .notEmpty()
+        .withMessage("Vui lòng nhập tài khoản"),
+
+        check("password")
+        .notEmpty()
+        .withMessage("Vui lòng nhập mật khẩu"),
     ]
 };

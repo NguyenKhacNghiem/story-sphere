@@ -27,6 +27,32 @@ function register(req, res) {
     });
 }
 
+function login(req, res) {
+    let result = validationResult(req);
+
+    if(result.errors.length > 0)
+        return res.json({code: 1, message: result.errors[0].msg});
+
+    let {username, password} = req.body;
+
+    User.findOne({
+        username: username,
+    })
+    .then(async result => {
+        if(!result) 
+            return res.json({code: 1, message: "Tài khoản hoặc mật khẩu không chính xác"});
+
+        if(!bcrypt.compareSync(password, result.password))
+            return res.json({code: 1, message: "Tài khoản hoặc mật khẩu không chính xác"});
+
+        res.json({code: 0, message: "Đăng nhập thành công"});
+    })
+    .catch(error => {
+        throw new Error(error.message);
+    });
+}
+
 module.exports = {
     register,
+    login
 };

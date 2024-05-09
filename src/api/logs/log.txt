@@ -79,3 +79,37 @@
 [ERROR] 09/05/2024 23:16:00 Vui lòng nhập mã chương
 [INFO]  09/05/2024 23:16:03 Đăng tải chương thành công
 [ERROR] 09/05/2024 23:16:05 Chương không tồn tại
+[INFO]  10/05/2024 01:02:46 Database has been connected
+[INFO]  10/05/2024 01:04:22 Database has been connected
+[ERROR] 10/05/2024 01:05:42 Vui lòng nhập URL hợp lệ
+[ERROR] 10/05/2024 01:05:48 Chapter is not defined
+[INFO]  10/05/2024 01:06:04 Database has been connected
+[INFO]  10/05/2024 01:06:06 Tạo danh mục thành công
+[ERROR] 10/05/2024 01:06:11 E11000 duplicate key error collection: story-sphere.categories index: categoryUrl_1 dup key: { categoryUrl: "https://fb.com" }
+[ERROR] 10/05/2024 01:06:23 Unexpected token } in JSON at position 75
+[INFO]  10/05/2024 01:06:41 Database has been connected
+[INFO]  10/05/2024 01:06:45 Tạo danh mục thành công
+[ERROR] 10/05/2024 01:06:50 Unexpected token } in JSON at position 46
+[INFO]  10/05/2024 01:06:58 Database has been connected
+[ERROR] 10/05/2024 01:07:00 Vui lòng nhập tên danh mục
+[INFO]  10/05/2024 01:07:07 Lấy danh sách danh mục thành công
+[INFO]  10/05/2024 01:07:23 Lấy danh sách danh mục thành công
+[INFO]  10/05/2024 01:07:27 Lấy thông tin danh mục thành công
+[ERROR] 10/05/2024 01:07:31 Danh mục không tồn tại
+[INFO]  10/05/2024 01:07:37 Lấy danh sách danh mục thành công
+[ERROR] 10/05/2024 01:07:51 Page not found!
+[INFO]  10/05/2024 01:08:26 Database has been connected
+[ERROR] 10/05/2024 01:08:29 Vui lòng nhập tên danh mục
+[ERROR] 10/05/2024 01:08:37 Vui lòng nhập tên danh mục
+[INFO]  10/05/2024 01:10:02 Chỉnh sửa danh mục thành công
+[INFO]  10/05/2024 01:10:19 Chỉnh sửa danh mục thành công
+[ERROR] 10/05/2024 01:10:23 Danh mục không tồn tại
+[INFO]  10/05/2024 01:11:11 Database has been connected
+[INFO]  10/05/2024 01:11:23 Chỉnh sửa danh mục thành công
+[INFO]  10/05/2024 01:11:49 Database has been connected
+[INFO]  10/05/2024 01:12:22 Chỉnh sửa danh mục thành công
+[INFO]  10/05/2024 01:12:41 Tạo danh mục thành công
+[INFO]  10/05/2024 01:12:53 Chỉnh sửa danh mục thành công
+[INFO]  10/05/2024 01:13:04 Chỉnh sửa danh mục thành công
+[ERROR] 10/05/2024 01:13:32 Danh mục không tồn tại
+[INFO]  10/05/2024 01:13:36 Xóa danh mục thành công

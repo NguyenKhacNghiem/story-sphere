@@ -25,19 +25,57 @@ let storySchema = new Schema({
     fk_publisherAccount: String, // username of model User
     authorName: String,
     publisherName: String,
-    ISBNcode: String,
+    ISBNcode: {
+        type: String,
+        unique: true,
+    },
     publishDate: String,
-    categoriesAndTags: Number,
+    categoriesAndTags: String,
     selfComposedStory: Boolean,
     matureContent: Boolean,
-    published: Boolean,
+    published: {
+        type: Boolean,
+        default: false,
+    },
     chapterCount: Number,
-    viewCount: Number,
-    voteCount: Number,
-    commentCount: Number,
-    ratingPoint: Number,
-    createdDate: String,
-    lastUpdate: String,
+    viewCount: {
+        type: Number,
+        default: 0,
+    },
+    voteCount: {
+        type: Number,
+        default: 0,
+    },
+    commentCount: {
+        type: Number,
+        default: 0,
+    },
+    ratingPoint: {
+        type: Number,
+        default: 0,
+    },
+    createdDate: {
+        type: String,
+        default: function() {
+            let today = new Date();
+            let day = today.getDate();
+            let month = today.getMonth() + 1; 
+            let year = today.getFullYear();
+
+            return `${day}/${month}/${year}`;
+        },
+    },
+    lastUpdate: {
+        type: String,
+        default: function() {
+            let today = new Date();
+            let day = today.getDate();
+            let month = today.getMonth() + 1; 
+            let year = today.getFullYear();
+            
+            return `${day}/${month}/${year}`;
+        },
+    },
     commercialActivated: Boolean,
     storySellPrice: Number,
 

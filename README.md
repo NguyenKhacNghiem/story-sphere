@@ -5,11 +5,13 @@ A cross-platform application for reading and publishing books online.
 - src (root)           `// thư mục gốc dẫn vô mã nguồn project`
 - |  api               `// thư mục backend của tui`
 - |  |  controllers    `// thư mục chứa các file controller để xử lý`
+- |  |  logs           `// thư mục chứa thông tin ghi log`
 - |  |  models         `// thư mục chứa các class để ánh xạ vào database`
 - |  |  public         `// thư mục chứa các tài nguyên đa phương tiện`
 - |  |  | img          `// thư mục chứa các hình ảnh có sẵn trong ứng dụng như logo, icon, ...`
 - |  |  | uploads      `// thư mục chứa các hình ảnh mà người dùng uploads như ảnh bìa sách, avatar người dùng, ...`
 - |  |  routers        `// thư mục gom nhóm các api. VD nhóm các api dành cho model user, nhóm các api dành cho model book, ...`
+- |  |  validators     `// thư mục chứa các file input validation`
 - |  databases         `// thư mục chứa các file database .json để import vào project tạo dữ liệu`
 
 ### Members

@@ -6,7 +6,6 @@ const log = require('../logs/log');
 
 function register(req, res) {
     let result = validationResult(req);
-
     if(result.errors.length > 0) {
         log.error(result.errors[0].msg);
         return res.json({code: 1, message: result.errors[0].msg});
@@ -34,7 +33,6 @@ function register(req, res) {
 
 function login(req, res) {
     let result = validationResult(req);
-
     if(result.errors.length > 0) {
         log.error(result.errors[0].msg);
         return res.json({code: 1, message: result.errors[0].msg});

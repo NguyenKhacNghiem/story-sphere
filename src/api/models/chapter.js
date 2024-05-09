@@ -12,7 +12,10 @@ let chapterSchema = new Schema({
         unique: true,
         index: true,
     },
-    fk_storyId : Number, // _id of model Story
+    fk_storyId : {
+        type: Number,
+        index: true
+    }, // _id of model Story
     chapterName : {
         type: String,
         index: true,
@@ -23,14 +26,46 @@ let chapterSchema = new Schema({
         index: true,
     },
     chapterOrder : Number,
-    chapterStatus: Number, 
+    chapterStatus: {
+        type: Number,
+        default: 1, // draft status is default
+    }, 
     matureContent : Boolean,
-    viewCount: Number,
-    voteCount : Number,
-    commentCount : Number,
+    viewCount: {
+        type: Number,
+        default: 0,
+    },
+    voteCount : {
+        type: Number,
+        default: 0,
+    },
+    commentCount : {
+        type: Number,
+        default: 0,
+    },
     wordsCount : Number,
-    createDate : String,
-    lastUpdate : String,
+    createDate : {
+        type: String,
+        default: function() {
+            let today = new Date();
+            let day = today.getDate();
+            let month = today.getMonth() + 1; 
+            let year = today.getFullYear();
+
+            return `${day}/${month}/${year}`;
+        },
+    },
+    lastUpdate : {
+        type: String,
+        default: function() {
+            let today = new Date();
+            let day = today.getDate();
+            let month = today.getMonth() + 1; 
+            let year = today.getFullYear();
+
+            return `${day}/${month}/${year}`;
+        },
+    },
     commercialActivated : Boolean,
     chapterSellPrice : Number,
     

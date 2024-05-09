@@ -6,6 +6,7 @@ require("dotenv").config();
 // Import routers
 const userRouter = require('./routers/user-router');
 const storyRouter = require('./routers/story-router');
+const chapterRouter = require('./routers/chapter-router');
 
 // Get data from .env file
 const PORT = process.env.PORT;
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: true })); // get data from request in URL
 // Use routers
 app.use('/user', userRouter);
 app.use('/story', storyRouter);
+app.use('/chapter', chapterRouter);
 
 // Import log writer module
 const log = require('./logs/log');

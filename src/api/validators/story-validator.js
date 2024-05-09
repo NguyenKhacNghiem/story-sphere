@@ -8,7 +8,9 @@ module.exports = {
 
         check("url")
         .notEmpty()
-        .withMessage("Vui lòng nhập URL cho tác phẩm"),
+        .withMessage("Vui lòng nhập URL cho tác phẩm")
+        .isURL()
+        .withMessage("Vui lòng nhập URL hợp lệ"),
 
         check("cover")
         .notEmpty()
@@ -32,7 +34,9 @@ module.exports = {
 
         check("ISBNcode")
         .notEmpty()
-        .withMessage("Vui lòng nhập mã vạch"),
+        .withMessage("Vui lòng nhập mã vạch")
+        .isISBN()
+        .withMessage("Vui lòng nhập mã vạch hợp lệ"),
 
         check("publishDate")
         .notEmpty()
@@ -52,7 +56,7 @@ module.exports = {
 
         check("chapterCount")
         .notEmpty()
-        .withMessage("Vui lòng nhập số lượng Chương"),
+        .withMessage("Vui lòng nhập số lượng chương"),
 
         check("commercialActivated")
         .notEmpty()

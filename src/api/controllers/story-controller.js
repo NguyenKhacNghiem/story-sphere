@@ -4,14 +4,9 @@ const Story = require("../models/story");
 const log = require('../logs/log');
 
 async function getAll(req, res) {
-    try {
-        let stories = await Story.find().lean();
-        log.info("Lấy danh sách tác phẩm thành công");
-        res.json({code: 0, message: "Lấy danh sách tác phẩm thành công", result: stories});
-    } catch (error) {
-        log.error(error.message);
-        res.json({code: 1, message: "Lấy danh sách tác phẩm thất bại"});
-    }
+    let stories = await Story.find().lean();
+    log.info("Lấy danh sách tác phẩm thành công");
+    res.json({code: 0, message: "Lấy danh sách tác phẩm thành công", result: stories});
 }
 
 function getOne(req, res) {
@@ -35,7 +30,6 @@ function getOne(req, res) {
 
 function create(req, res) {
     let result = validationResult(req);
-
     if(result.errors.length > 0) {
         log.error(result.errors[0].msg);
         return res.json({code: 1, message: result.errors[0].msg});
@@ -61,12 +55,12 @@ function create(req, res) {
     
     newStory.save()
     .then(result => {        
-        log.info("Tạo tác phẩm thành công");
-        res.json({code: 0, message: "Tạo tác phẩm thành công", result: result});
+        log.info("Tạo tác phẩm mới thành công");
+        res.json({code: 0, message: "Tạo tác phẩm mới thành công", result: result});
     })
     .catch(error => {
         log.error(error.message);
-        res.json({code: 1, message: "Tạo tác phẩm thất bại"});
+        res.json({code: 1, message: "Tạo tác phẩm mới thất bại"});
     });
 }
 

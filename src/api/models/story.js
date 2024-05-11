@@ -62,7 +62,7 @@ let storySchema = new Schema({
             let month = today.getMonth() + 1; 
             let year = today.getFullYear();
 
-            return `${day}/${month}/${year}`;
+            return `${day}/${month}/${year}`; // default is the current date
         },
     },
     lastUpdate: {
@@ -73,7 +73,7 @@ let storySchema = new Schema({
             let month = today.getMonth() + 1; 
             let year = today.getFullYear();
             
-            return `${day}/${month}/${year}`;
+            return `${day}/${month}/${year}`; // default is the current date
         },
     },
     commercialActivated: Boolean,
@@ -81,6 +81,7 @@ let storySchema = new Schema({
 
 }, { versionKey: false });
 
+// auto increment 
 storySchema.plugin(autoIncrement.plugin, {
     model: "Story",
     field: '_id',

@@ -13,7 +13,7 @@ function getCurrentDateTime() {
     let formattedDate = (day < 10 ? '0' : '') + day + '/' + (month < 10 ? '0' : '') + month + '/' + year;
     let formattedTime = (hours < 10 ? '0' : '') + hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 
-    return formattedDate + ' ' + formattedTime;
+    return formattedDate + ' ' + formattedTime; // dd/mm/yyyy hh:mm:ss
 }
 
 function error(message) {
@@ -24,7 +24,7 @@ function error(message) {
         if (error) 
             throw new Error(error.message);
 
-        console.log(message);
+        // console.log(message);
     });
 }
 
@@ -36,7 +36,7 @@ function info(message) {
         if (error) 
             throw new Error(error.message);
 
-        console.log(message);
+        // console.log(message);
     });
 }
 

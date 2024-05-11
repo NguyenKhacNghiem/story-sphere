@@ -40,6 +40,7 @@ let userSchema = new Schema({
     
 }, { versionKey: false });
 
+// auto increment 
 userSchema.plugin(autoIncrement.plugin, {
     model: "User",
     field: '_id',

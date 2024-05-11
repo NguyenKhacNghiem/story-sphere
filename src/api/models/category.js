@@ -33,6 +33,7 @@ let categorySchema = new Schema({
     
 }, { versionKey: false });
 
+// auto increment 
 categorySchema.plugin(autoIncrement.plugin, {
     model: "Category",
     field: '_id',

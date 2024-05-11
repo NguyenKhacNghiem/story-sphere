@@ -113,3 +113,76 @@
 [INFO]  10/05/2024 01:13:04 Chỉnh sửa danh mục thành công
 [ERROR] 10/05/2024 01:13:32 Danh mục không tồn tại
 [INFO]  10/05/2024 01:13:36 Xóa danh mục thành công
+[INFO]  11/05/2024 17:06:41 Database has been connected
+[INFO]  11/05/2024 17:06:56 Lấy danh sách tác phẩm thành công
+[INFO]  11/05/2024 17:07:14 Lấy danh sách tác phẩm thành công
+[INFO]  11/05/2024 17:07:28 Database has been connected
+[INFO]  11/05/2024 17:07:43 Lấy danh sách tác phẩm thành công
+[INFO]  11/05/2024 17:07:49 Lấy danh sách tác phẩm thành công
+[INFO]  11/05/2024 17:07:52 Lấy danh sách tác phẩm thành công
+[INFO]  11/05/2024 17:07:55 Lấy danh sách tác phẩm thành công
+[INFO]  11/05/2024 17:08:06 Database has been connected
+[INFO]  11/05/2024 17:13:20 Database has been connected
+[INFO]  11/05/2024 17:13:51 Database has been connected
+[INFO]  11/05/2024 17:14:30 Database has been connected
+[INFO]  11/05/2024 17:14:47 Database has been connected
+[INFO]  11/05/2024 17:15:01 Database has been connected
+[ERROR] 11/05/2024 17:15:04 Vui lòng nhập mã tác phẩm bạn muốn xem danh sách chương
+[INFO]  11/05/2024 17:15:36 Lấy danh sách chương trong một tác phẩm thành công
+[INFO]  11/05/2024 17:15:46 Database has been connected
+[INFO]  11/05/2024 17:15:46 Lấy danh sách chương trong một tác phẩm thành công
+[INFO]  11/05/2024 17:15:52 Lấy danh sách chương trong một tác phẩm thành công
+[INFO]  11/05/2024 17:15:53 Lấy danh sách chương trong một tác phẩm thành công
+[INFO]  11/05/2024 17:16:01 Database has been connected
+[INFO]  11/05/2024 17:16:13 Database has been connected
+[INFO]  11/05/2024 17:18:30 Database has been connected
+[INFO]  11/05/2024 17:18:49 Database has been connected
+[INFO]  11/05/2024 17:18:54 Lấy danh sách danh mục thành công
+[INFO]  11/05/2024 17:18:57 Lấy danh sách danh mục thành công
+[INFO]  11/05/2024 17:19:07 Database has been connected
+[INFO]  11/05/2024 17:19:07 Lấy danh sách danh mục thành công
+[INFO]  11/05/2024 17:19:14 Lấy danh sách danh mục thành công
+[ERROR] 11/05/2024 17:22:17 Xác nhận mật khẩu không chính xác
+[ERROR] 11/05/2024 17:22:35 E11000 duplicate key error collection: story-sphere.users index: username_1 dup key: { username: "admin" }
+[INFO]  11/05/2024 17:26:01 Database has been connected
+[INFO]  11/05/2024 17:26:24 Database has been connected
+[ERROR] 11/05/2024 17:27:40 E11000 duplicate key error collection: story-sphere.categories index: categoryUrl_1 dup key: { categoryUrl: "https://fb300.com" }
+[ERROR] 11/05/2024 17:27:57 E11000 duplicate key error collection: story-sphere.categories index: categoryName_1 dup key: { categoryName: "Category 300" }
+[INFO]  11/05/2024 17:32:06 Database has been connected
+[ERROR] 11/05/2024 17:32:13 E11000 duplicate key error collection: story-sphere.categories index: categoryName_1 dup key: { categoryName: "Category 300" }
+[ERROR] 11/05/2024 17:32:22 E11000 duplicate key error collection: story-sphere.categories index: categoryUrl_1 dup key: { categoryUrl: "https://fb300.com" }
+[ERROR] 11/05/2024 17:36:10 Page not found!
+[INFO]  11/05/2024 17:36:41 Chỉnh sửa danh mục thành công
+[INFO]  11/05/2024 17:36:44 Chỉnh sửa danh mục thành công
+[INFO]  11/05/2024 17:36:48 Chỉnh sửa danh mục thành công
+[INFO]  11/05/2024 17:36:58 Chỉnh sửa danh mục thành công
+[INFO]  11/05/2024 17:39:42 Database has been connected
+[ERROR] 11/05/2024 17:39:45 E11000 duplicate key error collection: story-sphere.categories index: categoryUrl_1 dup key: { categoryUrl: "https://fb300.com" }
+[INFO]  11/05/2024 17:40:00 Chỉnh sửa danh mục thành công
+[INFO]  11/05/2024 17:40:03 Chỉnh sửa danh mục thành công
+[INFO]  11/05/2024 17:40:04 Chỉnh sửa danh mục thành công
+[INFO]  11/05/2024 17:40:05 Chỉnh sửa danh mục thành công
+[ERROR] 11/05/2024 17:40:17 E11000 duplicate key error collection: story-sphere.categories index: categoryName_1 dup key: { categoryName: "Category 300" }
+[INFO]  11/05/2024 17:42:03 Database has been connected
+[ERROR] 11/05/2024 17:42:11 E11000 duplicate key error collection: story-sphere.users index: username_1 dup key: { username: "admin" }
+[INFO]  11/05/2024 17:46:05 Database has been connected
+[INFO]  11/05/2024 17:47:52 Database has been connected
+[INFO]  11/05/2024 17:51:23 Database has been connected
+[INFO]  11/05/2024 17:52:25 Database has been connected
+[INFO]  11/05/2024 17:53:10 Database has been connected
+[INFO]  11/05/2024 17:53:38 Database has been connected
+[INFO]  11/05/2024 17:56:13 Database has been connected
+[INFO]  11/05/2024 17:59:57 Database has been connected
+[INFO]  11/05/2024 18:01:09 Database has been connected
+[INFO]  11/05/2024 18:01:31 Database has been connected
+[INFO]  11/05/2024 18:01:39 Database has been connected
+[INFO]  11/05/2024 18:02:25 Database has been connected
+[INFO]  11/05/2024 18:03:10 Database has been connected
+[INFO]  11/05/2024 18:03:55 Database has been connected
+[INFO]  11/05/2024 18:04:22 Database has been connected
+[INFO]  11/05/2024 18:05:01 Database has been connected
+[INFO]  11/05/2024 18:05:27 Database has been connected
+[INFO]  11/05/2024 18:05:43 Database has been connected
+[INFO]  11/05/2024 18:06:15 Database has been connected
+[INFO]  11/05/2024 18:06:26 Database has been connected
+[INFO]  11/05/2024 18:06:29 Database has been connected

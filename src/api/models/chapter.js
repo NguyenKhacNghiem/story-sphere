@@ -52,7 +52,7 @@ let chapterSchema = new Schema({
             let month = today.getMonth() + 1; 
             let year = today.getFullYear();
 
-            return `${day}/${month}/${year}`;
+            return `${day}/${month}/${year}`; // default is the current date
         },
     },
     lastUpdate : {
@@ -63,7 +63,7 @@ let chapterSchema = new Schema({
             let month = today.getMonth() + 1; 
             let year = today.getFullYear();
 
-            return `${day}/${month}/${year}`;
+            return `${day}/${month}/${year}`; // default is the current date
         },
     },
     commercialActivated : Boolean,
@@ -71,6 +71,7 @@ let chapterSchema = new Schema({
     
 }, { versionKey: false });
 
+// auto increment 
 chapterSchema.plugin(autoIncrement.plugin, {
     model: "Chapter",
     field: '_id',

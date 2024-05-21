@@ -46,7 +46,7 @@ mongoose.connect(CONNECTION_STRING, {
     useUnifiedTopology: true 
 })
 .then(async () => {
-    log.info("Database has been connected");
+    log.info("API server has been started.");
     app.listen(PORT); // Server run on port 3000
 })
 .catch((error) => {

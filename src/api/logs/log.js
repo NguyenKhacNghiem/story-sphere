@@ -24,7 +24,7 @@ function error(message) {
         if (error) 
             throw new Error(error.message);
 
-        // console.log(message);
+        console.log(message);
     });
 }
 
@@ -36,7 +36,7 @@ function info(message) {
         if (error) 
             throw new Error(error.message);
 
-        // console.log(message);
+        console.log(message);
     });
 }
 

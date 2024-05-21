@@ -68,7 +68,7 @@ function login(req, res) {
     })
     .catch(error => {
         log.error(error.message);
-        res.json({code: 0, message: "Đăng nhập thất bại"});
+        res.json({code: 1, message: "Đăng nhập thất bại"});
     });
 }
 

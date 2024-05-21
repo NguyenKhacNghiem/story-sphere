@@ -64,7 +64,7 @@ function create(req, res) {
     
     newCategory.save()
     .then(result => {        
-        log.info("Tạo danh mục thành công");
+        log.info("Tạo danh mục mới thành công");
         res.json({code: 0, message: "Tạo danh mục mới thành công", result: result});
     })
     .catch(error => {

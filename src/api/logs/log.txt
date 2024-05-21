@@ -186,3 +186,13 @@
 [INFO]  11/05/2024 18:06:15 Database has been connected
 [INFO]  11/05/2024 18:06:26 Database has been connected
 [INFO]  11/05/2024 18:06:29 Database has been connected
+[INFO]  11/05/2024 19:45:49 Database has been connected
+[INFO]  11/05/2024 19:46:54 Lấy danh sách tác phẩm thành công
+[INFO]  11/05/2024 19:47:33 Database has been connected
+[INFO]  11/05/2024 19:48:35 Database has been connected
+[INFO]  11/05/2024 19:49:11 Database has been connected
+[INFO]  11/05/2024 19:49:17 Lấy danh sách tác phẩm thành công
+[INFO]  11/05/2024 19:49:46 Lấy danh sách tác phẩm thành công
+[INFO]  11/05/2024 19:49:54 Lấy danh sách tác phẩm thành công
+[INFO]  11/05/2024 19:59:22 Database has been connected
+[ERROR] 18/05/2024 08:52:05 connect ECONNREFUSED 127.0.0.1:27017

@@ -8,6 +8,7 @@ const userRouter = require('./routers/user-router');
 const storyRouter = require('./routers/story-router');
 const chapterRouter = require('./routers/chapter-router');
 const categoryRouter = require('./routers/category-router');
+const favBookRouter = require('./routers/fav-book-router');
 
 // Get data from .env file
 const PORT = process.env.PORT;
@@ -24,6 +25,7 @@ app.use('/user', userRouter);
 app.use('/story', storyRouter);
 app.use('/chapter', chapterRouter);
 app.use('/category', categoryRouter);
+app.use('/fav-book', favBookRouter);
 
 // Import log writer module
 const log = require('./logs/log');

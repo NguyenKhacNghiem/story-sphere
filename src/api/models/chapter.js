@@ -59,8 +59,8 @@ let chapterSchema = new Schema({
         type: String,
         default: function() {
             let today = new Date();
-            let day = today.getDate();
-            let month = today.getMonth() + 1; 
+            let day = String(today.getDate()).padStart(2, '0');
+            let month = String(today.getMonth() + 1).padStart(2, '0'); 
             let year = today.getFullYear();
 
             return `${day}/${month}/${year}`; // default is the current date

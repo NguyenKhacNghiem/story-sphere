@@ -196,3 +196,20 @@
 [INFO]  11/05/2024 19:49:54 Lấy danh sách tác phẩm thành công
 [INFO]  11/05/2024 19:59:22 Database has been connected
 [ERROR] 18/05/2024 08:52:05 connect ECONNREFUSED 127.0.0.1:27017
+[INFO]  22/05/2024 01:20:55 API server has been started.
+[ERROR] 22/05/2024 01:23:15 Page not found!
+[INFO]  22/05/2024 01:24:29 Thêm tác phẩm vào danh sách yêu thích thành công
+[ERROR] 22/05/2024 01:24:57 Unexpected token  in JSON at position 8
+[ERROR] 22/05/2024 01:25:09 Vui lòng nhập mã người dùng cho danh sách yêu thích
+[ERROR] 22/05/2024 01:25:22 Người dùng không tồn tại
+[ERROR] 22/05/2024 01:25:57 E11000 duplicate key error collection: story-sphere.favbooks index: userId_1_storyId_1 dup key: { userId: 1, storyId: 2 }
+[INFO]  22/05/2024 01:27:15 API server has been started.
+[ERROR] 22/05/2024 01:27:18 E11000 duplicate key error collection: story-sphere.favbooks index: userId_1_storyId_1 dup key: { userId: 1, storyId: 2 }
+[INFO]  22/05/2024 01:27:26 Thêm tác phẩm vào danh sách yêu thích thành công
+[INFO]  22/05/2024 01:27:46 Lấy danh sách tác phẩm yêu thích thành công
+[ERROR] 22/05/2024 01:27:52 Người dùng không tồn tại
+[INFO]  22/05/2024 01:28:26 Chỉnh sửa tác phẩm trong danh sách yêu thích thành công
+[ERROR] 22/05/2024 01:28:37 Tác phẩm trong danh sách yêu thích không tồn tại
+[ERROR] 22/05/2024 01:28:43 Page not found!
+[ERROR] 22/05/2024 01:28:52 Tác phẩm trong danh sách yêu thích không tồn tại
+[INFO]  22/05/2024 01:28:59 Xóa tác phẩm trong danh sách yêu thích thành công

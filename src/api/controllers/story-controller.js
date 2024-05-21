@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 
 const Story = require("../models/story");
+const User = require("../models/user");
 const log = require('../logs/log');
 
 async function getAll(req, res) {
@@ -47,12 +48,19 @@ function getOne(req, res) {
     });
 }
 
-function create(req, res) {
+async function create(req, res) {
     // Input validation
     let result = validationResult(req);
     if(result.errors.length > 0) {
         log.error(result.errors[0].msg);
         return res.json({code: 1, message: result.errors[0].msg});
+    }
+
+    // Check whether fk_publisherAccount exists
+    let user = await User.findOne({ _id: req.body.fk_publisherAccount }); // find one record by id
+    if(!user) {
+        log.error("Người dùng không tồn tại");
+        return res.json({code: 1, message: "Người dùng không tồn tại"});
     }
 
     let newStory = new Story({

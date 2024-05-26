@@ -23,11 +23,15 @@ let storySchema = new Schema({
     cover: String,
     contentOutline: String,
     fk_publisherAccount: String, // username of model User
-    authorName: String,
+    authorName: {
+        type: String,
+        index: true,
+    },
     publisherName: String,
     ISBNcode: {
         type: String,
         unique: true,
+        index:true,
     },
     publishDate: String,
     categoriesAndTags: String,

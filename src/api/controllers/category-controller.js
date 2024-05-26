@@ -20,6 +20,11 @@ async function getAll(req, res) {
         else
             categories = await Category.find().lean().skip(startIndex);
 
+        if (categories.length === 0) {
+            log.info("Danh sách danh mục hiện đang trống");
+            return res.json({code: 0, message: "Danh sách danh mục hiện đang trống", result: categories});
+        }
+
         log.info("Lấy danh sách danh mục thành công");
         res.json({ code: 0, message: "Lấy danh sách danh mục thành công", result: categories, totalPages: totalPages, currentPage: page });
     } catch (err) {

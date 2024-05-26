@@ -28,7 +28,7 @@ async function getAll(req, res) {
     let chapters;
 
     try {
-        let total = await Chapter.countDocuments(); // Total records in database
+        let total = await Chapter.countDocuments({ fk_storyId: fk_storyId }); // Total records in database by a condition
         let totalPages = Math.ceil(total / limit); // Total pages
 
         if (endIndex < total)

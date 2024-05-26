@@ -29,13 +29,18 @@ async function getAll(req, res) {
     let favbooks;
 
     try {
-        let total = await FavBook.countDocuments(); // Total records in database
+        let total = await FavBook.countDocuments({ userId: userId }); // Total records in database by a condition
         let totalPages = Math.ceil(total / limit); // Total pages
 
         if (endIndex < total)
             favbooks = await FavBook.find({ userId: userId }).lean().skip(startIndex).limit(limit);
         else
             favbooks = await FavBook.find({ userId: userId }).lean().skip(startIndex);
+        
+        if (favbooks.length === 0) {
+            log.info("Danh sách tác phẩm yêu thích hiện đang trống");
+            return res.json({code: 0, message: "Danh sách tác phẩm yêu thích hiện đang trống", result: favbooks});
+        }
 
         log.info("Lấy danh sách tác phẩm yêu thích thành công");
         res.json({ code: 0, message: "Lấy danh sách tác phẩm yêu thích thành công", result: favbooks, totalPages: totalPages, currentPage: page });

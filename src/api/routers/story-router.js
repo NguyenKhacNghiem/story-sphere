@@ -16,6 +16,10 @@ router.get("/search", storyValidator.searchValidator, (req, res) => {
     storyController.search(req, res);
 })
 
+router.get("/filter", (req, res) => {
+    storyController.filter(req, res);
+})
+
 router.get("/:id", (req, res) => {
     storyController.getOne(req, res);
 })

@@ -12,6 +12,10 @@ router.post("/create", storyValidator.createValidator, (req, res) => {
     storyController.create(req, res);
 })
 
+router.get("/search", storyValidator.searchValidator, (req, res) => {
+    storyController.search(req, res);
+})
+
 router.get("/:id", (req, res) => {
     storyController.getOne(req, res);
 })

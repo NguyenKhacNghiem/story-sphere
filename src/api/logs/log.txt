@@ -213,4 +213,22 @@
 [ERROR] 22/05/2024 01:28:43 Page not found!
 [ERROR] 22/05/2024 01:28:52 Tác phẩm trong danh sách yêu thích không tồn tại
 [INFO]  22/05/2024 01:28:59 Xóa tác phẩm trong danh sách yêu thích thành công
+<<<<<<< HEAD
 [INFO]  26/05/2024 10:52:42 API server has been started.
+=======
+[INFO]  26/05/2024 10:42:53 API server has been started.
+[ERROR] 26/05/2024 10:42:59 Page not found!
+[ERROR] 26/05/2024 10:43:13 Vui lòng nhập nội dung tìm kiếm
+[INFO]  26/05/2024 10:44:04 Tìm tác phẩm thành công
+[INFO]  26/05/2024 10:45:26 Tìm tác phẩm thành công
+[INFO]  26/05/2024 10:47:03 API server has been started.
+[INFO]  26/05/2024 10:47:51 API server has been started.
+[INFO]  26/05/2024 10:48:19 API server has been started.
+[INFO]  26/05/2024 10:49:32 API server has been started.
+[INFO]  26/05/2024 10:49:35 Không tìm thấy tác phẩm nào phù hợp
+[INFO]  26/05/2024 10:49:45 Tìm tác phẩm thành công
+[INFO]  26/05/2024 10:49:51 Tìm tác phẩm thành công
+[INFO]  26/05/2024 10:50:02 Tìm tác phẩm thành công
+[INFO]  26/05/2024 10:50:10 Không tìm thấy tác phẩm nào phù hợp
+[INFO]  26/05/2024 10:50:40 API server has been started.
+>>>>>>> feature-searching

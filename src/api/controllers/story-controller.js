@@ -7,7 +7,7 @@ const log = require('../logs/log');
 async function getAll(req, res) {
     // Paging
     let page = parseInt(req.query.page) || 1; // current page, default is 1
-    let limit = 1; // 25 records per page
+    let limit = 25; // 25 records per page
     let startIndex = (page - 1) * limit; // Index of the first record on current page
     let endIndex = page * limit; // Index of the last record on current page
     let stories;
@@ -20,6 +20,11 @@ async function getAll(req, res) {
             stories = await Story.find().lean().skip(startIndex).limit(limit);
         else
             stories = await Story.find().lean().skip(startIndex);
+
+        if (stories.length === 0) {
+            log.info("Danh sách tác phẩm hiện đang trống");
+            return res.json({code: 0, message: "Danh sách tác phẩm hiện đang trống", result: stories});
+        }
 
         log.info("Lấy danh sách tác phẩm thành công");
         res.json({ code: 0, message: "Lấy danh sách tác phẩm thành công", result: stories, totalPages: totalPages, currentPage: page });
@@ -100,8 +105,66 @@ async function create(req, res) {
     });
 }
 
+async function search(req, res) {
+    // Input validation
+    let result = validationResult(req);
+    if(result.errors.length > 0) {
+        log.error(result.errors[0].msg);
+        return res.json({code: 1, message: result.errors[0].msg});
+    }
+
+    let searchContent = req.query.searchContent;
+
+    // Paging
+    let page = parseInt(req.query.page) || 1; // current page, default is 1
+    let limit = 25; // 25 records per page
+    let startIndex = (page - 1) * limit; // Index of the first record on current page
+    let endIndex = page * limit; // Index of the last record on current page
+    let stories;
+
+    try {
+        let total = await Story.countDocuments({
+            $or: [
+              { storyName: { $regex: searchContent, $options: 'i' } },
+              { authorName: { $regex: searchContent, $options: 'i' } },
+              { ISBNcode: searchContent }
+            ]
+          }); // Total records in database by a condition
+        let totalPages = Math.ceil(total / limit); // Total pages
+
+        if (endIndex < total)
+            stories = await Story.find({
+                $or: [
+                  { storyName: { $regex: searchContent, $options: 'i' } },
+                  { authorName: { $regex: searchContent, $options: 'i' } },
+                  { ISBNcode: searchContent }
+                ]
+              }).lean().skip(startIndex).limit(limit);
+        else
+            stories = await Story.find({
+                $or: [
+                  { storyName: { $regex: searchContent, $options: 'i' } },
+                  { authorName: { $regex: searchContent, $options: 'i' } },
+                  { ISBNcode: searchContent }
+                ]
+              }).lean().skip(startIndex);
+        
+        if (stories.length === 0) {
+            log.info("Không tìm thấy tác phẩm nào phù hợp");
+            return res.json({code: 0, message: "Không tìm thấy tác phẩm nào phù hợp", result: stories});
+        }
+
+        log.info("Tìm tác phẩm thành công");
+        res.json({ code: 0, message: "Tìm tác phẩm thành công", result: stories, totalPages: totalPages, currentPage: page });
+    } catch (err) {
+        log.error(err.message);
+        res.json({ code: 1, message: "Tìm tác phẩm thất bại" });
+    }
+}
+
 module.exports = {
     getAll,
     getOne,
     create,
+    search
 };

@@ -66,4 +66,10 @@ module.exports = {
         .notEmpty()
         .withMessage("Vui lòng nhập giá mà người dùng phải trả cho tác phẩm"),
     ],
+
+    searchValidator: [
+        check("searchContent")
+        .notEmpty()
+        .withMessage("Vui lòng nhập nội dung tìm kiếm")
+    ],
 };

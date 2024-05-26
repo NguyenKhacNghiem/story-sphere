@@ -162,9 +162,65 @@ async function search(req, res) {
     }
 }
 
+async function filter(req, res) {
+    let {categoryId, selfComposedStory, publisherName, ratingPoint, isLastUpdated} = req.query;
+
+    // Paging
+    let page = parseInt(req.query.page) || 1; // current page, default is 1
+    let limit = isLastUpdated ? 10 : 25; // if isLastUpdated true, get 10. Otherwise, get 25
+    let startIndex = (page - 1) * limit; // Index of the first record on current page
+    let endIndex = page * limit; // Index of the last record on current page
+    let stories;
+
+    // create filter criterias
+    let criterias = {};
+
+    if (categoryId && categoryId !== "")
+        criterias.categoriesAndTags = { $regex: categoryId, $options: 'i' };
+
+    if (selfComposedStory && selfComposedStory !== "")
+        criterias.selfComposedStory = selfComposedStory;
+    
+    if (publisherName && publisherName !== "")
+        criterias.publisherName = publisherName;
+    
+    if (ratingPoint && ratingPoint !== "")
+        criterias.ratingPoint = ratingPoint;
+
+    // create sort criterias
+    let sortCriterias = {}; 
+
+    if (isLastUpdated && isLastUpdated === "true")
+        sortCriterias.lastUpdate = -1; // sort by last update desc
+    
+    sortCriterias.viewCount = -1; // sort by view count desc
+
+    try {
+        let total = await Story.countDocuments(criterias); // Total records in database by a condition
+        let totalPages = Math.ceil(total / limit); // Total pages
+
+        if (endIndex < total)
+            stories = await Story.find(criterias).sort(sortCriterias).lean().skip(startIndex).limit(limit);
+        else
+            stories = await Story.find(criterias).sort(sortCriterias).lean().skip(startIndex);
+        
+        if (stories.length === 0) {
+            log.info("Không lọc được tác phẩm nào phù hợp");
+            return res.json({code: 0, message: "Không lọc được tác phẩm nào phù hợp", result: stories});
+        }
+
+        log.info("Lọc tác phẩm thành công");
+        res.json({ code: 0, message: "Lọc tác phẩm thành công", result: stories, totalPages: totalPages, currentPage: page });
+    } catch (err) {
+        log.error(err.message);
+        res.json({ code: 1, message: "Tìm tác phẩm thất bại" });
+    }
+}
+
 module.exports = {
     getAll,
     getOne,
     create,
-    search
+    search,
+    filter
 };

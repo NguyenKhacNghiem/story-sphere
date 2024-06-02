@@ -127,7 +127,6 @@ async function updateProfile(req, res) {
         user.displayName = req.body.displayName; 
         user.selfIntroduction = req.body.selfIntroduction ? req.body.selfIntroduction : user.selfIntroduction ; 
         user.dateOfBirth = req.body.dateOfBirth; 
-        user.favGenreKeywords = req.body.favGenreKeywords ? req.body.favGenreKeywords : user.favGenreKeywords ;
 
         await user.save();
 
@@ -140,9 +139,39 @@ async function updateProfile(req, res) {
     }
 }
 
+async function updateFavGenreKeywords(req, res) {
+    try {
+        // Input validation
+        let result = validationResult(req);
+        if(result.errors.length > 0) {
+            log.error(result.errors[0].msg);
+            return res.json({code: 1, message: result.errors[0].msg});
+        }
+
+        let user = await User.findOne({ _id: req.body._id }); // find one record by id
+
+        if(!user) {
+            log.error("Người dùng không tồn tại");
+            return res.json({code: 1, message: "Người dùng không tồn tại"});
+        }
+
+        // Change fields of record
+        user.favGenreKeywords = req.body.favGenreKeywords ? req.body.favGenreKeywords : user.favGenreKeywords ;
+        await user.save();
+
+        log.info("Cập nhật thể loại yêu thích thành công");
+        res.json({code: 0, message: "Cập nhật thể loại yêu thích thành công"});
+    }
+    catch (error) {
+        log.error(error.message);
+        res.json({code: 1, message: "Cập nhật thể loại yêu thích thất bại"});
+    }
+}
+
 module.exports = {
     register,
     login,
     getProfile,
     updateProfile,
+    updateFavGenreKeywords,
 };

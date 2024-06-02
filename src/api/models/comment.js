@@ -7,8 +7,8 @@ mongoose.Promise = global.Promise;
 let Schema = mongoose.Schema;
 
 // Define fields for the model
-let favBookSchema = new Schema({
-    // favBookId
+let commentSchema = new Schema({
+    // comtId
     _id: {
         type: Number,
         unique: true,
@@ -18,31 +18,33 @@ let favBookSchema = new Schema({
         type: Number,
         index: true,
     },
-    storyId: {
+    chapterId: {
         type: Number,
         index: true,
     },
-    readingProgressChapter: {
-        type: Number,
-        default: 0,
+    atParagraph: {
+        type: String,
+        default: "",
     },
-    addedDate: {
+    comtContent: String,
+    comtTime: {
         type: String,
         default: utils.getCurrentDateTime(),
     },
-    
+    replyTo: {
+        type: Number,
+        default: -1, // not a reply comment
+    },
+
 }, { versionKey: false });
 
-// Ensures that userId and storyId are uniqueness together
-favBookSchema.index({ userId: 1, storyId: 1 }, { unique: true });
-
 // auto increment 
-favBookSchema.plugin(autoIncrement.plugin, {
-    model: "FavBook",
+commentSchema.plugin(autoIncrement.plugin, {
+    model: "Comment",
     field: '_id',
     startAt: 100000,
     incrementBy: 1
 })
 
-let FavBook = mongoose.model("FavBook", favBookSchema);
-module.exports = FavBook
+let Comment = mongoose.model("Comment", commentSchema);
+module.exports = Comment

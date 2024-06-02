@@ -63,4 +63,10 @@ module.exports = {
         .matches(/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/)
         .withMessage('Ngày sinh không đúng định dạng (dd/MM/yyyy)'),
     ],
+
+    updateFavGenreKeywordsValidator: [
+        check("_id")
+        .notEmpty()
+        .withMessage("Vui lòng nhập mã người dùng"),
+    ]
 };

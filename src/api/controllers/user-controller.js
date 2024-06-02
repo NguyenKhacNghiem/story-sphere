@@ -127,6 +127,7 @@ async function updateProfile(req, res) {
         user.displayName = req.body.displayName; 
         user.selfIntroduction = req.body.selfIntroduction ? req.body.selfIntroduction : user.selfIntroduction ; 
         user.dateOfBirth = req.body.dateOfBirth; 
+        user.favGenreKeywords = req.body.favGenreKeywords ? req.body.favGenreKeywords : user.favGenreKeywords ;
 
         await user.save();
 

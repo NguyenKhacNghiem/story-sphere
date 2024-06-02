@@ -408,3 +408,13 @@
 [INFO]  02/06/2024 12:29:38 Cập nhật hồ sơ người dùng thành công
 [INFO]  02/06/2024 12:29:39 Cập nhật hồ sơ người dùng thành công
 [INFO]  02/06/2024 12:29:52 Cập nhật hồ sơ người dùng thành công
+[INFO]  02/06/2024 13:02:04 API server has been started.
+[INFO]  02/06/2024 13:02:16 Cập nhật hồ sơ người dùng thành công
+[ERROR] 02/06/2024 13:02:26 Vui lòng chọn thể loại yêu thích
+[INFO]  02/06/2024 13:02:32 Lấy thông tin người dùng thành công
+[INFO]  02/06/2024 13:03:18 API server has been started.
+[INFO]  02/06/2024 13:03:31 Lấy thông tin người dùng thành công
+[INFO]  02/06/2024 13:03:36 Cập nhật hồ sơ người dùng thành công
+[INFO]  02/06/2024 13:03:41 Cập nhật hồ sơ người dùng thành công
+[INFO]  02/06/2024 13:03:46 Lấy thông tin người dùng thành công
+[INFO]  02/06/2024 13:04:16 Lấy thông tin người dùng thành công

@@ -37,6 +37,10 @@ module.exports = {
 
     // TODO: Update email with verify email
     updateEmailValidator: [
+        check("_id")
+        .notEmpty()
+        .withMessage("Vui lòng nhập mã người dùng"),
+
         check("email")
         .notEmpty()
         .withMessage("Vui lòng nhập email")
@@ -58,11 +62,5 @@ module.exports = {
         .withMessage("Vui lòng nhập ngày sinh")
         .matches(/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/)
         .withMessage('Ngày sinh không đúng định dạng (dd/MM/yyyy)'),
-    ],
-
-    updateFavCategoryValidator: [
-        check("favGenreKeywords")
-        .notEmpty()
-        .withMessage("Vui lòng chọn thể loại yêu thích"),
     ],
 };

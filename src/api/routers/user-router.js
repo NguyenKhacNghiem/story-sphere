@@ -16,8 +16,6 @@ router.put("/profile", userValidator.updateProfileValidator, (req, res) => {
     userController.updateProfile(req, res);
 })
 
-
-
 router.get("/profile/:username", (req, res) => {
     userController.getProfile(req, res);
 })

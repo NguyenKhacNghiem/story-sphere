@@ -16,6 +16,12 @@ async function getAll(req, res) {
 
     let chapterId = req.body.chapterId;
 
+    let chapter = await Chapter.findOne({ _id: chapterId }); // find one record by id
+    if(!chapter) {
+        log.error("Chương không tồn tại");
+        return res.json({code: 1, message: "Chương không tồn tại"});
+    }
+
     // Paging
     let page = parseInt(req.query.page) || 1; // current page, default is 1
     let limit = 25; // 25 records per page
@@ -81,13 +87,23 @@ async function create(req, res) {
         return res.json({code: 1, message: "Người dùng không tồn tại"});
     }
 
-    // Check whether storyId exists
+    // Check whether chapterId exists
     let chapter = await Chapter.findOne({ _id: chapterId }); // find one record by id
     if(!chapter) {
         log.error("Chương không tồn tại");
         return res.json({code: 1, message: "Chương không tồn tại"});
     }
 
+    // Check whether replyTo exists
+    if (replyTo !== undefined) {
+        let comment = await Comment.findOne({ _id: replyTo }); // find one record by id
+
+        if(!comment) {
+            log.error("Bình luận bạn muốn trả lời không tồn tại");
+            return res.json({code: 1, message: "Bình luận bạn muốn trả lời không tồn tại"});
+        }
+    }
+    
     let newComment = new Comment({
         userId: userId,
         chapterId: chapterId,

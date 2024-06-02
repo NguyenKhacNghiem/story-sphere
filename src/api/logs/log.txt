@@ -451,3 +451,40 @@
 [INFO]  02/06/2024 21:50:52 API server has been started.
 [INFO]  02/06/2024 21:51:53 API server has been started.
 [INFO]  02/06/2024 21:54:11 API server has been started.
+[INFO]  03/06/2024 00:22:13 API server has been started.
+[ERROR] 03/06/2024 00:22:15 Người dùng không tồn tại
+[ERROR] 03/06/2024 00:22:21 Tác phẩm không tồn tại
+[INFO]  03/06/2024 00:28:13 API server has been started.
+[ERROR] 03/06/2024 00:28:17 Vui lòng chỉ định đánh giá này là đánh giá chấm điểm hay là trả lời đánh giá khác
+[ERROR] 03/06/2024 00:29:28 Đánh giá bạn muốn trả lời không tồn tại
+[INFO]  03/06/2024 00:30:49 API server has been started.
+[ERROR] 03/06/2024 00:30:56 Đánh giá bạn muốn trả lời không tồn tại
+[INFO]  03/06/2024 00:31:23 API server has been started.
+[INFO]  03/06/2024 00:31:46 API server has been started.
+[ERROR] 03/06/2024 00:31:49 Đánh giá bạn muốn trả lời không tồn tại
+[INFO]  03/06/2024 00:32:11 API server has been started.
+[INFO]  03/06/2024 00:32:18 API server has been started.
+[INFO]  03/06/2024 00:33:34 Thêm đánh giá thành công
+[INFO]  03/06/2024 00:34:24 API server has been started.
+[INFO]  03/06/2024 00:34:26 Thêm đánh giá thành công
+[INFO]  03/06/2024 00:35:05 Lấy danh sách đánh giá thành công
+[ERROR] 03/06/2024 00:35:34 Tác phẩm không tồn tại
+[ERROR] 03/06/2024 00:36:01 Unexpected token 
+ in JSON at position 7
+[ERROR] 03/06/2024 00:36:06 Vui lòng nhập mã tác phẩm cần lấy danh sách đánh giá
+[ERROR] 03/06/2024 00:36:16 Tác phẩm không tồn tại
+[INFO]  03/06/2024 00:36:23 Lấy danh sách đánh giá thành công
+[INFO]  03/06/2024 00:36:48 Lọc danh sách đánh giá thành công
+[INFO]  03/06/2024 00:36:52 Không lọc được đánh giá nào phù hợp
+[INFO]  03/06/2024 00:37:10 Lấy thông tin đánh giá thành công
+[ERROR] 03/06/2024 00:37:12 Đánh giá không tồn tại
+[ERROR] 03/06/2024 00:37:56 Page not found!
+[INFO]  03/06/2024 00:38:01 Chỉnh sửa đánh giá thành công
+[INFO]  03/06/2024 00:38:30 Chỉnh sửa đánh giá thành công
+[INFO]  03/06/2024 00:38:36 Chỉnh sửa đánh giá thành công
+[INFO]  03/06/2024 00:38:48 Chỉnh sửa đánh giá thành công
+[INFO]  03/06/2024 00:38:56 Chỉnh sửa đánh giá thành công
+[INFO]  03/06/2024 00:38:58 Chỉnh sửa đánh giá thành công
+[ERROR] 03/06/2024 00:39:17 Đánh giá không tồn tại
+[ERROR] 03/06/2024 00:39:21 Đánh giá không tồn tại
+[INFO]  03/06/2024 00:39:25 Xóa đánh giá thành công

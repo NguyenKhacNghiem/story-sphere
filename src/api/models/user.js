@@ -21,14 +21,20 @@ let userSchema = new Schema({
     email: String,
     role: {
         type: String,
-        default: "normal",
+        default: "user",
     },
-    displayName: String,
+    displayName: {
+        type: String,
+        default: "Người dùng Story Sphere" // default display name when register new account
+    },
     selfIntroduction: {
         type: String,
         default: "",
     },
-    dateOfBirth: String,
+    dateOfBirth: {
+        type: String,
+        default: "",
+    },
     favGenreKeywords: {
         type: String,
         default: "",

@@ -15,11 +15,10 @@ function register(req, res) {
     let newUser = new User({
         username: req.body.username, 
         password: bcrypt.hashSync(req.body.password, 10), // encrypt password
-        email: req.body.email,
-        displayName: req.body.displayName, 
-        selfIntroduction: req.body.selfIntroduction,
-        dateOfBirth: req.body.dateOfBirth,
+        email: req.body.email
     });
+
+    // TODO: verify email when register new account
     
     newUser.save()
     .then(result => {        
@@ -49,18 +48,27 @@ function login(req, res) {
     let {username, password} = req.body;
 
     User.findOne({
-        username: username, // find one record by username
+        $or: [
+            { username: username},
+            { email: username },
+        ]
     })
     .then(async result => {
         if(!result) {
-            log.error("Tài khoản hoặc mật khẩu không chính xác");
-            return res.json({code: 1, message: "Tài khoản hoặc mật khẩu không chính xác"});
+            log.error("Thông tin đăng nhập không chính xác");
+            return res.json({code: 1, message: "Thông tin đăng nhập không chính xác"});
         }
 
         // compare encrypt password
         if(!bcrypt.compareSync(password, result.password)) {
-            log.error("Tài khoản hoặc mật khẩu không chính xác");
-            return res.json({code: 1, message: "Tài khoản hoặc mật khẩu không chính xác"});
+            log.error("Thông tin đăng nhập không chính xác");
+            return res.json({code: 1, message: "Thông tin đăng nhập không chính xác"});
+        }
+
+        if (username === "admin" || username === "nghiem782002@gmail.com") {
+            // TODO: HANDLE LOGIN WITH ADMIN ROLE
+            log.info("Admin đăng nhập thành công");
+            return res.json({code: 100, message: "Admin đăng nhập thành công"});
         }
         
         log.info("Đăng nhập thành công");
@@ -72,7 +80,68 @@ function login(req, res) {
     });
 }
 
+function getProfile(req, res) {
+    let username = req.params.username;
+
+    // NOTE: User cannot view the profile of admin
+    if (username === "admin") {
+        log.error("Người dùng không tồn tại");
+        return res.json({code: 1, message: "Người dùng không tồn tại"});
+    }
+
+    User.findOne({
+        username: username, // find one record by username
+    })
+    .then(result => {
+        if(!result) {
+            log.error("Người dùng không tồn tại");
+            return res.json({code: 1, message: "Người dùng không tồn tại"});
+        }
+
+        log.info("Lấy thông tin người dùng thành công");
+        res.json({code: 0, message: "Lấy thông tin người dùng thành công", result: result});
+    })
+    .catch(error => {
+        log.error(error.message);
+        res.json({code: 1, message: "Lấy thông tin người dùng thất bại"});
+    });
+}
+
+async function updateProfile(req, res) {
+    try {
+        // Input validation
+        let result = validationResult(req);
+        if(result.errors.length > 0) {
+            log.error(result.errors[0].msg);
+            return res.json({code: 1, message: result.errors[0].msg});
+        }
+
+        let user = await User.findOne({ _id: req.body._id }); // find one record by id
+
+        if(!user) {
+            log.error("Người dùng không tồn tại");
+            return res.json({code: 1, message: "Người dùng không tồn tại"});
+        }
+
+        // Change fields of record
+        user.displayName = req.body.displayName; 
+        user.selfIntroduction = req.body.selfIntroduction ? req.body.selfIntroduction : user.selfIntroduction ; 
+        user.dateOfBirth = req.body.dateOfBirth; 
+
+        await user.save();
+
+        log.info("Cập nhật hồ sơ người dùng thành công");
+        res.json({code: 0, message: "Cập nhật hồ sơ người dùng thành công"});
+    }
+    catch (error) {
+        log.error(error.message);
+        res.json({code: 1, message: "Cập nhật hồ sơ người dùng thất bại"});
+    }
+}
+
 module.exports = {
     register,
-    login
+    login,
+    getProfile,
+    updateProfile,
 };

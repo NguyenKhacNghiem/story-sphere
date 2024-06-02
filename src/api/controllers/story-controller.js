@@ -213,7 +213,7 @@ async function filter(req, res) {
         res.json({ code: 0, message: "Lọc tác phẩm thành công", result: stories, totalPages: totalPages, currentPage: page });
     } catch (err) {
         log.error(err.message);
-        res.json({ code: 1, message: "Tìm tác phẩm thất bại" });
+        res.json({ code: 1, message: "Lọc tác phẩm thất bại" });
     }
 }
 

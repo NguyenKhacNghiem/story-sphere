@@ -395,3 +395,16 @@
 [ERROR] 26/05/2024 15:38:41 Tác phẩm không tồn tại
 [INFO]  26/05/2024 15:38:43 Lấy thông tin tác phẩm thành công
 [INFO]  26/05/2024 15:38:46 Lấy thông tin tác phẩm thành công
+[INFO]  02/06/2024 12:27:54 API server has been started.
+[INFO]  02/06/2024 12:27:57 Đăng ký tài khoản thành công
+[ERROR] 02/06/2024 12:28:00 E11000 duplicate key error collection: story-sphere.users index: username_1 dup key: { username: "user1" }
+[ERROR] 02/06/2024 12:28:13 Page not found!
+[INFO]  02/06/2024 12:28:25 Lấy thông tin người dùng thành công
+[ERROR] 02/06/2024 12:28:33 Người dùng không tồn tại
+[ERROR] 02/06/2024 12:28:41 Vui lòng nhập mã người dùng
+[ERROR] 02/06/2024 12:29:05 Ngày sinh không đúng định dạng (dd/MM/yyyy)
+[ERROR] 02/06/2024 12:29:19 Cast to Number failed for value "user2" (type string) at path "_id" for model "User"
+[ERROR] 02/06/2024 12:29:32 Người dùng không tồn tại
+[INFO]  02/06/2024 12:29:38 Cập nhật hồ sơ người dùng thành công
+[INFO]  02/06/2024 12:29:39 Cập nhật hồ sơ người dùng thành công
+[INFO]  02/06/2024 12:29:52 Cập nhật hồ sơ người dùng thành công

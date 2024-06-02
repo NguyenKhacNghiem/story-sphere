@@ -16,6 +16,10 @@ router.put("/profile", userValidator.updateProfileValidator, (req, res) => {
     userController.updateProfile(req, res);
 })
 
+router.put("/profile/favGenreKeywords", userValidator.updateFavGenreKeywordsValidator, (req, res) => {
+    userController.updateFavGenreKeywords(req, res);
+})
+
 router.get("/profile/:username", (req, res) => {
     userController.getProfile(req, res);
 })

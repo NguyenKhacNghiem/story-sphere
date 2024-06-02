@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const autoIncrement = require("mongoose-plugin-autoinc");
 
+const utils = require("../utils");
+
 mongoose.Promise = global.Promise;
 let Schema = mongoose.Schema;
 
@@ -46,25 +48,11 @@ let chapterSchema = new Schema({
     wordsCount : Number,
     createDate : {
         type: String,
-        default: function() {
-            let today = new Date();
-            let day = today.getDate();
-            let month = today.getMonth() + 1; 
-            let year = today.getFullYear();
-
-            return `${day}/${month}/${year}`; // default is the current date
-        },
+        default: utils.getCurrentDate(),
     },
     lastUpdate : {
         type: String,
-        default: function() {
-            let today = new Date();
-            let day = String(today.getDate()).padStart(2, '0');
-            let month = String(today.getMonth() + 1).padStart(2, '0'); 
-            let year = today.getFullYear();
-
-            return `${day}/${month}/${year}`; // default is the current date
-        },
+        default: utils.getCurrentDate(),
     },
     commercialActivated : Boolean,
     chapterSellPrice : Number,

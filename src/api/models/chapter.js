@@ -75,7 +75,7 @@ let chapterSchema = new Schema({
 chapterSchema.plugin(autoIncrement.plugin, {
     model: "Chapter",
     field: '_id',
-    startAt: 1,
+    startAt: 100000,
     incrementBy: 1
 })
 

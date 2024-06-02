@@ -37,7 +37,7 @@ let categorySchema = new Schema({
 categorySchema.plugin(autoIncrement.plugin, {
     model: "Category",
     field: '_id',
-    startAt: 1,
+    startAt: 100000,
     incrementBy: 1
 })
 

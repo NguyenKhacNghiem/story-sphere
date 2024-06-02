@@ -48,7 +48,7 @@ favBookSchema.index({ userId: 1, storyId: 1 }, { unique: true });
 favBookSchema.plugin(autoIncrement.plugin, {
     model: "FavBook",
     field: '_id',
-    startAt: 1,
+    startAt: 100000,
     incrementBy: 1
 })
 

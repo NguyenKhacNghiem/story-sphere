@@ -89,7 +89,7 @@ let storySchema = new Schema({
 storySchema.plugin(autoIncrement.plugin, {
     model: "Story",
     field: '_id',
-    startAt: 1,
+    startAt: 100000,
     incrementBy: 1
 })
 

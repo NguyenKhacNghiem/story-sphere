@@ -50,7 +50,7 @@ let userSchema = new Schema({
 userSchema.plugin(autoIncrement.plugin, {
     model: "User",
     field: '_id',
-    startAt: 1,
+    startAt: 100000,
     incrementBy: 1
 })
 

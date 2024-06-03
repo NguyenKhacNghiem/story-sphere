@@ -20,8 +20,12 @@ router.put("/profile/favGenreKeywords", userValidator.updateFavGenreKeywordsVali
     userController.updateFavGenreKeywords(req, res);
 })
 
-router.get("/profile/:username", (req, res) => {
+router.get("/profile/:id", (req, res) => {
     userController.getProfile(req, res);
+})
+
+router.put("/change-password", userValidator.changePasswordValidator, (req, res) => {
+    userController.changePassword(req, res);
 })
 
 module.exports = router;

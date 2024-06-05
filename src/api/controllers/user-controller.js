@@ -3,6 +3,7 @@ const { validationResult } = require('express-validator');
 
 const User = require("../models/user");
 const log = require('../logs/log');
+const utils = require("../utils");
 
 function register(req, res) {
     // Input validation
@@ -65,7 +66,7 @@ function login(req, res) {
             return res.json({code: 1, message: "Thông tin đăng nhập không chính xác"});
         }
 
-        if (username === "admin" || username === "nghiem782002@gmail.com") {
+        if (username === "admin" || username === "nghiem7755@gmail.com") {
             // TODO: HANDLE LOGIN WITH ADMIN ROLE
             log.info("Admin đăng nhập thành công");
             return res.json({code: 100, message: "Admin đăng nhập thành công"});
@@ -203,6 +204,28 @@ async function changePassword(req, res) {
     }
 }
 
+// Verify email when forget password or update new email
+function verifyEmail(req, res) {
+    try {
+        // Input validation
+        let result = validationResult(req);
+        if(result.errors.length > 0) {
+            log.error(result.errors[0].msg);
+            return res.json({code: 1, message: result.errors[0].msg});
+        }
+
+        let email = req.body.email;
+        let otp = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000; // random OTP code in [1000, 9999]
+        
+        utils.sendEmail(email, otp)
+        res.json({code: 0, message: "Xác thực email thành công", email: email, otp: otp});
+    }
+    catch (error) {
+        log.error(error.message);
+        res.json({code: 1, message: "Xác thực email thất bại"});
+    }
+}
+
 module.exports = {
     register,
     login,
@@ -210,4 +233,5 @@ module.exports = {
     updateProfile,
     updateFavGenreKeywords,
     changePassword,
+    verifyEmail,
 };

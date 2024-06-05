@@ -94,5 +94,14 @@ module.exports = {
 
             return true;
         }),
+    ],
+
+    // Verify email when forget password or update new email
+    verifyEmailValidator: [
+        check("email")
+        .notEmpty()
+        .withMessage("Vui lòng nhập email")
+        .isEmail()
+        .withMessage("Email không đúng định dạng"),
     ]
 };

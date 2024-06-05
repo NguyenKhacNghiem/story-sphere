@@ -526,3 +526,16 @@
 [ERROR] 03/06/2024 23:55:07 Xác nhận mật khẩu mới không chính xác
 [INFO]  03/06/2024 23:55:47 Đổi mật khẩu thành công
 [ERROR] 03/06/2024 23:55:50 Mật khẩu cũ không chính xác
+[INFO]  05/06/2024 00:42:06 API server has been started.
+[ERROR] 05/06/2024 00:43:08 Vui lòng nhập email
+[ERROR] 05/06/2024 00:43:20 Email không đúng định dạng
+[INFO]  05/06/2024 00:50:07 API server has been started.
+[INFO]  05/06/2024 00:53:40 API server has been started.
+[INFO]  05/06/2024 00:56:06 API server has been started.
+[INFO]  05/06/2024 00:56:54 API server has been started.
+[INFO]  05/06/2024 00:57:35 API server has been started.
+[INFO]  05/06/2024 00:58:49 API server has been started.
+[INFO]  05/06/2024 01:00:45 API server has been started.
+[INFO]  05/06/2024 01:02:21 API server has been started.
+[INFO]  05/06/2024 22:41:30 API server has been started.
+[INFO]  05/06/2024 23:07:16 API server has been started.

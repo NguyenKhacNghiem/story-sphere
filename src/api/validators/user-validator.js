@@ -96,6 +96,26 @@ module.exports = {
         }),
     ],
 
+    forgetPasswordValidator: [
+        check("_id")
+        .notEmpty()
+        .withMessage("Vui lòng nhập mã người dùng"),
+
+        check("password")
+        .notEmpty()
+        .withMessage("Vui lòng nhập mật khẩu mới")
+        .isLength({ min: 8 })
+        .withMessage('Mật khẩu mới phải chứa ít nhất 8 ký tự'),
+
+        check("confirmPassword")
+        .custom((value, { req }) => {
+            if (value !== req.body.password)
+                throw new Error("Xác nhận mật khẩu mới không chính xác")
+
+            return true;
+        }),
+    ],
+
     // Verify email when forget password or update new email
     verifyEmailValidator: [
         check("email")

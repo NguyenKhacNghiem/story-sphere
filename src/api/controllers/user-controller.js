@@ -204,6 +204,36 @@ async function changePassword(req, res) {
     }
 }
 
+async function forgetPassword(req, res) {
+    try {
+        // Input validation
+        let result = validationResult(req);
+        if(result.errors.length > 0) {
+            log.error(result.errors[0].msg);
+            return res.json({code: 1, message: result.errors[0].msg});
+        }
+
+        let {_id, password} = req.body;
+
+        let user = await User.findOne({ _id: _id }); // find one record by id
+        if(!user) {
+            log.error("Người dùng không tồn tại");
+            return res.json({code: 1, message: "Người dùng không tồn tại"});
+        }
+
+        // Change fields of record
+        user.password = bcrypt.hashSync(password, 10) ;
+        await user.save();
+
+        log.info("Đặt lại mật khẩu thành công");
+        res.json({code: 0, message: "Đặt lại mật khẩu thành công"});
+    }
+    catch (error) {
+        log.error(error.message);
+        res.json({code: 1, message: "Đặt lại mật khẩu thất bại"});
+    }
+}
+
 // Verify email when forget password or update new email
 function verifyEmail(req, res) {
     try {
@@ -233,5 +263,6 @@ module.exports = {
     updateProfile,
     updateFavGenreKeywords,
     changePassword,
+    forgetPassword,
     verifyEmail,
 };

@@ -28,6 +28,10 @@ router.put("/change-password", userValidator.changePasswordValidator, (req, res)
     userController.changePassword(req, res);
 })
 
+router.put("/forget-password", userValidator.forgetPasswordValidator, (req, res) => {
+    userController.forgetPassword(req, res);
+})
+
 // Verify email when forget password or update new email
 router.post("/verify-email", userValidator.verifyEmailValidator, (req, res) => {
     userController.verifyEmail(req, res);

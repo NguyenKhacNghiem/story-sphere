@@ -539,3 +539,19 @@
 [INFO]  05/06/2024 01:02:21 API server has been started.
 [INFO]  05/06/2024 22:41:30 API server has been started.
 [INFO]  05/06/2024 23:07:16 API server has been started.
+[INFO]  05/06/2024 23:16:17 API server has been started.
+[INFO]  05/06/2024 23:16:27 API server has been started.
+[INFO]  05/06/2024 23:17:30 API server has been started.
+[INFO]  05/06/2024 23:23:50 API server has been started.
+[INFO]  05/06/2024 23:38:42 API server has been started.
+[INFO]  06/06/2024 22:01:33 API server has been started.
+[INFO]  06/06/2024 22:01:53 API server has been started.
+[INFO]  06/06/2024 22:03:01 API server has been started.
+[INFO]  06/06/2024 22:03:16 API server has been started.
+[ERROR] 06/06/2024 22:13:00 Vui lòng nhập mã người dùng
+[ERROR] 06/06/2024 22:13:56 Unexpected string in JSON at position 19
+[ERROR] 06/06/2024 22:14:05 Mật khẩu mới phải chứa ít nhất 8 ký tự
+[ERROR] 06/06/2024 22:14:09 Xác nhận mật khẩu mới không chính xác
+[INFO]  06/06/2024 22:14:13 Đặt lại mật khẩu thành công
+[INFO]  06/06/2024 22:18:26 Đăng nhập thành công
+[ERROR] 06/06/2024 22:18:28 Thông tin đăng nhập không chính xác

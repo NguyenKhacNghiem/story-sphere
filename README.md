@@ -31,6 +31,7 @@ Do later ...
 - Download Node.js and MongoDB database
 - Download or clone this project on GitHub
 - Open command line at `src/api` folder
+- Type `npm install`
 - Type `node app.js`
   
 2. Start flutter: Do later ... 

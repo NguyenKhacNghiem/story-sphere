@@ -169,6 +169,35 @@ async function updateFavGenreKeywords(req, res) {
     }
 }
 
+async function updateEmail(req, res) {
+    try {
+        // Input validation
+        let result = validationResult(req);
+        if(result.errors.length > 0) {
+            log.error(result.errors[0].msg);
+            return res.json({code: 1, message: result.errors[0].msg});
+        }
+
+        let user = await User.findOne({ _id: req.body._id }); // find one record by id
+
+        if(!user) {
+            log.error("Người dùng không tồn tại");
+            return res.json({code: 1, message: "Người dùng không tồn tại"});
+        }
+
+        // Change fields of record
+        user.email = req.body.email ;
+        await user.save();
+
+        log.info("Cập nhật email thành công");
+        res.json({code: 0, message: "Cập nhật email thành công"});
+    }
+    catch (error) {
+        log.error(error.message);
+        res.json({code: 1, message: "Cập nhật email thất bại"});
+    }
+}
+
 async function changePassword(req, res) {
     try {
         // Input validation
@@ -262,6 +291,7 @@ module.exports = {
     getProfile,
     updateProfile,
     updateFavGenreKeywords,
+    updateEmail,
     changePassword,
     forgetPassword,
     verifyEmail,

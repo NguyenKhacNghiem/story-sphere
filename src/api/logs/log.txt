@@ -555,3 +555,16 @@
 [INFO]  06/06/2024 22:14:13 Đặt lại mật khẩu thành công
 [INFO]  06/06/2024 22:18:26 Đăng nhập thành công
 [ERROR] 06/06/2024 22:18:28 Thông tin đăng nhập không chính xác
+[INFO]  06/06/2024 22:47:11 API server has been started.
+[INFO]  06/06/2024 22:48:10 API server has been started.
+[INFO]  06/06/2024 22:48:14 API server has been started.
+[INFO]  06/06/2024 22:48:46 API server has been started.
+[INFO]  06/06/2024 22:48:53 API server has been started.
+[INFO]  06/06/2024 22:48:57 API server has been started.
+[INFO]  06/06/2024 23:43:07 API server has been started.
+[INFO]  06/06/2024 23:43:21 API server has been started.
+[ERROR] 06/06/2024 23:44:16 Vui lòng nhập mã người dùng
+[ERROR] 06/06/2024 23:44:33 Unexpected token } in JSON at position 16
+[ERROR] 06/06/2024 23:44:40 Vui lòng nhập email
+[ERROR] 06/06/2024 23:44:42 Email không đúng định dạng
+[INFO]  06/06/2024 23:44:48 Cập nhật email thành công

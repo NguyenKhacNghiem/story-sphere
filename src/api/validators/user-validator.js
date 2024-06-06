@@ -72,6 +72,18 @@ module.exports = {
         .withMessage("Vui lòng nhập mã người dùng"),
     ],
 
+    updateEmailValidator: [
+        check("_id")
+        .notEmpty()
+        .withMessage("Vui lòng nhập mã người dùng"),
+
+        check("email")
+        .notEmpty()
+        .withMessage("Vui lòng nhập email")
+        .isEmail()
+        .withMessage("Email không đúng định dạng"),
+    ],
+
     changePasswordValidator: [
         check("_id")
         .notEmpty()

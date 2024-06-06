@@ -20,6 +20,10 @@ router.put("/profile/favGenreKeywords", userValidator.updateFavGenreKeywordsVali
     userController.updateFavGenreKeywords(req, res);
 })
 
+router.put("/profile/email", userValidator.updateEmailValidator, (req, res) => {
+    userController.updateEmail(req, res);
+})
+
 router.get("/profile/:id", (req, res) => {
     userController.getProfile(req, res);
 })

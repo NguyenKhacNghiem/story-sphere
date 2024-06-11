@@ -568,3 +568,14 @@
 [ERROR] 06/06/2024 23:44:40 Vui lòng nhập email
 [ERROR] 06/06/2024 23:44:42 Email không đúng định dạng
 [INFO]  06/06/2024 23:44:48 Cập nhật email thành công
+[ERROR] 11/06/2024 23:31:52 URI must include hostname, domain name, and tld
+[ERROR] 11/06/2024 23:35:33 bad auth : authentication failed
+[ERROR] 11/06/2024 23:36:47 bad auth : authentication failed
+[ERROR] 11/06/2024 23:37:23 bad auth : authentication failed
+[ERROR] 11/06/2024 23:40:57 bad auth : authentication failed
+[ERROR] 11/06/2024 23:44:41 URI must include hostname, domain name, and tld
+[INFO]  11/06/2024 23:45:07 API server has been started.
+[ERROR] 11/06/2024 23:53:14 bad auth : authentication failed
+[INFO]  11/06/2024 23:54:11 API server has been started.
+[INFO]  11/06/2024 23:57:39 Tạo danh mục mới thành công
+[INFO]  11/06/2024 23:59:57 API server has been started.

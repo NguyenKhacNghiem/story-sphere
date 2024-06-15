@@ -23,7 +23,7 @@ class UserHomepageWidget extends StatelessWidget {
             children: [
             Wrap(
               children: [
-                Icons_SVG.user,
+                IconsSVG.user,
                 Padding(padding: EdgeInsets.all(3.sp),),
                 Text('Mỹ Diệu', style: FontConstant.userNameText,),
               ],
@@ -36,7 +36,7 @@ class UserHomepageWidget extends StatelessWidget {
                 width: 20.sp,
                 height: 20.sp,
                 color: ColorConstants.headingGreen,
-                child: Icons_SVG.notificatioBing,
+                child: IconsSVG.notificatioBing,
               ),),
           ],)
           

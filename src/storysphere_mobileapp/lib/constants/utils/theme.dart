@@ -11,9 +11,9 @@ extension ThemeContext on BuildContext {
 ThemeData get lightTheme => ThemeData(
     brightness: Brightness.light,
     fontFamily: 'Graphik',
-    primaryColor: ColorConstants.backgroundColor,
+    primaryColor: ColorConstants.darkGreenBackground,
     useMaterial3: true,
-    scaffoldBackgroundColor: ColorConstants.backgroundColor,
+    scaffoldBackgroundColor: ColorConstants.darkGreenBackground,
     splashFactory: NoSplash.splashFactory,
     colorScheme: ColorScheme(
       brightness: Brightness.light,
@@ -23,8 +23,8 @@ ThemeData get lightTheme => ThemeData(
       onPrimary: getColorSchemePrimary,
       error: Colors.red,
       onError: Colors.red,
-      background: ColorConstants.backgroundColor,
-      onBackground: ColorConstants.backgroundColor,
+      background: ColorConstants.darkGreenBackground,
+      onBackground: ColorConstants.darkGreenBackground,
       surface: const Color(0xfffffff),
       onSurface: const Color(0x000000ff),
     ),
@@ -72,11 +72,11 @@ ThemeData get lightTheme => ThemeData(
       ),
     ),
     buttonTheme:
-        const ButtonThemeData(buttonColor: ColorConstants.buttonPurple),
+        const ButtonThemeData(buttonColor: ColorConstants.buttonDarkGreen),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateColor.resolveWith(
-          (states) => ColorConstants.buttonPurple,
+          (states) => ColorConstants.buttonDarkGreen,
         ),
         shape: MaterialStateProperty.all<OutlinedBorder>(
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -91,8 +91,8 @@ ThemeData get lightTheme => ThemeData(
     ),
     checkboxTheme: CheckboxThemeData(
       checkColor: MaterialStateProperty.all(ColorConstants.textColorLight),
-      fillColor: MaterialStateProperty.all(ColorConstants.buttonAqua),
+      fillColor: MaterialStateProperty.all(ColorConstants.buttonPastelGreen),
     ),
-    unselectedWidgetColor: ColorConstants.formColor,
+    unselectedWidgetColor: ColorConstants.formStrokeColor,
     bottomSheetTheme: BottomSheetThemeData()
         .copyWith(dragHandleColor: ColorConstants.btnPrimary));

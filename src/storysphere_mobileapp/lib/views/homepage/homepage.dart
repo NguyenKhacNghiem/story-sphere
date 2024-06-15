@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable, avoid_init_to_null
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
+import 'package:storysphere_mobileapp/views/homepage/user_widget.dart';
 
 @RoutePage()
 class HSHomePage extends StatefulWidget {
@@ -30,7 +30,11 @@ class _HSHomePage extends State<HSHomePage> {
             // appBar: const HiveCustomAppBar(),
             // drawer: const WriterDrawer(),
             body: SizedBox.expand(
-              child: Text('Hello', style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),),
+              child: Column(
+                children: [
+                  UserHomepageWidget(),
+                ],
+              )
             ),
           ),
         );

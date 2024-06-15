@@ -2,13 +2,21 @@ import 'package:flutter/material.dart';
 
 class ColorConstants {
   const ColorConstants._();
-  static const backgroundColor = Color(0XFFF8FBFF);
-  static const bottomNavBackground = Color(0XFFFFFFFF);
-  static const secondaryText = Color.fromARGB(255, 159, 137, 176);
-  static const formColor = Color(0XFF1E1E1E);
-  static const buttonAqua = Color(0XFF379683);
-  static const buttonPurple = Color(0XFF800682);
-  static const buttonFascia = Color(0XFFBD1F71);
+  //BACKGROUND - ELEMENTS
+  static const darkGreenBackground = Color(0XFF092E34);
+  static const bottomNavBackground = Color(0XFF0F7077);
+  static const formStrokeColor = Color(0XFF9E9E9E);
+  static const buttonDarkGreen = Color(0XFF0F7077);
+  static const buttonPastelGreen = Color(0XFF85A8B0);
+  static const tagYellow = Color(0XFFFFC93E);
+
+  //TEXT
+  static const primaryText = Color(0XFFFFFFFF);
+  static const secondaryText = Color(0XFF9E9E9E);
+  static const darkText = Color(0XFF000000);
+  static const lightText = Color(0XFFFFFFFF);
+  static const headingGreen = Color(0XFF0F7077);
+
   static const textLinkAqua = Color(0XFF44CCB0);
   static const textLinkPurple = Color(0XFFD505D8);
   static const textLinkFascia = Color(0XFFFF2998);

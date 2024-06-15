@@ -8,7 +8,7 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:storysphere_mobileapp/views/homepage.dart' as _i1;
+import 'package:storysphere_mobileapp/views/homepage/homepage.dart' as _i1;
 import 'package:auto_route/auto_route.dart' as _i7;
 //import 'package:flutter/material.dart' as _i8;
 

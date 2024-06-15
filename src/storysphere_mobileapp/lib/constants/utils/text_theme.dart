@@ -5,7 +5,7 @@ import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 class StorySphereTextTheme extends TextTheme {
   TextStyle get defaultTextTheme {
     return const TextStyle(
-      color: ColorConstants.textColorGrey,
+      color: ColorConstants.lightText,
     );
   }
 

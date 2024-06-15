@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: Size(375, 812), minTextAdapt: true);
+    ScreenUtil.init(context, designSize: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height), minTextAdapt: true);
     return MaterialApp(
       title: 'Story Sphere',
       theme: ThemeData(

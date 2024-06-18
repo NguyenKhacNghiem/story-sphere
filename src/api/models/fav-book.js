@@ -24,7 +24,7 @@ let favBookSchema = new Schema({
     },
     readingProgressChapter: {
         type: Number,
-        default: 0,
+        default: -1, // this story has no chapter
     },
     addedDate: {
         type: String,

@@ -12,12 +12,17 @@ router.post("/create", favBookValidator.createValidator, (req, res) => {
     favBookController.create(req, res);
 })
 
-router.put("/edit/:id", favBookValidator.editValidator, (req, res) => {
+router.put("/edit/:id", (req, res) => {
     favBookController.edit(req, res);
 })
 
 router.delete("/delete/:id", (req, res) => {
     favBookController.remove(req, res);
+})
+
+// remove all favorite books
+router.delete("/clear/:userId", (req, res) => {
+    favBookController.clear(req, res);
 })
 
 module.exports = router;

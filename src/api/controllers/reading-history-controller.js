@@ -3,9 +3,9 @@ const { validationResult } = require('express-validator');
 const ReadingHistory = require("../models/reading-history");
 const User = require("../models/user");
 const Story = require("../models/story");
+const Chapter = require('../models/chapter');
 const log = require('../logs/log');
 const utils = require("../utils");
-const Chapter = require('../models/chapter');
 
 async function getAll(req, res) {
     // Input validation
@@ -34,37 +34,23 @@ async function getAll(req, res) {
         let total = await ReadingHistory.countDocuments({ userId: userId }); // Total records in database by a condition
         let totalPages = Math.ceil(total / limit); // Total pages
 
-        if (endIndex < total) {
-            histories = await ReadingHistory.find({ userId: userId }).lean().skip(startIndex).limit(limit);
-            
-            histories.sort((a, b) => {
-                let [aDate, aTime] = a.lastVisited.split(' ');
-                let [aDay, aMonth, aYear] = aDate.split('/');
-                let [bDate, bTime] = b.lastVisited.split(' ');
-                let [bDay, bMonth, bYear] = bDate.split('/');
-                
-                let aFormatted = `${aYear}${aMonth}${aDay}${aTime}`;
-                let bFormatted = `${bYear}${bMonth}${bDay}${bTime}`;
-                
-                return bFormatted.localeCompare(aFormatted); // compare by lastVisited desc
-            })
-        }      
-        else {
+        if (endIndex < total)
+            histories = await ReadingHistory.find({ userId: userId }).lean().skip(startIndex).limit(limit); 
+        else
             histories = await ReadingHistory.find({ userId: userId }).lean().skip(startIndex);
+        
+        // Sort history list by lastVisited desc
+        histories.sort((a, b) => {
+            let [aDate, aTime] = a.lastVisited.split(' ');
+            let [aDay, aMonth, aYear] = aDate.split('/');
+            let [bDate, bTime] = b.lastVisited.split(' ');
+            let [bDay, bMonth, bYear] = bDate.split('/');
             
-            histories.sort((a, b) => {
-                let [aDate, aTime] = a.lastVisited.split(' ');
-                let [aDay, aMonth, aYear] = aDate.split('/');
-                let [bDate, bTime] = b.lastVisited.split(' ');
-                let [bDay, bMonth, bYear] = bDate.split('/');
-                
-                let aFormatted = `${aYear}${aMonth}${aDay}${aTime}`;
-                let bFormatted = `${bYear}${bMonth}${bDay}${bTime}`;
-                
-                return bFormatted.localeCompare(aFormatted); // compare by lastVisited desc
-            });
-        }
+            let aFormatted = `${aYear}${aMonth}${aDay}${aTime}`;
+            let bFormatted = `${bYear}${bMonth}${bDay}${bTime}`;
             
+            return bFormatted.localeCompare(aFormatted); // compare by lastVisited desc
+        })
         
         if (histories.length === 0) {
             log.info("Danh sách lịch sử xem hiện đang trống");

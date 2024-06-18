@@ -613,3 +613,4 @@
 [INFO]  19/06/2024 00:18:58 Xóa lịch sử xem thành công
 [ERROR] 19/06/2024 00:19:09 Người dùng không tồn tại
 [INFO]  19/06/2024 00:19:13 Xóa tất cả lịch sử xem thành công
+[INFO]  19/06/2024 00:49:41 API server has been started.

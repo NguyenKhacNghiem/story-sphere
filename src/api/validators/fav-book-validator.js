@@ -16,10 +16,4 @@ module.exports = {
         .notEmpty()
         .withMessage("Vui lòng nhập mã tác phẩm cho danh sách yêu thích"),
     ],
-
-    editValidator: [
-        check("readingProgressChapter")
-        .notEmpty()
-        .withMessage("Vui lòng nhập tiến trình đọc cho danh sách yêu thích"),
-    ],
 };

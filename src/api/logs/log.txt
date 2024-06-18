@@ -579,3 +579,37 @@
 [INFO]  11/06/2024 23:54:11 API server has been started.
 [INFO]  11/06/2024 23:57:39 Tạo danh mục mới thành công
 [INFO]  11/06/2024 23:59:57 API server has been started.
+[INFO]  19/06/2024 00:02:23 API server has been started.
+[ERROR] 19/06/2024 00:03:22 Unexpected token } in JSON at position 9
+[ERROR] 19/06/2024 00:03:29 Vui lòng nhập mã người dùng cho lịch sử đọc
+[INFO]  19/06/2024 00:05:01 API server has been started.
+[INFO]  19/06/2024 00:05:13 API server has been started.
+[INFO]  19/06/2024 00:06:45 Thêm lịch sử xem thành công
+[INFO]  19/06/2024 00:06:59 Chỉnh sửa lịch sử xem thành công
+[INFO]  19/06/2024 00:07:09 Chỉnh sửa lịch sử xem thành công
+[INFO]  19/06/2024 00:07:23 Thêm lịch sử xem thành công
+[ERROR] 19/06/2024 00:07:38 Page not found!
+[ERROR] 19/06/2024 00:07:49 Người dùng không tồn tại
+[ERROR] 19/06/2024 00:08:02 Chương không tồn tại
+[ERROR] 19/06/2024 00:08:15 Invalid sort() argument. Must be a string, object, or array.
+[ERROR] 19/06/2024 00:08:22 Page not found!
+[ERROR] 19/06/2024 00:08:36 Page not found!
+[ERROR] 19/06/2024 00:08:42 Invalid sort() argument. Must be a string, object, or array.
+[ERROR] 19/06/2024 00:09:16 Invalid sort() argument. Must be a string, object, or array.
+[INFO]  19/06/2024 00:13:16 API server has been started.
+[INFO]  19/06/2024 00:13:21 Lấy danh sách lịch sử xem thành công
+[INFO]  19/06/2024 00:13:53 Thêm lịch sử xem thành công
+[ERROR] 19/06/2024 00:15:05 Page not found!
+[INFO]  19/06/2024 00:15:09 Lấy danh sách lịch sử xem thành công
+[INFO]  19/06/2024 00:16:22 Lấy danh sách lịch sử xem thành công
+[INFO]  19/06/2024 00:16:57 Chỉnh sửa lịch sử xem thành công
+[ERROR] 19/06/2024 00:17:17 Chương không tồn tại
+[INFO]  19/06/2024 00:17:26 Chỉnh sửa lịch sử xem thành công
+[INFO]  19/06/2024 00:17:37 Chỉnh sửa lịch sử xem thành công
+[INFO]  19/06/2024 00:17:41 Chỉnh sửa lịch sử xem thành công
+[ERROR] 19/06/2024 00:18:39 Lịch sử xem không tồn tại
+[ERROR] 19/06/2024 00:18:43 Lịch sử xem không tồn tại
+[ERROR] 19/06/2024 00:18:50 Lịch sử xem không tồn tại
+[INFO]  19/06/2024 00:18:58 Xóa lịch sử xem thành công
+[ERROR] 19/06/2024 00:19:09 Người dùng không tồn tại
+[INFO]  19/06/2024 00:19:13 Xóa tất cả lịch sử xem thành công

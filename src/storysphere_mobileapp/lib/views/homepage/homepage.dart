@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable, avoid_init_to_null
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:storysphere_mobileapp/views/homepage/news_slider.dart';
 import 'package:storysphere_mobileapp/views/homepage/user_widget.dart';
 
 @RoutePage()
@@ -25,14 +26,17 @@ class _HSHomePage extends State<HSHomePage> {
   Widget build(BuildContext context) {
     // if (FirebaseAuth.instance.currentUser != null) {
     //   try {
-        return const SafeArea(
+        return SafeArea(
           child: Scaffold(
             // appBar: const HiveCustomAppBar(),
             // drawer: const WriterDrawer(),
             body: SizedBox.expand(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   UserHomepageWidget(),
+                  NewsSliderHomepageWidget(),
                 ],
               )
             ),

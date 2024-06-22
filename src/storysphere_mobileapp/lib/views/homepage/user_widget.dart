@@ -12,33 +12,63 @@ class UserHomepageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 35.sp),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
         children: [
-          const Text(Strings.hello),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
             children: [
-            Wrap(
-              children: [
-                IconsSVG.user,
-                Padding(padding: EdgeInsets.all(3.sp),),
-                Text('Mỹ Diệu', style: FontConstant.userNameText,),
-              ],
-            ),
-           
-            ElevatedButton(
-              onPressed: (){},
-              child: 
-              Container(
-                width: 20.sp,
-                height: 20.sp,
-                color: ColorConstants.headingGreen,
+              Text(Strings.hello, style: FontConstant.subTitleText,),
+              5.verticalSpace,
+              Wrap(
+                children: [
+                  IconsSVG.user,
+                  Padding(padding: EdgeInsets.all(3.sp),),
+                  Text('Mỹ Diệu', style: FontConstant.userNameText,),
+                ],
+              ),
+          ],),
+          
+          Padding(
+            padding: EdgeInsets.all(5.sp),
+            child:
+          Container(
+            decoration:
+              BoxDecoration(
+                      color: ColorConstants.buttonDarkGreen,
+                      borderRadius: BorderRadius.circular(5.sp),
+                    ),
+            child:
+              ElevatedButton(
+                onPressed: (){
+                  showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Alert'),
+                      content: Text('Button Pressed!'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+                },
                 child: IconsSVG.notificatioBing,
-              ),),
-          ],)
+                
+              
+          ),),
+        ),
+          
           
         ],),
     );

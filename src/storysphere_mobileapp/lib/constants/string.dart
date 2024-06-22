@@ -6,7 +6,8 @@ class Strings {
   static const String updatedRecently = 'CẬP NHẬT GẦN ĐÂY';
   static const String storyRecommended = 'TÁC PHẨM MỌI NGƯỜI ĐỀ XUẤT';
 
-  //
+  //LABELS
+  static const String notificationLabel = 'Thông báo'; 
 
   static const String login = 'Đăng nhập';
   static const String signInWithGoogleButtonText = 'Đăng nhập với Google';

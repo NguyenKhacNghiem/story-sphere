@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 class ColorConstants {
   const ColorConstants._();
+  //BASICS
+  static const transparent = Colors.transparent;
+
   //BACKGROUND - ELEMENTS
   static const darkGreenBackground = Color(0XFF092E34);
   static const bottomNavBackground = Color(0XFF0F7077);

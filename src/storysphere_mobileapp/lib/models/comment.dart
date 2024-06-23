@@ -1,7 +1,4 @@
-
-
 import 'dart:convert';
-import 'dart:core';
 
 List<Comment> commentsFromJson(String str) => List<Comment>.from(json.decode(str).map((x) => Comment.fromJson(x)));
 

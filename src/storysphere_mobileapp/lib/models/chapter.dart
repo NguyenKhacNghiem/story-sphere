@@ -1,7 +1,4 @@
-
-
 import 'dart:convert';
-import 'dart:core';
 
 List<Chapter> chaptersFromJson(String str) => List<Chapter>.from(json.decode(str).map((x) => Chapter.fromJson(x)));
 

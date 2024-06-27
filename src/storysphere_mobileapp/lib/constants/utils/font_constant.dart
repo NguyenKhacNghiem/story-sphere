@@ -23,6 +23,7 @@ class FontConstant {
 
   static TextStyle headline2White = headline1White.copyWith(
     fontSize: 20,
+    fontWeight: FontWeight.w700,
   );
 
   static TextStyle subTitleText = GoogleFonts.beVietnamPro(

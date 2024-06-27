@@ -40,11 +40,12 @@ class _NewsSliderHomepageWidgetState extends State<NewsSliderHomepageWidget> {
   Widget build(BuildContext context) {
     return Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             CarouselSlider(
               options: CarouselOptions(
-                height: 400.0,
+                //height: 400.0,
                 autoPlay: true,
                 autoPlayInterval: const Duration(seconds: 3),
                 enlargeCenterPage: true,

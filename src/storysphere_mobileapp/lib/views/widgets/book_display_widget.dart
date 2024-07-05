@@ -1,34 +1,41 @@
-import 'package:flutter/cupertino.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
+import 'package:storysphere_mobileapp/models/story.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
 
 class BookDisplayWidget extends StatelessWidget {
-  final String imageUrl;
-  final String title;
+  final Story story;
 
-  const BookDisplayWidget({super.key, required this.imageUrl, required this.title});
+  const BookDisplayWidget({super.key, required this.story});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 5.sp, horizontal: 10.sp),
-      child: Column(
-       mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            width: 105.sp,
-            height: 160.sp,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(5.sp),
-              child: Image.asset(imageUrl, fit: BoxFit.cover,))),
-          5.verticalSpace,
-          SizedBox(
-            width: 105.sp,
-            child:Text (title, style: FontConstant.subTitleText, overflow: TextOverflow.ellipsis,))
-          
-        ],),
+    return InkWell(
+        onTap: () => context.pushRoute(
+          StoryDetailPage(
+            storyId: story.storyId!,
+          ),
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 5.sp, horizontal: 10.sp),
+          child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 105.sp,
+                height: 160.sp,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5.sp),
+                  child: Image.asset(story.storyCover!, fit: BoxFit.cover,))),
+              5.verticalSpace,
+              SizedBox(
+                width: 105.sp,
+                child:Text (story.storyName!, style: FontConstant.subTitleText, overflow: TextOverflow.ellipsis,))
+              
+            ],),
+        )
     );
   }
   

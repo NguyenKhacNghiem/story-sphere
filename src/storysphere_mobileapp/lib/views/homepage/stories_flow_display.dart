@@ -30,7 +30,9 @@ class _DisplayStoriesFlowHomepageWidgetState extends State<DisplayStoriesFlowHom
     
     bookList = [
       Story(
-        storyId: 1, storyCover: 'assets/example_data/bc_descendant_of_the_crane.jpg', storyName: 'Descendant of the crane'
+        storyId: 1, 
+        storyCover: 'assets/example_data/bc_descendant_of_the_crane.jpg', 
+        storyName: 'Descendant of the crane'
       ),
       Story(
         storyId: 2, storyCover: 'assets/example_data/bc_drowned_country.jpg', storyName: 'Drowned Country'
@@ -63,8 +65,7 @@ class _DisplayStoriesFlowHomepageWidgetState extends State<DisplayStoriesFlowHom
           itemBuilder: (context, index) {
             final item = bookList[index];
             return BookDisplayWidget(
-                imageUrl: item.storyCover!,
-                title: item.storyName!,
+                story: item,
               );
 
           }

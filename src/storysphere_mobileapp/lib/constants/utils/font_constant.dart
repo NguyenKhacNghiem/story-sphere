@@ -38,6 +38,17 @@ class FontConstant {
     fontSize: 20,
     fontWeight: FontWeight.bold,
   );
+  
+  static TextStyle bookTitleDisplay = subTitleText.copyWith(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    height: 1.0,
+  );
+
+  static TextStyle authorNameDisplay = subTitleText.copyWith(
+    fontSize: 14,
+    color: ColorConstants.secondaryText,
+  );
 
   // static TextStyle headline1StoryTitle = GoogleFonts.roboto(
   //     textStyle: TextStyle(

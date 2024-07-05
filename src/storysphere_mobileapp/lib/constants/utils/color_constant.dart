@@ -4,6 +4,7 @@ class ColorConstants {
   const ColorConstants._();
   //BASICS
   static const transparent = Colors.transparent;
+  static const black = Colors.black;
 
   //BACKGROUND - ELEMENTS
   static const darkGreenBackground = Color(0XFF092E34);

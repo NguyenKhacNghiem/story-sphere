@@ -130,6 +130,17 @@ async function edit(req, res) {
             return res.json({code: 1, message: "Tác phẩm trong danh sách yêu thích không tồn tại"});
         }
 
+        // Check whether readingProgressChapter exists
+        let readingProgressChapter = req.body.readingProgressChapter;
+        
+        if (readingProgressChapter) {
+            let chapter = await Chapter.findOne({ _id: readingProgressChapter }); // find one record by id
+            if(!chapter) {
+                log.error("Chương không tồn tại");
+                return res.json({code: 1, message: "Chương không tồn tại"});
+            }
+        }
+
         // Change fields of record
         favBook.readingProgressChapter = req.body.readingProgressChapter ? req.body.readingProgressChapter : -1; 
 

@@ -16,6 +16,10 @@ module.exports = {
         .notEmpty()
         .withMessage("Vui lòng nhập tên chương"),
 
+        check("chapterContent")
+        .notEmpty()
+        .withMessage("Vui lòng nhập nội dung chương"),
+
         check("chapterUrlKey")
         .notEmpty()
         .withMessage("Vui lòng nhập URL cho chương")

@@ -22,6 +22,7 @@ let chapterSchema = new Schema({
         type: String,
         index: true,
     },
+    chapterContent: String,
     chapterUrlKey: {
         type: String,
         unique: true,

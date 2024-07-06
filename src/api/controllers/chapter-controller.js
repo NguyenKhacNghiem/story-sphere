@@ -79,6 +79,7 @@ function create(req, res) {
     let newChapter = new Chapter({
         fk_storyId: req.body.fk_storyId,
         chapterName: req.body.chapterName,
+        chapterContent: req.body.chapterContent,
         chapterUrlKey: req.body.chapterUrlKey,
         chapterOrder: req.body.chapterOrder,
         chapterStatus: req.body.chapterStatus,

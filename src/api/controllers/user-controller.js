@@ -66,7 +66,8 @@ function login(req, res) {
             return res.json({code: 1, message: "Thông tin đăng nhập không chính xác"});
         }
 
-        if (username === "admin" || username === "nghiem7755@gmail.com") {
+        // Admin login
+        if (username === "nknghiem" || username === "nghiem7755@gmail.com") {
             // TODO: HANDLE LOGIN WITH ADMIN ROLE
             log.info("Admin đăng nhập thành công");
             return res.json({code: 100, message: "Admin đăng nhập thành công"});
@@ -85,7 +86,7 @@ function getProfile(req, res) {
     let _id = req.params.id;
 
     // NOTE: User cannot view the profile of admin
-    if (_id === 999999) {
+    if (_id === 100000) {
         log.error("Người dùng không tồn tại");
         return res.json({code: 1, message: "Người dùng không tồn tại"});
     }

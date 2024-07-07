@@ -614,3 +614,59 @@
 [ERROR] 19/06/2024 00:19:09 Người dùng không tồn tại
 [INFO]  19/06/2024 00:19:13 Xóa tất cả lịch sử xem thành công
 [INFO]  19/06/2024 00:49:41 API server has been started.
+[INFO]  06/07/2024 22:19:46 API server has been started.
+[ERROR] 06/07/2024 22:24:40 Vui lòng nhập URL cho danh mục
+[ERROR] 06/07/2024 22:25:07 Vui lòng nhập URL cho danh mục
+[ERROR] 06/07/2024 22:28:32 Vui lòng nhập URL cho danh mục
+[ERROR] 06/07/2024 22:29:08 Vui lòng nhập URL hợp lệ
+[INFO]  06/07/2024 22:30:55 API server has been started.
+[INFO]  06/07/2024 22:30:58 Tạo danh mục mới thành công
+[INFO]  06/07/2024 22:31:25 Tạo danh mục mới thành công
+[INFO]  06/07/2024 22:31:45 Tạo danh mục mới thành công
+[INFO]  06/07/2024 22:32:44 Tạo danh mục mới thành công
+[INFO]  06/07/2024 22:33:54 Tạo danh mục mới thành công
+[ERROR] 06/07/2024 22:34:58 Vui lòng nhập tài khoản
+[INFO]  06/07/2024 22:40:05 Đăng ký tài khoản thành công
+[ERROR] 06/07/2024 22:48:41 Mật khẩu phải chứa ít nhất 8 ký tự
+[INFO]  06/07/2024 22:49:00 Đăng ký tài khoản thành công
+[INFO]  06/07/2024 22:50:29 Đăng ký tài khoản thành công
+[INFO]  06/07/2024 23:11:04 Đăng ký tài khoản thành công
+[INFO]  06/07/2024 23:11:18 Đăng ký tài khoản thành công
+[ERROR] 06/07/2024 23:12:06 Vui lòng nhập tên tác phẩm
+[ERROR] 06/07/2024 23:12:47 Unexpected token , in JSON at position 18
+[INFO]  07/07/2024 15:58:36 API server has been started.
+[INFO]  07/07/2024 15:58:41 Tạo tác phẩm mới thành công
+[ERROR] 07/07/2024 16:02:49 Vui lòng nhập mã tác phẩm cho chương
+[ERROR] 07/07/2024 16:02:56 Vui lòng nhập mã tác phẩm cho chương
+[INFO]  07/07/2024 16:27:27 Tạo chương mới thành công
+[INFO]  07/07/2024 16:30:57 Tạo chương mới thành công
+[INFO]  07/07/2024 16:33:51 Tạo chương mới thành công
+[ERROR] 07/07/2024 22:46:45 Vui lòng nhập mã vạch hợp lệ
+[INFO]  07/07/2024 22:47:28 Tạo tác phẩm mới thành công
+[INFO]  07/07/2024 22:50:59 Tạo chương mới thành công
+[INFO]  07/07/2024 23:03:18 Tạo tác phẩm mới thành công
+[ERROR] 07/07/2024 23:13:53 Unexpected string in JSON at position 4054
+[INFO]  07/07/2024 23:20:36 API server has been started.
+[INFO]  07/07/2024 23:20:43 Tạo chương mới thành công
+[INFO]  07/07/2024 23:25:38 Thêm bình luận thành công
+[INFO]  07/07/2024 23:26:33 Thêm bình luận thành công
+[INFO]  07/07/2024 23:27:02 Thêm bình luận thành công
+[INFO]  07/07/2024 23:27:29 Thêm bình luận thành công
+[INFO]  07/07/2024 23:28:14 Thêm bình luận thành công
+[ERROR] 07/07/2024 23:31:31 Vui lòng chỉ định đánh giá này là đánh giá chấm điểm hay là trả lời đánh giá khác
+[INFO]  07/07/2024 23:32:12 Thêm đánh giá thành công
+[INFO]  07/07/2024 23:32:52 Thêm đánh giá thành công
+[INFO]  07/07/2024 23:33:11 Thêm đánh giá thành công
+[INFO]  07/07/2024 23:33:25 Thêm đánh giá thành công
+[INFO]  07/07/2024 23:34:18 Thêm đánh giá thành công
+[ERROR] 07/07/2024 23:36:29 Chương không tồn tại
+[INFO]  07/07/2024 23:37:09 Thêm tác phẩm vào danh sách yêu thích thành công
+[INFO]  07/07/2024 23:37:30 Thêm tác phẩm vào danh sách yêu thích thành công
+[INFO]  07/07/2024 23:37:43 Thêm tác phẩm vào danh sách yêu thích thành công
+[INFO]  07/07/2024 23:38:04 Thêm tác phẩm vào danh sách yêu thích thành công
+[INFO]  07/07/2024 23:38:10 Thêm tác phẩm vào danh sách yêu thích thành công
+[INFO]  07/07/2024 23:39:55 Thêm lịch sử xem thành công
+[INFO]  07/07/2024 23:40:08 Thêm lịch sử xem thành công
+[INFO]  07/07/2024 23:40:16 Thêm lịch sử xem thành công
+[INFO]  07/07/2024 23:40:19 Thêm lịch sử xem thành công
+[INFO]  07/07/2024 23:40:27 Thêm lịch sử xem thành công

@@ -22,9 +22,9 @@ module.exports = {
 
         check("chapterUrlKey")
         .notEmpty()
-        .withMessage("Vui lòng nhập URL cho chương")
-        .isURL()
-        .withMessage("Vui lòng nhập URL hợp lệ"),
+        .withMessage("Vui lòng nhập URL cho chương"),
+        // .isURL()
+        // .withMessage("Vui lòng nhập URL hợp lệ"),
 
         check("chapterOrder")
         .notEmpty()

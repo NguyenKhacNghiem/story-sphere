@@ -8,9 +8,9 @@ module.exports = {
 
         check("url")
         .notEmpty()
-        .withMessage("Vui lòng nhập URL cho tác phẩm")
-        .isURL()
-        .withMessage("Vui lòng nhập URL hợp lệ"),
+        .withMessage("Vui lòng nhập URL cho tác phẩm"),
+        // .isURL()
+        // .withMessage("Vui lòng nhập URL hợp lệ"),
 
         check("cover")
         .notEmpty()

@@ -16,6 +16,11 @@ import 'package:storysphere_mobileapp/views/searching/searching_page.dart' as _i
 import 'package:storysphere_mobileapp/views/storydetail/storydetail_page.dart' as _i6;
 import 'package:auto_route/auto_route.dart' as _i7;
 import 'package:storysphere_mobileapp/views/mywork/myworks_page.dart' as _i8;
+import 'package:storysphere_mobileapp/views/sign_in_page.dart' as _i9;
+import 'package:storysphere_mobileapp/views/log_in_page.dart' as _i10;
+import 'package:storysphere_mobileapp/views/forgot_password_page.dart' as _i11;
+import 'package:storysphere_mobileapp/views/mywork/add_story_page.dart' as _i12;
+import 'package:storysphere_mobileapp/views/mywork/add_chapter_page.dart' as _i13;
 
 abstract class $AppRouter extends _i7.RootStackRouter {
   $AppRouter({super.navigatorKey});
@@ -29,18 +34,24 @@ abstract class $AppRouter extends _i7.RootStackRouter {
         child: const _i1.HSHomePage(),
       );
     },
-    // HSSignInPage.name: (routeData) {
-    //   return _i7.AutoRoutePage<dynamic>(
-    //     routeData: routeData,
-    //     child: const _i4.HSSignInPage(),
-    //   );
-    // },
-    // WriterStoriesPage.name: (routeData) {
-    //   return _i7.AutoRoutePage<dynamic>(
-    //     routeData: routeData,
-    //     child: const _i5.WriterStoriesPage(),
-    //   );
-    // },
+    SignInPage.name: (routeData) {
+      return _i7.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i9.SignInPage(),
+      );
+    },
+    LogInPage.name: (routeData) {
+      return _i7.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i10.LogInPage(),
+      );
+    },
+    ForgotPasswordPage.name: (routeData) {
+      return _i7.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i11.ForgotPasswordPage(),
+      );
+    },
     UserAccountPage.name: (routeData) {
     final pathParams = routeData.inheritedPathParams;
     final args = routeData.argsAs<UserAccountPageArgs>(
@@ -96,6 +107,35 @@ abstract class $AppRouter extends _i7.RootStackRouter {
       child: _i8.MyWorksPage(
         key: args.key,
         userId: args.userId,
+      ),
+    );
+  },
+  AddStoryPage.name: (routeData) {
+    final pathParams = routeData.inheritedPathParams;
+    final args = routeData.argsAs<AddStoryPageArgs>(
+        orElse: () => AddStoryPageArgs(
+            userId: pathParams.getInt('userId')));
+    return _i7.AutoRoutePage<dynamic>(
+      routeData: routeData,
+      child: _i12.AddStoryPage(
+        key: args.key,
+        userId: args.userId,
+      ),
+    );
+  },
+  AddChapterPage.name: (routeData) {
+    final pathParams = routeData.inheritedPathParams;
+    final args = routeData.argsAs<AddChapterPageArgs>(
+        orElse: () => AddChapterPageArgs(
+            userId: pathParams.getInt('userId'),
+            storyId: pathParams.getInt('storyId')));
+            
+    return _i7.AutoRoutePage<dynamic>(
+      routeData: routeData,
+      child: _i13.AddChapterPage(
+        key: args.key,
+        userId: args.userId,
+        storyId: args.storyId,
       ),
     );
   },
@@ -211,36 +251,6 @@ class LibraryPageArgs {
   }
 }
 
-// /// generated route for
-// /// [_i4.HSSignInPage]
-// class HSSignInPage extends _i7.PageRouteInfo<void> {
-//   const HSSignInPage({List<_i7.PageRouteInfo>? children})
-//       : super(
-//           HSSignInPage.name,
-//           initialChildren: children,
-//         );
-
-//   static const String name = 'HSSignInPage';
-
-//   static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
-// }
-
-// /// generated route for
-// /// [_i5.WriterStoriesPage]
-// class WriterStoriesPage extends _i7.PageRouteInfo<void> {
-//   const WriterStoriesPage({List<_i7.PageRouteInfo>? children})
-//       : super(
-//           WriterStoriesPage.name,
-//           initialChildren: children,
-//         );
-
-//   static const String name = 'WriterStoriesPage';
-
-//   static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
-// }
-
-
-
 /// generated route for
 /// [_i5.SearchingPage]
 class SearchingPage extends _i7.PageRouteInfo<void> {
@@ -328,5 +338,123 @@ class MyWorksPageArgs {
     return 'MyWorksPageArgs{key: $key, userId: $userId}';
   }
 }
+
+/// generated route for
+/// [_i9.HSSignInPage]
+class SignInPage extends _i7.PageRouteInfo<void> {
+  const SignInPage({List<_i7.PageRouteInfo>? children})
+      : super(
+          SignInPage.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SignInPage';
+
+  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i10.LoginPage]
+class LogInPage extends _i7.PageRouteInfo<void> {
+  const LogInPage({List<_i7.PageRouteInfo>? children})
+      : super(
+          LogInPage.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LogInPage';
+
+  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i11.ForgotPasswordPage]
+class ForgotPasswordPage extends _i7.PageRouteInfo<void> {
+  const ForgotPasswordPage({List<_i7.PageRouteInfo>? children})
+      : super(
+          ForgotPasswordPage.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ForgotPasswordPage';
+
+  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i12.AddStoryPage]
+class AddStoryPage
+    extends _i7.PageRouteInfo<AddStoryPageArgs> {
+  AddStoryPage({
+    _i2.Key? key,
+    required int userId,
+    List<_i7.PageRouteInfo>? children,
+  }) : super(
+          AddStoryPage.name,
+          args: AddStoryPageArgs(
+            key: key,
+            userId: userId,
+          ),
+          rawPathParams: {'userId': userId},
+          initialChildren: children,
+        );
+
+  static const String name = 'AddStoryPage';
+
+  static const _i7.PageInfo<AddStoryPageArgs> page =
+      _i7.PageInfo<AddStoryPageArgs>(name);
+}
+
+class AddStoryPageArgs {
+  const AddStoryPageArgs({this.key, required this.userId,
+  });
+  final _i2.Key? key;
+  final int userId;
+
+  @override
+  String toString() {
+    return 'AddStoryPageArgs{key: $key, userId: $userId}';
+  }
+}
+
+/// generated route for
+/// [_i13.AddChapterPage]
+class AddChapterPage
+    extends _i7.PageRouteInfo<AddChapterPageArgs> {
+  AddChapterPage({
+    _i2.Key? key,
+    required int userId,
+    required int storyId,
+    List<_i7.PageRouteInfo>? children,
+  }) : super(
+          AddChapterPage.name,
+          args: AddChapterPageArgs(
+            key: key,
+            userId: userId,
+            storyId: storyId,
+          ),
+          rawPathParams: {'userId': userId, 'storyId': storyId},
+          initialChildren: children,
+        );
+
+  static const String name = 'AddChapterPage';
+
+  static const _i7.PageInfo<AddChapterPageArgs> page =
+      _i7.PageInfo<AddChapterPageArgs>(name);
+}
+
+class AddChapterPageArgs {
+  const AddChapterPageArgs({this.key, required this.userId, required this.storyId
+  });
+  final _i2.Key? key;
+  final int userId;
+  final int storyId;
+
+  @override
+  String toString() {
+    return 'AddChapterPageArgs{key: $key, userId: $userId, storyId: $storyId}';
+  }
+}
+
 
 

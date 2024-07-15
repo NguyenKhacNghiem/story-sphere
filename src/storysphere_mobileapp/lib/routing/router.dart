@@ -36,9 +36,26 @@ class AppRouter extends $AppRouter {
           path: '/:searching',
           transitionsBuilder: TransitionsBuilders.slideTop,
         ),
+        CustomRoute(
+          page: SignInPage.page, 
+          path: '/signin', 
+          transitionsBuilder: TransitionsBuilders.slideTop),
+        CustomRoute(
+          page: LogInPage.page, 
+          path: '/login', 
+          transitionsBuilder: TransitionsBuilders.slideTop),
+        CustomRoute(
+          page: ForgotPasswordPage.page, 
+          path: '/forgot-password', 
+          transitionsBuilder: TransitionsBuilders.slideTop),
+        CustomRoute(
+          page: AddStoryPage.page, 
+          path: '/add-story', 
+          transitionsBuilder: TransitionsBuilders.slideTop),
+        CustomRoute(
+          page: AddChapterPage.page, 
+          path: '/add-chapter', 
+          transitionsBuilder: TransitionsBuilders.slideTop),
         
-        // CustomRoute(page: HSSignInPage.page, path: '/login', transitionsBuilder: TransitionsBuilders.noTransition),
-        // CustomRoute(page: WriterStoriesPage.page, path: '/stories', transitionsBuilder: TransitionsBuilders.noTransition),
-
       ];
 }

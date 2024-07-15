@@ -6,8 +6,8 @@ import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 
 @RoutePage()
-class SignInPage extends StatelessWidget {
-  const SignInPage({super.key});
+class LogInPage extends StatelessWidget {
+  const LogInPage({super.key});
   @override
   Widget build(BuildContext context) {
     return SafeArea(

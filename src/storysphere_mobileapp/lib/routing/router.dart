@@ -15,13 +15,30 @@ class AppRouter extends $AppRouter {
           page: StoryDetailPage.page, 
           path: '/:story',
           transitionsBuilder: TransitionsBuilders.slideTop,
-          )
+        ),
+        CustomRoute(
+          page: LibraryPage.page, 
+          path: '/:library',
+          transitionsBuilder: TransitionsBuilders.slideTop,
+        ),
+        CustomRoute(
+          page: UserAccountPage.page, 
+          path: '/:user',
+          transitionsBuilder: TransitionsBuilders.slideTop,
+        ),
+        CustomRoute(
+          page: MyWorksPage.page, 
+          path: '/:myworks',
+          transitionsBuilder: TransitionsBuilders.slideTop,
+        ),
+        CustomRoute(
+          page: SearchingPage.page, 
+          path: '/:searching',
+          transitionsBuilder: TransitionsBuilders.slideTop,
+        ),
+        
         // CustomRoute(page: HSSignInPage.page, path: '/login', transitionsBuilder: TransitionsBuilders.noTransition),
         // CustomRoute(page: WriterStoriesPage.page, path: '/stories', transitionsBuilder: TransitionsBuilders.noTransition),
-        // CustomRoute(
-        //   page: HSStoryDescriptionPage.page,
-        //   path: '/stories/:storyUrl',
-        //   transitionsBuilder: TransitionsBuilders.noTransition,
-        // ),
+
       ];
 }

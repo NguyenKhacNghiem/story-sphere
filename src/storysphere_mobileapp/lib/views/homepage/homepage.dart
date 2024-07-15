@@ -7,6 +7,7 @@ import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/views/homepage/news_slider.dart';
 import 'package:storysphere_mobileapp/views/homepage/stories_flow_display.dart';
 import 'package:storysphere_mobileapp/views/homepage/user_widget.dart';
+import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 
 @RoutePage()
 class HSHomePage extends StatefulWidget {
@@ -27,12 +28,18 @@ class _HSHomePage extends State<HSHomePage> {
   // }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // if (FirebaseAuth.instance.currentUser != null) {
     //   try {
         return Scaffold(
             // appBar: const HiveCustomAppBar(),
             // drawer: const WriterDrawer(),
+            bottomNavigationBar: const BottomNavigationBarExample(selectedIndex: 0),
             body: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

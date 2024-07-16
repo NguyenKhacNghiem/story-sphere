@@ -39,7 +39,7 @@ class _HSHomePage extends State<HSHomePage> {
         return Scaffold(
             // appBar: const HiveCustomAppBar(),
             // drawer: const WriterDrawer(),
-            bottomNavigationBar: const BottomNavigationBarExample(selectedIndex: 0),
+            bottomNavigationBar: const BottomNavigationBarExample(selectedIndex: 0, userId: 0,),
             body: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +47,7 @@ class _HSHomePage extends State<HSHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   15.verticalSpace,
-                  UserHomepageWidget(),
+                  const UserHomepageWidget(),
                   NewsSliderHomepageWidget(),
                   25.verticalSpace,
 
@@ -57,7 +57,7 @@ class _HSHomePage extends State<HSHomePage> {
                     child: Text(Strings.youWouldLike, style: FontConstant.headline2White,),
                   ),
                   5.verticalSpace,
-                  DisplayStoriesFlowHomepageWidget(title: Strings.youWouldLike, id: 'YOUWOULDLIKE'),
+                  const DisplayStoriesFlowHomepageWidget(title: Strings.youWouldLike, id: 'YOUWOULDLIKE'),
 
                   //most view stories
                   Padding(
@@ -65,7 +65,7 @@ class _HSHomePage extends State<HSHomePage> {
                     child: Text(Strings.hotStories, style: FontConstant.headline2White,),
                   ),
                   5.verticalSpace,
-                  DisplayStoriesFlowHomepageWidget(title: Strings.hotStories, id: 'HOTSTORIES'),
+                  const DisplayStoriesFlowHomepageWidget(title: Strings.hotStories, id: 'HOTSTORIES'),
 
                   //RECENTLY UPDATED
                   Padding(
@@ -73,7 +73,7 @@ class _HSHomePage extends State<HSHomePage> {
                     child: Text(Strings.updatedRecently, style: FontConstant.headline2White,),
                   ),
                   5.verticalSpace,
-                  DisplayStoriesFlowHomepageWidget(title: Strings.updatedRecently, id: 'UPDATEDRECENTLY'),
+                  const DisplayStoriesFlowHomepageWidget(title: Strings.updatedRecently, id: 'UPDATEDRECENTLY'),
 
                   //HIGHLY RECOMMEND
                   Padding(
@@ -81,7 +81,7 @@ class _HSHomePage extends State<HSHomePage> {
                     child: Text(Strings.storyRecommended, style: FontConstant.headline2White,),
                   ),
                   5.verticalSpace,
-                  DisplayStoriesFlowHomepageWidget(title: Strings.storyRecommended, id: 'STORYRECOMMENDED'),
+                  const DisplayStoriesFlowHomepageWidget(title: Strings.storyRecommended, id: 'STORYRECOMMENDED'),
 
                   30.verticalSpace,
                 ],

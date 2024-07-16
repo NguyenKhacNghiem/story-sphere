@@ -14,48 +14,48 @@ class AppRouter extends $AppRouter {
         CustomRoute(
           page: StoryDetailPage.page, 
           path: '/:story',
-          transitionsBuilder: TransitionsBuilders.slideTop,
+          transitionsBuilder: TransitionsBuilders.noTransition,
         ),
         CustomRoute(
           page: LibraryPage.page, 
           path: '/:library',
-          transitionsBuilder: TransitionsBuilders.slideTop,
+          transitionsBuilder: TransitionsBuilders.noTransition,
         ),
         CustomRoute(
           page: UserAccountPage.page, 
           path: '/:user',
-          transitionsBuilder: TransitionsBuilders.slideTop,
+          transitionsBuilder: TransitionsBuilders.noTransition,
         ),
         CustomRoute(
           page: MyWorksPage.page, 
           path: '/:myworks',
-          transitionsBuilder: TransitionsBuilders.slideTop,
+          transitionsBuilder: TransitionsBuilders.noTransition,
         ),
         CustomRoute(
           page: SearchingPage.page, 
           path: '/:searching',
-          transitionsBuilder: TransitionsBuilders.slideTop,
+          transitionsBuilder: TransitionsBuilders.noTransition,
         ),
         CustomRoute(
           page: SignInPage.page, 
           path: '/signin', 
-          transitionsBuilder: TransitionsBuilders.slideTop),
+          transitionsBuilder: TransitionsBuilders.noTransition),
         CustomRoute(
           page: LogInPage.page, 
           path: '/login', 
-          transitionsBuilder: TransitionsBuilders.slideTop),
+          transitionsBuilder: TransitionsBuilders.noTransition),
         CustomRoute(
           page: ForgotPasswordPage.page, 
           path: '/forgot-password', 
-          transitionsBuilder: TransitionsBuilders.slideTop),
+          transitionsBuilder: TransitionsBuilders.noTransition),
         CustomRoute(
           page: AddStoryPage.page, 
           path: '/add-story', 
-          transitionsBuilder: TransitionsBuilders.slideTop),
+          transitionsBuilder: TransitionsBuilders.noTransition),
         CustomRoute(
           page: AddChapterPage.page, 
           path: '/add-chapter', 
-          transitionsBuilder: TransitionsBuilders.slideTop),
+          transitionsBuilder: TransitionsBuilders.noTransition),
         
       ];
 }

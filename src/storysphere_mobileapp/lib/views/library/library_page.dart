@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 
 @RoutePage()
 class LibraryPage extends StatefulWidget {
@@ -18,6 +19,7 @@ class _LibraryPage extends State<LibraryPage> {
    
 
     return Scaffold(
+      bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 3,),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -39,7 +39,7 @@ class _HSHomePage extends State<HSHomePage> {
         return Scaffold(
             // appBar: const HiveCustomAppBar(),
             // drawer: const WriterDrawer(),
-            bottomNavigationBar: const BottomNavigationBarExample(selectedIndex: 0, userId: 0,),
+            bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 0),
             body: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

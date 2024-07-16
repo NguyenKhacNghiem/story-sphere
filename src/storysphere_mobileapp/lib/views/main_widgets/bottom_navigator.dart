@@ -1,40 +1,52 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
 
-class BottomNavigationBarExample extends StatefulWidget {
+class SPBottomNavigationBar extends StatefulWidget {
   final int selectedIndex;
-  final int userId;
-  const BottomNavigationBarExample({super.key, required this.selectedIndex, required this.userId});
+  const SPBottomNavigationBar({super.key, required this.selectedIndex});
 
   @override
-  State<BottomNavigationBarExample> createState() =>
-      _BottomNavigationBarExampleState();
+  State<SPBottomNavigationBar> createState() =>
+      _SPBottomNavigationBarState();
 }
 
-class _BottomNavigationBarExampleState extends State<BottomNavigationBarExample> {
+class _SPBottomNavigationBarState extends State<SPBottomNavigationBar> {
   int selectedIndex = 0;
-  int userId = 0;
+  int currentUser = 0;
+
+  Future<void> getCurrentUser() async {
+    //var currUser = FirebaseAuth.instance.currentUser;
+    //if (currUser != null) {
+      currentUser = 0;
+    //}
+  }
   void _onItemTapped(int index) {
     setState(() {
       switch(index){
         case 0: 
+              Navigator.pop(context);
               context.pushRoute(const HSHomePage(),);
               break;
         case 1:
+              Navigator.pop(context);
               context.pushRoute(const SearchingPage());
               break;
         case 2:
-              context.pushRoute(MyWorksPage(userId: userId ));
+              Navigator.pop(context);
+              context.pushRoute(MyWorksPage(userId: currentUser ));
               break;
         case 3:
-              context.pushRoute(LibraryPage(userId: userId));
+              Navigator.pop(context);
+              context.pushRoute(LibraryPage(userId: currentUser));
               break;
         case 4:
-              context.pushRoute(UserAccountPage(userId:userId ));
+              Navigator.pop(context);
+              context.pushRoute(UserAccountPage(userId: currentUser ));
               break;
-        default: 
+        default:
+              Navigator.pop(context);
               context.pushRoute(const HSHomePage(),);
               break;
       }
@@ -44,57 +56,57 @@ class _BottomNavigationBarExampleState extends State<BottomNavigationBarExample>
   @override
   Widget build(BuildContext context) {
     selectedIndex = widget.selectedIndex;
-    userId = widget.userId;
+    getCurrentUser();
 
     return BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           selectedIndex == 0 ?
             BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/icons/home-bold.svg'),
+              icon: IconsSVG.homeBold,
               label: ''
             )
           : BottomNavigationBarItem(
-            icon: SvgPicture.asset('assets/icons/home-normal.svg'),
+            icon: IconsSVG.homeNormal,
             label: ''
           ),
 
           selectedIndex == 1
           ? BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/icons/search-bold.svg'),
+              icon: IconsSVG.searchBold,
               label: ''
             )
           : BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/icons/search-normal.svg'),
+              icon: IconsSVG.searchNormal,
               label: ''
             ),
 
           selectedIndex == 2
           ? BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/icons/edit-bold.svg'),
+              icon: IconsSVG.editBold,
               label: ''
             )
           : BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/icons/edit-normal.svg'),
+              icon: IconsSVG.editNormal,
               label: ''
             ),
 
           selectedIndex == 3
           ? BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/icons/save-bold.svg'),
+              icon: IconsSVG.saveBold,
               label: ''
             )
           : BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/icons/save-normal.svg'),
+              icon: IconsSVG.saveNormal,
               label: ''
             ),
 
           selectedIndex == 4
           ? BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/icons/user-bold.svg'),
+              icon: IconsSVG.userBold,
               label: ''
             )
           : BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/icons/user-normal.svg'),
+              icon: IconsSVG.userNormal,
               label: ''
             ),
         ],

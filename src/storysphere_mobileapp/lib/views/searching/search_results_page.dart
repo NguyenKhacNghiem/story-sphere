@@ -68,7 +68,8 @@ class _SearchingResultsPage extends State<SearchingResultsPage> {
     return Scaffold(
       bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 1),
       body: SingleChildScrollView(
-        child: Padding(
+        child: 
+        Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.sp),
           child: 
          Column(
@@ -92,27 +93,29 @@ class _SearchingResultsPage extends State<SearchingResultsPage> {
 
             //RESULT LIST
             15.verticalSpace,
-            // Expanded(
-            // child: 
-            // ListView.builder(
-            //   itemCount: displayStoryList.length,
-            //   itemBuilder: (context, index) {
-            //     return Padding(
-            //       padding: EdgeInsets.all(8.sp),
-            //       child: ElevatedButton(
-            //         onPressed: () {},
-            //         child: Text(displayStoryList.elementAt(index).storyName ?? 'Ehe'), //BookResultSectionWidget(story: displayStoryList.elementAt(index)),
-            //       ),
-            //     );
-            //   },
-            // )),
+            
+             ListView.builder(
+                scrollDirection: Axis.vertical,
+                controller: ScrollController(),
+                physics: const ClampingScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: displayStoryList.length,
+                itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.all(8.sp),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text(displayStoryList.elementAt(index).storyName ?? 'Ehe'), //BookResultSectionWidget(story: displayStoryList.elementAt(index)),
+                  ),
+                );
+              },
+            ),
             
            
 
             
-          ],
-        )
-      )),
+          ])
+        )),
     );
    }
 

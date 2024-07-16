@@ -64,7 +64,7 @@ class IconsSVG {
       height: 25.sp,
   );
   static SvgPicture arrowSort = SvgPicture.asset(
-     'assets/icons/arrow-sort.svg',
+     'assets/icons/arrow.svg',
       width: 17.sp,
       height: 17.sp,
   );

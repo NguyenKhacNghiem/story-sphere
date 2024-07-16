@@ -58,9 +58,20 @@ class FontConstant {
     height: 1.0.sp,
   );
 
+  static TextStyle bookTitleItem = subTitleText.copyWith(
+    fontSize: 18.sp,
+    fontWeight: FontWeight.bold,
+    height: 1.0.sp,
+  );
+
   static TextStyle authorNameDisplay = subTitleText.copyWith(
     fontSize: 14.sp,
     color: ColorConstants.secondaryText,
+  );
+
+  static TextStyle ratingPointDisplay = subTitleText.copyWith(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w700,
   );
 
   static TextStyle searchingText = subTitleText.copyWith(

@@ -68,6 +68,11 @@ class IconsSVG {
       width: 17.sp,
       height: 17.sp,
   );
+  static SvgPicture starTag = SvgPicture.asset(
+     'assets/icons/star.svg',
+      width: 17.sp,
+      height: 17.sp,
+  );
   
 
 

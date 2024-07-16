@@ -50,6 +50,16 @@ class FontConstant {
     color: ColorConstants.secondaryText,
   );
 
+  static TextStyle searchingText = subTitleText.copyWith(
+    fontSize: 13,
+    fontWeight: FontWeight.w200,
+    color: ColorConstants.buttonPastelGreen
+  );
+
+  static TextStyle dropdownText = subTitleText.copyWith(
+    fontSize: 16,
+  );
+
   // static TextStyle headline1StoryTitle = GoogleFonts.roboto(
   //     textStyle: TextStyle(
   //   fontSize: 24,

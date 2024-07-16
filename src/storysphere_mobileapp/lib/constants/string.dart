@@ -6,8 +6,15 @@ class Strings {
   static const String updatedRecently = 'CẬP NHẬT GẦN ĐÂY';
   static const String storyRecommended = 'TÁC PHẨM MỌI NGƯỜI ĐỀ XUẤT';
 
+  //Searching page
+  static const String findSomething = 'Bạn muốn tìm gì?';
+  static const String hintSearching = 'Tìm tác phẩm';
+  static const String categoryExplore = 'Khám phá các thể loại';
+  static const String novelCategories = 'Tác phẩm văn học';
+  static const String bookCategories = 'Sách phi tiểu thuyết';
+
   //LABELS
-  static const String notificationLabel = 'Thông báo'; 
+  static const String notificationLabel = 'Thông báo';
 
   static const String login = 'Đăng nhập';
   static const String signInWithGoogleButtonText = 'Đăng nhập với Google';

@@ -48,6 +48,11 @@ class IconsSVG {
       width: 25.sp,
       height: 25.sp,
   );
+  static SvgPicture searchingBarIcon = SvgPicture.asset(
+     'assets/icons/searching-bar-icon.svg',
+      width: 17.sp,
+      height: 17.sp,
+  );
   static SvgPicture userNormal = SvgPicture.asset(
      'assets/icons/user-normal.svg',
       width: 25.sp,

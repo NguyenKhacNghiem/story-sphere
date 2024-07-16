@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
-import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
+import 'package:storysphere_mobileapp/views/searching/widgets/searchingbar_widget.dart';
 
 @RoutePage()
 class SearchingPage extends StatefulWidget {
@@ -16,7 +16,6 @@ class SearchingPage extends StatefulWidget {
 }
 
 class _SearchingPage extends State<SearchingPage> {
-  TextEditingController _searchController = TextEditingController();
   String? selectedItem;
   String? selectedBookItem;
   bool isNovelExpanded = false;
@@ -33,7 +32,6 @@ class _SearchingPage extends State<SearchingPage> {
   @override
   void dispose() {
     super.dispose();
-    _searchController.dispose();
   }
 
   @override
@@ -54,46 +52,8 @@ class _SearchingPage extends State<SearchingPage> {
             
             //SEARCHING BAR
             5.verticalSpace,
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: ColorConstants.buttonPastelGreen,
-                  width: 1.sp,),
-                borderRadius: BorderRadius.circular(5.sp),
-              ),
-            child: Row(
-                children: [
-                    10.horizontalSpace,
-                    IconsSVG.searchingBarIcon,
-                    10.horizontalSpace,
-                    Container(
-                      width: 1,
-                      height: 23,
-                      color: ColorConstants.buttonPastelGreen,
-                    ),
-                      Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.all(5.sp),
-                        child: TextField(
-                        controller: _searchController,
-                        style:  FontConstant.searchingText,
-                        decoration: const InputDecoration(
-                          hintText: Strings.hintSearching,
-                          fillColor: ColorConstants.transparent,
-                          border: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          errorBorder: InputBorder.none,
-                          disabledBorder: InputBorder.none,
-                          hintStyle: TextStyle(color: ColorConstants.buttonPastelGreen),
-                        ),
-                        onChanged: (value) {
-                          // Add your search logic here
-                        },
-                      ),
-                    ),)
-              ])),
-            
+            SearchingBarWidget(),
+
             //DROP DOWN CATEGOR ITEMS
             25.verticalSpace,
             Text(Strings.categoryExplore, style: FontConstant.headline2White,),
@@ -185,7 +145,7 @@ class _SearchingPage extends State<SearchingPage> {
               ),
             ),
           ),
-           AnimatedSize(
+          AnimatedSize(
             duration: const Duration(milliseconds: 200),
             curve: Curves.easeInOut,
             child: isBookExpanded

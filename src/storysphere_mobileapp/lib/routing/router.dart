@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
 
+//to create new route: Add Route -> dart run build_runner build
+
 @AutoRouterConfig(replaceInRouteName: 'Screen,Route')
 class AppRouter extends $AppRouter {
   @override
@@ -56,6 +58,9 @@ class AppRouter extends $AppRouter {
           page: AddChapterPage.page, 
           path: '/add-chapter', 
           transitionsBuilder: TransitionsBuilders.noTransition),
-        
+        CustomRoute(
+          page: SearchingResultsPage.page, 
+          path: '/searching-result', 
+          transitionsBuilder: TransitionsBuilders.noTransition),
       ];
 }

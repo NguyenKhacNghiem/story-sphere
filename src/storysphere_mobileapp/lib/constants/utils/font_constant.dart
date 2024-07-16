@@ -1,63 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 
 class FontConstant {
+
+  // BIG SHOULDERS TEXT
   static TextStyle titleBigDisplayWhite = GoogleFonts.bigShouldersText(
-    textStyle: const TextStyle(
-      fontSize: 32,
+    textStyle: TextStyle(
+      fontSize: 32.sp,
       fontWeight: FontWeight.w500,
       color: ColorConstants.lightText,
 
   ));
+  
+  
+  static TextStyle resultTitleDisplay = titleBigDisplayWhite.copyWith(
+    fontSize: 28.sp);
 
   static TextStyle titleBigDisplayGreen = titleBigDisplayWhite.copyWith(
     color: ColorConstants.headingGreen);
 
   static TextStyle headline1White = GoogleFonts.bigShouldersDisplay(
-    textStyle: const TextStyle(
+    textStyle: TextStyle(
       color: ColorConstants.lightText,
-      fontSize: 24,
+      fontSize: 24.sp,
       fontWeight: FontWeight.w500,
   ));
 
   static TextStyle headline2White = headline1White.copyWith(
-    fontSize: 20,
+    fontSize: 20.sp,
     fontWeight: FontWeight.w700,
   );
 
+  static TextStyle headline2Light = headline2White.copyWith(
+    fontWeight: FontWeight.w100,
+  );
+
+  //BE VIETNAM PRO
+
   static TextStyle subTitleText = GoogleFonts.beVietnamPro(
-      textStyle: const TextStyle(
-        fontSize: 13,
+      textStyle: TextStyle(
+        fontSize: 13.sp,
         fontWeight: FontWeight.w300,
         color: ColorConstants.lightText,
-        height: 1.33,
+        height: 1.33.sp,
   ));
 
   static TextStyle userNameText = subTitleText.copyWith(
-    fontSize: 20,
+    fontSize: 20.sp,
     fontWeight: FontWeight.bold,
   );
   
   static TextStyle bookTitleDisplay = subTitleText.copyWith(
-    fontSize: 24,
+    fontSize: 24.sp,
     fontWeight: FontWeight.bold,
-    height: 1.0,
+    height: 1.0.sp,
   );
 
   static TextStyle authorNameDisplay = subTitleText.copyWith(
-    fontSize: 14,
+    fontSize: 14.sp,
     color: ColorConstants.secondaryText,
   );
 
   static TextStyle searchingText = subTitleText.copyWith(
-    fontSize: 13,
+    fontSize: 13.sp,
     fontWeight: FontWeight.w200,
     color: ColorConstants.buttonPastelGreen
   );
 
   static TextStyle dropdownText = subTitleText.copyWith(
-    fontSize: 16,
+    fontSize: 16.sp,
   );
 
   // static TextStyle headline1StoryTitle = GoogleFonts.roboto(

@@ -12,9 +12,13 @@ class Strings {
   static const String categoryExplore = 'Khám phá các thể loại';
   static const String novelCategories = 'Tác phẩm văn học';
   static const String bookCategories = 'Sách phi tiểu thuyết';
+  static const String searchResults = 'Kết quả tìm kiếm';
 
   //LABELS
   static const String notificationLabel = 'Thông báo';
+  static const String fitestResult = 'Đúng nhất';
+  static const String newestResult = 'Mới nhất';
+  static const String mostReadResult = 'Lượt đọc';
 
   static const String login = 'Đăng nhập';
   static const String signInWithGoogleButtonText = 'Đăng nhập với Google';

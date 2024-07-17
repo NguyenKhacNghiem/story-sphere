@@ -7,8 +7,9 @@ import 'package:storysphere_mobileapp/routing/router.gr.dart';
 
 class BookDisplayWidget extends StatelessWidget {
   final Story story;
+  final bool? fromLib;
 
-  const BookDisplayWidget({super.key, required this.story});
+  const BookDisplayWidget({super.key, required this.story, this.fromLib});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class BookDisplayWidget extends StatelessWidget {
                 height: 160.sp,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5.sp),
-                  child: Image.asset(story.storyCover!, fit: BoxFit.cover,))),
+                  child: Image.network(story.storyCover!, fit: BoxFit.cover,))),
               5.verticalSpace,
               SizedBox(
                 width: 105.sp,

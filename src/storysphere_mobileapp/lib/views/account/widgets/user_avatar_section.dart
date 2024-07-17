@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
@@ -23,7 +21,7 @@ class UserCoverSectionWidget extends StatelessWidget {
         children: [
           // Background image
           Container(
-            height: 338.sp,
+            height: 350.sp,
             width: screenWidth,
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -35,12 +33,26 @@ class UserCoverSectionWidget extends StatelessWidget {
 
           // Darker effect
           Container(
-            height: screenWidth,
+            height: 445.sp,
             decoration: BoxDecoration(
               color: ColorConstants.black.withOpacity(0.7), 
             ),
           ),
 
+          Align(
+            alignment: Alignment.bottomCenter,
+            child:
+          Container(
+          width: screenWidth,
+          height: 300.sp,
+          decoration: const BoxDecoration(
+            gradient:  LinearGradient(
+              colors: [ColorConstants.transparent, ColorConstants.transparent, ColorConstants.darkGreenBackground],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          )),
           
           //Avatar
          Align(

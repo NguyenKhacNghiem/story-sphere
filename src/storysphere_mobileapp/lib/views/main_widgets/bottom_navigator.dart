@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
 
@@ -58,6 +59,7 @@ class _SPBottomNavigationBarState extends State<SPBottomNavigationBar> {
     selectedIndex = widget.selectedIndex;
 
     return BottomNavigationBar(
+        fixedColor: ColorConstants.darkGreenBackground,
         items: <BottomNavigationBarItem>[
           selectedIndex == 0 ?
             BottomNavigationBarItem(

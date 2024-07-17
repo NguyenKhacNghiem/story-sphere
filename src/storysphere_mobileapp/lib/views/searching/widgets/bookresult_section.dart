@@ -6,7 +6,7 @@ import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
-import 'package:storysphere_mobileapp/views/storydetail/storyinfo_section.dart';
+import 'package:storysphere_mobileapp/views/searching/widgets/story_data_widget.dart';
 
 class BookResultSectionWidget extends StatelessWidget {
   final Story story;
@@ -14,7 +14,6 @@ class BookResultSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -32,10 +31,10 @@ class BookResultSectionWidget extends StatelessWidget {
           children: [
              Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                SizedBox(
-                width: 150.sp,
+                width: 160.sp,
                 child: 
                 Text(story.storyName ?? '', 
                       style: FontConstant.bookTitleItem, 
@@ -59,7 +58,18 @@ class BookResultSectionWidget extends StatelessWidget {
               )
              ],),
 
-             Text(story.bookAuthorName == null ? 'Vô danh' : story.bookAuthorName!, style: FontConstant.authorNameDisplay,)
+             Text(story.bookAuthorName == null ? 'Vô danh' : story.bookAuthorName!, style: FontConstant.authorNameDisplay,),
+             5.verticalSpace,
+              SizedBox(
+                width: 180.sp,
+                child: 
+             Text(story.storyContentOutline == null ? '' : story.storyContentOutline!, 
+                  style: FontConstant.contentOutLine,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 3,)),
+
+             10.verticalSpace,
+             StoryDataWidget(viewCount: story.viewCount ?? 0, voteCount: story.voteCount ?? 0, chapterCount: story.chapterCount ?? 1,)
           ],
         )
 

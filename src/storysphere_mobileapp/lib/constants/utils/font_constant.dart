@@ -47,6 +47,15 @@ class FontConstant {
         height: 1.33.sp,
   ));
 
+  static TextStyle contentOutLine = subTitleText.copyWith(
+    fontSize: 14,
+  );
+
+  static TextStyle dataDisplay = subTitleText.copyWith(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+  );
+
   static TextStyle userNameText = subTitleText.copyWith(
     fontSize: 20.sp,
     fontWeight: FontWeight.bold,

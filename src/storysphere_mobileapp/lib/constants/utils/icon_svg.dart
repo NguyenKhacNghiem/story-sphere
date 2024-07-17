@@ -63,6 +63,8 @@ class IconsSVG {
       width: 25.sp,
       height: 25.sp,
   );
+
+  //SEARCHING
   static SvgPicture arrowSort = SvgPicture.asset(
      'assets/icons/arrow.svg',
       width: 17.sp,
@@ -74,6 +76,32 @@ class IconsSVG {
       height: 17.sp,
   );
   
+  //STORY DETAIL
+   static SvgPicture likeNormal = SvgPicture.asset(
+     'assets/icons/heart.svg',
+      width: 17.sp,
+      height: 17.sp,
+  );
+  static SvgPicture likeBold = SvgPicture.asset(
+     'assets/icons/heart-bold.svg',
+      width: 17.sp,
+      height: 17.sp,
+  );
+  static SvgPicture view = SvgPicture.asset(
+     'assets/icons/eye.svg',
+      width: 17.sp,
+      height: 17.sp,
+  );
+  static SvgPicture chapterList = SvgPicture.asset(
+     'assets/icons/chapter-list.svg',
+      width: 17.sp,
+      height: 17.sp,
+  );
+  static SvgPicture comment = SvgPicture.asset(
+     'assets/icons/comment.svg',
+      width: 17.sp,
+      height: 17.sp,
+  );
 
 
   //Homepage

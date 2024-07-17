@@ -56,7 +56,6 @@ class _SPBottomNavigationBarState extends State<SPBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     selectedIndex = widget.selectedIndex;
-    getCurrentUser();
 
     return BottomNavigationBar(
         items: <BottomNavigationBarItem>[

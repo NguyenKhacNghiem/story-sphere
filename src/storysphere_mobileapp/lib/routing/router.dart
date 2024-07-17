@@ -62,5 +62,9 @@ class AppRouter extends $AppRouter {
           page: SearchingResultsPage.page, 
           path: '/searching-result', 
           transitionsBuilder: TransitionsBuilders.noTransition),
+        CustomRoute(
+          page: FilterByCategoryPage.page, 
+          path: '/category-filter', 
+          transitionsBuilder: TransitionsBuilders.noTransition),
       ];
 }

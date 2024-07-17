@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
+import 'package:storysphere_mobileapp/models/category.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 import 'package:storysphere_mobileapp/views/searching/widgets/searchingbar_widget.dart';
 
@@ -20,6 +22,12 @@ class _SearchingPage extends State<SearchingPage> {
   String? selectedBookItem;
   bool isNovelExpanded = false;
   bool isBookExpanded = false;
+
+  Category sampleCategory = Category(
+    categoryId: 0, categoryName: 'Kinh dị', 
+    categoryDescription: 'Những câu chuyện giúp bạn không bao giờ cô đơn vì luôn cảm thấy bên cạnh mình luôn có người',
+    isCategory: true
+  );
 
   final List<String> dropdownNovelCategories = [
     'Bí ẩn','Kinh dị', 'Khoan học viễn tưởng', 'Lãng mạn', 'Cổ tích', 'Truyện thiếu nhi','Viễn tưởng'
@@ -102,6 +110,8 @@ class _SearchingPage extends State<SearchingPage> {
                       children: dropdownNovelCategories.map((String item) {
                         return InkWell(
                           onTap: () {
+                            Navigator.pop(context);
+                            context.pushRoute(FilterByCategoryPage(category: sampleCategory));
                             setState(() {
                               selectedItem = item;
                               isNovelExpanded = false;
@@ -160,6 +170,8 @@ class _SearchingPage extends State<SearchingPage> {
                       children: dropdownBookCategories.map((String item) {
                         return InkWell(
                           onTap: () {
+                              Navigator.pop(context);
+                              context.pushRoute(FilterByCategoryPage(category: sampleCategory));
                             setState(() {
                               selectedBookItem = item;
                               isBookExpanded = false;

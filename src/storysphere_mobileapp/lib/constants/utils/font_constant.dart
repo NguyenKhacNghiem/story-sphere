@@ -51,6 +51,12 @@ class FontConstant {
     fontSize: 14,
   );
 
+  static TextStyle categoryDescrip = subTitleText.copyWith(
+    color: ColorConstants.secondaryText,
+    fontWeight: FontWeight.w100,
+    wordSpacing: 1.sp,
+  );
+
   static TextStyle dataDisplay = subTitleText.copyWith(
     fontSize: 14,
     fontWeight: FontWeight.w700,

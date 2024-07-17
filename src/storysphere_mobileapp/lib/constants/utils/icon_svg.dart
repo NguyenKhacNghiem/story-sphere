@@ -115,4 +115,36 @@ class IconsSVG {
       width: 20.sp,
       height: 20.sp,
   );
+
+  //USER ACCOUNT
+  static SvgPicture arrowRight = SvgPicture.asset(
+     'assets/icons/arrow-right.svg',
+      width: 17.sp,
+      height: 17.sp,
+  );
+  static SvgPicture saveBlack = SvgPicture.asset(
+     'assets/icons/save-black.svg',
+      width: 25.sp,
+      height: 25.sp,
+  );
+  static SvgPicture noteBlack = SvgPicture.asset(
+     'assets/icons/note-black.svg',
+      width: 25.sp,
+      height: 25.sp,
+  );
+  static SvgPicture notiBlack = SvgPicture.asset(
+     'assets/icons/notification-black.svg',
+      width: 25.sp,
+      height: 25.sp,
+  );
+  static SvgPicture settingBlack = SvgPicture.asset(
+     'assets/icons/setting-black.svg',
+      width: 25.sp,
+      height: 25.sp,
+  );
+  static SvgPicture suitCaseBlack = SvgPicture.asset(
+     'assets/icons/briefcase.svg',
+      width: 25.sp,
+      height: 25.sp,
+  );
 }

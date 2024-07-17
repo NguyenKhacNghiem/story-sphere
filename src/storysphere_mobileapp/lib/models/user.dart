@@ -18,6 +18,8 @@ class User {
     this.dateOfBirth,
     this.favGenreKeywords,
     this.accountBalance,
+    this.avatar,
+    this.bgImg,
   });
 
   int? userId;
@@ -30,6 +32,8 @@ class User {
   DateTime? dateOfBirth;
   String? favGenreKeywords;
   double? accountBalance;
+  String? avatar;
+  String? bgImg;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         userId: json["userId"],
@@ -42,6 +46,9 @@ class User {
         dateOfBirth: DateTime.parse(json["dateOfBirth"]),
         favGenreKeywords: json["favGenreKeywords"],
         accountBalance: json["accountBalance"],
+        avatar: json["avatar"],
+        bgImg: json["bgImg"],
+
       );
 
   Map<String, dynamic> toJson() => {
@@ -55,5 +62,7 @@ class User {
         "dateOfBirth": dateOfBirth,
         "favGenreKeywords": favGenreKeywords,
         "accountBalance": accountBalance,
+        "avatar": avatar,
+        "bgImg": bgImg,
       };
 }

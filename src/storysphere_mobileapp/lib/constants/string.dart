@@ -14,6 +14,13 @@ class Strings {
   static const String bookCategories = 'Sách phi tiểu thuyết';
   static const String searchResults = 'Kết quả tìm kiếm';
 
+  //User account page
+  static const String myLibrary = 'Thư viện của tôi';
+  static const String myWorks = 'Tác phẩm của tôi';
+  static const String editProfile = 'Chỉnh sửa tài khoản';
+  static const String readHistory = 'Lịch sử đọc';
+  static const String notification = 'Thông báo';
+
   //LABELS
   static const String notificationLabel = 'Thông báo';
   static const String fitestResult = 'Đúng nhất';

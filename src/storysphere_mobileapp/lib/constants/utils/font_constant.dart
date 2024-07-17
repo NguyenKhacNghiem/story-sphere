@@ -37,6 +37,11 @@ class FontConstant {
     fontWeight: FontWeight.w100,
   );
 
+  static TextStyle userDisplayName = headline1White.copyWith(
+    fontSize: 20.sp,
+    fontWeight: FontWeight.w500,
+  );
+
   //BE VIETNAM PRO
 
   static TextStyle subTitleText = GoogleFonts.beVietnamPro(
@@ -66,6 +71,13 @@ class FontConstant {
     fontSize: 20.sp,
     fontWeight: FontWeight.bold,
   );
+
+  static TextStyle userIntroduction = subTitleText.copyWith(
+    color: ColorConstants.secondaryText,
+    fontWeight: FontWeight.w100,
+    fontSize: 12.sp,
+    wordSpacing: 1.sp,
+  );
   
   static TextStyle bookTitleDisplay = subTitleText.copyWith(
     fontSize: 24.sp,
@@ -82,6 +94,12 @@ class FontConstant {
   static TextStyle authorNameDisplay = subTitleText.copyWith(
     fontSize: 14.sp,
     color: ColorConstants.secondaryText,
+  );
+
+  static TextStyle headline3 = subTitleText.copyWith(
+    color: ColorConstants.black,
+    fontSize: 16.sp,
+    fontWeight: FontWeight.bold,
   );
 
   static TextStyle ratingPointDisplay = subTitleText.copyWith(

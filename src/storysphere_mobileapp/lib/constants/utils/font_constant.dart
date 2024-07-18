@@ -117,6 +117,11 @@ class FontConstant {
     fontSize: 16.sp,
   );
 
+   static TextStyle buttonTextWhite = subTitleText.copyWith(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.bold,
+  );
+
   // static TextStyle headline1StoryTitle = GoogleFonts.roboto(
   //     textStyle: TextStyle(
   //   fontSize: 24,

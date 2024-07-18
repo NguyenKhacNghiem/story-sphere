@@ -147,4 +147,11 @@ class IconsSVG {
       width: 25.sp,
       height: 25.sp,
   );
+
+  //MY WORKS
+  static SvgPicture add = SvgPicture.asset(
+     'assets/icons/add-circle.svg',
+      width: 17.sp,
+      height: 17.sp,
+  );
 }

@@ -13,6 +13,7 @@ class ColorConstants {
   static const buttonDarkGreen = Color(0XFF0F7077);
   static const buttonPastelGreen = Color(0XFF85A8B0);
   static const tagYellow = Color(0XFFFFC93E);
+  static const buttonLightGreen = Color(0XFF12979E);
 
   //TEXT
   static const primaryText = Color(0XFFFFFFFF);

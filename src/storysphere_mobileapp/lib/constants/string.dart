@@ -24,11 +24,15 @@ class Strings {
   //Library
   static const String yourLibNote = 'Những quyển sách bạn yêu thích đều lưu trữ tại đây!';
 
-  //LABELS
+  //My works
+
+  //LABELS - FOR BUTTON
   static const String notificationLabel = 'Thông báo';
   static const String fitestResult = 'Đúng nhất';
   static const String newestResult = 'Mới nhất';
   static const String mostReadResult = 'Lượt đọc';
+  static const String edit = 'Chỉnh sửa';
+  static const String newChapter = 'Chương mới';
 
   static const String login = 'Đăng nhập';
   static const String signInWithGoogleButtonText = 'Đăng nhập với Google';
@@ -36,7 +40,6 @@ class Strings {
   static const String view = 'Xem';
   static const String editInfo = 'Sửa tác phẩm';
   static const String editContent = 'Sửa nội dung';
-  static const String edit = 'Sửa';
   static const String copy = 'Copy';
   static const String delete = 'Xóa';
   static const String review = 'Duyệt';

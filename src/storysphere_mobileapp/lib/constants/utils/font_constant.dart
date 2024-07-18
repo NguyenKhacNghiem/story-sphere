@@ -117,7 +117,13 @@ class FontConstant {
     fontSize: 16.sp,
   );
 
-   static TextStyle buttonTextWhite = subTitleText.copyWith(
+  static TextStyle buttonTextGrey = subTitleText.copyWith(
+    fontSize: 16.sp,
+    color: ColorConstants.secondaryText,
+  );
+
+
+  static TextStyle buttonTextWhite = subTitleText.copyWith(
     fontSize: 14.sp,
     fontWeight: FontWeight.bold,
   );

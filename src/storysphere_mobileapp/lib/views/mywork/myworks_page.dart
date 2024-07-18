@@ -2,7 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
+import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
+import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 import 'package:storysphere_mobileapp/views/mywork/widgets/bookedit_section.dart';
@@ -73,6 +75,41 @@ class _MyWorksPage extends State<MyWorksPage> {
                   child: 
                     BookEditSectionWidget(story: displayStoryList.elementAt(index)));
             }),
+
+            5.verticalSpace,
+
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                        backgroundColor: ColorConstants.transparent,
+                        shadowColor: ColorConstants.transparent,
+                        padding: EdgeInsets.all(10.sp), // Remove padding
+                        minimumSize: Size.zero,   // Remove minimum size constraints
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
+                      ),
+              onPressed: () {},
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.sp),
+                  border: Border.all(
+                    width: 1.sp,
+                    color: ColorConstants.formStrokeColor)
+                ),
+                
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 10.sp),
+                child: 
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    IconsSVG.addBigGrey,
+                    10.horizontalSpace,
+                    Text(Strings.addNewStory, style: FontConstant.buttonTextGrey,)
+                  ],
+                )
+               ,),
+              )
+              ),
           ],
         )
       ),)

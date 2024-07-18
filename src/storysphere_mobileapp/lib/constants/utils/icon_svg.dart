@@ -154,4 +154,9 @@ class IconsSVG {
       width: 17.sp,
       height: 17.sp,
   );
+  static SvgPicture addBigGrey = SvgPicture.asset(
+     'assets/icons/add-big-grey.svg',
+      width: 25.sp,
+      height: 25.sp,
+  );
 }

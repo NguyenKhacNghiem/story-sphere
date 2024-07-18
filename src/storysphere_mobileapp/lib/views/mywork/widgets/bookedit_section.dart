@@ -5,7 +5,6 @@ import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
-import 'package:storysphere_mobileapp/views/searching/widgets/story_data_widget.dart';
 
 class BookEditSectionWidget extends StatelessWidget {
   final Story story;

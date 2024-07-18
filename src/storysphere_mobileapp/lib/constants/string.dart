@@ -25,6 +25,7 @@ class Strings {
   static const String yourLibNote = 'Những quyển sách bạn yêu thích đều lưu trữ tại đây!';
 
   //My works
+  static const String addNewStory = 'THÊM TÁC PHẨM MỚI';
 
   //LABELS - FOR BUTTON
   static const String notificationLabel = 'Thông báo';

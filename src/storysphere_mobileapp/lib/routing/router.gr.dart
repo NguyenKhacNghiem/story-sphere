@@ -46,7 +46,6 @@ abstract class $AppRouter extends _i17.RootStackRouter {
         routeData: routeData,
         child: _i1.AddChapterPage(
           key: args.key,
-          userId: args.userId,
           storyId: args.storyId,
         ),
       );
@@ -185,14 +184,12 @@ abstract class $AppRouter extends _i17.RootStackRouter {
 class AddChapterPage extends _i17.PageRouteInfo<AddChapterPageArgs> {
   AddChapterPage({
     _i18.Key? key,
-    required int userId,
     required int storyId,
     List<_i17.PageRouteInfo>? children,
   }) : super(
           AddChapterPage.name,
           args: AddChapterPageArgs(
             key: key,
-            userId: userId,
             storyId: storyId,
           ),
           initialChildren: children,
@@ -207,19 +204,16 @@ class AddChapterPage extends _i17.PageRouteInfo<AddChapterPageArgs> {
 class AddChapterPageArgs {
   const AddChapterPageArgs({
     this.key,
-    required this.userId,
     required this.storyId,
   });
 
   final _i18.Key? key;
 
-  final int userId;
-
   final int storyId;
 
   @override
   String toString() {
-    return 'AddChapterPageArgs{key: $key, userId: $userId, storyId: $storyId}';
+    return 'AddChapterPageArgs{key: $key, storyId: $storyId}';
   }
 }
 

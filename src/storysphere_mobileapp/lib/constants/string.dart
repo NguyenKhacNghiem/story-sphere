@@ -26,6 +26,8 @@ class Strings {
 
   //My works
   static const String addNewStory = 'THÊM TÁC PHẨM MỚI';
+  static const String addNewChapter = 'Thêm chương mới';
+  static const String chapterTitle = 'Tiêu đề chương';
 
   //LABELS - FOR BUTTON
   static const String notificationLabel = 'Thông báo';
@@ -34,6 +36,8 @@ class Strings {
   static const String mostReadResult = 'Lượt đọc';
   static const String edit = 'Chỉnh sửa';
   static const String newChapter = 'Chương mới';
+  static const String saveDraft = 'Lưu nháp';
+  static const String publish = 'Xuất bản';
 
   static const String login = 'Đăng nhập';
   static const String signInWithGoogleButtonText = 'Đăng nhập với Google';

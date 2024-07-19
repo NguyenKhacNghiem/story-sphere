@@ -96,7 +96,7 @@ class _MyWorksPage extends State<MyWorksPage> {
                 ),
                 
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 10.sp),
+                padding: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 15.sp),
                 child: 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

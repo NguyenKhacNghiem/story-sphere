@@ -159,4 +159,14 @@ class IconsSVG {
       width: 25.sp,
       height: 25.sp,
   );
+  static SvgPicture draft = SvgPicture.asset(
+     'assets/icons/draft.svg',
+      width: 17.sp,
+      height: 17.sp,
+  );
+  static SvgPicture publish = SvgPicture.asset(
+     'assets/icons/publish.svg',
+      width: 17.sp,
+      height: 17.sp,
+  );
 }

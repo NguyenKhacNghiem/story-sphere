@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
@@ -5,6 +6,7 @@ import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
 
 class BookEditSectionWidget extends StatelessWidget {
   final Story story;
@@ -13,7 +15,7 @@ class BookEditSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    initData();
+    initData(context);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -56,7 +58,7 @@ class BookEditSectionWidget extends StatelessWidget {
     ]);
   }
 
-  initData(){
+  initData(BuildContext context){
     buttonList = Row(
       children: [
         ElevatedButton(
@@ -89,7 +91,10 @@ class BookEditSectionWidget extends StatelessWidget {
                     minimumSize: Size.zero,   // Remove minimum size constraints
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
                   ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+            context.pushRoute(AddChapterPage(storyId: story.storyId ?? -1));
+          },
           child: Container(
             decoration: BoxDecoration(
               color: ColorConstants.buttonLightGreen,

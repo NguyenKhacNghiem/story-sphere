@@ -7,18 +7,19 @@ import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
+import 'package:storysphere_mobileapp/models/chapter.dart';
 
 @RoutePage()
-class AddChapterPage extends StatefulWidget {
-  final int storyId;
-  const AddChapterPage({super.key, required this.storyId});
+class EditChapterPage extends StatefulWidget {
+  final Chapter chapter;
+  const EditChapterPage({super.key, required this.chapter});
 
   @override
-  State<AddChapterPage> createState() => _AddChapterPage();
+  State<EditChapterPage> createState() => _EditChapterPage();
 }
 
-class _AddChapterPage extends State<AddChapterPage> {
-  late int storyId;
+class _EditChapterPage extends State<EditChapterPage> {
+  late Chapter chapter;
   final TextEditingController titleController = TextEditingController();
   late Widget chapterTilteField;
   late Widget buttonList;
@@ -135,7 +136,7 @@ class _AddChapterPage extends State<AddChapterPage> {
    }
 
   initData(){
-    storyId = widget.storyId;
+    chapter = widget.chapter;
     chapterTilteField = Container(
         decoration: BoxDecoration(
           border: Border.all(

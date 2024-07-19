@@ -8,41 +8,44 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i17;
-import 'package:flutter/material.dart' as _i18;
-import 'package:storysphere_mobileapp/content_pages/privacy.dart' as _i11;
-import 'package:storysphere_mobileapp/models/category.dart' as _i19;
-import 'package:storysphere_mobileapp/views/account/account_page.dart' as _i16;
-import 'package:storysphere_mobileapp/views/forgot_password_page.dart' as _i6;
+import 'package:auto_route/auto_route.dart' as _i18;
+import 'package:flutter/material.dart' as _i19;
+import 'package:storysphere_mobileapp/content_pages/privacy.dart' as _i12;
+import 'package:storysphere_mobileapp/models/category.dart' as _i21;
+import 'package:storysphere_mobileapp/models/chapter.dart' as _i20;
+import 'package:storysphere_mobileapp/views/account/account_page.dart' as _i17;
+import 'package:storysphere_mobileapp/views/forgot_password_page.dart' as _i7;
 import 'package:storysphere_mobileapp/views/functions/comments/addcmt_page.dart'
     as _i2;
 import 'package:storysphere_mobileapp/views/functions/reviews/addreview_page.dart'
     as _i3;
-import 'package:storysphere_mobileapp/views/homepage/homepage.dart' as _i7;
-import 'package:storysphere_mobileapp/views/library/library_page.dart' as _i8;
-import 'package:storysphere_mobileapp/views/log_in_page.dart' as _i9;
+import 'package:storysphere_mobileapp/views/homepage/homepage.dart' as _i8;
+import 'package:storysphere_mobileapp/views/library/library_page.dart' as _i9;
+import 'package:storysphere_mobileapp/views/log_in_page.dart' as _i10;
 import 'package:storysphere_mobileapp/views/mywork/add_chapter_page.dart'
     as _i1;
 import 'package:storysphere_mobileapp/views/mywork/add_story_page.dart' as _i4;
-import 'package:storysphere_mobileapp/views/mywork/myworks_page.dart' as _i10;
-import 'package:storysphere_mobileapp/views/searching/filter_bycat_page.dart'
+import 'package:storysphere_mobileapp/views/mywork/edit_chapter_page.dart'
     as _i5;
+import 'package:storysphere_mobileapp/views/mywork/myworks_page.dart' as _i11;
+import 'package:storysphere_mobileapp/views/searching/filter_bycat_page.dart'
+    as _i6;
 import 'package:storysphere_mobileapp/views/searching/search_results_page.dart'
-    as _i13;
+    as _i14;
 import 'package:storysphere_mobileapp/views/searching/searching_page.dart'
-    as _i12;
-import 'package:storysphere_mobileapp/views/sign_in_page.dart' as _i14;
+    as _i13;
+import 'package:storysphere_mobileapp/views/sign_in_page.dart' as _i15;
 import 'package:storysphere_mobileapp/views/storydetail/storydetail_page.dart'
-    as _i15;
+    as _i16;
 
-abstract class $AppRouter extends _i17.RootStackRouter {
+abstract class $AppRouter extends _i18.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i17.PageFactory> pagesMap = {
+  final Map<String, _i18.PageFactory> pagesMap = {
     AddChapterPage.name: (routeData) {
       final args = routeData.argsAs<AddChapterPageArgs>();
-      return _i17.AutoRoutePage<dynamic>(
+      return _i18.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i1.AddChapterPage(
           key: args.key,
@@ -52,7 +55,7 @@ abstract class $AppRouter extends _i17.RootStackRouter {
     },
     AddCommentPage.name: (routeData) {
       final args = routeData.argsAs<AddCommentPageArgs>();
-      return _i17.AutoRoutePage<dynamic>(
+      return _i18.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i2.AddCommentPage(
           key: args.key,
@@ -62,7 +65,7 @@ abstract class $AppRouter extends _i17.RootStackRouter {
     },
     AddReviewPage.name: (routeData) {
       final args = routeData.argsAs<AddReviewPageArgs>();
-      return _i17.AutoRoutePage<dynamic>(
+      return _i18.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i3.AddReviewPage(
           key: args.key,
@@ -72,7 +75,7 @@ abstract class $AppRouter extends _i17.RootStackRouter {
     },
     AddStoryPage.name: (routeData) {
       final args = routeData.argsAs<AddStoryPageArgs>();
-      return _i17.AutoRoutePage<dynamic>(
+      return _i18.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i4.AddStoryPage(
           key: args.key,
@@ -80,87 +83,97 @@ abstract class $AppRouter extends _i17.RootStackRouter {
         ),
       );
     },
+    EditChapterPage.name: (routeData) {
+      final args = routeData.argsAs<EditChapterPageArgs>();
+      return _i18.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i5.EditChapterPage(
+          key: args.key,
+          chapter: args.chapter,
+        ),
+      );
+    },
     FilterByCategoryPage.name: (routeData) {
       final args = routeData.argsAs<FilterByCategoryPageArgs>();
-      return _i17.AutoRoutePage<dynamic>(
+      return _i18.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i5.FilterByCategoryPage(
+        child: _i6.FilterByCategoryPage(
           key: args.key,
           category: args.category,
         ),
       );
     },
     ForgotPasswordPage.name: (routeData) {
-      return _i17.AutoRoutePage<dynamic>(
+      return _i18.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.ForgotPasswordPage(),
+        child: const _i7.ForgotPasswordPage(),
       );
     },
     HSHomePage.name: (routeData) {
-      return _i17.AutoRoutePage<dynamic>(
+      return _i18.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.HSHomePage(),
+        child: const _i8.HSHomePage(),
       );
     },
     LibraryPage.name: (routeData) {
       final args = routeData.argsAs<LibraryPageArgs>();
-      return _i17.AutoRoutePage<dynamic>(
+      return _i18.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i8.LibraryPage(
+        child: _i9.LibraryPage(
           key: args.key,
           userId: args.userId,
         ),
       );
     },
     LogInPage.name: (routeData) {
-      return _i17.AutoRoutePage<dynamic>(
+      return _i18.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.LogInPage(),
+        child: const _i10.LogInPage(),
       );
     },
     MyWorksPage.name: (routeData) {
       final args = routeData.argsAs<MyWorksPageArgs>();
-      return _i17.AutoRoutePage<dynamic>(
+      return _i18.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i10.MyWorksPage(
+        child: _i11.MyWorksPage(
           key: args.key,
           userId: args.userId,
         ),
       );
     },
     PrivacyPage.name: (routeData) {
-      return _i17.AutoRoutePage<dynamic>(
+      return _i18.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i11.PrivacyPage(),
+        child: const _i12.PrivacyPage(),
       );
     },
     SearchingPage.name: (routeData) {
-      return _i17.AutoRoutePage<dynamic>(
+      return _i18.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i12.SearchingPage(),
+        child: const _i13.SearchingPage(),
       );
     },
     SearchingResultsPage.name: (routeData) {
       final args = routeData.argsAs<SearchingResultsPageArgs>();
-      return _i17.AutoRoutePage<dynamic>(
+      return _i18.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i13.SearchingResultsPage(
+        child: _i14.SearchingResultsPage(
           key: args.key,
           data: args.data,
         ),
       );
     },
     SignInPage.name: (routeData) {
-      return _i17.AutoRoutePage<dynamic>(
+      return _i18.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i14.SignInPage(),
+        child: const _i15.SignInPage(),
       );
     },
     StoryDetailPage.name: (routeData) {
       final args = routeData.argsAs<StoryDetailPageArgs>();
-      return _i17.AutoRoutePage<dynamic>(
+      return _i18.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i15.StoryDetailPage(
+        child: _i16.StoryDetailPage(
           key: args.key,
           storyId: args.storyId,
         ),
@@ -168,9 +181,9 @@ abstract class $AppRouter extends _i17.RootStackRouter {
     },
     UserAccountPage.name: (routeData) {
       final args = routeData.argsAs<UserAccountPageArgs>();
-      return _i17.AutoRoutePage<dynamic>(
+      return _i18.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i16.UserAccountPage(
+        child: _i17.UserAccountPage(
           key: args.key,
           userId: args.userId,
         ),
@@ -181,11 +194,11 @@ abstract class $AppRouter extends _i17.RootStackRouter {
 
 /// generated route for
 /// [_i1.AddChapterPage]
-class AddChapterPage extends _i17.PageRouteInfo<AddChapterPageArgs> {
+class AddChapterPage extends _i18.PageRouteInfo<AddChapterPageArgs> {
   AddChapterPage({
-    _i18.Key? key,
+    _i19.Key? key,
     required int storyId,
-    List<_i17.PageRouteInfo>? children,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
           AddChapterPage.name,
           args: AddChapterPageArgs(
@@ -197,8 +210,8 @@ class AddChapterPage extends _i17.PageRouteInfo<AddChapterPageArgs> {
 
   static const String name = 'AddChapterPage';
 
-  static const _i17.PageInfo<AddChapterPageArgs> page =
-      _i17.PageInfo<AddChapterPageArgs>(name);
+  static const _i18.PageInfo<AddChapterPageArgs> page =
+      _i18.PageInfo<AddChapterPageArgs>(name);
 }
 
 class AddChapterPageArgs {
@@ -207,7 +220,7 @@ class AddChapterPageArgs {
     required this.storyId,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   final int storyId;
 
@@ -219,11 +232,11 @@ class AddChapterPageArgs {
 
 /// generated route for
 /// [_i2.AddCommentPage]
-class AddCommentPage extends _i17.PageRouteInfo<AddCommentPageArgs> {
+class AddCommentPage extends _i18.PageRouteInfo<AddCommentPageArgs> {
   AddCommentPage({
-    _i18.Key? key,
+    _i19.Key? key,
     required int storyId,
-    List<_i17.PageRouteInfo>? children,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
           AddCommentPage.name,
           args: AddCommentPageArgs(
@@ -235,8 +248,8 @@ class AddCommentPage extends _i17.PageRouteInfo<AddCommentPageArgs> {
 
   static const String name = 'AddCommentPage';
 
-  static const _i17.PageInfo<AddCommentPageArgs> page =
-      _i17.PageInfo<AddCommentPageArgs>(name);
+  static const _i18.PageInfo<AddCommentPageArgs> page =
+      _i18.PageInfo<AddCommentPageArgs>(name);
 }
 
 class AddCommentPageArgs {
@@ -245,7 +258,7 @@ class AddCommentPageArgs {
     required this.storyId,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   final int storyId;
 
@@ -257,11 +270,11 @@ class AddCommentPageArgs {
 
 /// generated route for
 /// [_i3.AddReviewPage]
-class AddReviewPage extends _i17.PageRouteInfo<AddReviewPageArgs> {
+class AddReviewPage extends _i18.PageRouteInfo<AddReviewPageArgs> {
   AddReviewPage({
-    _i18.Key? key,
+    _i19.Key? key,
     required int storyId,
-    List<_i17.PageRouteInfo>? children,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
           AddReviewPage.name,
           args: AddReviewPageArgs(
@@ -273,8 +286,8 @@ class AddReviewPage extends _i17.PageRouteInfo<AddReviewPageArgs> {
 
   static const String name = 'AddReviewPage';
 
-  static const _i17.PageInfo<AddReviewPageArgs> page =
-      _i17.PageInfo<AddReviewPageArgs>(name);
+  static const _i18.PageInfo<AddReviewPageArgs> page =
+      _i18.PageInfo<AddReviewPageArgs>(name);
 }
 
 class AddReviewPageArgs {
@@ -283,7 +296,7 @@ class AddReviewPageArgs {
     required this.storyId,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   final int storyId;
 
@@ -295,11 +308,11 @@ class AddReviewPageArgs {
 
 /// generated route for
 /// [_i4.AddStoryPage]
-class AddStoryPage extends _i17.PageRouteInfo<AddStoryPageArgs> {
+class AddStoryPage extends _i18.PageRouteInfo<AddStoryPageArgs> {
   AddStoryPage({
-    _i18.Key? key,
+    _i19.Key? key,
     required int userId,
-    List<_i17.PageRouteInfo>? children,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
           AddStoryPage.name,
           args: AddStoryPageArgs(
@@ -311,8 +324,8 @@ class AddStoryPage extends _i17.PageRouteInfo<AddStoryPageArgs> {
 
   static const String name = 'AddStoryPage';
 
-  static const _i17.PageInfo<AddStoryPageArgs> page =
-      _i17.PageInfo<AddStoryPageArgs>(name);
+  static const _i18.PageInfo<AddStoryPageArgs> page =
+      _i18.PageInfo<AddStoryPageArgs>(name);
 }
 
 class AddStoryPageArgs {
@@ -321,7 +334,7 @@ class AddStoryPageArgs {
     required this.userId,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   final int userId;
 
@@ -332,13 +345,51 @@ class AddStoryPageArgs {
 }
 
 /// generated route for
-/// [_i5.FilterByCategoryPage]
+/// [_i5.EditChapterPage]
+class EditChapterPage extends _i18.PageRouteInfo<EditChapterPageArgs> {
+  EditChapterPage({
+    _i19.Key? key,
+    required _i20.Chapter chapter,
+    List<_i18.PageRouteInfo>? children,
+  }) : super(
+          EditChapterPage.name,
+          args: EditChapterPageArgs(
+            key: key,
+            chapter: chapter,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'EditChapterPage';
+
+  static const _i18.PageInfo<EditChapterPageArgs> page =
+      _i18.PageInfo<EditChapterPageArgs>(name);
+}
+
+class EditChapterPageArgs {
+  const EditChapterPageArgs({
+    this.key,
+    required this.chapter,
+  });
+
+  final _i19.Key? key;
+
+  final _i20.Chapter chapter;
+
+  @override
+  String toString() {
+    return 'EditChapterPageArgs{key: $key, chapter: $chapter}';
+  }
+}
+
+/// generated route for
+/// [_i6.FilterByCategoryPage]
 class FilterByCategoryPage
-    extends _i17.PageRouteInfo<FilterByCategoryPageArgs> {
+    extends _i18.PageRouteInfo<FilterByCategoryPageArgs> {
   FilterByCategoryPage({
-    _i18.Key? key,
-    required _i19.Category category,
-    List<_i17.PageRouteInfo>? children,
+    _i19.Key? key,
+    required _i21.Category category,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
           FilterByCategoryPage.name,
           args: FilterByCategoryPageArgs(
@@ -350,8 +401,8 @@ class FilterByCategoryPage
 
   static const String name = 'FilterByCategoryPage';
 
-  static const _i17.PageInfo<FilterByCategoryPageArgs> page =
-      _i17.PageInfo<FilterByCategoryPageArgs>(name);
+  static const _i18.PageInfo<FilterByCategoryPageArgs> page =
+      _i18.PageInfo<FilterByCategoryPageArgs>(name);
 }
 
 class FilterByCategoryPageArgs {
@@ -360,9 +411,9 @@ class FilterByCategoryPageArgs {
     required this.category,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
-  final _i19.Category category;
+  final _i21.Category category;
 
   @override
   String toString() {
@@ -371,9 +422,9 @@ class FilterByCategoryPageArgs {
 }
 
 /// generated route for
-/// [_i6.ForgotPasswordPage]
-class ForgotPasswordPage extends _i17.PageRouteInfo<void> {
-  const ForgotPasswordPage({List<_i17.PageRouteInfo>? children})
+/// [_i7.ForgotPasswordPage]
+class ForgotPasswordPage extends _i18.PageRouteInfo<void> {
+  const ForgotPasswordPage({List<_i18.PageRouteInfo>? children})
       : super(
           ForgotPasswordPage.name,
           initialChildren: children,
@@ -381,13 +432,13 @@ class ForgotPasswordPage extends _i17.PageRouteInfo<void> {
 
   static const String name = 'ForgotPasswordPage';
 
-  static const _i17.PageInfo<void> page = _i17.PageInfo<void>(name);
+  static const _i18.PageInfo<void> page = _i18.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i7.HSHomePage]
-class HSHomePage extends _i17.PageRouteInfo<void> {
-  const HSHomePage({List<_i17.PageRouteInfo>? children})
+/// [_i8.HSHomePage]
+class HSHomePage extends _i18.PageRouteInfo<void> {
+  const HSHomePage({List<_i18.PageRouteInfo>? children})
       : super(
           HSHomePage.name,
           initialChildren: children,
@@ -395,16 +446,16 @@ class HSHomePage extends _i17.PageRouteInfo<void> {
 
   static const String name = 'HSHomePage';
 
-  static const _i17.PageInfo<void> page = _i17.PageInfo<void>(name);
+  static const _i18.PageInfo<void> page = _i18.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i8.LibraryPage]
-class LibraryPage extends _i17.PageRouteInfo<LibraryPageArgs> {
+/// [_i9.LibraryPage]
+class LibraryPage extends _i18.PageRouteInfo<LibraryPageArgs> {
   LibraryPage({
-    _i18.Key? key,
+    _i19.Key? key,
     required int userId,
-    List<_i17.PageRouteInfo>? children,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
           LibraryPage.name,
           args: LibraryPageArgs(
@@ -416,8 +467,8 @@ class LibraryPage extends _i17.PageRouteInfo<LibraryPageArgs> {
 
   static const String name = 'LibraryPage';
 
-  static const _i17.PageInfo<LibraryPageArgs> page =
-      _i17.PageInfo<LibraryPageArgs>(name);
+  static const _i18.PageInfo<LibraryPageArgs> page =
+      _i18.PageInfo<LibraryPageArgs>(name);
 }
 
 class LibraryPageArgs {
@@ -426,7 +477,7 @@ class LibraryPageArgs {
     required this.userId,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   final int userId;
 
@@ -437,9 +488,9 @@ class LibraryPageArgs {
 }
 
 /// generated route for
-/// [_i9.LogInPage]
-class LogInPage extends _i17.PageRouteInfo<void> {
-  const LogInPage({List<_i17.PageRouteInfo>? children})
+/// [_i10.LogInPage]
+class LogInPage extends _i18.PageRouteInfo<void> {
+  const LogInPage({List<_i18.PageRouteInfo>? children})
       : super(
           LogInPage.name,
           initialChildren: children,
@@ -447,16 +498,16 @@ class LogInPage extends _i17.PageRouteInfo<void> {
 
   static const String name = 'LogInPage';
 
-  static const _i17.PageInfo<void> page = _i17.PageInfo<void>(name);
+  static const _i18.PageInfo<void> page = _i18.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i10.MyWorksPage]
-class MyWorksPage extends _i17.PageRouteInfo<MyWorksPageArgs> {
+/// [_i11.MyWorksPage]
+class MyWorksPage extends _i18.PageRouteInfo<MyWorksPageArgs> {
   MyWorksPage({
-    _i18.Key? key,
+    _i19.Key? key,
     required int userId,
-    List<_i17.PageRouteInfo>? children,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
           MyWorksPage.name,
           args: MyWorksPageArgs(
@@ -468,8 +519,8 @@ class MyWorksPage extends _i17.PageRouteInfo<MyWorksPageArgs> {
 
   static const String name = 'MyWorksPage';
 
-  static const _i17.PageInfo<MyWorksPageArgs> page =
-      _i17.PageInfo<MyWorksPageArgs>(name);
+  static const _i18.PageInfo<MyWorksPageArgs> page =
+      _i18.PageInfo<MyWorksPageArgs>(name);
 }
 
 class MyWorksPageArgs {
@@ -478,7 +529,7 @@ class MyWorksPageArgs {
     required this.userId,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   final int userId;
 
@@ -489,9 +540,9 @@ class MyWorksPageArgs {
 }
 
 /// generated route for
-/// [_i11.PrivacyPage]
-class PrivacyPage extends _i17.PageRouteInfo<void> {
-  const PrivacyPage({List<_i17.PageRouteInfo>? children})
+/// [_i12.PrivacyPage]
+class PrivacyPage extends _i18.PageRouteInfo<void> {
+  const PrivacyPage({List<_i18.PageRouteInfo>? children})
       : super(
           PrivacyPage.name,
           initialChildren: children,
@@ -499,13 +550,13 @@ class PrivacyPage extends _i17.PageRouteInfo<void> {
 
   static const String name = 'PrivacyPage';
 
-  static const _i17.PageInfo<void> page = _i17.PageInfo<void>(name);
+  static const _i18.PageInfo<void> page = _i18.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i12.SearchingPage]
-class SearchingPage extends _i17.PageRouteInfo<void> {
-  const SearchingPage({List<_i17.PageRouteInfo>? children})
+/// [_i13.SearchingPage]
+class SearchingPage extends _i18.PageRouteInfo<void> {
+  const SearchingPage({List<_i18.PageRouteInfo>? children})
       : super(
           SearchingPage.name,
           initialChildren: children,
@@ -513,17 +564,17 @@ class SearchingPage extends _i17.PageRouteInfo<void> {
 
   static const String name = 'SearchingPage';
 
-  static const _i17.PageInfo<void> page = _i17.PageInfo<void>(name);
+  static const _i18.PageInfo<void> page = _i18.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i13.SearchingResultsPage]
+/// [_i14.SearchingResultsPage]
 class SearchingResultsPage
-    extends _i17.PageRouteInfo<SearchingResultsPageArgs> {
+    extends _i18.PageRouteInfo<SearchingResultsPageArgs> {
   SearchingResultsPage({
-    _i18.Key? key,
+    _i19.Key? key,
     required String data,
-    List<_i17.PageRouteInfo>? children,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
           SearchingResultsPage.name,
           args: SearchingResultsPageArgs(
@@ -535,8 +586,8 @@ class SearchingResultsPage
 
   static const String name = 'SearchingResultsPage';
 
-  static const _i17.PageInfo<SearchingResultsPageArgs> page =
-      _i17.PageInfo<SearchingResultsPageArgs>(name);
+  static const _i18.PageInfo<SearchingResultsPageArgs> page =
+      _i18.PageInfo<SearchingResultsPageArgs>(name);
 }
 
 class SearchingResultsPageArgs {
@@ -545,7 +596,7 @@ class SearchingResultsPageArgs {
     required this.data,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   final String data;
 
@@ -556,9 +607,9 @@ class SearchingResultsPageArgs {
 }
 
 /// generated route for
-/// [_i14.SignInPage]
-class SignInPage extends _i17.PageRouteInfo<void> {
-  const SignInPage({List<_i17.PageRouteInfo>? children})
+/// [_i15.SignInPage]
+class SignInPage extends _i18.PageRouteInfo<void> {
+  const SignInPage({List<_i18.PageRouteInfo>? children})
       : super(
           SignInPage.name,
           initialChildren: children,
@@ -566,16 +617,16 @@ class SignInPage extends _i17.PageRouteInfo<void> {
 
   static const String name = 'SignInPage';
 
-  static const _i17.PageInfo<void> page = _i17.PageInfo<void>(name);
+  static const _i18.PageInfo<void> page = _i18.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i15.StoryDetailPage]
-class StoryDetailPage extends _i17.PageRouteInfo<StoryDetailPageArgs> {
+/// [_i16.StoryDetailPage]
+class StoryDetailPage extends _i18.PageRouteInfo<StoryDetailPageArgs> {
   StoryDetailPage({
-    _i18.Key? key,
+    _i19.Key? key,
     required int storyId,
-    List<_i17.PageRouteInfo>? children,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
           StoryDetailPage.name,
           args: StoryDetailPageArgs(
@@ -587,8 +638,8 @@ class StoryDetailPage extends _i17.PageRouteInfo<StoryDetailPageArgs> {
 
   static const String name = 'StoryDetailPage';
 
-  static const _i17.PageInfo<StoryDetailPageArgs> page =
-      _i17.PageInfo<StoryDetailPageArgs>(name);
+  static const _i18.PageInfo<StoryDetailPageArgs> page =
+      _i18.PageInfo<StoryDetailPageArgs>(name);
 }
 
 class StoryDetailPageArgs {
@@ -597,7 +648,7 @@ class StoryDetailPageArgs {
     required this.storyId,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   final int storyId;
 
@@ -608,12 +659,12 @@ class StoryDetailPageArgs {
 }
 
 /// generated route for
-/// [_i16.UserAccountPage]
-class UserAccountPage extends _i17.PageRouteInfo<UserAccountPageArgs> {
+/// [_i17.UserAccountPage]
+class UserAccountPage extends _i18.PageRouteInfo<UserAccountPageArgs> {
   UserAccountPage({
-    _i18.Key? key,
+    _i19.Key? key,
     required int userId,
-    List<_i17.PageRouteInfo>? children,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
           UserAccountPage.name,
           args: UserAccountPageArgs(
@@ -625,8 +676,8 @@ class UserAccountPage extends _i17.PageRouteInfo<UserAccountPageArgs> {
 
   static const String name = 'UserAccountPage';
 
-  static const _i17.PageInfo<UserAccountPageArgs> page =
-      _i17.PageInfo<UserAccountPageArgs>(name);
+  static const _i18.PageInfo<UserAccountPageArgs> page =
+      _i18.PageInfo<UserAccountPageArgs>(name);
 }
 
 class UserAccountPageArgs {
@@ -635,7 +686,7 @@ class UserAccountPageArgs {
     required this.userId,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   final int userId;
 

@@ -66,5 +66,9 @@ class AppRouter extends $AppRouter {
           page: FilterByCategoryPage.page, 
           path: '/category-filter', 
           transitionsBuilder: TransitionsBuilders.noTransition),
+        CustomRoute(
+          page: EditChapterPage.page, 
+          path: '/edit-chapter', 
+          transitionsBuilder: TransitionsBuilders.noTransition),
       ];
 }

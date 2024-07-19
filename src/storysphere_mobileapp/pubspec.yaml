@@ -43,7 +43,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   carousel_slider: ^4.2.1
   http: ^1.2.1
-  flutter_quill: ^9.3.11
+  flutter_quill: 9.3.11
 
 dev_dependencies:
   flutter_test:

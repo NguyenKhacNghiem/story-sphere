@@ -107,6 +107,21 @@ class IconsSVG {
       width: 17.sp,
       height: 17.sp,
   );
+  static SvgPicture commentBig = SvgPicture.asset(
+     'assets/icons/comment.svg',
+      width: 25.sp,
+      height: 25.sp,
+  );
+   static SvgPicture likeNormalBig = SvgPicture.asset(
+     'assets/icons/heart.svg',
+      width: 25.sp,
+      height: 25.sp,
+  );
+  static SvgPicture likeBoldBig = SvgPicture.asset(
+     'assets/icons/heart-bold.svg',
+      width: 25.sp,
+      height: 25.sp,
+  );
 
 
   //Homepage

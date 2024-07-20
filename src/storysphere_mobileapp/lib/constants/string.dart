@@ -39,6 +39,10 @@ class Strings {
   static const String fromStory = 'Từ tác phẩm';
   static const String chapterListDisplay = 'Danh sách chương';
 
+  //CHAPTER
+  static const String loveStoryAsk = 'YÊU THÍCH CHƯƠNG TRUYỆN?';
+  static const String voteReminder = 'Đừng quên tim và comment để ủng hộ tác giả nhé!';
+
   //LABELS - FOR BUTTON
   static const String notificationLabel = 'Thông báo';
   static const String fitestResult = 'Đúng nhất';
@@ -50,6 +54,9 @@ class Strings {
   static const String publish = 'Xuất bản';
   static const String chapter = 'Chương';
   static const String rate = 'Đánh giá';
+  static const String like = 'Thích';
+  static const String liked = 'Đã thích';
+  static const String comment = 'Bình luận';
 
   static const String login = 'Đăng nhập';
   static const String signInWithGoogleButtonText = 'Đăng nhập với Google';

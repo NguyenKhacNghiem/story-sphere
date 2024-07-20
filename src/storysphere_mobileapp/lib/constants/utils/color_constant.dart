@@ -18,6 +18,7 @@ class ColorConstants {
   //TEXT
   static const primaryText = Color(0XFFFFFFFF);
   static const secondaryText = Color(0XFF9E9E9E);
+  static const lighterSecondaryText = Color(0XFFD9D9D9);
   static const darkText = Color(0XFF000000);
   static const lightText = Color(0XFFFFFFFF);
   static const headingGreen = Color(0XFF0F7077);

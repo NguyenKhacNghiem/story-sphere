@@ -46,6 +46,7 @@ class FontConstant {
     fontWeight: FontWeight.w400,
   );
 
+
   //BE VIETNAM PRO
 
   static TextStyle subTitleText = GoogleFonts.beVietnamPro(
@@ -55,6 +56,12 @@ class FontConstant {
         color: ColorConstants.lightText,
         height: 1.33.sp,
   ));
+
+  static TextStyle voteReminder = subTitleText.copyWith(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w400,
+    color: ColorConstants.lighterSecondaryText,
+  );
 
   static TextStyle chapterNameItem = subTitleText.copyWith(
       fontWeight: FontWeight.bold,
@@ -125,6 +132,10 @@ class FontConstant {
     color: ColorConstants.black,
     fontSize: 16.sp,
     fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle headline3White = headline3.copyWith(
+    color: ColorConstants.lightText,
   );
 
   static TextStyle ratingPointDisplay = subTitleText.copyWith(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/models/chapter.dart';
+import 'package:storysphere_mobileapp/views/chapters/widgets/likecmt_section.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 import 'package:storysphere_mobileapp/views/searching/widgets/story_data_widget.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
@@ -57,6 +58,9 @@ class _ChapterPage extends State<ChapterPage> {
             
             20.verticalSpace,
             HtmlWidget(chapter.chapterContent ?? ''),
+
+            30.verticalSpace,
+            ChapterLikeCommentSection(chapter: chapter),
 
           ],
         ))

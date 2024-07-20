@@ -94,7 +94,6 @@ class FontConstant {
 
   static TextStyle fromStorystoryName = fromStoryLabel.copyWith(
     fontWeight: FontWeight.bold,
-    color: ColorConstants.primaryText,
   );
   
   static TextStyle bookTitleDisplay = subTitleText.copyWith(

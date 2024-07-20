@@ -47,7 +47,7 @@ class ChapterListItemWidget extends StatelessWidget {
             2.verticalSpace,
             chapterData,
 
-            5.verticalSpace,
+            10.verticalSpace,
             SizedBox(
               width: itemWidth,
               child: Text(
@@ -58,7 +58,7 @@ class ChapterListItemWidget extends StatelessWidget {
               ),
             ),
             
-            5.verticalSpace,
+            10.verticalSpace,
             Container(
               width: itemWidth,
               height: 1.sp,

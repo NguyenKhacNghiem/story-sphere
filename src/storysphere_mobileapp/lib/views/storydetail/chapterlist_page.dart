@@ -35,16 +35,20 @@ class _ChapterListPage extends State<ChapterListPage> {
           fit: StackFit.expand,
           children: [
           // Background image
-          Container(
-            height: 444.sp,
-            width: screenWidth,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(widget.story.storyCover!),
-                  fit: BoxFit.fitWidth,
-                ),
-              ),
-          ),
+          Positioned(
+            top: 0,
+            left: 0,
+            child: 
+              Container(
+                height: 444.sp,
+                width: screenWidth,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(widget.story.storyCover!),
+                      fit: BoxFit.fitWidth,
+                    ),
+                  ),
+              )),
 
           // Darker effect
           Container(
@@ -79,7 +83,7 @@ class _ChapterListPage extends State<ChapterListPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     40.verticalSpace,
-                    Text(Strings.chapterListDisplay, style: FontConstant.resultTitleDisplay,),
+                    Text(Strings.chapterListDisplay, style: FontConstant.titleBigDisplayWhite,),
                     2.verticalSpace,
                     fromStory,
 

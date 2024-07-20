@@ -1,9 +1,9 @@
-import 'package:auto_route/auto_route.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
-@RoutePage()
+
 class StoryContentOutlineWidget extends StatefulWidget {
   final String data;
   const StoryContentOutlineWidget({super.key, required this.data});

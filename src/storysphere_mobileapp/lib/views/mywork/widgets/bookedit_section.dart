@@ -8,6 +8,7 @@ import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
 
+// ignore: must_be_immutable
 class BookEditSectionWidget extends StatelessWidget {
   final Story story;
   BookEditSectionWidget({super.key, required this.story});

@@ -36,6 +36,8 @@ class Strings {
   static const String showAll = 'Hiển thị tất cả';
   static const String userRates = 'ĐỘC GIẢ ĐÁNH GIÁ';
   static const String noChapterToDisplay = 'Không có chương để hiển thị';
+  static const String fromStory = 'Từ tác phẩm';
+  static const String chapterListDisplay = 'Danh sách chương';
 
   //LABELS - FOR BUTTON
   static const String notificationLabel = 'Thông báo';

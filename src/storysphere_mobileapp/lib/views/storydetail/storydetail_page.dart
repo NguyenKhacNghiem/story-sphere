@@ -42,7 +42,7 @@ class _StoryDetailPage extends State<StoryDetailPage> {
             StoryContentOutlineWidget(data: story.storyContentOutline ?? ''),
 
             20.verticalSpace,
-            StoryChapterListWidget(storyId: story.storyId!),
+            StoryChapterListWidget(story: story),
 
           ],
         )

@@ -56,6 +56,11 @@ class FontConstant {
         height: 1.33.sp,
   ));
 
+  static TextStyle chapterNameItem = subTitleText.copyWith(
+      fontWeight: FontWeight.bold,
+      fontSize: 22.sp,
+  );
+
   static TextStyle contentOutLine = subTitleText.copyWith(
     fontSize: 14,
   );
@@ -81,6 +86,15 @@ class FontConstant {
     fontWeight: FontWeight.w100,
     fontSize: 12.sp,
     wordSpacing: 1.sp,
+  );
+
+  static TextStyle fromStoryLabel = userIntroduction.copyWith(
+    fontSize: 13,
+  );
+
+  static TextStyle fromStorystoryName = fromStoryLabel.copyWith(
+    fontWeight: FontWeight.bold,
+    color: ColorConstants.primaryText,
   );
   
   static TextStyle bookTitleDisplay = subTitleText.copyWith(

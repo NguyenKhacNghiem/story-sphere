@@ -153,6 +153,15 @@ class FontConstant {
     fontWeight: FontWeight.bold,
   );
 
+  // CRIMSON PRO
+  static TextStyle storyNameChapterWhite = GoogleFonts.crimsonPro(
+    textStyle: TextStyle(
+      fontSize: 16.sp,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.lightText,
+
+  ));
+
   // static TextStyle headline1StoryTitle = GoogleFonts.roboto(
   //     textStyle: TextStyle(
   //   fontSize: 24,

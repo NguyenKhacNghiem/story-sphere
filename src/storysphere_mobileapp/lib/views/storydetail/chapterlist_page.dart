@@ -6,6 +6,7 @@ import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/models/chapter.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 import 'package:storysphere_mobileapp/views/storydetail/widgets/chapterlistitem_widget.dart';
 
@@ -94,7 +95,16 @@ class _ChapterListPage extends State<ChapterListPage> {
                       shrinkWrap: true,
                       itemCount: chapterList.length,
                       itemBuilder: (context, index) {
-                        return ChapterListItemWidget(chapter: chapterList.elementAt(index));
+                        return 
+                        InkWell(
+                          onTap: (){
+                            context.pushRoute(ChapterPage(chapter: chapterList.elementAt(index), storyName: widget.story.storyName ?? ''));
+                          },
+                          child: ChapterListItemWidget(chapter: chapterList.elementAt(index)),
+
+                        );
+
+                          ;
                       }),
                     
                   ],

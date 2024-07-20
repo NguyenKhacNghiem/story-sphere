@@ -44,6 +44,7 @@ dependencies:
   carousel_slider: ^4.2.1
   http: ^1.2.1
   flutter_quill: 9.3.11
+  flutter_widget_from_html: ^0.15.1
 
 dev_dependencies:
   flutter_test:

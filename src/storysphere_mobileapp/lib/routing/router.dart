@@ -23,6 +23,10 @@ class AppRouter extends $AppRouter {
           path: '/chapter-list', 
           transitionsBuilder: TransitionsBuilders.noTransition),
         CustomRoute(
+          page: ChapterPage.page, 
+          path: '/chapter', 
+          transitionsBuilder: TransitionsBuilders.noTransition),
+        CustomRoute(
           page: LibraryPage.page, 
           path: '/:library',
           transitionsBuilder: TransitionsBuilders.noTransition,

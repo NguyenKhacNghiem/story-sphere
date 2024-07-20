@@ -41,6 +41,10 @@ class FontConstant {
     fontSize: 20.sp,
     fontWeight: FontWeight.w500,
   );
+  static TextStyle chapterDisplay = headline1White.copyWith(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+  );
 
   //BE VIETNAM PRO
 
@@ -94,7 +98,15 @@ class FontConstant {
   static TextStyle authorNameDisplay = subTitleText.copyWith(
     fontSize: 14.sp,
     color: ColorConstants.secondaryText,
+    fontWeight: FontWeight.w700
   );
+
+  static TextStyle purpleText = subTitleText.copyWith(
+    fontSize: 14.sp,
+    color: ColorConstants.purpleLight,
+    fontWeight: FontWeight.w700
+  );
+
 
   static TextStyle headline3 = subTitleText.copyWith(
     color: ColorConstants.black,

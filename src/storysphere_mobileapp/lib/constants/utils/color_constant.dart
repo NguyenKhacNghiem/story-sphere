@@ -21,6 +21,7 @@ class ColorConstants {
   static const darkText = Color(0XFF000000);
   static const lightText = Color(0XFFFFFFFF);
   static const headingGreen = Color(0XFF0F7077);
+  static const purpleLight = Color(0XFFB294F1);
 
   static const textLinkAqua = Color(0XFF44CCB0);
   static const textLinkPurple = Color(0XFFD505D8);

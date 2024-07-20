@@ -76,7 +76,12 @@ class IconsSVG {
       height: 17.sp,
   );
   
-  //STORY DETAIL
+  //STORY DETAI
+  static SvgPicture starYellow = SvgPicture.asset(
+     'assets/icons/star-yellow.svg',
+      width: 17.sp,
+      height: 17.sp,
+  );
    static SvgPicture likeNormal = SvgPicture.asset(
      'assets/icons/heart.svg',
       width: 17.sp,

@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
 import 'package:storysphere_mobileapp/views/searching/widgets/story_data_widget.dart';
+import 'package:storysphere_mobileapp/views/storydetail/widgets/storyrate_section.dart';
 
 class StoryInfoSection extends StatelessWidget {
   final Story story;
@@ -31,11 +32,14 @@ class StoryInfoSection extends StatelessWidget {
 
         //author name
         Text(story.bookAuthorName == null ? 'Vô danh' : story.bookAuthorName!, style: FontConstant.authorNameDisplay,),
-        5.verticalSpace,
-        Text(story.storyContentOutline == null ? '' : story.storyContentOutline!, style: FontConstant.contentOutLine,),
+        3.verticalSpace,
+        //Text(story.storyContentOutline == null ? '' : story.storyContentOutline!, style: FontConstant.contentOutLine,),
 
-        10.verticalSpace,
-         StoryDataWidget(viewCount: story.viewCount ?? 0, voteCount: story.voteCount ?? 0, chapterCount: story.chapterCount ?? 1,)
+        StoryRatingSectionWidget(ratePoint: story.ratingPoint ?? 3),
+        8.verticalSpace,
+        StoryDataWidget(viewCount: story.viewCount ?? 0, voteCount: story.voteCount ?? 0, chapterCount: story.chapterCount ?? 1,),
+        
+         
 
       ],
     );

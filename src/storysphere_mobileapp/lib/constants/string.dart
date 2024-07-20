@@ -29,6 +29,14 @@ class Strings {
   static const String addNewChapter = 'Thêm chương mới';
   static const String chapterTitle = 'Tiêu đề chương';
 
+  //Story Details
+  static const String readMore = 'Đọc thêm';
+  static const String showLess = 'Ẩn bớt';
+  static const String chapterList = 'MỤC LỤC';
+  static const String showAll = 'Hiển thị tất cả';
+  static const String userRates = 'ĐỘC GIẢ ĐÁNH GIÁ';
+  static const String noChapterToDisplay = 'Không có chương để hiển thị';
+
   //LABELS - FOR BUTTON
   static const String notificationLabel = 'Thông báo';
   static const String fitestResult = 'Đúng nhất';
@@ -38,6 +46,8 @@ class Strings {
   static const String newChapter = 'Chương mới';
   static const String saveDraft = 'Lưu nháp';
   static const String publish = 'Xuất bản';
+  static const String chapter = 'Chương';
+  static const String rate = 'Đánh giá';
 
   static const String login = 'Đăng nhập';
   static const String signInWithGoogleButtonText = 'Đăng nhập với Google';

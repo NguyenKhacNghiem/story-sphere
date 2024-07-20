@@ -1,7 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
-import 'package:storysphere_mobileapp/views/storydetail/storycover_section.dart';
+import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
+import 'package:storysphere_mobileapp/views/storydetail/widgets/storychapters_section.dart';
+import 'package:storysphere_mobileapp/views/storydetail/widgets/storycontentoutline_section.dart';
+import 'package:storysphere_mobileapp/views/storydetail/widgets/storycover_section.dart';
 
 @RoutePage()
 class StoryDetailPage extends StatefulWidget {
@@ -25,13 +29,21 @@ class _StoryDetailPage extends State<StoryDetailPage> {
       );
 
     return Scaffold(
+      bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 1),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            StoryCoverSectionWidget(story: story )
+            StoryCoverSectionWidget(story: story ),
+            
+            20.verticalSpace,
+            StoryContentOutlineWidget(data: story.storyContentOutline ?? ''),
+
+            20.verticalSpace,
+            StoryChapterListWidget(storyId: story.storyId!),
+
           ],
         )
       ),

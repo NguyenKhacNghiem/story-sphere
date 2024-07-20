@@ -16,7 +16,7 @@ class StoryDataWidget extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
          IconsSVG.view,
          5.horizontalSpace,

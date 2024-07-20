@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
-import 'package:storysphere_mobileapp/views/storydetail/storyinfo_section.dart';
+import 'package:storysphere_mobileapp/views/storydetail/widgets/storyinfo_section.dart';
 
 class StoryCoverSectionWidget extends StatelessWidget {
   final Story story;

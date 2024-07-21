@@ -1,5 +1,6 @@
 // Import packages
 const express = require('express')
+const cors = require('cors');
 const mongoose = require("mongoose");
 require("dotenv").config();
 
@@ -19,6 +20,7 @@ const CONNECTION_STRING = process.env.CONNECTION_STRING;
 
 // Config projects
 const app = express()
+app.use(cors());
 app.use(express.static(__dirname + '/public')) // access folder public to use img, ...
 app.use(express.json());  // get data from request in JSON format
 app.use(express.urlencoded({ extended: true })); // get data from request in URL-ENCODED format 

@@ -1,0 +1,179 @@
+<link rel="stylesheet" href="/css/story.css">
+
+<div class="container-fluid pt-3" style="margin-bottom: 500px;">
+
+    <div class="row mb-2">
+        <div class="input-group rounded col-10">
+            <input id="text-search" oninput="handleSearchInput()" type="search" class="form-control rounded" placeholder="Tìm kiếm theo ISBN, tên tác phẩm, tên tác giả" aria-label="Search" aria-describedby="search-addon" />
+            {{!-- <span class="input-group-text border-0" id="search-addon" style="background-color: white;">
+                <i class="fa-duotone fa-magnifying-glass"></i>
+            </span> --}}
+        </div>
+
+        <div class="dropdown col-2">
+            <button type="button" class="btn btn-secondary w-100 py-1" data-toggle="dropdown">
+                <i class="fa-duotone fa-arrow-up-arrow-down"></i> Sắp xếp
+            </button>
+            <div class="dropdown-menu">
+                <a onclick="handleSortSelect(0)" class="dropdown-item" href="#" id="sort0"><i class="fa-duotone fa-shuffle"></i> Mặc định</a>
+                <a onclick="handleSortSelect(1)" class="dropdown-item" href="#" id="sort1"><i class="fa-duotone fa-arrow-down-1-9"></i> Mã tác phẩm (1-9)</a>
+                <a onclick="handleSortSelect(2)" class="dropdown-item" href="#" id="sort2"><i class="fa-duotone fa-arrow-up-9-1"></i> Mã tác phẩm (9-1)</a>
+                <a onclick="handleSortSelect(3)" class="dropdown-item" href="#" id="sort3"><i class="fa-duotone fa-arrow-down-a-z"></i> Tên tác phẩm (A-Z)</a>
+                <a onclick="handleSortSelect(4)" class="dropdown-item" href="#" id="sort4"><i class="fa-duotone fa-arrow-up-z-a"></i> Tên tác phẩm (Z-A)</a>        
+                <a onclick="handleSortSelect(5)" class="dropdown-item" href="#" id="sort5"><i class="fa-duotone fa-calendar-arrow-up"></i> Ngày đăng cũ</a>
+                <a onclick="handleSortSelect(6)" class="dropdown-item" href="#" id="sort6"><i class="fa-duotone fa-calendar-arrow-down"></i> Ngày đăng mới</a>        
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-hover text-center">
+        <thead>
+            <tr id="inner-thead">
+                <th style="width: 5%;">Mã Tác Phẩm</th>
+                <th style="width: 25%;">Tên Tác Phẩm</th>
+                <th style="width: 19%;">Tác Giả</th>
+                <th style="width: 13%;">Nhà Xuất Bản</th>
+                <th style="width: 5%;">Số Chương</th>
+                <th style="width: 5%;">Người Đăng</td>
+                <th style="width: 5%;">Ngày Đăng</th>
+                <th style="width: 5%;">Trạng Thái</th>
+                <th style="width: 18%;">Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            {{!-- Will be generated --}}
+        </tbody>
+    </table>    
+
+    <div class="text-center">
+        <button onclick="getPreviousPage()" class="btn btn-secondary" id="btn-previous-page"><i class="fa-duotone fa-left"></i></button>
+        <span id="current-page" class="text-primary"></span>/<span id="total-page"></span>
+        <button onclick="getNextPage()" class="btn btn-secondary" id="btn-next-page"><i class="fa-duotone fa-right"></i></button>
+    </div>
+</div>
+
+{{!-- Modal story detail --}}
+<div class="modal fade" id="modal1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title m-auto">CHI TIẾT TÁC PHẨM (#<span id="detail-id"></span>)</h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <img id="detail-image" src="">
+                    </div>
+                    <div class="col-6">
+                        <h3 id="detail-name"></h3>
+                        <h5 id="detail-author"></h5>
+                        <p><i class="fa-thin fa-book-open-reader"></i> <span id="detail-user"></span> | <i class="fa-thin fa-clock"></i> <span id="detail-create-date"></span></p>
+                        <p>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            |
+                            <i class="fa-thin fa-eye"></i> <span id="detail-view"></span> 
+                            <i class="fa-thin fa-heart"></i> <span id="detail-vote"></span> 
+                            <i class="fa-thin fa-comment"></i> <span id="detail-comment"></span>
+                            <i class="fa-thin fa-list"></i> <span id="detail-chapter"></span>
+                        </p>
+                        <p id="detail-content"></p>
+                        <h5>Thông tin khác</h5>
+                        <ul>
+                            <li id="detail-url"></li>
+                            <li id="detail-publisher"></li>
+                            <li id="detail-isbn"></li>
+                            <li id="detail-category"></li>
+                            <li id="detail-self-compose"></li>
+                            <li id="detail-mature"></li>
+                            <li id="detail-status"></li>
+                            <li id="detail-publish-date"></li>
+                            <li id="detail-commercial"></li>
+                            <li id="detail-price"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Đóng</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{{!-- Modal confirm delete --}}
+<div class="modal fade" id="modal2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title m-auto">XÁC NHẬN</h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" id="modal2-body">
+                {{!-- Will be generated --}}
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button onclick="handleDelete()" type="button" class="btn btn-success" data-mdb-ripple-init data-mdb-dismiss="modal"><i class="fa-solid fa-thumbs-up"></i></button>
+                <button type="button" class="btn btn-danger" data-mdb-ripple-init data-mdb-dismiss="modal"><i class="fa-solid fa-thumbs-down"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Modal user detail --}}
+<div class="modal fade" id="modal3">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title m-auto">NGƯỜI DÙNG (#<span id="detail-user-id">100000</span>)</h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div>
+                    <img id="bg-user-image" src="">
+                </div>
+                <div class="text-center mt-2">
+                    <img id="detail-user-image" src="">
+                </div>
+                <div class="mt-2">
+                    <ul>
+                        <li id="detail-user-username"></li>
+                        <li id="detail-user-display-name"></li>
+                        <li id="detail-user-email"></li>
+                        <li id="detail-user-role"></li>
+                        <li id="detail-user-self-introduction"></li>
+                        <li id="detail-user-date-of-birth"></li>
+                        <li id="detail-user-fav-genre-keywords"></li>
+                        <li id="detail-user-account-balance"></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/story.js"></script>
+<script src="/js/main.js"></script>

@@ -68,7 +68,6 @@ function login(req, res) {
 
         // Admin login
         if (username === "nknghiem" || username === "nghiem7755@gmail.com") {
-            // TODO: HANDLE LOGIN WITH ADMIN ROLE
             log.info("Admin đăng nhập thành công");
             return res.json({code: 100, message: "Admin đăng nhập thành công"});
         }
@@ -84,12 +83,6 @@ function login(req, res) {
 
 function getProfile(req, res) {
     let _id = req.params.id;
-
-    // NOTE: User cannot view the profile of admin
-    if (_id === 100000) {
-        log.error("Người dùng không tồn tại");
-        return res.json({code: 1, message: "Người dùng không tồn tại"});
-    }
 
     User.findOne({
         _id: _id, // find one record by username
@@ -285,6 +278,8 @@ function verifyEmail(req, res) {
         res.json({code: 1, message: "Xác thực email thất bại"});
     }
 }
+
+// TODO: Update avatar and bgImg
 
 module.exports = {
     register,

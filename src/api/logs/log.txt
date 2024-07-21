@@ -1558,3 +1558,15 @@
 [INFO]  21/07/2024 12:06:08 Lấy thông tin người dùng thành công
 [INFO]  21/07/2024 12:06:26 Lấy thông tin người dùng thành công
 [INFO]  21/07/2024 12:06:28 Lấy thông tin tác phẩm thành công
+[INFO]  21/07/2024 14:12:18 API server has been started.
+[INFO]  21/07/2024 14:12:25 Lấy danh sách tác phẩm thành công
+[ERROR] 21/07/2024 14:12:33 Thông tin đăng nhập không chính xác
+[INFO]  21/07/2024 14:12:39 Admin đăng nhập thành công
+[INFO]  21/07/2024 14:12:41 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 14:12:53 Admin đăng nhập thành công
+[INFO]  21/07/2024 14:12:55 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 14:13:02 Đăng nhập thành công
+[INFO]  21/07/2024 14:13:22 Admin đăng nhập thành công
+[INFO]  21/07/2024 14:13:23 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 14:13:33 Tài khoản của bạn đã bị khóa
+[INFO]  21/07/2024 14:13:48 Tài khoản của bạn đã bị khóa

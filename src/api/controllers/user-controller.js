@@ -65,9 +65,14 @@ function login(req, res) {
             log.error("Thông tin đăng nhập không chính xác");
             return res.json({code: 1, message: "Thông tin đăng nhập không chính xác"});
         }
+        
+        if (result.isLock) {
+            log.info("Tài khoản của bạn đã bị khóa");
+            return res.json({code: 1, message: "Tài khoản của bạn đã bị khóa"});
+        }
 
         // Admin login
-        if (username === "nknghiem" || username === "nghiem7755@gmail.com") {
+        if (result.role === "admin") {
             log.info("Admin đăng nhập thành công");
             return res.json({code: 100, message: "Admin đăng nhập thành công"});
         }

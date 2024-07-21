@@ -51,6 +51,10 @@ let userSchema = new Schema({
         type: String,
         default: "???", // TODO: replace with the default image url
     },
+    isLock: {
+        type: Boolean,
+        default: false
+    }
     
 }, { versionKey: false });
 

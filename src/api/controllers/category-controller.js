@@ -6,7 +6,7 @@ const log = require('../logs/log');
 async function getAll(req, res) {
     // Paging
     let page = parseInt(req.query.page) || 1; // current page, default is 1
-    let limit = 25; // 25 records per page
+    let limit = 5; // 5 records per page
     let startIndex = (page - 1) * limit; // Index of the first record on current page
     let endIndex = page * limit; // Index of the last record on current page
     let categories;
@@ -141,10 +141,109 @@ async function remove(req, res) {
     res.json({code: 0, message: "Xóa danh mục thành công"});
 }
 
+async function search(req, res) {
+    // // Input validation
+    // let result = validationResult(req);
+    // if(result.errors.length > 0) {
+    //     log.error(result.errors[0].msg);
+    //     return res.json({code: 1, message: result.errors[0].msg});
+    // }
+
+    let searchContent = req.query.searchContent || "";
+
+    // Paging
+    let page = parseInt(req.query.page) || 1; // current page, default is 1
+    let limit = 5; // 5 records per page
+    let startIndex = (page - 1) * limit; // Index of the first record on current page
+    let endIndex = page * limit; // Index of the last record on current page
+    let categories;
+
+    try {
+        let total = await Category.countDocuments({
+            $or: [
+                { _id: parseInt(searchContent) ? parseInt(searchContent) : -1 },
+                { categoryName: { $regex: searchContent, $options: 'i' } },
+            ]
+          }); // Total records in database by a condition
+        let totalPages = Math.ceil(total / limit); // Total pages
+
+        if (endIndex < total)
+            categories = await Category.find({
+                $or: [
+                    { _id: parseInt(searchContent) ? parseInt(searchContent) : -1 },
+                    { categoryName: { $regex: searchContent, $options: 'i' } },
+                ]
+              }).lean().skip(startIndex).limit(limit);
+        else
+            categories = await Category.find({
+                $or: [
+                    { _id: parseInt(searchContent) ? parseInt(searchContent) : -1 },
+                    { categoryName: { $regex: searchContent, $options: 'i' } },
+                ]
+              }).lean().skip(startIndex);
+        
+        if (categories.length === 0) {
+            log.info("Không tìm thấy danh mục nào phù hợp");
+            return res.json({code: 0, message: "Không tìm thấy danh mục nào phù hợp", result: categories});
+        }
+
+        log.info("Tìm danh mục thành công");
+        res.json({ code: 0, message: "Tìm danh mục thành công", result: categories, totalPages: totalPages, currentPage: page });
+    } catch (err) {
+        log.error(err.message);
+        res.json({ code: 1, message: "Tìm danh mục thất bại" });
+    }
+}
+
+async function sort(req, res) {
+    // Paging
+    let page = parseInt(req.query.page) || 1; // current page, default is 1
+    let limit = 5; // 5 records per page
+    let startIndex = (page - 1) * limit; // Index of the first record on current page
+    let endIndex = page * limit; // Index of the last record on current page
+    let categories;
+
+    let criteria = {};
+
+    if (req.query.criteria - 0 === 1)
+        criteria._id = 1;
+    else if (req.query.criteria - 0 === 2)
+        criteria._id = -1;
+    else if (req.query.criteria - 0 === 3)
+        criteria.categoryName = 1;
+    else if (req.query.criteria - 0 === 4)
+        criteria.categoryName = -1;
+    else
+        ;
+    
+    try {
+        let total = await Category.countDocuments(); // Total records in database by a condition
+        let totalPages = Math.ceil(total / limit); // Total pages
+
+        if (endIndex < total)
+            categories = await Category.find().sort(criteria).lean().skip(startIndex).limit(limit);
+        else
+            categories = await Category.find().sort(criteria).lean().skip(startIndex);
+        
+        if (categories.length === 0) {
+            log.info("Danh sách danh mục hiện đang trống");
+            return res.json({code: 0, message: "Danh sách danh mục hiện đang trống", result: categories});
+        }
+
+        log.info("Sắp xếp danh sách danh mục thành công");
+        res.json({ code: 0, message: "Sắp xếp danh sách danh mục thành công", result: categories, totalPages: totalPages, currentPage: page });
+    } catch (err) {
+        log.error(err.message);
+        res.json({ code: 1, message: "Sắp xếp danh sách danh mục thất bại" });
+    }
+}
+
 module.exports = {
     getAll,
     getOne,
     create,
     edit,
-    remove
+    remove,
+    search,
+    sort
 };

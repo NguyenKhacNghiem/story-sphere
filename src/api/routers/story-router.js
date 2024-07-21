@@ -12,12 +12,24 @@ router.post("/create", storyValidator.createValidator, (req, res) => {
     storyController.create(req, res);
 })
 
-router.get("/search", storyValidator.searchValidator, (req, res) => {
+router.get("/search", (req, res) => {
     storyController.search(req, res);
 })
 
 router.get("/filter", (req, res) => {
     storyController.filter(req, res);
+})
+
+router.get("/sort", (req, res) => {
+    storyController.sort(req, res);
+})
+
+router.put("/publish", storyValidator.publishValidator, (req, res) => {
+    storyController.publish(req, res);
+})
+
+router.delete("/delete/:id", (req, res) => {
+    storyController.remove(req, res);
 })
 
 router.get("/:id", (req, res) => {

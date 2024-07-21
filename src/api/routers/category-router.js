@@ -12,6 +12,14 @@ router.post("/create", categoryValidator.createAndEditValidator, (req, res) => {
     categoryController.create(req, res);
 })
 
+router.get("/search", (req, res) => {
+    categoryController.search(req, res);
+})
+
+router.get("/sort", (req, res) => {
+    categoryController.sort(req, res);
+})
+
 router.put("/edit/:id", categoryValidator.createAndEditValidator, (req, res) => {
     categoryController.edit(req, res);
 })

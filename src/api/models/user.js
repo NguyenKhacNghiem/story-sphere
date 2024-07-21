@@ -43,6 +43,18 @@ let userSchema = new Schema({
         type: Number,
         default: 0,
     },
+    avatar: {
+        type: String,
+        default: "???", // TODO: replace with the default image url
+    },
+    bgImg: {
+        type: String,
+        default: "???", // TODO: replace with the default image url
+    },
+    isLock: {
+        type: Boolean,
+        default: false
+    }
     
 }, { versionKey: false });
 

@@ -34,9 +34,9 @@ module.exports = {
 
         check("ISBNcode")
         .notEmpty()
-        .withMessage("Vui lòng nhập mã vạch")
-        .isISBN()
-        .withMessage("Vui lòng nhập mã vạch hợp lệ"),
+        .withMessage("Vui lòng nhập mã vạch"),
+        // .isISBN()
+        // .withMessage("Vui lòng nhập mã vạch hợp lệ"),
 
         check("publishDate")
         .notEmpty()
@@ -67,9 +67,15 @@ module.exports = {
         .withMessage("Vui lòng nhập giá mà người dùng phải trả cho tác phẩm"),
     ],
 
-    searchValidator: [
-        check("searchContent")
+    // searchValidator: [
+    //     check("searchContent")
+    //     .notEmpty()
+    //     .withMessage("Vui lòng nhập nội dung tìm kiếm")
+    // ],
+
+    publishValidator: [
+        check("_id")
         .notEmpty()
-        .withMessage("Vui lòng nhập nội dung tìm kiếm")
+        .withMessage("Vui lòng nhập mã tác phẩm"),
     ],
 };

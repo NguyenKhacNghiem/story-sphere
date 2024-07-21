@@ -7,7 +7,7 @@ const log = require('../logs/log');
 async function getAll(req, res) {
     // Paging
     let page = parseInt(req.query.page) || 1; // current page, default is 1
-    let limit = 25; // 25 records per page
+    let limit = 5; // 5 records per page
     let startIndex = (page - 1) * limit; // Index of the first record on current page
     let endIndex = page * limit; // Index of the last record on current page
     let stories;
@@ -106,18 +106,18 @@ async function create(req, res) {
 }
 
 async function search(req, res) {
-    // Input validation
-    let result = validationResult(req);
-    if(result.errors.length > 0) {
-        log.error(result.errors[0].msg);
-        return res.json({code: 1, message: result.errors[0].msg});
-    }
+    // // Input validation
+    // let result = validationResult(req);
+    // if(result.errors.length > 0) {
+    //     log.error(result.errors[0].msg);
+    //     return res.json({code: 1, message: result.errors[0].msg});
+    // }
 
-    let searchContent = req.query.searchContent;
+    let searchContent = req.query.searchContent || "";
 
     // Paging
     let page = parseInt(req.query.page) || 1; // current page, default is 1
-    let limit = 25; // 25 records per page
+    let limit = 5; // 5 records per page
     let startIndex = (page - 1) * limit; // Index of the first record on current page
     let endIndex = page * limit; // Index of the last record on current page
     let stories;
@@ -217,10 +217,99 @@ async function filter(req, res) {
     }
 }
 
+async function sort(req, res) {
+    // Paging
+    let page = parseInt(req.query.page) || 1; // current page, default is 1
+    let limit = 5; // 5 records per page
+    let startIndex = (page - 1) * limit; // Index of the first record on current page
+    let endIndex = page * limit; // Index of the last record on current page
+    let stories;
+
+    let criteria = {};
+
+    if (req.query.criteria - 0 === 1)
+        criteria._id = 1;
+    else if (req.query.criteria - 0 === 2)
+        criteria._id = -1;
+    else if (req.query.criteria - 0 === 3)
+        criteria.storyName = 1;
+    else if (req.query.criteria - 0 === 4)
+        criteria.storyName = -1;
+    else if (req.query.criteria - 0 === 5)
+        criteria.createdDate = 1;
+    else if (req.query.criteria - 0 === 6)
+        criteria.createdDate = -1;
+    else
+        ;
+    
+    try {
+        let total = await Story.countDocuments(); // Total records in database by a condition
+        let totalPages = Math.ceil(total / limit); // Total pages
+
+        if (endIndex < total)
+            stories = await Story.find().sort(criteria).lean().skip(startIndex).limit(limit);
+        else
+            stories = await Story.find().sort(criteria).lean().skip(startIndex);
+        
+        if (stories.length === 0) {
+            log.info("Danh sách tác phẩm hiện đang trống");
+            return res.json({code: 0, message: "Danh sách tác phẩm hiện đang trống", result: stories});
+        }
+
+        log.info("Sắp xếp danh sách tác phẩm thành công");
+        res.json({ code: 0, message: "Sắp xếp danh sách tác phẩm thành công", result: stories, totalPages: totalPages, currentPage: page });
+    } catch (err) {
+        log.error(err.message);
+        res.json({ code: 1, message: "Sắp xếp danh sách tác phẩm thất bại" });
+    }
+}
+
+// Show or hide story
+async function publish(req, res) {
+    // Input validation
+    let result = validationResult(req);
+    if(result.errors.length > 0) {
+        log.error(result.errors[0].msg);
+        return res.json({code: 1, message: result.errors[0].msg});
+    }
+
+    let _id = req.body._id;
+    let story = await Story.findOne({ _id: _id }); // find one record by id
+
+    if(!story) {
+        log.error("Tác phẩm không tồn tại");
+        return res.json({code: 1, message: "Tác phẩm không tồn tại"});
+    }
+
+    // Change fields of record
+    story.published ? story.published = false : story.published = true;
+
+    await story.save();
+
+    story.published ? log.info("Đăng tải tác phẩm thành công") : log.info("Hủy đăng tải tác phẩm thành công");
+    story.published ? res.json({code: 0, message: "Đăng tải tác phẩm thành công"}) : res.json({code: 0, message: "Hủy đăng tải tác phẩm thành công"});
+}
+
+async function remove(req, res) {
+    let _id = req.params.id;
+    let deletedStory = await Story.findOneAndDelete({ _id: _id }); // find one record and delete its if exists
+
+    if(!deletedStory) {
+        log.error("Tác phẩm không tồn tại");
+        return res.json({code: 1, message: "Tác phẩm không tồn tại"});
+    }
+
+    log.info("Xóa tác phẩm thành công");
+    res.json({code: 0, message: "Xóa tác phẩm thành công"});
+}
+
 module.exports = {
     getAll,
     getOne,
     create,
     search,
-    filter
+    filter,
+    sort,
+    publish,
+    remove
 };

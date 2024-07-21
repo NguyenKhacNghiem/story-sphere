@@ -73,6 +73,20 @@ app.get("/category", (req, res) => {
         res.render("category");
 })
 
+app.get("/user", (req, res) => {
+    // if(!req.session.username)
+    //     res.redirect("/login");
+    // else
+        res.render("user");
+})
+
+app.get("/statistic", (req, res) => {
+    // if(!req.session.username)
+    //     res.redirect("/login");
+    // else
+        res.render("statistic");
+})
+
 // Xử lý lỗi 404 và 500
 app.use((req, res) => {
     res.status(404) 

@@ -1962,3 +1962,6 @@
 [INFO]  21/07/2024 22:30:46 Lọc tác phẩm thành công
 [INFO]  21/07/2024 22:30:46 Lấy danh sách danh mục thành công
 [INFO]  21/07/2024 22:30:48 Lọc tác phẩm thành công
+[INFO]  21/07/2024 22:35:18 API server has been started.
+[INFO]  21/07/2024 22:37:15 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 22:37:16 Lấy danh sách danh mục thành công

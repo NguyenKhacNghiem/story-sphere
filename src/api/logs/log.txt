@@ -1570,3 +1570,395 @@
 [INFO]  21/07/2024 14:13:23 Lấy danh sách tác phẩm thành công
 [INFO]  21/07/2024 14:13:33 Tài khoản của bạn đã bị khóa
 [INFO]  21/07/2024 14:13:48 Tài khoản của bạn đã bị khóa
+[INFO]  21/07/2024 14:20:25 API server has been started.
+[INFO]  21/07/2024 14:20:26 Admin đăng nhập thành công
+[INFO]  21/07/2024 14:20:28 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 14:20:30 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 14:24:42 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 14:25:04 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 14:25:13 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 14:25:14 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 14:25:15 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 16:23:39 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:26:37 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:26:52 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:26:58 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:26:58 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:27:04 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:27:08 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 16:27:10 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:29:52 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:30:26 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:31:03 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:31:14 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:31:24 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 16:31:29 Lấy thông tin người dùng thành công
+[INFO]  21/07/2024 16:32:23 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 16:32:32 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 16:32:56 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 16:33:27 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 16:33:32 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 16:33:41 Lấy thông tin tác phẩm thành công
+[INFO]  21/07/2024 16:33:49 Lấy thông tin người dùng thành công
+[INFO]  21/07/2024 16:34:23 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 16:34:29 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 16:34:39 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:35:58 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 16:36:00 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 16:36:01 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 16:36:03 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 16:36:04 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 16:36:06 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 16:36:07 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 16:36:12 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:36:42 Lấy danh sách danh mục thành công
+[ERROR] 21/07/2024 16:36:59 Cast to Number failed for value "sort" (type string) at path "_id" for model "Category"
+[ERROR] 21/07/2024 16:37:00 Cast to Number failed for value "sort" (type string) at path "_id" for model "Category"
+[INFO]  21/07/2024 16:37:02 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:37:22 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:37:23 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:38:04 API server has been started.
+[INFO]  21/07/2024 16:38:24 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:38:26 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:38:26 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:38:27 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:38:28 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:38:28 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:38:43 API server has been started.
+[INFO]  21/07/2024 16:38:43 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:38:44 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:38:44 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:38:44 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:38:47 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:38:48 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:38:48 Lấy danh sách danh mục thành công
+[ERROR] 21/07/2024 16:41:45 Cast to Number failed for value "sort" (type string) at path "_id" for model "Category"
+[ERROR] 21/07/2024 16:41:46 Cast to Number failed for value "sort" (type string) at path "_id" for model "Category"
+[INFO]  21/07/2024 16:42:20 Tạo danh mục mới thành công
+[INFO]  21/07/2024 16:42:24 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:42:26 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:42:27 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:42:28 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:42:28 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:42:31 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:42:36 Xóa danh mục thành công
+[INFO]  21/07/2024 16:42:37 Danh sách danh mục hiện đang trống
+[INFO]  21/07/2024 16:42:42 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:42:44 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:44:02 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:44:09 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:44:09 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:44:10 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:44:10 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:44:10 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:44:10 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:44:10 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:44:18 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:45:23 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:45:37 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:45:44 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:45:48 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:46:15 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:47:01 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:47:11 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:47:21 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:47:29 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:47:38 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:47:47 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 16:51:16 API server has been started.
+[INFO]  21/07/2024 16:51:34 API server has been started.
+[INFO]  21/07/2024 16:52:49 API server has been started.
+[INFO]  21/07/2024 16:56:34 API server has been started.
+[INFO]  21/07/2024 17:03:09 API server has been started.
+[INFO]  21/07/2024 17:05:07 API server has been started.
+[INFO]  21/07/2024 17:05:13 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 17:05:17 Sắp xếp danh sách danh mục thành công
+[INFO]  21/07/2024 17:05:19 Sắp xếp danh sách danh mục thành công
+[INFO]  21/07/2024 17:05:23 Sắp xếp danh sách danh mục thành công
+[INFO]  21/07/2024 17:05:25 Sắp xếp danh sách danh mục thành công
+[INFO]  21/07/2024 17:05:28 Sắp xếp danh sách danh mục thành công
+[INFO]  21/07/2024 17:05:31 Sắp xếp danh sách danh mục thành công
+[INFO]  21/07/2024 17:05:32 Sắp xếp danh sách danh mục thành công
+[INFO]  21/07/2024 17:05:34 Sắp xếp danh sách danh mục thành công
+[ERROR] 21/07/2024 17:05:44 Cast to number failed for value "i" (type string) at path "_id" for model "Category"
+[INFO]  21/07/2024 18:37:48 Lấy danh sách danh mục thành công
+[ERROR] 21/07/2024 18:37:52 Cast to number failed for value "i" (type string) at path "_id" for model "Category"
+[INFO]  21/07/2024 18:40:07 API server has been started.
+[INFO]  21/07/2024 18:40:08 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:40:08 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:40:12 Tìm danh mục thành công
+[INFO]  21/07/2024 18:41:50 API server has been started.
+[INFO]  21/07/2024 18:42:17 API server has been started.
+[INFO]  21/07/2024 18:42:25 API server has been started.
+[INFO]  21/07/2024 18:42:32 Lấy danh sách danh mục thành công
+[ERROR] 21/07/2024 18:42:35 Cast to Number failed for value "NaN" (type number) at path "_id" for model "Category"
+[INFO]  21/07/2024 18:43:18 API server has been started.
+[INFO]  21/07/2024 18:43:19 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:43:20 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:43:20 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:43:20 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:43:23 Tìm danh mục thành công
+[INFO]  21/07/2024 18:43:41 Tìm danh mục thành công
+[INFO]  21/07/2024 18:43:45 Tìm danh mục thành công
+[INFO]  21/07/2024 18:43:47 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 18:43:49 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:44:01 Tìm danh mục thành công
+[INFO]  21/07/2024 18:44:04 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:46:45 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 18:46:47 Lấy thông tin tác phẩm thành công
+[INFO]  21/07/2024 18:47:35 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 18:47:36 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:48:44 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:52:45 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:53:02 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:54:51 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:55:13 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:55:47 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:56:20 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:57:24 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:57:52 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 18:59:58 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 19:00:14 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 19:01:24 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 19:05:30 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 19:05:53 Lấy thông tin tác phẩm thành công
+[INFO]  21/07/2024 19:06:10 Lấy thông tin tác phẩm thành công
+[INFO]  21/07/2024 19:06:16 Lấy thông tin tác phẩm thành công
+[INFO]  21/07/2024 19:06:42 Hủy đăng tải tác phẩm thành công
+[INFO]  21/07/2024 19:06:42 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 19:06:44 Đăng tải tác phẩm thành công
+[INFO]  21/07/2024 19:06:45 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 19:06:52 Tìm tác phẩm thành công
+[INFO]  21/07/2024 19:06:57 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 19:06:59 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:02:39 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:02:39 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:04:44 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:04:55 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:05:08 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:10:26 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 21:10:41 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:10:41 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:11:12 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:15:50 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:16:25 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:16:25 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:16:26 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:16:26 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:16:26 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:16:27 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:16:27 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:17:39 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:18:23 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:19:18 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:20:40 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:21:21 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:21:40 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:23:39 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:23:53 Lấy danh sách danh mục thành công
+[ERROR] 21/07/2024 21:23:54 Vui lòng nhập URL cho danh mục
+[INFO]  21/07/2024 21:23:54 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:24:39 Lấy danh sách danh mục thành công
+[ERROR] 21/07/2024 21:24:40 Vui lòng nhập URL cho danh mục
+[INFO]  21/07/2024 21:24:41 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:24:46 Tạo danh mục mới thành công
+[INFO]  21/07/2024 21:24:46 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:24:51 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:24:52 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:25:04 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:25:05 Lấy danh sách danh mục thành công
+[ERROR] 21/07/2024 21:25:22 E11000 duplicate key error collection: story-sphere.categories index: categoryUrl_1 dup key: { categoryUrl: "asd" }
+[INFO]  21/07/2024 21:25:24 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:26:49 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:26:52 Tạo danh mục mới thành công
+[INFO]  21/07/2024 21:26:53 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:27:44 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:27:48 Tạo danh mục mới thành công
+[INFO]  21/07/2024 21:27:49 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:27:56 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:28:00 Tạo danh mục mới thành công
+[INFO]  21/07/2024 21:28:00 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:29:49 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:29:55 Tạo danh mục mới thành công
+[INFO]  21/07/2024 21:29:55 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:31:32 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:31:42 Tạo danh mục mới thành công
+[INFO]  21/07/2024 21:31:42 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:31:57 Tạo danh mục mới thành công
+[INFO]  21/07/2024 21:31:57 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:33:04 Tạo danh mục mới thành công
+[INFO]  21/07/2024 21:33:04 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:33:22 Tạo danh mục mới thành công
+[INFO]  21/07/2024 21:33:23 Lấy danh sách danh mục thành công
+[ERROR] 21/07/2024 21:33:31 Vui lòng nhập URL cho danh mục
+[INFO]  21/07/2024 21:33:31 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:33:35 Tạo danh mục mới thành công
+[INFO]  21/07/2024 21:33:35 Lấy danh sách danh mục thành công
+[ERROR] 21/07/2024 21:33:38 E11000 duplicate key error collection: story-sphere.categories index: categoryUrl_1 dup key: { categoryUrl: "j" }
+[INFO]  21/07/2024 21:33:38 Lấy danh sách danh mục thành công
+[ERROR] 21/07/2024 21:33:42 E11000 duplicate key error collection: story-sphere.categories index: categoryName_1 dup key: { categoryName: "j" }
+[INFO]  21/07/2024 21:33:42 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:33:46 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:33:46 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:33:47 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:33:47 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:33:48 Lấy danh sách danh mục thành công
+[ERROR] 21/07/2024 21:33:53 E11000 duplicate key error collection: story-sphere.categories index: categoryName_1 dup key: { categoryName: "q" }
+[INFO]  21/07/2024 21:33:54 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:33:57 Tạo danh mục mới thành công
+[INFO]  21/07/2024 21:33:57 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:34:00 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:34:00 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:34:01 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:34:01 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:34:02 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:34:03 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:34:03 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:34:05 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:34:06 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:34:06 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:34:07 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:34:08 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:34:11 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:35:18 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:35:20 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:35:20 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:35:21 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:35:56 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:35:58 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:35:59 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:35:59 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:36:54 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:36:55 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:36:55 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:36:56 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:36:56 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:36:58 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:36:58 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:36:59 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:00 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:00 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:01 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:02 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:02 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:03 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:08 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:10 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:10 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:11 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:12 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:13 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:13 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:20 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:21 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:22 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:23 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:25 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:37:25 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:39:01 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:39:03 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:39:07 Xóa danh mục thành công
+[INFO]  21/07/2024 21:39:08 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:39:10 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:39:13 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:39:15 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:39:17 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:39:18 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:48:12 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:48:14 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:48:23 Lấy thông tin danh mục thành công
+[INFO]  21/07/2024 21:48:39 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:48:42 Lấy thông tin danh mục thành công
+[INFO]  21/07/2024 21:48:46 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:48:48 Lấy thông tin danh mục thành công
+[INFO]  21/07/2024 21:48:50 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:48:51 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:48:52 Lấy thông tin danh mục thành công
+[INFO]  21/07/2024 21:49:41 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:50:05 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:50:15 Lấy thông tin danh mục thành công
+[INFO]  21/07/2024 21:51:16 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:54:23 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:54:26 Lấy thông tin danh mục thành công
+[INFO]  21/07/2024 21:54:33 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:54:34 Lấy thông tin danh mục thành công
+[INFO]  21/07/2024 21:55:43 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:55:54 Tạo danh mục mới thành công
+[INFO]  21/07/2024 21:55:54 Lấy danh sách danh mục thành công
+[ERROR] 21/07/2024 21:55:58 E11000 duplicate key error collection: story-sphere.categories index: categoryUrl_1 dup key: { categoryUrl: "asd" }
+[INFO]  21/07/2024 21:55:58 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:56:04 Lấy thông tin danh mục thành công
+[INFO]  21/07/2024 21:56:11 Lấy thông tin danh mục thành công
+[INFO]  21/07/2024 21:56:16 Lấy thông tin danh mục thành công
+[INFO]  21/07/2024 21:56:19 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:56:20 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:56:21 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:56:23 Lấy thông tin danh mục thành công
+[INFO]  21/07/2024 21:56:26 Tạo danh mục mới thành công
+[INFO]  21/07/2024 21:56:26 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:57:15 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:57:17 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:57:19 Lấy thông tin danh mục thành công
+[ERROR] 21/07/2024 21:57:23 E11000 duplicate key error collection: story-sphere.categories index: categoryUrl_1 dup key: { categoryUrl: "aaa2" }
+[INFO]  21/07/2024 21:57:23 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:57:30 Tạo danh mục mới thành công
+[INFO]  21/07/2024 21:57:30 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:57:33 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:57:34 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:58:08 Lấy thông tin danh mục thành công
+[INFO]  21/07/2024 21:58:16 Tạo danh mục mới thành công
+[INFO]  21/07/2024 21:58:16 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:58:44 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:58:46 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:58:48 Lấy thông tin danh mục thành công
+[ERROR] 21/07/2024 21:58:52 Vui lòng nhập URL cho danh mục
+[INFO]  21/07/2024 21:58:52 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:58:58 Chỉnh sửa danh mục thành công
+[INFO]  21/07/2024 21:58:58 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:59:01 Lấy thông tin danh mục thành công
+[INFO]  21/07/2024 21:59:04 Chỉnh sửa danh mục thành công
+[INFO]  21/07/2024 21:59:05 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:59:06 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:59:07 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:59:15 Tạo danh mục mới thành công
+[INFO]  21/07/2024 21:59:15 Lấy danh sách danh mục thành công
+[ERROR] 21/07/2024 21:59:17 Vui lòng nhập URL cho danh mục
+[INFO]  21/07/2024 21:59:17 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:59:18 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:59:19 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:59:22 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:59:22 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:59:22 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:59:23 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:59:26 Xóa danh mục thành công
+[INFO]  21/07/2024 21:59:27 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:59:39 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 21:59:40 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 22:00:19 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 22:00:23 Không tìm thấy danh mục nào phù hợp
+[INFO]  21/07/2024 22:00:26 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 22:00:35 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 22:00:52 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 22:01:11 Lấy thông tin người dùng thành công
+[INFO]  21/07/2024 22:13:31 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 22:13:35 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 22:14:13 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 22:14:23 Lấy danh sách tác phẩm thành công
+[INFO]  21/07/2024 22:14:24 Lấy thông tin tác phẩm thành công
+[INFO]  21/07/2024 22:14:27 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 22:28:29 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 22:28:33 Lọc tác phẩm thành công
+[INFO]  21/07/2024 22:28:39 Lọc tác phẩm thành công
+[INFO]  21/07/2024 22:28:41 Lọc tác phẩm thành công
+[INFO]  21/07/2024 22:28:42 Lọc tác phẩm thành công
+[INFO]  21/07/2024 22:28:44 Không lọc được tác phẩm nào phù hợp
+[INFO]  21/07/2024 22:28:46 Không lọc được tác phẩm nào phù hợp
+[INFO]  21/07/2024 22:28:48 Không lọc được tác phẩm nào phù hợp
+[INFO]  21/07/2024 22:28:52 Không lọc được tác phẩm nào phù hợp
+[INFO]  21/07/2024 22:30:25 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 22:30:27 Không lọc được tác phẩm nào phù hợp
+[INFO]  21/07/2024 22:30:34 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 22:30:37 Không lọc được tác phẩm nào phù hợp
+[INFO]  21/07/2024 22:30:46 Lọc tác phẩm thành công
+[INFO]  21/07/2024 22:30:46 Lấy danh sách danh mục thành công
+[INFO]  21/07/2024 22:30:48 Lọc tác phẩm thành công

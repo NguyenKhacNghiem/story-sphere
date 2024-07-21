@@ -1,0 +1,165 @@
+<link rel="stylesheet" href="/css/category.css">
+
+<div class="container-fluid pt-3" style="margin-bottom: 500px;">
+
+    <div class="row mb-2">
+        <div class="input-group rounded col-8">
+            <input id="text-search" oninput="handleSearchInput()" type="search" class="form-control rounded" placeholder="Tìm kiếm theo mã danh mục, tên danh mục" aria-label="Search" aria-describedby="search-addon" />
+        </div>
+
+        <div class="col-2">
+            <button onclick="showModalAdd('THÊM')" type="button" class="btn btn-primary w-100 py-1"><i class="fa-solid fa-circle-plus"></i> Thêm</button>
+        </div>
+
+        <div class="dropdown col-2">
+            <button type="button" class="btn btn-secondary w-100 py-1" data-toggle="dropdown">
+                <i class="fa-duotone fa-arrow-up-arrow-down"></i> Sắp xếp
+            </button>
+            <div class="dropdown-menu">
+                <a onclick="handleSortSelect(0)" class="dropdown-item" href="#" id="sort0"><i class="fa-duotone fa-shuffle"></i> Mặc định</a>
+                <a onclick="handleSortSelect(1)" class="dropdown-item" href="#" id="sort1"><i class="fa-duotone fa-arrow-down-1-9"></i> Mã danh mục (1-9)</a>
+                <a onclick="handleSortSelect(2)" class="dropdown-item" href="#" id="sort2"><i class="fa-duotone fa-arrow-up-9-1"></i> Mã danh mục (9-1)</a>
+                <a onclick="handleSortSelect(3)" class="dropdown-item" href="#" id="sort3"><i class="fa-duotone fa-arrow-down-a-z"></i> Tên danh mục (A-Z)</a>
+                <a onclick="handleSortSelect(4)" class="dropdown-item" href="#" id="sort4"><i class="fa-duotone fa-arrow-up-z-a"></i> Tên danh mục (Z-A)</a>              
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-hover text-center">
+        <thead>
+            <tr id="inner-thead">
+                <th style="width: 5%;">Mã Danh Mục</th>
+                <th style="width: 15%;">Tên Danh Mục</th>
+                <th style="width: 37%;">Mô Tả</th>
+                <th style="width: 15%;">URL</th>
+                <th style="width: 10%;">Danh Mục/ Tag</th>
+                <th style="width: 18%;">Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            {{!-- Will be generated --}}
+        </tbody>
+    </table>    
+
+    <div class="text-center">
+        <button onclick="getPreviousPage()" class="btn btn-secondary" id="btn-previous-page"><i class="fa-duotone fa-left"></i></button>
+        <span id="current-page" class="text-primary"></span>/<span id="total-page"></span>
+        <button onclick="getNextPage()" class="btn btn-secondary" id="btn-next-page"><i class="fa-duotone fa-right"></i></button>
+    </div>
+</div>
+
+{{!-- Modal add/ edit category --}}
+<div class="modal fade" id="modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title m-auto"><span id="title-modal-add"></span> DANH MỤC/ TAG</h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" id="modal1-body">
+                <div class="form-outline mb-2" data-mdb-input-init>
+                    <input type="text" id="add-category-name" class="form-control" />
+                    <label class="form-label" for="add-category-name">Tên danh mục</label>
+                </div>
+
+                <div class="form-outline mb-2" data-mdb-input-init>
+                    <input type="text" id="add-category-description" class="form-control" />
+                    <label class="form-label" for="add-category-description">Mô tả</label>
+                </div>
+
+                <div class="form-outline mb-2" data-mdb-input-init>
+                    <input type="text" id="add-category-url" class="form-control" />
+                    <label class="form-label" for="add-category-url">URL</label>
+                </div>
+
+                <div class="row container-fluid">
+                    <div class="custom-control custom-radio col-6">
+                        <input type="radio" class="custom-control-input" id="add-category" name="isCategory" value="true" checked>
+                        <label class="custom-control-label" for="add-category">Danh mục</label>
+                    </div>
+
+                    <div class="custom-control custom-radio col-6">
+                        <input type="radio" class="custom-control-input" id="add-tag" name="isCategory" value="false">
+                        <label class="custom-control-label" for="add-tag">Tag</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button id="btn-add" onclick="add()" type="button" class="btn btn-primary" data-mdb-ripple-init>Thêm</button>
+                <button type="button" class="btn btn-outline-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Modal confirm delete --}}
+<div class="modal fade" id="modal2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title m-auto">XÁC NHẬN</h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" id="modal2-body">
+                {{!-- Will be generated --}}
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button onclick="handleDelete()" type="button" class="btn btn-success" data-mdb-ripple-init data-mdb-dismiss="modal"><i class="fa-solid fa-thumbs-up"></i></button>
+                <button type="button" class="btn btn-danger" data-mdb-ripple-init data-mdb-dismiss="modal"><i class="fa-solid fa-thumbs-down"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Modal stories in a category--}}
+<div class="modal fade" id="modal3">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title m-auto">CÁC TÁC PHẨM ĐANG CÓ (#<span id="story-in-title"></span>)</h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" id="modal3-body">
+                <table class="table table-hover text-center">
+                    <thead>
+                        <tr id="inner-thead">
+                            <th style="width: 18%;">Ảnh Bìa</th>
+                            <th style="width: 5%;">Mã Tác Phẩm</th>
+                            <th style="width: 25%;">Tên Tác Phẩm</th>
+                            <th style="width: 19%;">Tác Giả</th>
+                            <th style="width: 13%;">Nhà Xuất Bản</th>
+                            <th style="width: 5%;">Số Chương</th>
+                            <th style="width: 5%;">Người Đăng</td>
+                            <th style="width: 5%;">Ngày Đăng</th>
+                            <th style="width: 5%;">Trạng Thái</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-story-in">
+                        {{!-- Will be generated --}}
+                    </tbody>
+                </table>    
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">ĐÓNG</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/category.js"></script>
+<script src="/js/main.js"></script>

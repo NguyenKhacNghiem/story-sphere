@@ -66,6 +66,13 @@ app.get("/story", (req, res) => {
         res.render("story");
 })
 
+app.get("/category", (req, res) => {
+    // if(!req.session.username)
+    //     res.redirect("/login");
+    // else
+        res.render("category");
+})
+
 // Xử lý lỗi 404 và 500
 app.use((req, res) => {
     res.status(404) 

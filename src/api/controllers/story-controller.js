@@ -7,7 +7,7 @@ const log = require('../logs/log');
 async function getAll(req, res) {
     // Paging
     let page = parseInt(req.query.page) || 1; // current page, default is 1
-    let limit = 25; // 25 records per page
+    let limit = 5; // 5 records per page
     let startIndex = (page - 1) * limit; // Index of the first record on current page
     let endIndex = page * limit; // Index of the last record on current page
     let stories;
@@ -117,7 +117,7 @@ async function search(req, res) {
 
     // Paging
     let page = parseInt(req.query.page) || 1; // current page, default is 1
-    let limit = 25; // 25 records per page
+    let limit = 5; // 5 records per page
     let startIndex = (page - 1) * limit; // Index of the first record on current page
     let endIndex = page * limit; // Index of the last record on current page
     let stories;
@@ -220,7 +220,7 @@ async function filter(req, res) {
 async function sort(req, res) {
     // Paging
     let page = parseInt(req.query.page) || 1; // current page, default is 1
-    let limit = 25; // 25 records per page
+    let limit = 5; // 5 records per page
     let startIndex = (page - 1) * limit; // Index of the first record on current page
     let endIndex = page * limit; // Index of the last record on current page
     let stories;

@@ -80,7 +80,7 @@ class _ChapterLikeCommentSection extends State<ChapterLikeCommentSection> {
                     )
                 ),
 
-                20.horizontalSpace,
+                40.horizontalSpace,
                 InkWell(
                   onTap: (){},
                   child: 

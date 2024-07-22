@@ -102,6 +102,11 @@ class IconsSVG {
       width: 17.sp,
       height: 17.sp,
   );
+  static SvgPicture chapterListBig = SvgPicture.asset(
+     'assets/icons/chapter-list.svg',
+      width: 25.sp,
+      height: 25.sp,
+  );
   static SvgPicture comment = SvgPicture.asset(
      'assets/icons/comment.svg',
       width: 17.sp,
@@ -188,5 +193,12 @@ class IconsSVG {
      'assets/icons/publish.svg',
       width: 17.sp,
       height: 17.sp,
+  );
+
+  //CHAPTER READ
+  static SvgPicture settingWhite = SvgPicture.asset(
+     'assets/icons/setting-white.svg',
+      width: 25.sp,
+      height: 25.sp,
   );
 }

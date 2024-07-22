@@ -29,14 +29,14 @@ ThemeData get lightTheme => ThemeData(
       onSurface: const Color(0x000000ff),
     ),
     appBarTheme: AppBarTheme(
-      color: ColorConstants.redMain,
+      color: ColorConstants.activeOrange,
       iconTheme: IconThemeData(color: Colors.grey[100]),
       elevation: 0,
       surfaceTintColor: Colors.transparent,
       titleTextStyle: TextStyle(
         fontSize: 20.sp,
         fontWeight: FontWeight.w700,
-        color: ColorConstants.textColorGrey,
+        color: ColorConstants.secondaryText,
       ),
     ),
     textTheme: StorySphereTextTheme(),
@@ -44,28 +44,28 @@ ThemeData get lightTheme => ThemeData(
       fillColor: Colors.white,
       enabledBorder: OutlineInputBorder(
         gapPadding: 120.r,
-        borderSide: BorderSide(width: 1, color: ColorConstants.borderCardColor),
+        borderSide: BorderSide(width: 1, color: ColorConstants.formStrokeColor),
         borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
-      focusColor: ColorConstants.btnPrimary,
-      iconColor: ColorConstants.btnPrimary,
-      hoverColor: ColorConstants.btnPrimary,
-      prefixIconColor: ColorConstants.btnPrimary,
+      focusColor: ColorConstants.buttonPastelGreen,
+      iconColor: ColorConstants.buttonPastelGreen,
+      hoverColor: ColorConstants.buttonPastelGreen,
+      prefixIconColor: ColorConstants.buttonPastelGreen,
       filled: true,
       labelStyle: TextStyle(
         fontSize: 16.sp,
-        color: ColorConstants.textColorLight,
+        color: ColorConstants.primaryText,
       ),
       border: OutlineInputBorder(
         gapPadding: 120.r,
-        borderSide: BorderSide(width: 1, color: ColorConstants.borderCardColor),
+        borderSide: BorderSide(width: 1, color: ColorConstants.formStrokeColor),
         borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
       hintStyle: TextStyle(
-          color: ColorConstants.btnPrimary, fontWeight: FontWeight.w400),
+          color: ColorConstants.buttonPastelGreen, fontWeight: FontWeight.w400),
       disabledBorder: OutlineInputBorder(
         gapPadding: 120.r,
-        borderSide: BorderSide(width: 1, color: ColorConstants.borderCardColor),
+        borderSide: BorderSide(width: 1, color: ColorConstants.formStrokeColor),
         borderRadius: BorderRadius.all(
           Radius.circular(8),
         ),
@@ -84,15 +84,15 @@ ThemeData get lightTheme => ThemeData(
         textStyle: MaterialStateProperty.all<TextStyle>(
           TextStyle(
             fontSize: 16.sp,
-            color: ColorConstants.textColorLight,
+            color: ColorConstants.primaryText,
           ),
         ),
       ),
     ),
     checkboxTheme: CheckboxThemeData(
-      checkColor: MaterialStateProperty.all(ColorConstants.textColorLight),
+      checkColor: MaterialStateProperty.all(ColorConstants.primaryText),
       fillColor: MaterialStateProperty.all(ColorConstants.buttonPastelGreen),
     ),
     unselectedWidgetColor: ColorConstants.formStrokeColor,
     bottomSheetTheme: BottomSheetThemeData()
-        .copyWith(dragHandleColor: ColorConstants.btnPrimary));
+        .copyWith(dragHandleColor: ColorConstants.buttonPastelGreen));

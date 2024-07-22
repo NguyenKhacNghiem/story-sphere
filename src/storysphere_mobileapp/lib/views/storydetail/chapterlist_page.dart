@@ -104,7 +104,7 @@ class _ChapterListPage extends State<ChapterListPage> {
 
                         );
 
-                          ;
+                          
                       }),
                     
                   ],
@@ -122,23 +122,23 @@ class _ChapterListPage extends State<ChapterListPage> {
    }
 
   initData(){
-      chapterList = widget.chapters;
-      fromStory = Center(
-          child: Text.rich(
-            TextSpan(
-              children: [
-                TextSpan(
-                  text: '${Strings.fromStory} ',
-                  style: FontConstant.fromStoryLabel,
-                ),
-                TextSpan(
-                  text: widget.story.storyName!,
-                  style:FontConstant.fromStorystoryName
-                ),
-              ],
-            ),
-            style: FontConstant.authorNameDisplay,
+    chapterList = widget.chapters;
+    fromStory = Center(
+        child: Text.rich(
+          TextSpan(
+            children: [
+              TextSpan(
+                text: '${Strings.fromStory} ',
+                style: FontConstant.fromStoryLabel,
+              ),
+              TextSpan(
+                text: widget.story.storyName!,
+                style:FontConstant.fromStorystoryName
+              ),
+            ],
           ),
-        );
+          style: FontConstant.authorNameDisplay,
+        ),
+      );
    }
 }

@@ -73,7 +73,7 @@ class BookEditSectionWidget extends StatelessWidget {
           onPressed: () {},
           child: Container(
             decoration: BoxDecoration(
-              color: ColorConstants.grey,
+              color: ColorConstants.secondaryText,
               borderRadius: BorderRadius.circular(5.sp),
             ),
             

@@ -88,12 +88,12 @@ class _EditChapterPage extends State<EditChapterPage> {
             //CHAPTER CONTENT EDITOR
             10.verticalSpace,
             Container(
-              color: ColorConstants.grey,
+              color: ColorConstants.secondaryText,
               child: 
             QuillToolbar.simple(
               configurations: QuillSimpleToolbarConfigurations(
                 controller: chapterController,
-                color: ColorConstants.grey,
+                color: ColorConstants.secondaryText,
                 toolbarIconAlignment: WrapAlignment.center,
                 multiRowsDisplay: false,
                 toolbarIconCrossAlignment: WrapCrossAlignment.center,
@@ -157,7 +157,7 @@ class _EditChapterPage extends State<EditChapterPage> {
                 focusedBorder: InputBorder.none,
                 errorBorder: InputBorder.none,
                 disabledBorder: InputBorder.none,
-                hintStyle: TextStyle(color: ColorConstants.textColorGrey),
+                hintStyle: TextStyle(color: ColorConstants.secondaryText),
               ),
             
           ),
@@ -178,7 +178,7 @@ class _EditChapterPage extends State<EditChapterPage> {
                   onPressed: () {},
                   child: Container(
                     decoration: BoxDecoration(
-                      color: ColorConstants.grey,
+                      color: ColorConstants.formStrokeColor,
                       borderRadius: BorderRadius.circular(5.sp),
                     ),
                     

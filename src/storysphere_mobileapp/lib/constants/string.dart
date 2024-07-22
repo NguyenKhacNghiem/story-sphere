@@ -42,6 +42,11 @@ class Strings {
   //CHAPTER
   static const String loveStoryAsk = 'YÊU THÍCH CHƯƠNG TRUYỆN?';
   static const String voteReminder = 'Đừng quên tim và comment để ủng hộ tác giả nhé!';
+  static const String readSetting = 'CHẾ ĐỘ ĐỌC';
+  static const String aA = 'Aa';
+  static const String beVietnamPro = 'Be Vietnam Pro';
+  static const String crimsonPro = 'Crimson Pro';
+  static const String farsan = 'Farsan';
 
   //LABELS - FOR BUTTON
   static const String notificationLabel = 'Thông báo';

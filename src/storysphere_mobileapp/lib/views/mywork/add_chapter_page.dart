@@ -87,12 +87,12 @@ class _AddChapterPage extends State<AddChapterPage> {
             //CHAPTER CONTENT EDITOR
             10.verticalSpace,
             Container(
-              color: ColorConstants.grey,
+              color: ColorConstants.secondaryText,
               child: 
             QuillToolbar.simple(
               configurations: QuillSimpleToolbarConfigurations(
                 controller: chapterController,
-                color: ColorConstants.grey,
+                color: ColorConstants.secondaryText,
                 toolbarIconAlignment: WrapAlignment.center,
                 multiRowsDisplay: false,
                 toolbarIconCrossAlignment: WrapCrossAlignment.center,
@@ -105,7 +105,7 @@ class _AddChapterPage extends State<AddChapterPage> {
                 height: isKeyboardVisible ? 280.sp:  500.sp,
                 padding: EdgeInsets.all(10.sp),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
+                  border: Border.all(color: ColorConstants.formStrokeColor),
                   borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5.sp), bottomRight: Radius.circular(5.sp))
                 ),
                 child: quill.QuillEditor.basic(
@@ -156,7 +156,7 @@ class _AddChapterPage extends State<AddChapterPage> {
                 focusedBorder: InputBorder.none,
                 errorBorder: InputBorder.none,
                 disabledBorder: InputBorder.none,
-                hintStyle: TextStyle(color: ColorConstants.textColorGrey),
+                hintStyle: TextStyle(color: ColorConstants.secondaryText),
               ),
             
           ),
@@ -177,7 +177,7 @@ class _AddChapterPage extends State<AddChapterPage> {
                   onPressed: () {},
                   child: Container(
                     decoration: BoxDecoration(
-                      color: ColorConstants.grey,
+                      color: ColorConstants.secondaryText,
                       borderRadius: BorderRadius.circular(5.sp),
                     ),
                     

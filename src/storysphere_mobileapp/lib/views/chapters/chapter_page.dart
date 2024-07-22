@@ -7,6 +7,8 @@ import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/chapter.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
+import 'package:storysphere_mobileapp/views/chapters/widgets/chapterlist_drawersection.dart';
 import 'package:storysphere_mobileapp/views/chapters/widgets/likecmt_section.dart';
 import 'package:storysphere_mobileapp/views/searching/widgets/story_data_widget.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
@@ -26,6 +28,7 @@ class _ChapterPage extends State<ChapterPage> {
   ScrollController scrollController = ScrollController();
   bool isSettingsBarVisible = true;
   bool showTextSettingPallet = false;
+  bool showChapterDrawer = false;
   TextStyle currentTextStyle = FontConstant.beVNProRead;
   Color backgroundColor = ColorConstants.darkGreenBackground;
   bool isLiked = false;
@@ -79,6 +82,12 @@ class _ChapterPage extends State<ChapterPage> {
             setState(() {
             showTextSettingPallet = false;
           });
+          }
+
+          if (showChapterDrawer) {
+            setState(() {
+              showChapterDrawer = false;
+            });
           }
         },
         child: Stack(
@@ -146,6 +155,7 @@ class _ChapterPage extends State<ChapterPage> {
           ]),
           if (isSettingsBarVisible) buildSettingsBar(),
           if (showTextSettingPallet) buildTextSettingDialog(),
+          if (showChapterDrawer) buildChapterListDrawer(),
       ])
     ));
    }
@@ -169,7 +179,9 @@ class _ChapterPage extends State<ChapterPage> {
             [
               20.horizontalSpace,
               InkWell(
-                onTap: (){},
+                onTap: (){
+                  context.pushRoute(const HSHomePage());
+                },
                 child: IconsSVG.homeBold,
               ),
               20.horizontalSpace,
@@ -196,7 +208,11 @@ class _ChapterPage extends State<ChapterPage> {
               ),
               20.horizontalSpace,
               InkWell(
-                onTap: (){},
+                onTap: (){
+                  setState(() {
+                    showChapterDrawer = true;
+                  });
+                },
                 child: IconsSVG.chapterListBig,
               ),
 
@@ -551,5 +567,11 @@ class _ChapterPage extends State<ChapterPage> {
       ),
 
     );
+  }
+
+  Widget buildChapterListDrawer(){
+    return Align(
+      alignment: Alignment.bottomRight,
+      child: ChapterListDrawerSection(storyId: chapter.fkStoryId ?? -1, chapterId: chapter.chapterId ?? -1, storyName: widget.storyName,));
   }
 }

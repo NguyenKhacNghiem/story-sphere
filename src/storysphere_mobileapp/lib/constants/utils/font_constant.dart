@@ -115,6 +115,10 @@ class FontConstant {
     height: 1.0.sp,
   );
 
+  static TextStyle chapterNameList = bookTitleItem.copyWith(
+    fontWeight: FontWeight.normal, 
+  );
+
   static TextStyle authorNameDisplay = subTitleText.copyWith(
     fontSize: 14.sp,
     color: ColorConstants.secondaryText,

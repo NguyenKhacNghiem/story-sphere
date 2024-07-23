@@ -74,11 +74,11 @@ function login(req, res) {
         // Admin login
         if (result.role === "admin") {
             log.info("Admin đăng nhập thành công");
-            return res.json({code: 100, message: "Admin đăng nhập thành công"});
+            return res.json({code: 100, message: "Admin đăng nhập thành công", userId: result._id});
         }
         
         log.info("Đăng nhập thành công");
-        res.json({code: 0, message: "Đăng nhập thành công"});
+        res.json({code: 0, message: "Đăng nhập thành công", userId: result._id});
     })
     .catch(error => {
         log.error(error.message);

@@ -1,12 +1,14 @@
-// ignore_for_file: must_be_immutable, avoid_init_to_null
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
+import 'package:storysphere_mobileapp/models/user.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/views/homepage/news_slider.dart';
 import 'package:storysphere_mobileapp/views/homepage/stories_flow_display.dart';
 import 'package:storysphere_mobileapp/views/homepage/user_widget.dart';
+import 'package:storysphere_mobileapp/views/log_in/services/login_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 
 @RoutePage()
@@ -18,27 +20,34 @@ class HSHomePage extends StatefulWidget {
 }
 
 class _HSHomePage extends State<HSHomePage> {
-  // late User? currentUser = null;
+  late User? currentUser = null;
+  final LoginService _loginService = LoginService();
 
-  // Future<void> getCurrentUser() async {
-  //   var currUser = FirebaseAuth.instance.currentUser;
-  //   if (currUser != null) {
-  //     currentUser = currUser;
-  //   }
-  // }
+  Future<void> _checkLoginStatus() async {
+    bool isLoggedIn = await _loginService.isLoggedIn();
+    if (!isLoggedIn) {
+      context.pushRoute(LogInPage());
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _checkLoginStatus();
+  }
 
   @override
   void dispose() {
     super.dispose();
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
-    // if (FirebaseAuth.instance.currentUser != null) {
-    //   try {
+    if (currentUser != null) {
+      try {
         return Scaffold(
-            // appBar: const HiveCustomAppBar(),
-            // drawer: const WriterDrawer(),
             bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 0),
             body: SingleChildScrollView(
               child: Column(
@@ -88,12 +97,12 @@ class _HSHomePage extends State<HSHomePage> {
               )
             ),
           );
-  //     } catch (exception) {
-  //       return const Text('error');
-  //     }
-  //   } else {
-  //     context.navigateNamedTo("/login");
-  //     return const SizedBox();
-  //   }
+      } catch (exception) {
+        return const Text('Log in Error');
+      }
+    } else {
+      context.pushRoute( LogInPage());
+      return const SizedBox();
+    }
    }
 }

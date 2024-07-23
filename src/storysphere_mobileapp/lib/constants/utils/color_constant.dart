@@ -28,6 +28,7 @@ class ColorConstants {
   static const lightText = Color(0XFFFFFFFF);
   static const headingGreen = Color(0XFF0F7077);
   static const purpleLight = Color(0XFFB294F1);
+  static const errorText = Color(0XFFFF0000);
 
 }
 

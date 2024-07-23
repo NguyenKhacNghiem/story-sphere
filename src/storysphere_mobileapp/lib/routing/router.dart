@@ -47,8 +47,8 @@ class AppRouter extends $AppRouter {
           transitionsBuilder: TransitionsBuilders.noTransition,
         ),
         CustomRoute(
-          page: SignInPage.page, 
-          path: '/signin', 
+          page: SignUpPage.page, 
+          path: '/sign-up', 
           transitionsBuilder: TransitionsBuilders.noTransition),
         CustomRoute(
           page: LogInPage.page, 

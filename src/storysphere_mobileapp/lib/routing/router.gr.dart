@@ -23,7 +23,7 @@ import 'package:storysphere_mobileapp/views/functions/reviews/addreview_page.dar
     as _i3;
 import 'package:storysphere_mobileapp/views/homepage/homepage.dart' as _i10;
 import 'package:storysphere_mobileapp/views/library/library_page.dart' as _i11;
-import 'package:storysphere_mobileapp/views/log_in_page.dart' as _i12;
+import 'package:storysphere_mobileapp/views/log_in/log_in_page.dart' as _i12;
 import 'package:storysphere_mobileapp/views/mywork/add_chapter_page.dart'
     as _i1;
 import 'package:storysphere_mobileapp/views/mywork/add_story_page.dart' as _i4;
@@ -36,7 +36,7 @@ import 'package:storysphere_mobileapp/views/searching/search_results_page.dart'
     as _i16;
 import 'package:storysphere_mobileapp/views/searching/searching_page.dart'
     as _i15;
-import 'package:storysphere_mobileapp/views/sign_in_page.dart' as _i17;
+import 'package:storysphere_mobileapp/views/sign_up/sign_up_page.dart' as _i17;
 import 'package:storysphere_mobileapp/views/storydetail/chapterlist_page.dart'
     as _i5;
 import 'package:storysphere_mobileapp/views/storydetail/storydetail_page.dart'
@@ -152,9 +152,11 @@ abstract class $AppRouter extends _i20.RootStackRouter {
       );
     },
     LogInPage.name: (routeData) {
+      final args =
+          routeData.argsAs<LogInPageArgs>(orElse: () => const LogInPageArgs());
       return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i12.LogInPage(),
+        child: _i12.LogInPage(key: args.key),
       );
     },
     MyWorksPage.name: (routeData) {
@@ -189,10 +191,10 @@ abstract class $AppRouter extends _i20.RootStackRouter {
         ),
       );
     },
-    SignInPage.name: (routeData) {
+    SignUpPage.name: (routeData) {
       return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i17.SignInPage(),
+        child: const _i17.SignUpPage(),
       );
     },
     StoryDetailPage.name: (routeData) {
@@ -601,16 +603,31 @@ class LibraryPageArgs {
 
 /// generated route for
 /// [_i12.LogInPage]
-class LogInPage extends _i20.PageRouteInfo<void> {
-  const LogInPage({List<_i20.PageRouteInfo>? children})
-      : super(
+class LogInPage extends _i20.PageRouteInfo<LogInPageArgs> {
+  LogInPage({
+    _i21.Key? key,
+    List<_i20.PageRouteInfo>? children,
+  }) : super(
           LogInPage.name,
+          args: LogInPageArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'LogInPage';
 
-  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
+  static const _i20.PageInfo<LogInPageArgs> page =
+      _i20.PageInfo<LogInPageArgs>(name);
+}
+
+class LogInPageArgs {
+  const LogInPageArgs({this.key});
+
+  final _i21.Key? key;
+
+  @override
+  String toString() {
+    return 'LogInPageArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -719,15 +736,15 @@ class SearchingResultsPageArgs {
 }
 
 /// generated route for
-/// [_i17.SignInPage]
-class SignInPage extends _i20.PageRouteInfo<void> {
-  const SignInPage({List<_i20.PageRouteInfo>? children})
+/// [_i17.SignUpPage]
+class SignUpPage extends _i20.PageRouteInfo<void> {
+  const SignUpPage({List<_i20.PageRouteInfo>? children})
       : super(
-          SignInPage.name,
+          SignUpPage.name,
           initialChildren: children,
         );
 
-  static const String name = 'SignInPage';
+  static const String name = 'SignUpPage';
 
   static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }

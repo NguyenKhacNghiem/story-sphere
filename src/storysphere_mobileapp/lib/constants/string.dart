@@ -6,6 +6,21 @@ class Strings {
   static const String updatedRecently = 'CẬP NHẬT GẦN ĐÂY';
   static const String storyRecommended = 'TÁC PHẨM MỌI NGƯỜI ĐỀ XUẤT';
 
+  //forgot password
+  static const String identityVerify = 'Xác thực danh tính'; 
+  static const String forogotPasswordReminder = 'Không sao! Chúng tôi sẽ gửi mã xác nhận vào email để bạn cài đặt lại mật khẩu';
+  static const String emailSentReminder1 = 'Chúng tôi vừa gửi mã xác thực vào email ';
+  static const String emailSentReminder2 = ', hãy điền mã bạn nhận được để cài lại mật khẩu';
+  static const String didnotReceive = 'Chưa nhận được mã?';
+  static const String reSend = 'Gửi lại';
+  static const String updatePassword = 'Đặt lại mật khẩu';
+  static const String updatePasswordSubtitle = 'Hãy nhập mật khẩu mới của bạn';
+  static const String newPassword = 'Mật khẩu mới';
+  static const String wrongOTP = 'Mã OTP không trùng khớp';
+  static const String updatePasswordDone = 'MẬT KHẨU HOÀN TẤT';
+  static const String updatePasswordDoneMessage = 'Bây giờ bạn có thể đăng nhập vào hệ thống bằng mật khẩu vừa tạo';
+
+
   //Searching page
   static const String findSomething = 'Bạn muốn tìm gì?';
   static const String hintSearching = 'Tìm tác phẩm';
@@ -81,7 +96,6 @@ class Strings {
   static const String forgotPassword = 'Quên mật khẩu';
   static const String privacy = 'Điều khoản riêng tư';
   static const String terms = 'Điều khoản';
-  static const String forogotPasswordReminder = 'Không sao! Chúng tôi sẽ gửi mã xác nhận vào email để bạn cài đặt lại mật khẩu';
   static const String registrationThankyou =
       'Cảm ơn bạn đã đăng ký tài khoản với StorySphere. Vui lòng kích hoạt tài khoản thông qua email.';
 
@@ -184,7 +198,7 @@ class Strings {
   static const String close = 'Close';
   static const String saveChange = 'Lưu thay đổi';
 
-  static const String next = 'Trang trước';
+  static const String next = 'Tiếp';
   static const String nextPage = '>';
   static const String previousPage = '<';
   static const String go2FirstPage = '<<';

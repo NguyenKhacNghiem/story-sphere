@@ -19,7 +19,9 @@ class FontConstant {
     fontSize: 28.sp);
 
   static TextStyle titleBigDisplayGreen = titleBigDisplayWhite.copyWith(
-    color: ColorConstants.headingGreen);
+    color: ColorConstants.headingGreen,
+    fontWeight: FontWeight.bold,
+  );
 
   static TextStyle headline1White = GoogleFonts.bigShouldersDisplay(
     textStyle: TextStyle(
@@ -56,6 +58,11 @@ class FontConstant {
         color: ColorConstants.lightText,
         height: 1.33.sp,
   ));
+
+  static TextStyle darkSubtitle = subTitleText.copyWith(
+      fontWeight: FontWeight.w200, 
+      color: ColorConstants.secondaryText
+  );
 
   static TextStyle voteReminder = subTitleText.copyWith(
     fontSize: 12.sp,

@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
+import 'package:storysphere_mobileapp/views/forgot_password/fp_otp_page.dart';
 
 @RoutePage()
 class ForgotPasswordPage extends StatefulWidget {
@@ -21,26 +23,37 @@ class _ForgotPasswordPage extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
   
     return Scaffold(
-      body:  
+      backgroundColor: ColorConstants.bgWhite,
+      body: 
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 10.sp),
+        padding: EdgeInsets.symmetric(horizontal: 30.sp, vertical: 10.sp),
         child:
           Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(Strings.forgotPassword, style: FontConstant.titleBigDisplayGreen,),
-                5.verticalSpace,
-                Text(Strings.forogotPasswordReminder, style: FontConstant.subTitleText.copyWith(
-                    fontWeight: FontWeight.w200, 
-                    color: ColorConstants.darkText),),
-                30.verticalSpace,
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(Strings.forgotPassword, style: FontConstant.titleBigDisplayGreen,),
+                ),
+                10.verticalSpace,
+                Text(Strings.forogotPasswordReminder, style: FontConstant.darkSubtitle),
 
-                Row(children: [
+                40.verticalSpace,
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
                   IconsSVG.sms,
                   2.horizontalSpace,
-                  TextField(
+                  Container(
+                    width: MediaQuery.of(context).size.width*0.7,
+                    decoration: BoxDecoration(
+                      border: Border(bottom: BorderSide(color: ColorConstants.formStrokeColor, width: 0.5.sp))
+                    ),
+                    child: TextField(
+                      controller: emailController,
                     style:  FontConstant.categoryDescrip.copyWith(color: ColorConstants.secondaryText),
                     decoration: const InputDecoration(
                       hintText: Strings.enterEmail,
@@ -50,22 +63,39 @@ class _ForgotPasswordPage extends State<ForgotPasswordPage> {
                       focusedBorder: InputBorder.none,
                       errorBorder: InputBorder.none,
                       disabledBorder: InputBorder.none,
-                      hintStyle: TextStyle(color: ColorConstants.darkGreenBackground),
+                      hintStyle: TextStyle(color: ColorConstants.secondaryText),
                     ),
                   onSubmitted: (String value) {
                    
                   },
                   ),
+                  ),
+                  
                 ],),
 
-                30.verticalSpace,
+                40.verticalSpace,
+                ElevatedButton(
+                  onPressed: (){
+                     sendEmailHandle();
+                  },
+                  child:Padding(padding: EdgeInsets.symmetric(horizontal: 60.sp, vertical: 15.sp),
+                      child: Text(Strings.sendActivationEmail, style: FontConstant.headline3White, textAlign: TextAlign.center,),), 
+                ),
                 
-
-
-
               ],
             
           )),
     );
+   }
+
+   void sendEmailHandle(){
+    String email = emailController.text;
+    int otpCode = 1940;
+    int userId = 1;
+    //send POST request
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => FPEnteringOTPPage(email: email, otpCode: otpCode, userId: userId,)),
+      );
    }
 }

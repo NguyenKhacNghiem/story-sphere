@@ -15,9 +15,10 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPage extends State<SignUpPage> {
-
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
   String _errorMessage = '';
   bool _obscureText = true;
 
@@ -38,12 +39,26 @@ class _SignUpPage extends State<SignUpPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(Strings.login, style: FontConstant.titleBigDisplayWhite,),
+                Text(Strings.register, style: FontConstant.titleBigDisplayWhite,),
                 30.verticalSpace,
 
+                //EMAIL
                 Align(
                   alignment: Alignment.topLeft,
-                  child: Text(Strings.usernameOrEmail, style: FontConstant.dropdownText, textAlign: TextAlign.left,),
+                  child: Text(Strings.emailstr, style: FontConstant.dropdownText, textAlign: TextAlign.left,),
+                ),
+                5.verticalSpace,
+                TextField(
+                  controller: _emailController,
+                  style: FontConstant.authorNameDisplay,
+                  decoration: const InputDecoration(hintText: Strings.emailstr, hintFadeDuration: Durations.medium1),
+                ),
+                20.verticalSpace,
+
+                //USERNAME
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(Strings.userStr, style: FontConstant.dropdownText, textAlign: TextAlign.left,),
                 ),
                 5.verticalSpace,
                 TextField(
@@ -53,6 +68,7 @@ class _SignUpPage extends State<SignUpPage> {
                 ),
                 20.verticalSpace,
 
+                //PASSWORD
                 Align(
                   alignment: Alignment.topLeft,
                   child: Text(Strings.password, style: FontConstant.dropdownText, textAlign: TextAlign.left,),
@@ -76,22 +92,37 @@ class _SignUpPage extends State<SignUpPage> {
                         });
                       },),
                 )),
-                2.verticalSpace,
+                20.verticalSpace,
+                //CONFIRM PASSWORD
                 Align(
-                  alignment: Alignment.topRight,
-                  child: InkWell(
-                    onTap: (){
-                     
-                    },
-                    child: Text(Strings.forgotPassword, style: FontConstant.subTitleText,),
-                  ),
+                  alignment: Alignment.topLeft,
+                  child: Text(Strings.confirmEnterPassword, style: FontConstant.dropdownText, textAlign: TextAlign.left,),
                 ),
+                5.verticalSpace,
+                TextField(
+                  obscureText: _obscureText,
+                  controller: _confirmPasswordController,
+                  style: FontConstant.authorNameDisplay,
+                  decoration: InputDecoration(
+                    hintText: Strings.password, 
+                    hintFadeDuration: Durations.medium1,
+                    suffixIconColor: ColorConstants.secondaryText,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscureText ? Icons.visibility_off : Icons.visibility,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },),
+                )),
                 
                 20.verticalSpace,
                 ElevatedButton(
                   onPressed: (){},
                   child:Padding(padding: EdgeInsets.symmetric(horizontal: 60.sp, vertical: 15.sp),
-                      child: Text(Strings.login, style: FontConstant.headline3White, textAlign: TextAlign.center,),),
+                      child: Text(Strings.register, style: FontConstant.headline3White, textAlign: TextAlign.center,),),
                   
                 ),
                 20.verticalSpace,

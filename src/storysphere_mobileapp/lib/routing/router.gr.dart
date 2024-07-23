@@ -16,7 +16,7 @@ import 'package:storysphere_mobileapp/models/chapter.dart' as _i22;
 import 'package:storysphere_mobileapp/models/story.dart' as _i23;
 import 'package:storysphere_mobileapp/views/account/account_page.dart' as _i19;
 import 'package:storysphere_mobileapp/views/chapters/chapter_page.dart' as _i6;
-import 'package:storysphere_mobileapp/views/forgot_password_page.dart' as _i9;
+import 'package:storysphere_mobileapp/views/forgot_password/forgot_password_page.dart' as _i9;
 import 'package:storysphere_mobileapp/views/functions/comments/addcmt_page.dart'
     as _i2;
 import 'package:storysphere_mobileapp/views/functions/reviews/addreview_page.dart'

@@ -81,6 +81,7 @@ class Strings {
   static const String forgotPassword = 'Quên mật khẩu';
   static const String privacy = 'Điều khoản riêng tư';
   static const String terms = 'Điều khoản';
+  static const String forogotPasswordReminder = 'Không sao! Chúng tôi sẽ gửi mã xác nhận vào email để bạn cài đặt lại mật khẩu';
   static const String registrationThankyou =
       'Cảm ơn bạn đã đăng ký tài khoản với StorySphere. Vui lòng kích hoạt tài khoản thông qua email.';
 

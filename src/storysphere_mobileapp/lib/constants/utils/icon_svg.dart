@@ -201,4 +201,11 @@ class IconsSVG {
       width: 25.sp,
       height: 25.sp,
   );
+
+  //LOGIN
+  static SvgPicture sms = SvgPicture.asset(
+     'assets/icons/sms.svg',
+      width: 25.sp,
+      height: 25.sp,
+  );
 }

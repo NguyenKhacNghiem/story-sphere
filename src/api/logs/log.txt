@@ -1965,3 +1965,23 @@
 [INFO]  21/07/2024 22:35:18 API server has been started.
 [INFO]  21/07/2024 22:37:15 Lấy danh sách danh mục thành công
 [INFO]  21/07/2024 22:37:16 Lấy danh sách danh mục thành công
+[INFO]  24/07/2024 02:17:17 API server has been started.
+[INFO]  24/07/2024 02:18:39 Lấy thông tin người dùng thành công
+[ERROR] 24/07/2024 02:18:43 Cast to Number failed for value "nknghiem" (type string) at path "_id" for model "User"
+[ERROR] 24/07/2024 02:18:52 Cast to Number failed for value "nghiem7755@gmail.com" (type string) at path "_id" for model "User"
+[INFO]  24/07/2024 02:20:28 API server has been started.
+[INFO]  24/07/2024 02:21:10 API server has been started.
+[INFO]  24/07/2024 02:21:49 API server has been started.
+[INFO]  24/07/2024 02:21:52 Lấy thông tin người dùng thành công
+[INFO]  24/07/2024 02:21:59 Lấy thông tin người dùng thành công
+[INFO]  24/07/2024 02:22:02 Lấy thông tin người dùng thành công
+[INFO]  24/07/2024 02:23:45 API server has been started.
+[ERROR] 24/07/2024 02:26:58 Vui lòng nhập mã người dùng
+[INFO]  24/07/2024 02:27:36 Cập nhật email thành công
+[ERROR] 24/07/2024 02:28:07 Người dùng không tồn tại
+[ERROR] 24/07/2024 02:28:48 E11000 duplicate key error collection: story-sphere.users index: email_1 dup key: { email: "ngquynhnhu1901@gmail.com" }
+[INFO]  24/07/2024 02:30:05 API server has been started.
+[INFO]  24/07/2024 02:30:17 API server has been started.
+[ERROR] 24/07/2024 02:30:17 E11000 duplicate key error collection: story-sphere.users index: email_1 dup key: { email: "ngquynhnhu1901@gmail.com" }
+[ERROR] 24/07/2024 02:30:19 E11000 duplicate key error collection: story-sphere.users index: email_1 dup key: { email: "ngquynhnhu1901@gmail.com" }
+[INFO]  24/07/2024 02:30:24 Cập nhật email thành công

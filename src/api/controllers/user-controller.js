@@ -33,6 +33,8 @@ function register(req, res) {
         // Check type of error
         if(errorMessage.includes("username"))
             res.json({code: 1, message: "Tài khoản này đã tồn tại"});
+        else if(errorMessage.includes("email"))
+            res.json({code: 1, message: "Email này đã tồn tại"});
         else
             res.json({code: 1, message: "Đăng ký tài khoản thất bại"});
     });
@@ -68,7 +70,7 @@ function login(req, res) {
         
         if (result.isLock) {
             log.info("Tài khoản của bạn đã bị khóa");
-            return res.json({code: 1, message: "Tài khoản của bạn đã bị khóa"});
+            return res.json({code: 1, message: "Tài khoản của bạn đã bị khóa", userId: result._id});
         }
 
         // Admin login
@@ -87,10 +89,14 @@ function login(req, res) {
 }
 
 function getProfile(req, res) {
-    let _id = req.params.id;
+    let value = req.params.id; // req.params.id is _id, username or email
 
     User.findOne({
-        _id: _id, // find one record by username
+        $or: [
+            { _id: parseInt(value) ? parseInt(value) : -1 },
+            { username: value },
+            { email: value }
+        ]
     })
     .then(result => {
         if(!result) {
@@ -192,8 +198,14 @@ async function updateEmail(req, res) {
         res.json({code: 0, message: "Cập nhật email thành công"});
     }
     catch (error) {
-        log.error(error.message);
-        res.json({code: 1, message: "Cập nhật email thất bại"});
+        let errorMessage = error.message;
+        log.error(errorMessage);
+
+        // Check type of error
+        if(errorMessage.includes("email"))
+            res.json({code: 1, message: "Email này đã tồn tại"});
+        else
+            res.json({code: 1, message: "Cập nhật email thất bại"});
     }
 }
 
@@ -238,7 +250,7 @@ async function forgetPassword(req, res) {
         let result = validationResult(req);
         if(result.errors.length > 0) {
             log.error(result.errors[0].msg);
-            return res.json({code: 1, message: result.errors[0].msg});
+            return res.json({code: 1, message: result.errors[0].msg, userId: _id});
         }
 
         let {_id, password} = req.body;
@@ -246,7 +258,7 @@ async function forgetPassword(req, res) {
         let user = await User.findOne({ _id: _id }); // find one record by id
         if(!user) {
             log.error("Người dùng không tồn tại");
-            return res.json({code: 1, message: "Người dùng không tồn tại"});
+            return res.json({code: 1, message: "Người dùng không tồn tại", userId: _id});
         }
 
         // Change fields of record
@@ -254,11 +266,11 @@ async function forgetPassword(req, res) {
         await user.save();
 
         log.info("Đặt lại mật khẩu thành công");
-        res.json({code: 0, message: "Đặt lại mật khẩu thành công"});
+        res.json({code: 0, message: "Đặt lại mật khẩu thành công", userId: _id});
     }
     catch (error) {
         log.error(error.message);
-        res.json({code: 1, message: "Đặt lại mật khẩu thất bại"});
+        res.json({code: 1, message: "Đặt lại mật khẩu thất bại", userId: _id});
     }
 }
 

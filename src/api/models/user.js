@@ -18,7 +18,11 @@ let userSchema = new Schema({
         index: true,
     },
     password: String,
-    email: String,
+    email: {
+        type: String,
+        unique: true,
+        index: true,
+    },
     role: {
         type: String,
         default: "user",

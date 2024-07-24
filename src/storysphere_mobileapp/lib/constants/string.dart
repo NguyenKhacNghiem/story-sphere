@@ -52,6 +52,8 @@ class Strings {
   static const String nonfictionBook = 'Sách phi tiểu thuyết';
   static const String categories = 'Thể loại';
   static const String tag = 'Tags';
+  static const String published = 'Đã xuất bản';
+  static const String drarf = 'Nháp';
 
   //Story Details
   static const String readMore = 'Đọc thêm';

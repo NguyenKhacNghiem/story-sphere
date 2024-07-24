@@ -189,6 +189,14 @@ class FontConstant {
     color: ColorConstants.secondaryText,
   );
 
+  static TextStyle linkDisplay = subTitleText.copyWith(
+    fontSize: 14.sp,
+  );
+  static TextStyle chapterData = subTitleText.copyWith(
+    fontSize: 14.sp,
+    color: ColorConstants.secondaryText,
+  );
+
 
   static TextStyle buttonTextWhite = subTitleText.copyWith(
     fontSize: 14.sp,

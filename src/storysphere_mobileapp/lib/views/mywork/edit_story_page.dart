@@ -8,19 +8,20 @@ import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/category.dart';
-import 'package:storysphere_mobileapp/routing/router.gr.dart';
+import 'package:storysphere_mobileapp/models/story.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
+import 'package:storysphere_mobileapp/views/mywork/widgets/chapterlist_section.dart';
 
 @RoutePage()
-class AddStoryPage extends StatefulWidget {
-  final int userId;
-  const AddStoryPage({super.key, required this.userId});
+class EditStoryPage extends StatefulWidget {
+  final Story story;
+  const EditStoryPage({super.key, required this.story});
 
   @override
-  State<AddStoryPage> createState() => _AddStoryPage();
+  State<EditStoryPage> createState() => _EditStoryPage();
 }
 
-class _AddStoryPage extends State<AddStoryPage> {
+class _EditStoryPage extends State<EditStoryPage> {
   late int storyId;
   File? _image;
   final TextEditingController coverController = TextEditingController();
@@ -56,6 +57,10 @@ class _AddStoryPage extends State<AddStoryPage> {
 
   @override
   Widget build(BuildContext context) {
+    coverController.text = widget.story.storyCover ?? '';
+    storyNameController.text = widget.story.storyName ?? '';
+    storyContentOutlineController.text = widget.story.storyContentOutline ?? '';
+    storyId = widget.story.storyId ?? -1;
   
     return Scaffold(
       bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 2),
@@ -94,7 +99,9 @@ class _AddStoryPage extends State<AddStoryPage> {
                           color: ColorConstants.formStrokeColor,
                         ),
                         child: _image == null 
-                          ? const Icon(Icons.add_a_photo_outlined,) 
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(5.sp),
+                              child: Image.network(widget.story.storyCover ?? '', fit: BoxFit.cover,))
                           : ClipRRect(
                               borderRadius: BorderRadius.circular(5.sp),
                               child: Image.file(_image!, fit: BoxFit.cover,))),
@@ -107,7 +114,7 @@ class _AddStoryPage extends State<AddStoryPage> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text(Strings.coverLinkPath, style: FontConstant.ratingPointDisplay,),
+                    Text(Strings.coverLinkPath, style: FontConstant.linkDisplay,),
                     10.verticalSpace,
                     Container(
                       width: 220.sp,
@@ -122,8 +129,8 @@ class _AddStoryPage extends State<AddStoryPage> {
                           padding: EdgeInsets.all(5.sp),
                           child: TextField(
                             controller: coverController,
-                            maxLines: 3,
                             style:  FontConstant.rateContentDisplay,
+                            maxLines: 3,
                             decoration: const InputDecoration(
                               hintText: Strings.coverLinkPath,
                               fillColor: ColorConstants.transparent,
@@ -191,9 +198,10 @@ class _AddStoryPage extends State<AddStoryPage> {
                 child:Padding(
                     padding: EdgeInsets.all(5.sp),
                     child: TextField(
+                      maxLines: 6,
+                      textAlign: TextAlign.justify,
                       controller: storyContentOutlineController,
                       style:  FontConstant.rateContentDisplay,
-                      maxLines: 6,
                       decoration: const InputDecoration(
                         hintText: Strings.storyIntro,
                         fillColor: ColorConstants.transparent,
@@ -241,16 +249,7 @@ class _AddStoryPage extends State<AddStoryPage> {
                 listTag.map((item) => _buildCustomSelection(item)).toList()),
 
             40.verticalSpace,
-            Center(
-              child: 
-            ElevatedButton(
-              onPressed: (){
-                //create story and get storyID
-                context.pushRoute(AddChapterPage(storyId: 1));
-              },
-              child:Padding(padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 10.sp),
-                  child: Text(Strings.next, style: FontConstant.headline3White, textAlign: TextAlign.center,),), 
-            )),
+            ChapterListWriteSection(storyId: storyId),
             40.verticalSpace
           ],))
       ),

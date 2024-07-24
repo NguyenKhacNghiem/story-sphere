@@ -70,7 +70,9 @@ class BookEditSectionWidget extends StatelessWidget {
                     minimumSize: Size.zero,   // Remove minimum size constraints
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
                   ),
-          onPressed: () {},
+          onPressed: () {
+            context.pushRoute(EditStoryPage(story: story));
+          },
           child: Container(
             decoration: BoxDecoration(
               color: ColorConstants.secondaryText,

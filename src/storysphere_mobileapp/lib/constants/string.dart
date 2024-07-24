@@ -42,6 +42,7 @@ class Strings {
   //My works
   static const String addNewStory = 'THÊM TÁC PHẨM MỚI';
   static const String addNewChapter = 'Thêm chương mới';
+  static const String editChapter = 'Chỉnh sửa chương';
   static const String chapterTitle = 'Tiêu đề chương';
   static const String newStory = 'Thêm tác phẩm mới';
   static const String storyInfor = 'THÔNG TIN TÁC PHẨM';

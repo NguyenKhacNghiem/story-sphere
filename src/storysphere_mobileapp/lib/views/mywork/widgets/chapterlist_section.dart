@@ -1,9 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
-import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/models/chapter.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/views/mywork/widgets/chapterlistitem_widget.dart';
 
 class ChapterListWriteSection extends StatefulWidget {
@@ -20,23 +21,20 @@ class _ChapterListWriteSection extends State<ChapterListWriteSection> {
   @override
   Widget build(BuildContext context) {
   
-    return Scaffold(
-      backgroundColor: ColorConstants.bgWhite,
-      body:  
+    return 
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30.sp, vertical: 20.sp),
+        padding: EdgeInsets.symmetric(vertical: 20.sp),
         child:
           Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(Strings.chapterListDisplay, style: FontConstant.headline2Light,),
-                
-                30.verticalSpace,
+                Text(Strings.chapterListDisplay.toUpperCase(), style: FontConstant.resultTitleDisplay,),
 
                 chapterList.isEmpty 
                 ? buildloading(widget.storyId)
-                : ListView.builder(
+                : 
+                ListView.builder(
                     scrollDirection: Axis.vertical,
                     controller: ScrollController(),
                     physics: const ClampingScrollPhysics(),
@@ -45,32 +43,25 @@ class _ChapterListWriteSection extends State<ChapterListWriteSection> {
                     itemBuilder: (context, index) {
                     return
                     Padding(
-                      padding: EdgeInsets.all(8.sp), 
-                      child: ChapterListWriteItemWidget(chapter: chapterList.elementAt(index),),
+                      padding: EdgeInsets.symmetric(vertical: 8.sp), 
+                      child: InkWell(
+                        onTap: (){ 
+                          context.pushRoute(EditChapterPage(chapter: chapterList.elementAt(index)));
+                        },
+                        child: ChapterListWriteItemWidget(chapter: chapterList.elementAt(index),),
+                      ),
+                      
                     );
                 }),
-
-
-
-                30.verticalSpace,
-                Text(Strings.didnotReceive, style: FontConstant.darkSubtitle,),
-                5.verticalSpace,
-                InkWell(
-                  onTap: (){},
-                  child: Text(Strings.reSend, style: FontConstant.subTitleText.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: ColorConstants.buttonLightGreen,
-                  ),)
-                )
               ],)
-        ),
-    );
+        );
+    
   }
 
   Widget buildloading(int storyId){
     //get chapter by storyiD
     
-    if (chapterList.isEmpty){
+    if (chapterList.isEmpty && storyId == -1){
        return const CircularProgressIndicator();
     } else {
       setState(() {

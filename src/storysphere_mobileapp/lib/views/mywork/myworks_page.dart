@@ -6,6 +6,7 @@ import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 import 'package:storysphere_mobileapp/views/mywork/widgets/bookedit_section.dart';
 @RoutePage()
@@ -86,7 +87,9 @@ class _MyWorksPage extends State<MyWorksPage> {
                         minimumSize: Size.zero,   // Remove minimum size constraints
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
                       ),
-              onPressed: () {},
+              onPressed: () {
+                context.pushRoute(AddStoryPage(userId: widget.userId));
+              },
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.sp),

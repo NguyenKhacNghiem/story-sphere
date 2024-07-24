@@ -96,8 +96,8 @@ class _SearchingPage extends State<SearchingPage> {
             ),
           ),
            AnimatedSize(
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.linearToEaseOut,
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.easeInOut,
             child: isNovelExpanded
                 ? Container(
                     margin: EdgeInsets.symmetric(horizontal: 16.sp),
@@ -156,8 +156,7 @@ class _SearchingPage extends State<SearchingPage> {
             ),
           ),
           AnimatedSize(
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.easeInOut,
+            duration: const Duration(milliseconds: 400),
             child: isBookExpanded
                 ? Container(
                     margin: EdgeInsets.symmetric(horizontal: 16.sp),

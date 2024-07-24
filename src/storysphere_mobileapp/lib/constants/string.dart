@@ -43,6 +43,15 @@ class Strings {
   static const String addNewStory = 'THÊM TÁC PHẨM MỚI';
   static const String addNewChapter = 'Thêm chương mới';
   static const String chapterTitle = 'Tiêu đề chương';
+  static const String newStory = 'Thêm tác phẩm mới';
+  static const String storyInfor = 'THÔNG TIN TÁC PHẨM';
+  static const String previewCover = 'Xem trước ảnh bìa';
+  static const String coverLinkPath = 'Đường dẫn ảnh bìa';
+  static const String storyName = 'Tên tác phẩm';
+  static const String storyIntro = 'Giới thiệu';
+  static const String nonfictionBook = 'Sách phi tiểu thuyết';
+  static const String categories = 'Thể loại';
+  static const String tag = 'Tags';
 
   //Story Details
   static const String readMore = 'Đọc thêm';
@@ -148,7 +157,6 @@ class Strings {
 
 
   // drawer menu heading
-  static const String categories = 'Thể loại';
   static const String stories = 'Tác phẩm';
   static const String reports = 'Báo cáo';
   static const String users = 'Người dùng';

@@ -219,6 +219,11 @@ class IconsSVG {
       width: 17.sp,
       height: 17.sp,
   );
+  static SvgPicture information = SvgPicture.asset(
+     'assets/icons/information.svg',
+      width: 25.sp,
+      height: 25.sp,
+  );
 
   //CHAPTER READ
   static SvgPicture settingWhite = SvgPicture.asset(

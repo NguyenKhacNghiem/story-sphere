@@ -20,7 +20,7 @@ class HSHomePage extends StatefulWidget {
 }
 
 class _HSHomePage extends State<HSHomePage> {
-  late User? currentUser = null;
+  late User? currentUser;
   final LoginService _loginService = LoginService();
 
   Future<void> _checkLoginStatus() async {
@@ -33,7 +33,7 @@ class _HSHomePage extends State<HSHomePage> {
   @override
   void initState() {
     super.initState();
-    _checkLoginStatus();
+    //_checkLoginStatus();
   }
 
   @override
@@ -45,8 +45,8 @@ class _HSHomePage extends State<HSHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    if (currentUser != null) {
-      try {
+    // if (currentUser != null) {
+    //   try {
         return Scaffold(
             bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 0),
             body: SingleChildScrollView(
@@ -97,12 +97,12 @@ class _HSHomePage extends State<HSHomePage> {
               )
             ),
           );
-      } catch (exception) {
-        return const Text('Log in Error');
-      }
-    } else {
-      context.pushRoute( LogInPage());
-      return const SizedBox();
-    }
+    //   } catch (exception) {
+    //     return const Text('Log in Error');
+    //   }
+    // } else {
+    //   context.pushRoute( LogInPage());
+    //   return const SizedBox();
+    // }
    }
 }

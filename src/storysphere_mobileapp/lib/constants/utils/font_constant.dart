@@ -162,6 +162,18 @@ class FontConstant {
     fontWeight: FontWeight.w700,
   );
 
+  static TextStyle rateContentDisplay = subTitleText.copyWith(
+    fontWeight: FontWeight.w100, 
+    fontSize: 12.sp,
+    letterSpacing: 0.7.sp,
+    height: 1.5.sp
+  );
+
+  static TextStyle rateUserNameDisplay = subTitleText.copyWith(
+    fontWeight: FontWeight.bold, 
+    fontSize: 12.sp,
+  );
+
   static TextStyle searchingText = subTitleText.copyWith(
     fontSize: 13.sp,
     fontWeight: FontWeight.w200,

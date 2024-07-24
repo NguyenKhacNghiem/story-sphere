@@ -12,15 +12,14 @@ import 'package:auto_route/auto_route.dart' as _i20;
 import 'package:flutter/material.dart' as _i21;
 import 'package:storysphere_mobileapp/content_pages/privacy.dart' as _i14;
 import 'package:storysphere_mobileapp/models/category.dart' as _i24;
-import 'package:storysphere_mobileapp/models/chapter.dart' as _i22;
-import 'package:storysphere_mobileapp/models/story.dart' as _i23;
+import 'package:storysphere_mobileapp/models/chapter.dart' as _i23;
+import 'package:storysphere_mobileapp/models/story.dart' as _i22;
 import 'package:storysphere_mobileapp/views/account/account_page.dart' as _i19;
 import 'package:storysphere_mobileapp/views/chapters/chapter_page.dart' as _i6;
-import 'package:storysphere_mobileapp/views/forgot_password/forgot_password_page.dart' as _i9;
+import 'package:storysphere_mobileapp/views/forgot_password/forgot_password_page.dart'
+    as _i9;
 import 'package:storysphere_mobileapp/views/functions/comments/addcmt_page.dart'
     as _i2;
-import 'package:storysphere_mobileapp/views/functions/reviews/addreview_page.dart'
-    as _i3;
 import 'package:storysphere_mobileapp/views/homepage/homepage.dart' as _i10;
 import 'package:storysphere_mobileapp/views/library/library_page.dart' as _i11;
 import 'package:storysphere_mobileapp/views/log_in/log_in_page.dart' as _i12;
@@ -37,6 +36,8 @@ import 'package:storysphere_mobileapp/views/searching/search_results_page.dart'
 import 'package:storysphere_mobileapp/views/searching/searching_page.dart'
     as _i15;
 import 'package:storysphere_mobileapp/views/sign_up/sign_up_page.dart' as _i17;
+import 'package:storysphere_mobileapp/views/storydetail/addreview_page.dart'
+    as _i3;
 import 'package:storysphere_mobileapp/views/storydetail/chapterlist_page.dart'
     as _i5;
 import 'package:storysphere_mobileapp/views/storydetail/storydetail_page.dart'
@@ -73,7 +74,7 @@ abstract class $AppRouter extends _i20.RootStackRouter {
         routeData: routeData,
         child: _i3.AddReviewPage(
           key: args.key,
-          storyId: args.storyId,
+          story: args.story,
         ),
       );
     },
@@ -152,11 +153,9 @@ abstract class $AppRouter extends _i20.RootStackRouter {
       );
     },
     LogInPage.name: (routeData) {
-      final args =
-          routeData.argsAs<LogInPageArgs>(orElse: () => const LogInPageArgs());
       return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i12.LogInPage(key: args.key),
+        child: const _i12.LogInPage(),
       );
     },
     MyWorksPage.name: (routeData) {
@@ -301,13 +300,13 @@ class AddCommentPageArgs {
 class AddReviewPage extends _i20.PageRouteInfo<AddReviewPageArgs> {
   AddReviewPage({
     _i21.Key? key,
-    required int storyId,
+    required _i22.Story story,
     List<_i20.PageRouteInfo>? children,
   }) : super(
           AddReviewPage.name,
           args: AddReviewPageArgs(
             key: key,
-            storyId: storyId,
+            story: story,
           ),
           initialChildren: children,
         );
@@ -321,16 +320,16 @@ class AddReviewPage extends _i20.PageRouteInfo<AddReviewPageArgs> {
 class AddReviewPageArgs {
   const AddReviewPageArgs({
     this.key,
-    required this.storyId,
+    required this.story,
   });
 
   final _i21.Key? key;
 
-  final int storyId;
+  final _i22.Story story;
 
   @override
   String toString() {
-    return 'AddReviewPageArgs{key: $key, storyId: $storyId}';
+    return 'AddReviewPageArgs{key: $key, story: $story}';
   }
 }
 
@@ -377,8 +376,8 @@ class AddStoryPageArgs {
 class ChapterListPage extends _i20.PageRouteInfo<ChapterListPageArgs> {
   ChapterListPage({
     _i21.Key? key,
-    required List<_i22.Chapter> chapters,
-    required _i23.Story story,
+    required List<_i23.Chapter> chapters,
+    required _i22.Story story,
     List<_i20.PageRouteInfo>? children,
   }) : super(
           ChapterListPage.name,
@@ -405,9 +404,9 @@ class ChapterListPageArgs {
 
   final _i21.Key? key;
 
-  final List<_i22.Chapter> chapters;
+  final List<_i23.Chapter> chapters;
 
-  final _i23.Story story;
+  final _i22.Story story;
 
   @override
   String toString() {
@@ -420,7 +419,7 @@ class ChapterListPageArgs {
 class ChapterPage extends _i20.PageRouteInfo<ChapterPageArgs> {
   ChapterPage({
     _i21.Key? key,
-    required _i22.Chapter chapter,
+    required _i23.Chapter chapter,
     required String storyName,
     List<_i20.PageRouteInfo>? children,
   }) : super(
@@ -448,7 +447,7 @@ class ChapterPageArgs {
 
   final _i21.Key? key;
 
-  final _i22.Chapter chapter;
+  final _i23.Chapter chapter;
 
   final String storyName;
 
@@ -463,7 +462,7 @@ class ChapterPageArgs {
 class EditChapterPage extends _i20.PageRouteInfo<EditChapterPageArgs> {
   EditChapterPage({
     _i21.Key? key,
-    required _i22.Chapter chapter,
+    required _i23.Chapter chapter,
     List<_i20.PageRouteInfo>? children,
   }) : super(
           EditChapterPage.name,
@@ -488,7 +487,7 @@ class EditChapterPageArgs {
 
   final _i21.Key? key;
 
-  final _i22.Chapter chapter;
+  final _i23.Chapter chapter;
 
   @override
   String toString() {
@@ -603,31 +602,16 @@ class LibraryPageArgs {
 
 /// generated route for
 /// [_i12.LogInPage]
-class LogInPage extends _i20.PageRouteInfo<LogInPageArgs> {
-  LogInPage({
-    _i21.Key? key,
-    List<_i20.PageRouteInfo>? children,
-  }) : super(
+class LogInPage extends _i20.PageRouteInfo<void> {
+  const LogInPage({List<_i20.PageRouteInfo>? children})
+      : super(
           LogInPage.name,
-          args: LogInPageArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'LogInPage';
 
-  static const _i20.PageInfo<LogInPageArgs> page =
-      _i20.PageInfo<LogInPageArgs>(name);
-}
-
-class LogInPageArgs {
-  const LogInPageArgs({this.key});
-
-  final _i21.Key? key;
-
-  @override
-  String toString() {
-    return 'LogInPageArgs{key: $key}';
-  }
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for

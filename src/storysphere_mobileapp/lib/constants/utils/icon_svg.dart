@@ -77,10 +77,30 @@ class IconsSVG {
   );
   
   //STORY DETAI
+  static SvgPicture starTagSmall = SvgPicture.asset(
+     'assets/icons/star.svg',
+      width: 14.sp,
+      height: 14.sp,
+  );
+   static SvgPicture starTagBig = SvgPicture.asset(
+     'assets/icons/star.svg',
+      width: 25.sp,
+      height: 25.sp,
+  );
   static SvgPicture starYellow = SvgPicture.asset(
      'assets/icons/star-yellow.svg',
       width: 17.sp,
       height: 17.sp,
+  );
+  static SvgPicture starYellowSmall = SvgPicture.asset(
+     'assets/icons/star-yellow.svg',
+      width: 14.sp,
+      height: 14.sp,
+  );
+  static SvgPicture starYellowBig = SvgPicture.asset(
+     'assets/icons/star-yellow.svg',
+      width: 25.sp,
+      height: 25.sp,
   );
    static SvgPicture likeNormal = SvgPicture.asset(
      'assets/icons/heart.svg',
@@ -126,6 +146,11 @@ class IconsSVG {
      'assets/icons/heart-bold.svg',
       width: 25.sp,
       height: 25.sp,
+  );
+  static SvgPicture writeReview = SvgPicture.asset(
+     'assets/icons/write-review.svg',
+      width: 17.sp,
+      height: 17.sp,
   );
 
 

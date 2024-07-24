@@ -49,10 +49,11 @@ class Strings {
   static const String showLess = 'Ẩn bớt';
   static const String chapterList = 'MỤC LỤC';
   static const String showAll = 'Hiển thị tất cả';
-  static const String userRates = 'ĐỘC GIẢ ĐÁNH GIÁ';
   static const String noChapterToDisplay = 'Không có chương để hiển thị';
   static const String fromStory = 'Từ tác phẩm';
+  static const String forStory = 'cho tác phẩm';
   static const String chapterListDisplay = 'Danh sách chương';
+  static const String reviewListDisplay = 'ĐỘC GIẢ ĐÁNH GIÁ';
 
   //CHAPTER
   static const String loveStoryAsk = 'YÊU THÍCH CHƯƠNG TRUYỆN?';
@@ -107,7 +108,7 @@ class Strings {
   static const String editContent = 'Sửa nội dung';
   static const String copy = 'Copy';
   static const String delete = 'Xóa';
-  static const String review = 'Duyệt';
+  static const String writeReview = 'Viết đánh giá';
   static const String lightMode = 'Sáng';
   static const String viewWorks = 'Xem danh sách tác phẩm';
   static const String textAdmin = 'Admin';

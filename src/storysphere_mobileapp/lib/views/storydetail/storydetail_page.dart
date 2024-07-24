@@ -6,6 +6,7 @@ import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 import 'package:storysphere_mobileapp/views/storydetail/widgets/storychapters_section.dart';
 import 'package:storysphere_mobileapp/views/storydetail/widgets/storycontentoutline_section.dart';
 import 'package:storysphere_mobileapp/views/storydetail/widgets/storycover_section.dart';
+import 'package:storysphere_mobileapp/views/storydetail/widgets/storyreview_widget.dart';
 
 @RoutePage()
 class StoryDetailPage extends StatefulWidget {
@@ -43,6 +44,9 @@ class _StoryDetailPage extends State<StoryDetailPage> {
 
             20.verticalSpace,
             StoryChapterListWidget(story: story),
+
+            20.verticalSpace,
+            StoryReviewWidget(story: story,)
 
           ],
         )

@@ -152,6 +152,11 @@ class IconsSVG {
       width: 17.sp,
       height: 17.sp,
   );
+  static SvgPicture reply = SvgPicture.asset(
+     'assets/icons/arrow-reply.svg',
+      width: 14.sp,
+      height: 20.sp,
+  );
 
 
   //Homepage

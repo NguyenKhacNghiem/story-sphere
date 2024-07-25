@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
@@ -5,6 +6,7 @@ import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/chapter.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
 
 class ChapterLikeCommentSection extends StatefulWidget {
   final Chapter chapter;
@@ -67,7 +69,11 @@ class _ChapterLikeCommentSection extends State<ChapterLikeCommentSection> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    setState(() {
+                      isLiked = !isLiked;
+                    });
+                  },
                   child: 
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -82,7 +88,9 @@ class _ChapterLikeCommentSection extends State<ChapterLikeCommentSection> {
 
                 40.horizontalSpace,
                 InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    context.pushRoute(AddCommentPage(chapterId: widget.chapter.chapterId ?? -1));
+                  },
                   child: 
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,

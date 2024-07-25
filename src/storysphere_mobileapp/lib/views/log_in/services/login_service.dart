@@ -26,6 +26,7 @@ class LoginService {
 
       if (responseData['code'] == 0 || responseData['code'] == 100) {
         final prefs = await SharedPreferences.getInstance();
+        await prefs.setInt('userId', responseData['userId']);
         await prefs.setBool(_isLoggedInKey, true);
         return true;
       } else {

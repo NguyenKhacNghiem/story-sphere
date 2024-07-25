@@ -76,6 +76,10 @@ class AppRouter extends $AppRouter {
           path: '/add-review', 
           transitionsBuilder: TransitionsBuilders.noTransition),
         CustomRoute(
+          page: AddCommentPage.page, 
+          path: '/add-comment', 
+          transitionsBuilder: TransitionsBuilders.noTransition),
+        CustomRoute(
           page: SearchingResultsPage.page, 
           path: '/searching-result', 
           transitionsBuilder: TransitionsBuilders.noTransition),

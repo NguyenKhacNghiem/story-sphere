@@ -78,6 +78,10 @@ class Strings {
   static const String beVietnamPro = 'Be Vietnam Pro';
   static const String crimsonPro = 'Crimson Pro';
   static const String farsan = 'Farsan';
+  static const String userComments = 'Bình luận độc giả';
+  static const String writeNewComment = 'Viết bình luận';
+  static const String submitConmment = 'Gửi';
+
 
   //LABELS - FOR BUTTON
   static const String notificationLabel = 'Thông báo';

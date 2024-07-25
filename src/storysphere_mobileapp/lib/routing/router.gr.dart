@@ -18,11 +18,10 @@ import 'package:storysphere_mobileapp/models/user.dart' as _i26;
 import 'package:storysphere_mobileapp/views/account/account_page.dart' as _i21;
 import 'package:storysphere_mobileapp/views/account/edit_account_page.dart'
     as _i7;
+import 'package:storysphere_mobileapp/views/chapters/addcmt_page.dart' as _i2;
 import 'package:storysphere_mobileapp/views/chapters/chapter_page.dart' as _i6;
 import 'package:storysphere_mobileapp/views/forgot_password/forgot_password_page.dart'
     as _i11;
-import 'package:storysphere_mobileapp/views/functions/comments/addcmt_page.dart'
-    as _i2;
 import 'package:storysphere_mobileapp/views/homepage/homepage.dart' as _i12;
 import 'package:storysphere_mobileapp/views/library/library_page.dart' as _i13;
 import 'package:storysphere_mobileapp/views/log_in/log_in_page.dart' as _i14;
@@ -68,7 +67,7 @@ abstract class $AppRouter extends _i22.RootStackRouter {
         routeData: routeData,
         child: _i2.AddCommentPage(
           key: args.key,
-          storyId: args.storyId,
+          chapterId: args.chapterId,
         ),
       );
     },
@@ -286,13 +285,13 @@ class AddChapterPageArgs {
 class AddCommentPage extends _i22.PageRouteInfo<AddCommentPageArgs> {
   AddCommentPage({
     _i23.Key? key,
-    required int storyId,
+    required int chapterId,
     List<_i22.PageRouteInfo>? children,
   }) : super(
           AddCommentPage.name,
           args: AddCommentPageArgs(
             key: key,
-            storyId: storyId,
+            chapterId: chapterId,
           ),
           initialChildren: children,
         );
@@ -306,16 +305,16 @@ class AddCommentPage extends _i22.PageRouteInfo<AddCommentPageArgs> {
 class AddCommentPageArgs {
   const AddCommentPageArgs({
     this.key,
-    required this.storyId,
+    required this.chapterId,
   });
 
   final _i23.Key? key;
 
-  final int storyId;
+  final int chapterId;
 
   @override
   String toString() {
-    return 'AddCommentPageArgs{key: $key, storyId: $storyId}';
+    return 'AddCommentPageArgs{key: $key, chapterId: $chapterId}';
   }
 }
 

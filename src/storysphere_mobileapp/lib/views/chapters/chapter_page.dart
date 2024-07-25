@@ -153,6 +153,7 @@ class _ChapterPage extends State<ChapterPage> {
             )),
           ),
           ]),
+          40.verticalSpace,
           if (isSettingsBarVisible) buildSettingsBar(),
           if (showTextSettingPallet) buildTextSettingDialog(),
           if (showChapterDrawer) buildChapterListDrawer(),
@@ -198,12 +199,18 @@ class _ChapterPage extends State<ChapterPage> {
 
             Wrap(children: [
               InkWell(
-                onTap: (){},
+                onTap: (){
+                  setState(() {
+                    isLiked = !isLiked;
+                  });
+                },
                 child: isLiked ? IconsSVG.likeBoldBig : IconsSVG.likeNormalBig,
               ),
               20.horizontalSpace,
               InkWell(
-                onTap: (){},
+                onTap: (){
+                  context.pushRoute(AddCommentPage(chapterId: widget.chapter.chapterId ?? -1));
+                },
                 child: IconsSVG.commentBig,
               ),
               20.horizontalSpace,

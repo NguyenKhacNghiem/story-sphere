@@ -6,6 +6,7 @@ import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/user.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/views/account/widgets/user_avatar_section.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 
@@ -60,7 +61,9 @@ class _UserAccountPage extends State<UserAccountPage> {
                     padding: EdgeInsets.symmetric(vertical: 15.sp, horizontal: 20.sp), // Remove padding
                     minimumSize: Size.zero,   // Remove minimum size constraints
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,),
-                  onPressed: (){}, 
+                  onPressed: (){
+                    context.pushRoute(EditAccountPage(user: currUser));
+                  }, 
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,

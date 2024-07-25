@@ -35,6 +35,9 @@ class Strings {
   static const String editProfile = 'Chỉnh sửa tài khoản';
   static const String readHistory = 'Lịch sử đọc';
   static const String notification = 'Thông báo';
+  static const String previewAvatar = 'Ảnh đại diện';
+  static const String userName = 'Tên người dùng';
+  static const String userIntroduction = 'Giới thiệu';
 
   //Library
   static const String yourLibNote = 'Những quyển sách bạn yêu thích đều lưu trữ tại đây!';

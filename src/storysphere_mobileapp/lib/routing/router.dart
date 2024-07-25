@@ -37,6 +37,11 @@ class AppRouter extends $AppRouter {
           transitionsBuilder: TransitionsBuilders.noTransition,
         ),
         CustomRoute(
+          page: EditAccountPage.page, 
+          path: '/edit-user',
+          transitionsBuilder: TransitionsBuilders.noTransition,
+        ),
+        CustomRoute(
           page: MyWorksPage.page, 
           path: '/:myworks',
           transitionsBuilder: TransitionsBuilders.noTransition,

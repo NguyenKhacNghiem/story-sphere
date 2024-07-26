@@ -13,6 +13,7 @@ import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 import 'package:storysphere_mobileapp/views/searching/services/searching_service.dart';
 import 'package:storysphere_mobileapp/views/searching/widgets/bookresult_section.dart';
 import 'package:storysphere_mobileapp/views/searching/widgets/searchingbar_widget.dart';
+import 'package:storysphere_mobileapp/views/widgets/notfound_widget.dart';
 
 @RoutePage()
 class FilterByCategoryPage extends StatefulWidget {
@@ -30,6 +31,7 @@ class _FilterByCategoryPage extends State<FilterByCategoryPage> {
   List<Story> displayStoryList = [];
   int currentPage = 1;
   int totalPages = 1;
+  bool notFound = false;
 
   @override
   void dispose() {
@@ -72,7 +74,9 @@ class _FilterByCategoryPage extends State<FilterByCategoryPage> {
 
             //RESULT LIST
             displayStoryList.isEmpty
-            ? const CircularProgressIndicator()
+            ? notFound 
+              ? const NotFoundWidget()
+              : const CircularProgressIndicator()
             : ListView.builder(
                 scrollDirection: Axis.vertical,
                 controller: ScrollController(),
@@ -111,7 +115,7 @@ class _FilterByCategoryPage extends State<FilterByCategoryPage> {
 
   
   Future<void> initData() async {
-    if (displayStoryList.isEmpty) {
+    if (displayStoryList.isEmpty && !notFound) {
       final result =  SearchingService().getStoriesByCategory(widget.category.categoryId ?? -1, currentPage);
       result.whenComplete(() {
         result.then((value) {
@@ -121,6 +125,9 @@ class _FilterByCategoryPage extends State<FilterByCategoryPage> {
               currentPage = value.currentPage;
               totalPages = value.totalPages;
             });
+          } else {
+            //content not found
+            notFound = true;
           }
         });
       });

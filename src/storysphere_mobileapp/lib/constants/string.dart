@@ -28,6 +28,7 @@ class Strings {
   static const String novelCategories = 'Tác phẩm văn học';
   static const String bookCategories = 'Sách phi tiểu thuyết';
   static const String searchResults = 'Kết quả tìm kiếm';
+  static const String contentNotFound = 'Không tìm thấy kết quả phù hợp';
 
   //User account page
   static const String myLibrary = 'Thư viện của tôi';
@@ -134,7 +135,6 @@ class Strings {
   static const String action = 'Thao tác';
   static const String loadingError = 'Vui lòng đợi giây lát trong khi HIVE tải dữ liệu...';
   static const String words = ' từ';
-  static const String contentNotFound = ' Không có dữ liệu...';
   static const String generalInfo = 'Thông tin chung';
 
   //Default cover

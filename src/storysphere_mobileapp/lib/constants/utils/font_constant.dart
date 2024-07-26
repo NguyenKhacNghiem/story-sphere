@@ -117,7 +117,7 @@ class FontConstant {
   );
 
   static TextStyle bookTitleItem = subTitleText.copyWith(
-    fontSize: 18.sp,
+    fontSize: 16.sp,
     fontWeight: FontWeight.bold,
     height: 1.0.sp,
   );

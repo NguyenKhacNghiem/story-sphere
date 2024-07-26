@@ -78,4 +78,10 @@ module.exports = {
         .notEmpty()
         .withMessage("Vui lòng nhập mã tác phẩm"),
     ],
+
+    getStoryByFavCatValidator: [
+        check("userId")
+        .notEmpty()
+        .withMessage("Vui lòng nhập mã người dùng"),
+    ],
 };

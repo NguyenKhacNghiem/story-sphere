@@ -307,6 +307,49 @@ async function remove(req, res) {
     res.json({code: 0, message: "Xóa tác phẩm thành công"});
 }
 
+async function getStoryByFavCat(req, res) {
+    // Input validation
+    let result = validationResult(req);
+    if(result.errors.length > 0) {
+        log.error(result.errors[0].msg);
+        return res.json({code: 1, message: result.errors[0].msg});
+    }
+
+    try {
+        let userId = req.body.userId;
+        let user = await User.findOne({ _id: userId }); // find one record by id
+
+        if(!user) {
+            log.error("Người dùng không tồn tại");
+            return res.json({code: 1, message: "Người dùng không tồn tại"});
+        }
+
+        let favGenreKeywords = user.favGenreKeywords.split(","); // Ex: "100,200,300" -> ["100","200","300"]
+        let regexString = favGenreKeywords.map(val => `(^${val}$)|(^${val},)|(,${val},)|(,${val}$)`).join("|");
+        let regex = new RegExp(regexString);
+
+        let stories;
+        let limit = 5;
+
+        // Get random limit stories by favGenreKeywords
+        stories = await Story.aggregate([
+            { $match: { categoriesAndTags: {$regex: regex} } }, // where categoriesAndTags in favGenreKeywords
+            { $sample: { size: limit } }
+        ]).exec();
+
+        if (stories.length === 0) {
+            log.info("Danh sách tác phẩm hiện đang trống");
+            return res.json({ code: 0, message: "Danh sách tác phẩm hiện đang trống", result: stories });
+        }
+
+        log.info("Lấy danh sách tác phẩm dựa theo danh mục yêu thích thành công");
+        res.json({ code: 0, message: "Lấy danh sách tác phẩm dựa theo danh mục yêu thích thành công", result: stories });
+    } catch (err) {
+        log.error(err.message);
+        res.json({ code: 1, message: "Lấy danh sách tác phẩm dựa theo danh mục yêu thích thất bại" });
+    }
+}
+
 module.exports = {
     getAll,
     getOne,
@@ -315,5 +358,6 @@ module.exports = {
     filter,
     sort,
     publish,
-    remove
+    remove,
+    getStoryByFavCat
 };

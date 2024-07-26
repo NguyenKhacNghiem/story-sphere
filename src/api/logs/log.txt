@@ -2180,3 +2180,31 @@
 [INFO]  26/07/2024 22:58:12 Lấy danh sách danh mục thành công
 [INFO]  26/07/2024 22:58:12 Lấy danh sách người dùng thành công
 [INFO]  26/07/2024 22:58:14 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 00:06:19 API server has been started.
+[INFO]  27/07/2024 00:07:21 Lấy danh sách chương trong một tác phẩm thành công
+[INFO]  27/07/2024 00:10:07 Lấy danh sách chương trong một tác phẩm thành công
+[INFO]  27/07/2024 01:39:42 API server has been started.
+[INFO]  27/07/2024 01:40:44 Lấy danh sách chương trong một tác phẩm thành công
+[INFO]  27/07/2024 01:40:48 Lấy danh sách chương trong một tác phẩm thành công
+[INFO]  27/07/2024 01:40:53 Lấy danh sách chương trong một tác phẩm thành công
+[INFO]  27/07/2024 01:41:02 Lấy danh sách tác phẩm thành công
+[ERROR] 27/07/2024 01:41:17 Vui lòng nhập mã người dùng
+[INFO]  27/07/2024 01:47:52 API server has been started.
+[INFO]  27/07/2024 01:48:22 API server has been started.
+[INFO]  27/07/2024 01:48:51 Lấy danh sách tác phẩm dựa theo danh mục yêu thích thành công
+[INFO]  27/07/2024 01:53:44 API server has been started.
+[INFO]  27/07/2024 01:54:05 API server has been started.
+[INFO]  27/07/2024 01:54:09 Danh sách tác phẩm hiện đang trống
+[INFO]  27/07/2024 01:54:10 Danh sách tác phẩm hiện đang trống
+[INFO]  27/07/2024 01:54:12 Danh sách tác phẩm hiện đang trống
+[INFO]  27/07/2024 01:56:33 API server has been started.
+[INFO]  27/07/2024 01:56:35 Danh sách tác phẩm hiện đang trống
+[INFO]  27/07/2024 01:56:36 Danh sách tác phẩm hiện đang trống
+[INFO]  27/07/2024 01:56:36 Danh sách tác phẩm hiện đang trống
+[INFO]  27/07/2024 01:59:48 API server has been started.
+[INFO]  27/07/2024 01:59:49 Lấy danh sách tác phẩm dựa theo danh mục yêu thích thành công
+[INFO]  27/07/2024 02:00:27 Lấy danh sách tác phẩm dựa theo danh mục yêu thích thành công
+[INFO]  27/07/2024 02:01:19 API server has been started.
+[INFO]  27/07/2024 02:04:29 API server has been started.
+[INFO]  27/07/2024 02:04:30 Lấy danh sách tác phẩm dựa theo danh mục yêu thích thành công
+[INFO]  27/07/2024 02:04:54 Lấy danh sách tác phẩm dựa theo danh mục yêu thích thành công

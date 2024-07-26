@@ -8,6 +8,10 @@ router.get("/", (req, res) => {
     storyController.getAll(req, res);
 })
 
+router.get("/story-by-favcat", storyValidator.getStoryByFavCatValidator, (req, res) => {
+    storyController.getStoryByFavCat(req, res);
+})
+
 router.post("/create", storyValidator.createValidator, (req, res) => {
     storyController.create(req, res);
 })

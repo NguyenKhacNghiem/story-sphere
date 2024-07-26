@@ -5,6 +5,7 @@ import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
+import 'package:storysphere_mobileapp/views/log_in/services/login_service.dart';
 
 @RoutePage()
 class SignUpPage extends StatefulWidget {
@@ -31,7 +32,7 @@ class _SignUpPage extends State<SignUpPage> {
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: NetworkImage(Strings.loginBackgroundImage,),
-              fit: BoxFit.cover, ),
+              fit: BoxFit.cover,),
           ),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 20.sp),
@@ -120,7 +121,9 @@ class _SignUpPage extends State<SignUpPage> {
                 
                 20.verticalSpace,
                 ElevatedButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    context.pushRoute(LogInPage(newAccount: true));
+                  },
                   child:Padding(padding: EdgeInsets.symmetric(horizontal: 60.sp, vertical: 15.sp),
                       child: Text(Strings.register, style: FontConstant.headline3White, textAlign: TextAlign.center,),),
                   

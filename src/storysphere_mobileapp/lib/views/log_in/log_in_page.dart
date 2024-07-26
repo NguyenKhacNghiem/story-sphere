@@ -13,7 +13,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 @RoutePage()
 class LogInPage extends StatefulWidget {
-  const LogInPage({super.key});
+  bool? newAccount;
+  LogInPage({super.key, this.newAccount});
   
   @override
   State<LogInPage> createState() => _LogInPage();
@@ -37,7 +38,8 @@ class _LogInPage extends State<LogInPage> {
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: NetworkImage(Strings.loginBackgroundImage,),
-              fit: BoxFit.cover, ),
+              fit: BoxFit.cover,
+             ),
           ),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 20.sp),
@@ -172,7 +174,7 @@ class _LogInPage extends State<LogInPage> {
                     5.horizontalSpace,
                     InkWell(
                       onTap: (){
-                        context.pushRoute(SignUpPage());
+                        context.pushRoute(const SignUpPage());
                       },
                       child: Text(Strings.register, style: FontConstant.subTitleText.copyWith(fontWeight: FontWeight.bold)),
                     )
@@ -199,14 +201,17 @@ class _LogInPage extends State<LogInPage> {
     String password = _passwordController.text;
 
     try {
-      bool isLoggedIn = await _loginService.login(username, password);
-      if (isLoggedIn) {
-        context.pushRoute(const HSHomePage());
-      } else {
-        setState(() {
-          _errorMessage = 'Login failed. Please check your credentials.';
-        });
-      }
+      //bool isLoggedIn = await _loginService.login(username, password);
+      //if (isLoggedIn) {
+        //if (widget.newAccount != null && widget.newAccount!)
+          context.pushRoute(AddFavCategory());
+        // else
+        //   context.pushRoute(const HSHomePage());
+      // } else {
+      //   setState(() {
+      //     _errorMessage = 'Login failed. Please check your credentials.';
+      //   });
+      // }
     } catch (e) {
       setState(() {
         _errorMessage = 'An error occurred. Please try again.';

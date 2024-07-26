@@ -193,6 +193,9 @@ class Strings {
   static const String registerHintText = 'Chưa có tài khoản?';
   static const String signInHintText = 'Bạn đã có tài khoản?';
   static const String register = 'Đăng ký';
+  static const String welcome = 'Chào mừng';
+  static const String whatYourFavCat = 'Tìm hiểu để phục vụ tốt hơn, Bạn thích những thể loại nào dưới đây?';
+  static const String myFavCat = 'Thể loại yêu thích';
 
   // menubar
   static const String logout = 'Đăng xuất';

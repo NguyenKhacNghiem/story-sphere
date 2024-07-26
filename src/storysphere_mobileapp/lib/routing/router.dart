@@ -60,6 +60,10 @@ class AppRouter extends $AppRouter {
           path: '/login', 
           transitionsBuilder: TransitionsBuilders.noTransition),
         CustomRoute(
+          page: AddFavCategory.page, 
+          path: '/add-fav', 
+          transitionsBuilder: TransitionsBuilders.noTransition),
+        CustomRoute(
           page: ForgotPasswordPage.page, 
           path: '/forgot-password', 
           transitionsBuilder: TransitionsBuilders.noTransition),

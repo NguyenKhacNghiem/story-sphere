@@ -2217,3 +2217,12 @@
 [INFO]  27/07/2024 02:16:58 API server has been started.
 [INFO]  27/07/2024 02:17:00 Lấy danh sách tác phẩm có lượt xem cao nhất thành công
 [INFO]  27/07/2024 02:17:39 Lấy danh sách tác phẩm có lượt xem cao nhất thành công
+[INFO]  27/07/2024 02:45:14 API server has been started.
+[ERROR] 27/07/2024 02:45:21 totalPages is not defined
+[INFO]  27/07/2024 02:45:21 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 02:45:27 Lấy danh sách danh mục thành công
+[ERROR] 27/07/2024 02:45:27 totalPages is not defined
+[INFO]  27/07/2024 02:45:53 API server has been started.
+[INFO]  27/07/2024 02:46:18 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 02:47:43 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 02:47:49 Lấy danh sách danh mục thành công

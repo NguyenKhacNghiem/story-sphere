@@ -8,6 +8,10 @@ router.get("/", (req, res) => {
     categoryController.getAll(req, res);
 })
 
+router.get("/no-paging", (req, res) => {
+    categoryController.getAllWithoutPaging(req, res);
+})
+
 router.post("/create", categoryValidator.createAndEditValidator, (req, res) => {
     categoryController.create(req, res);
 })

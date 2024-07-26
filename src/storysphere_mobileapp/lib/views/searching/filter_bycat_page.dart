@@ -10,7 +10,7 @@ import 'package:storysphere_mobileapp/models/pagination_result.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
-import 'package:storysphere_mobileapp/views/searching/services/searching_service.dart';
+import 'package:storysphere_mobileapp/services/searching_service.dart';
 import 'package:storysphere_mobileapp/views/searching/widgets/bookresult_section.dart';
 import 'package:storysphere_mobileapp/views/searching/widgets/searchingbar_widget.dart';
 import 'package:storysphere_mobileapp/views/widgets/notfound_widget.dart';

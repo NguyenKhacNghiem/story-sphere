@@ -17,4 +17,13 @@ class APIUrlSerivces {
   //searching - filtering
   static const filter = '${server}story/filter';
   static const search = '${server}story/search';
+
+  //story detail
+  static const storyById = '${server}story/id';
+
+  //chapter
+  static const chapter  = '${server}chapter';
+
+  //my works
+  static const createStory = '${server}story/create';
 }

@@ -60,8 +60,6 @@ class SearchingService {
         
 
         if (response.statusCode == 200) {
-          debugPrint(response.body);
-          
           final Map<String, dynamic> temp = jsonDecode(response.body);
           // Truy cập trường result
           final List<dynamic> result = temp['result'];

@@ -8,6 +8,7 @@ import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/review.dart';
 import 'package:storysphere_mobileapp/models/user.dart';
 
+// ignore: must_be_immutable
 class ReviewListItemWidget extends StatefulWidget {
   final Review review;
   List<Review>? replyReview;

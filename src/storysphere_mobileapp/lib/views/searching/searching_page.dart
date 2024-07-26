@@ -24,7 +24,7 @@ class _SearchingPage extends State<SearchingPage> {
   bool isBookExpanded = false;
 
   Category sampleCategory = Category(
-    categoryId: 0, categoryName: 'Kinh dị', 
+    categoryId: 100000, categoryName: 'Khoa học kỹ thuật', 
     categoryDescription: 'Những câu chuyện giúp bạn không bao giờ cô đơn vì luôn cảm thấy bên cạnh mình luôn có người',
     isCategory: true
   );

@@ -58,16 +58,16 @@ class Story {
   double? storySellPrice;
 
   factory Story.fromJson(Map<String, dynamic> json) => Story(
-        storyId: json["storyId"],
+        storyId: json["_id"],
         storyName: json["storyName"],
-        storyUrl: json["storyUrl"],
-        storyCover: json["storyCover"],
-        storyContentOutline: json["storyContentOutline"],
+        storyUrl: json["url"],
+        storyCover: json["cover"],
+        storyContentOutline: json["contentOutline"],
         fkPublisherAccount: json["fk_publisherAccount"],
-        bookAuthorName: json["book_authorName"],
-        bookPublisherName: json["book_publisherName"],
-        bookISBNcode: json["book_ISBNcode"],
-        bookPublishDate: DateTime.parse(json["book_publishDate"]),
+        bookAuthorName: json["authorName"],
+        bookPublisherName: json["publisherName"],
+        bookISBNcode: json["ISBNcode"],
+        bookPublishDate: DateTime.parse(json["publishDate"]),
         categoriesAndTags: json["categoriesAndTags"],
         selfComposedStory: json["selfComposedStory"],
         matureContent: json["matureContent"],
@@ -75,12 +75,12 @@ class Story {
         viewCount: json["viewCount"],
         voteCount: json["voteCount"],
         commentCount: json["commentCount"],
-        ratingPoint: json["ratingPoint"],
+        ratingPoint: json["ratingPoint"]*1.0,
         chapterCount: json["chapterCount"],
         createdDate: DateTime.parse(json["createdDate"]),
         lastUpdate: DateTime.parse(json["lastUpdate"]),
         commercialActivated: json["commercialActivated"],
-        storySellPrice: json["storySellPrice"],
+        storySellPrice: json["storySellPrice"]*1.0,
       );
 
   Map<String, dynamic> toJson() => {

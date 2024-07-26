@@ -33,7 +33,7 @@ class _HSHomePage extends State<HSHomePage> {
   @override
   void initState() {
     super.initState();
-    _checkLoginStatus();
+    //_checkLoginStatus();
   }
 
   @override

@@ -238,7 +238,7 @@ abstract class $AppRouter extends _i23.RootStackRouter {
         routeData: routeData,
         child: _i21.StoryDetailPage(
           key: args.key,
-          storyId: args.storyId,
+          story: args.story,
         ),
       );
     },
@@ -888,13 +888,13 @@ class SignUpPage extends _i23.PageRouteInfo<void> {
 class StoryDetailPage extends _i23.PageRouteInfo<StoryDetailPageArgs> {
   StoryDetailPage({
     _i24.Key? key,
-    required int storyId,
+    required _i25.Story story,
     List<_i23.PageRouteInfo>? children,
   }) : super(
           StoryDetailPage.name,
           args: StoryDetailPageArgs(
             key: key,
-            storyId: storyId,
+            story: story,
           ),
           initialChildren: children,
         );
@@ -908,16 +908,16 @@ class StoryDetailPage extends _i23.PageRouteInfo<StoryDetailPageArgs> {
 class StoryDetailPageArgs {
   const StoryDetailPageArgs({
     this.key,
-    required this.storyId,
+    required this.story,
   });
 
   final _i24.Key? key;
 
-  final int storyId;
+  final _i25.Story story;
 
   @override
   String toString() {
-    return 'StoryDetailPageArgs{key: $key, storyId: $storyId}';
+    return 'StoryDetailPageArgs{key: $key, story: $story}';
   }
 }
 

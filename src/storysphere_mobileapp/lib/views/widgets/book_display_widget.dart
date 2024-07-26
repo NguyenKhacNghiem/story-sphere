@@ -16,7 +16,7 @@ class BookDisplayWidget extends StatelessWidget {
     return InkWell(
         onTap: () => context.pushRoute(
           StoryDetailPage(
-            storyId: story.storyId!,
+            story: story,
           ),
         ),
         child: Padding(

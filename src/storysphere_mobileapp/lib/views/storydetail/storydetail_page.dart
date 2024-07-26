@@ -10,8 +10,8 @@ import 'package:storysphere_mobileapp/views/storydetail/widgets/storyreview_widg
 
 @RoutePage()
 class StoryDetailPage extends StatefulWidget {
-  final int storyId;
-  const StoryDetailPage({super.key, required this.storyId});
+  final Story story;
+  const StoryDetailPage({super.key, required this.story});
 
   @override
   State<StoryDetailPage> createState() => _StoryDetailPage();
@@ -22,12 +22,7 @@ class _StoryDetailPage extends State<StoryDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    Story story = Story(
-        storyId: 1, 
-        storyCover: 'https://drive.google.com/uc?export=view&id=1jLZbGHPzOEz-E9To-i8xj4_V-fHeKiM6', 
-        storyName: 'LÂU ĐÀI ĐỎ',
-        bookAuthorName: 'Jue Hur',
-      );
+    Story story = widget.story;
 
     return Scaffold(
       bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 1),

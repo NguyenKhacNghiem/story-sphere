@@ -24,7 +24,7 @@ let storySchema = new Schema({
     },
     cover: String,
     contentOutline: String,
-    fk_publisherAccount: Number, // username of model User
+    fk_publisherAccount: Number, // _id of model User
     authorName: {
         type: String,
         index: true,

@@ -7,22 +7,27 @@ let page = 1;
 let textSearch = document.getElementById("text-search");
 let mode = 1; // 1: get result, 2: search result, 3: sort result
 let criteria = 0; // sort criteria
-let addCategoryName = document.getElementById("add-category-name");
-let addCategoryDescription = document.getElementById("add-category-description");
-let addCategoryUrl = document.getElementById("add-category-url");
-let addCategory = document.getElementById("add-category");
-let addTag = document.getElementById("add-tag");
-let btnMode = 1; // 1: add, 2: edit
 let selectedId;
-let tbodyStoryIn = document.getElementById("tbody-story-in");
+let tbodyStoryOf = document.getElementById("tbody-story-of");
+let detailUserId = document.getElementById("detail-user-id");
+let detailBgUserImage = document.getElementById("bg-user-image");
+let detailUserImage = document.getElementById("detail-user-image");
+let detailUserUsername = document.getElementById("detail-user-username");
+let detailUserDisplayName = document.getElementById("detail-user-display-name");
+let detailUserEmail = document.getElementById("detail-user-email");
+let detailUserRole = document.getElementById("detail-user-role");
+let detailUserSelfIntroduction = document.getElementById("detail-user-self-introduction");
+let detailUserDateOfBirth = document.getElementById("detail-user-date-of-birth");
+let detailUserFavGenreKeywords = document.getElementById("detail-user-fav-genre-keywords");
+let detailUserAccountBalance = document.getElementById("detail-user-account-balance");
 
-getAllCategories();
+getAllUsers();
 changeSortColor(0);
 
-function getAllCategories() {
+function getAllUsers() {
     mode = 1;
 
-    fetch(`http://localhost:3000/category?page=${page}`)
+    fetch(`http://localhost:3000/user?page=${page}`)
     .then(response => response.json())
     .then(json => {
         showResult(json);
@@ -33,7 +38,7 @@ function getPreviousPage() {
     page === 1 ? page = 1 : page -= 1;
 
     if (mode === 1)
-        getAllCategories();
+        getAllUsers();
     else if (mode === 2)
         search();
     else
@@ -44,7 +49,7 @@ function getNextPage() {
     page === (totalPage.innerHTML - 0) ? page = (totalPage.innerHTML - 0) : page += 1;
 
     if (mode === 1)
-        getAllCategories();
+        getAllUsers();
     else if (mode === 2)
         search();
     else
@@ -54,7 +59,7 @@ function getNextPage() {
 function search() {
     mode = 2;
 
-    fetch(`http://localhost:3000/category/search?searchContent=${textSearch.value}&page=${page}`)
+    fetch(`http://localhost:3000/user/search?searchContent=${textSearch.value}&page=${page}`)
     .then(response => response.json())
     .then(json => {
         showResult(json);
@@ -77,7 +82,7 @@ function debounce(func, delay) {
 
 let handleSearchInput = debounce((event) => {
     page = 1;
-    textSearch.value === "" ? getAllCategories() : search();    
+    textSearch.value === "" ? getAllUsers() : search();    
 
     changeSortColor(0);
 }, 1200);
@@ -85,7 +90,7 @@ let handleSearchInput = debounce((event) => {
 function sort() {
     mode = 3;
 
-    fetch(`http://localhost:3000/category/sort?criteria=${criteria}&page=${page}`)
+    fetch(`http://localhost:3000/user/sort?criteria=${criteria}&page=${page}`)
     .then(response => response.json())
     .then(json => {
         showResult(json);
@@ -115,15 +120,16 @@ function showResult(json) {
             return;
         }
 
-        json.result.forEach(category => {
+        json.result.forEach(user => {
             rows += `<tr>
-                        <td>${category._id}</td>
-                        <td>${category.categoryName}</td>
-                        <td>${category.categoryDescription}</td>
-                        <td>${category.categoryUrl}</td>
-                        <td>${category.isCategory ? 
-                            "<span class='badge badge-info rounded-pill d-inline'>Danh mục</span>" :
-                            "<span class='badge badge-warning rounded-pill d-inline px-3'>Tag</span>"}
+                        <td><img src="https://cdn.thestorygraph.com/tramdo57b9nn0eewwszz8dme47v2" class="rounded-circle"/></td>
+                        <td>${user._id}</td>
+                        <td>${user.username}</td>
+                        <td>${user.email}</td>
+                        <td>${user.displayName}</td>
+                        <td>${user.isLock ? 
+                            "<span class='badge badge-danger rounded-pill d-inline'>Tài khoản bị khóa</span>" :
+                            "<span class='badge badge-success rounded-pill d-inline px-3'>Bình thường</span>"}
                         </td>
                         <td>
                             <div class="dropdown">
@@ -131,9 +137,10 @@ function showResult(json) {
                                 <i class="fa-duotone fa-gear"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                <a onclick="showModalStoryIn('${category._id}')" class="dropdown-item" href="#"><i class="fa-duotone fa-list"></i> Xem tác phẩm</a>
-                                <a onclick="showModalAdd('SỬA', '${category._id}')" class="dropdown-item" href="#"><i class="fa-duotone fa-pen"></i> Sửa</a>
-                                <a onclick="showModalConfirmDelete('${category._id}')" class="dropdown-item" href="#"><i class="fa-duotone fa-trash"></i> Xóa</a>
+                                <a onclick="showModalUserDetail('${user._id}')" class="dropdown-item" href="#"><i class="fa-duotone fa-circle-info"></i> Xem chi tiết</a>
+                                <a onclick="showModalStoryOf('${user._id}')" class="dropdown-item" href="#"><i class="fa-duotone fa-list"></i> Xem tác phẩm</a>
+                                <a onclick="lock('${user._id}')" class="dropdown-item" href="#">${user.isLock ? "<i class='fa-duotone fa-lock-open'></i> Mở khóa" : "<i class='fa-duotone fa-lock'></i> Khóa"}</a>
+                                <a onclick="showModalConfirmDelete('${user._id}')" class="dropdown-item" href="#"><i class="fa-duotone fa-trash"></i> Xóa</a>
                                 </div>
                             </div>
                         </td>
@@ -172,112 +179,51 @@ function showToastr(json) {
 function showModalConfirmDelete(_id) {
     selectedId = _id;
 
-    $("#modal2-body").html(`Xác nhận xóa danh mục có mã <b>${_id}</b>?`);
+    $("#modal2-body").html(`Xác nhận xóa người dùng có mã <b>${_id}</b>?`);
     $("#modal2").modal("show");
 }
 
 function handleDelete() {
-    fetch(`http://localhost:3000/category/delete/${selectedId}`, {
+    fetch(`http://localhost:3000/user/delete/${selectedId}`, {
         method: "DELETE"
     })
     .then(response => response.json())
     .then(json => {
         if (json.code === 0) {
             toastr.success(json.message, "Thông báo");
-            getAllCategories();
+            getAllUsers();
         }
         else
             toastr.error(json.message, "Thông báo");
     })
 }
 
-function showModalAdd(title, _id) {
-    if (title === "THÊM") {
-        btnMode = 1;
-        clearInput();
-    }
-    else if(title === "SỬA") {
-        btnMode = 2;
-        selectedId = _id;
-
-        fetch(`http://localhost:3000/category/${selectedId}`)
-        .then(response => response.json())
-        .then(json => {
-            if (json.code === 0) {
-                addCategoryUrl.value = json.result.categoryUrl;
-                addCategoryName.value = json.result.categoryName;
-                addCategoryDescription.value = json.result.categoryDescription;
-                json.result.isCategory ? addCategory.checked = true : addTag.checked = true;
-            }
+function lock(_id) {
+    fetch(`http://localhost:3000/user/lock`, {
+        method: "PUT",
+        body: new URLSearchParams({
+            _id: _id
         })
-    }
-    else
-        ;
-
-    $("#title-modal-add").html(title);
-    $("#btn-add").html(title);
-
-    $("#modal1").modal("show");
+    })
+    .then(response => response.json())
+    .then(json => {
+        if (json.code === 0) {
+            toastr.success(json.message, "Thông báo");
+            getAllUsers();
+        }
+        else
+            toastr.error(json.message, "Thông báo");
+    })
 }
 
-function add() {
-    if (btnMode === 1) {
-        fetch("http://localhost:3000/category/create", {
-            method: "post",
-            body: new URLSearchParams({
-                categoryUrl: addCategoryUrl.value,
-                categoryName: addCategoryName.value,
-                categoryDescription: addCategoryDescription.value,
-                isCategory: addCategory.checked
-            })
-        })
-        .then(response => response.json())
-        .then(json => {
-            showToastr(json);
-            getAllCategories();
+function showModalStoryOf(_id) {
+    $("#story-of-title").html(_id);
 
-            if (json.code === 0)
-                $("#modal1").modal("hide");
-        })
-    }
-    else if (btnMode === 2) {
-        fetch(`http://localhost:3000/category/edit/${selectedId}`, {
-            method: "put",
-            body: new URLSearchParams({
-                categoryUrl: addCategoryUrl.value,
-                categoryName: addCategoryName.value,
-                categoryDescription: addCategoryDescription.value,
-                isCategory: addCategory.checked
-            })
-        })
-        .then(response => response.json())
-        .then(json => {
-            showToastr(json);
-            getAllCategories();
-
-            if (json.code === 0)
-                $("#modal1").modal("hide");
-        })
-    }
-    else
-        ;
-}
-
-function clearInput() {
-    addCategoryName.value = "";
-    addCategoryDescription.value = "";
-    addCategoryUrl.value = "";
-    addCategory.checked = true;
-}
-
-function showModalStoryIn(_id) {
-    $("#story-in-title").html(_id);
-
-    fetch(`http://localhost:3000/story/filter?categoryId=${_id}`)
+    fetch(`http://localhost:3000/story/filter?fk_publisherAccount=${_id}`)
     .then(response => response.json())
     .then(json => {
         let rows = "";
-        tbodyStoryIn.innerHTML = "";
+        tbodyStoryOf.innerHTML = "";
 
         if (json.code === 0) {
             json.result.forEach(story => {
@@ -297,7 +243,29 @@ function showModalStoryIn(_id) {
                         </tr>`
             })
 
-            tbodyStoryIn.innerHTML = rows;
+            tbodyStoryOf.innerHTML = rows;
+            $("#modal4").modal("show");
+        }
+    })
+}
+
+function showModalUserDetail(_id) {
+    fetch(`http://localhost:3000/user/profile/${_id}`)
+    .then(response => response.json())
+    .then(json => {
+        if(json.code === 0) {
+            detailUserId.innerHTML = _id;
+            detailBgUserImage.setAttribute("src", "https://cdn.thestorygraph.com/tramdo57b9nn0eewwszz8dme47v2");
+            detailUserImage.setAttribute("src", "https://cdn.thestorygraph.com/tramdo57b9nn0eewwszz8dme47v2");
+            detailUserUsername.innerHTML = "<b>Tài khoản: </b>" + json.result.username;
+            detailUserDisplayName.innerHTML = "<b>Tên hiển thị: </b>" + json.result.displayName;
+            detailUserEmail.innerHTML = "<b>Email: </b>" + json.result.email;
+            detailUserRole.innerHTML = "<b>Vai trò: </b>" + json.result.role;
+            detailUserSelfIntroduction.innerHTML = "<b>Giới thiệu: </b>" + json.result.selfIntroduction;
+            detailUserDateOfBirth.innerHTML = "<b>Ngày sinh: </b>" + json.result.dateOfBirth;
+            detailUserFavGenreKeywords.innerHTML = "<b>Thể loại yêu thích: </b>" + json.result.favGenreKeywords;
+            detailUserAccountBalance.innerHTML = "<b>Số dư: </b>" + json.result.accountBalance.toLocaleString('vi-VN') + "đ";
+
             $("#modal3").modal("show");
         }
     })

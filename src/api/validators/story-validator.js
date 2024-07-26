@@ -22,7 +22,7 @@ module.exports = {
 
         check("fk_publisherAccount")
         .notEmpty()
-        .withMessage("Vui lòng nhập tài khoản đăng tải tác phẩm"),
+        .withMessage("Vui lòng nhập mã người dùng đăng tải tác phẩm"),
 
         check("authorName")
         .notEmpty()

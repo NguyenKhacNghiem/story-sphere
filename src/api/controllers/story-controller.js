@@ -130,6 +130,7 @@ async function search(req, res) {
               { ISBNcode: searchContent }
             ]
           }); // Total records in database by a condition
+          
         let totalPages = Math.ceil(total / limit); // Total pages
 
         if (endIndex < total)
@@ -163,7 +164,7 @@ async function search(req, res) {
 }
 
 async function filter(req, res) {
-    let {categoryId, selfComposedStory, publisherName, ratingPoint, isLastUpdated} = req.query;
+    let {categoryId, selfComposedStory, publisherName, ratingPoint, isLastUpdated, fk_publisherAccount} = req.query;
 
     // Paging
     let page = parseInt(req.query.page) || 1; // current page, default is 1
@@ -186,6 +187,9 @@ async function filter(req, res) {
     
     if (ratingPoint && ratingPoint !== "")
         criterias.ratingPoint = ratingPoint;
+
+    if (fk_publisherAccount && fk_publisherAccount !== "")
+        criterias.fk_publisherAccount = fk_publisherAccount;
 
     // create sort criterias
     let sortCriterias = {}; 

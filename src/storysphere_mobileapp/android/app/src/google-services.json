@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "705914643828",
+    "project_id": "beniplus-staging",
+    "storage_bucket": "beniplus-staging.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:705914643828:android:3f8cf5c2363fb1e4217821",
+        "android_client_info": {
+          "package_name": "com.example.beniplus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0BfWOIxQ3EYihVJkJDifuvY_qeNMG4JA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

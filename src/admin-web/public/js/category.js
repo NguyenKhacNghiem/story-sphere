@@ -9,9 +9,10 @@ let mode = 1; // 1: get result, 2: search result, 3: sort result
 let criteria = 0; // sort criteria
 let addCategoryName = document.getElementById("add-category-name");
 let addCategoryDescription = document.getElementById("add-category-description");
-let addCategoryUrl = document.getElementById("add-category-url");
 let addCategory = document.getElementById("add-category");
 let addTag = document.getElementById("add-tag");
+let addTieuThuyet = document.getElementById("add-tieu-thuyet");
+let addPhiTieuThuyet = document.getElementById("add-phi-tieu-thuyet");
 let btnMode = 1; // 1: add, 2: edit
 let selectedId;
 let tbodyStoryIn = document.getElementById("tbody-story-in");
@@ -120,7 +121,10 @@ function showResult(json) {
                         <td>${category._id}</td>
                         <td>${category.categoryName}</td>
                         <td>${category.categoryDescription}</td>
-                        <td>${category.categoryUrl}</td>
+                        <td>${category.categoryUrl ? 
+                            "<span class='badge badge-secondary rounded-pill d-inline'>Tiểu thuyết</span>" :
+                            "<span class='badge badge-dark rounded-pill d-inline px-3'>Phi tiểu thuyết</span>"}
+                        </td>
                         <td>${category.isCategory ? 
                             "<span class='badge badge-info rounded-pill d-inline'>Danh mục</span>" :
                             "<span class='badge badge-warning rounded-pill d-inline px-3'>Tag</span>"}
@@ -204,7 +208,7 @@ function showModalAdd(title, _id) {
         .then(response => response.json())
         .then(json => {
             if (json.code === 0) {
-                addCategoryUrl.value = json.result.categoryUrl;
+                json.result.categoryUrl ? addTieuThuyet.checked = true : addPhiTieuThuyet.checked = true;
                 addCategoryName.value = json.result.categoryName;
                 addCategoryDescription.value = json.result.categoryDescription;
                 json.result.isCategory ? addCategory.checked = true : addTag.checked = true;
@@ -225,7 +229,7 @@ function add() {
         fetch("http://localhost:3000/category/create", {
             method: "post",
             body: new URLSearchParams({
-                categoryUrl: addCategoryUrl.value,
+                categoryUrl: addTieuThuyet.checked,
                 categoryName: addCategoryName.value,
                 categoryDescription: addCategoryDescription.value,
                 isCategory: addCategory.checked
@@ -244,7 +248,7 @@ function add() {
         fetch(`http://localhost:3000/category/edit/${selectedId}`, {
             method: "put",
             body: new URLSearchParams({
-                categoryUrl: addCategoryUrl.value,
+                categoryUrl: addTieuThuyet.checked,
                 categoryName: addCategoryName.value,
                 categoryDescription: addCategoryDescription.value,
                 isCategory: addCategory.checked
@@ -266,7 +270,7 @@ function add() {
 function clearInput() {
     addCategoryName.value = "";
     addCategoryDescription.value = "";
-    addCategoryUrl.value = "";
+    addTieuThuyet.checked = true;
     addCategory.checked = true;
 }
 

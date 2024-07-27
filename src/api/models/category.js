@@ -13,9 +13,9 @@ let categorySchema = new Schema({
         index: true,
     },
     categoryUrl: {
-        type: String,
-        unique: true,
+        type: Boolean,
         index: true,
+        default: true,
     },
     categoryName : {
         type: String,

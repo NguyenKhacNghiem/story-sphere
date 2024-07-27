@@ -77,9 +77,7 @@ function create(req, res) {
         log.error(errorMessage);
 
         // Check type of error
-        if(errorMessage.includes("categoryUrl"))
-            res.json({code: 1, message: "URL cho danh mục đã tồn tại"});
-        else if(errorMessage.includes("categoryName"))
+        if(errorMessage.includes("categoryName"))
             res.json({code: 1, message: "Tên danh mục đã tồn tại"});
         else
             res.json({code: 1, message: "Tạo danh mục mới thất bại"});
@@ -119,9 +117,7 @@ async function edit(req, res) {
         log.error(errorMessage);
 
         // Check type of error
-        if(errorMessage.includes("categoryUrl"))
-            res.json({code: 1, message: "URL cho danh mục đã tồn tại"});
-        else if(errorMessage.includes("categoryName"))
+        if(errorMessage.includes("categoryName"))
             res.json({code: 1, message: "Tên danh mục đã tồn tại"});
         else
             res.json({code: 1, message: "Chỉnh sửa danh mục thất bại"});

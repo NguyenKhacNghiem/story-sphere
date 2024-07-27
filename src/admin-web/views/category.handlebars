@@ -31,7 +31,7 @@
                 <th style="width: 5%;">Mã Danh Mục</th>
                 <th style="width: 15%;">Tên Danh Mục</th>
                 <th style="width: 37%;">Mô Tả</th>
-                <th style="width: 15%;">URL</th>
+                <th style="width: 15%;">Loại Danh Mục</th>
                 <th style="width: 10%;">Danh Mục/ Tag</th>
                 <th style="width: 18%;">Thao Tác</th>
             </tr>
@@ -50,7 +50,7 @@
 
 {{!-- Modal add/ edit category --}}
 <div class="modal fade" id="modal1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
             <!-- Modal Header -->
@@ -70,20 +70,25 @@
                     <label class="form-label" for="add-category-description">Mô tả</label>
                 </div>
 
-                <div class="form-outline mb-2" data-mdb-input-init>
-                    <input type="text" id="add-category-url" class="form-control" />
-                    <label class="form-label" for="add-category-url">URL</label>
-                </div>
-
                 <div class="row container-fluid">
-                    <div class="custom-control custom-radio col-6">
+                    <div class="custom-control custom-radio col-3">
                         <input type="radio" class="custom-control-input" id="add-category" name="isCategory" value="true" checked>
                         <label class="custom-control-label" for="add-category">Danh mục</label>
                     </div>
 
-                    <div class="custom-control custom-radio col-6">
+                    <div class="custom-control custom-radio col-3">
                         <input type="radio" class="custom-control-input" id="add-tag" name="isCategory" value="false">
                         <label class="custom-control-label" for="add-tag">Tag</label>
+                    </div>
+
+                    <div class="custom-control custom-radio col-3">
+                        <input type="radio" class="custom-control-input" id="add-tieu-thuyet" name="categoryUrl" value="true">
+                        <label class="custom-control-label" for="add-tieu-thuyet">Tiểu thuyết</label>
+                    </div>
+
+                    <div class="custom-control custom-radio col-3">
+                        <input type="radio" class="custom-control-input" id="add-phi-tieu-thuyet" name="categoryUrl" value="false">
+                        <label class="custom-control-label" for="add-phi-tieu-thuyet">Phi tiểu thuyết</label>
                     </div>
                 </div>
             </div>

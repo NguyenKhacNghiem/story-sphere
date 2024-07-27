@@ -2288,3 +2288,55 @@
 [INFO]  27/07/2024 21:10:06 Lấy thông tin tác phẩm thành công
 [INFO]  27/07/2024 21:10:11 Lấy thông tin tác phẩm thành công
 [INFO]  27/07/2024 21:10:17 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 21:16:54 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 21:20:48 API server has been started.
+[INFO]  27/07/2024 21:20:52 API server has been started.
+[INFO]  27/07/2024 21:21:09 API server has been started.
+[INFO]  27/07/2024 21:21:16 API server has been started.
+[INFO]  27/07/2024 21:21:32 API server has been started.
+[INFO]  27/07/2024 21:21:45 API server has been started.
+[INFO]  27/07/2024 21:28:07 API server has been started.
+[INFO]  27/07/2024 21:28:26 API server has been started.
+[INFO]  27/07/2024 21:34:25 API server has been started.
+[INFO]  27/07/2024 21:55:31 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 21:56:13 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:03:28 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:03:54 Lọc tác phẩm thành công
+[INFO]  27/07/2024 22:03:57 Lấy thông tin danh mục thành công
+[INFO]  27/07/2024 22:04:04 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:04:06 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 22:04:11 Lấy thông tin tác phẩm thành công
+[INFO]  27/07/2024 22:04:14 Lấy danh sách người dùng thành công
+[INFO]  27/07/2024 22:04:14 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:06:20 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:06:39 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:07:37 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:07:54 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:08:03 Sắp xếp danh sách danh mục thành công
+[INFO]  27/07/2024 22:08:15 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:08:18 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 22:08:20 Lấy thông tin tác phẩm thành công
+[INFO]  27/07/2024 22:08:24 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:08:24 Lấy danh sách người dùng thành công
+[INFO]  27/07/2024 22:08:28 Lấy danh sách người dùng thành công
+[INFO]  27/07/2024 22:08:29 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:11:25 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:11:30 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:13:57 API server has been started.
+[ERROR] 27/07/2024 22:17:31 E11000 duplicate key error collection: story-sphere.categories index: categoryUrl_1 dup key: { categoryUrl: false }
+[INFO]  27/07/2024 22:18:41 API server has been started.
+[INFO]  27/07/2024 22:25:09 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:29:19 API server has been started.
+[INFO]  27/07/2024 22:29:43 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:30:13 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:31:09 Lấy thông tin danh mục thành công
+[INFO]  27/07/2024 22:31:11 Chỉnh sửa danh mục thành công
+[INFO]  27/07/2024 22:31:11 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:32:01 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 22:33:01 Lấy danh sách danh mục thành công
+[INFO]  28/07/2024 00:29:53 Lấy danh sách danh mục thành công
+[INFO]  28/07/2024 00:30:29 Lấy danh sách danh mục thành công
+[INFO]  28/07/2024 00:30:30 Lấy danh sách danh mục thành công
+[INFO]  28/07/2024 00:38:25 Lấy thông tin danh mục thành công
+[INFO]  28/07/2024 00:38:29 Lấy thông tin danh mục thành công
+[INFO]  28/07/2024 00:38:32 Lấy thông tin danh mục thành công

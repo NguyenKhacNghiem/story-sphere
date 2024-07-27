@@ -22,7 +22,7 @@ class APIUrlSerivces {
   static const favBook = '${server}fav-book';
 
   //story detail
-  static const storyById = '${server}story/id';
+  static const story = '${server}story';
   static const category = '${server}category/no-paging';
 
   //chapter

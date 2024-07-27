@@ -1,63 +1,81 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
+import 'package:storysphere_mobileapp/services/story_service.dart';
 import 'package:storysphere_mobileapp/views/widgets/book_display_widget.dart';
 
+// ignore: must_be_immutable
 class DisplayStoriesFlowHomepageWidget extends StatefulWidget {
   final String title;
   final String id;
-  const DisplayStoriesFlowHomepageWidget({super.key, required this.title, required this.id});
+  int? userId;
+  DisplayStoriesFlowHomepageWidget({super.key, required this.title, required this.id, this.userId});
 
   @override
   _DisplayStoriesFlowHomepageWidgetState createState() => _DisplayStoriesFlowHomepageWidgetState();
 }
 
 class _DisplayStoriesFlowHomepageWidgetState extends State<DisplayStoriesFlowHomepageWidget> {
-
   List<Story> bookList = [];
   String title = '';
+  int userId = -1;
   String id = '';
 
   @override
   void initState() {
     super.initState();
-    fetchFileContent();
   }
 
-  Future<void> fetchFileContent() async {
+  void fetchFileContent(){
     title = widget.title;
+    if (widget.userId != null) userId = widget.userId!;
     id = widget.id;
-    
-    bookList = [
-      Story(
-        storyId: 1, 
-        storyCover: 'assets/example_data/bc_descendant_of_the_crane.jpg', 
-        storyName: 'Descendant of the crane'
-      ),
-      Story(
-        storyId: 2, storyCover: 'assets/example_data/bc_drowned_country.jpg', storyName: 'Drowned Country'
-      ),
-      Story(
-        storyId: 3, storyCover: 'assets/example_data/bc_lore_of_aetherra.jpg', storyName: 'Lore of Aetherra'
-      ),
-      Story(
-        storyId: 4, storyCover: 'assets/example_data/bc_take_your_turn.jpg', storyName: 'Take your turn Teddy'
-      ),
-      Story(
-        storyId: 5, storyCover: 'assets/example_data/bc_the_crime_of_steamfield.jpg', storyName: 'The crime of Steamfield'
-      ),
+
+     // GET DATA
+     if (bookList.isEmpty) {
+      final result;
+      switch (id) {
+        case 'YOUWOULDLIKE': {
+                      //result =  StoryService().getStoryByFavGenre(userId);
+                      result =  StoryService().getHorStories();
+                      break;
+                      }
+        case 'HOTSTORIES': {
+                      result =  StoryService().getHorStories();
+                      break;
+                      }
+        default: {
+           result =  StoryService().getHorStories();
+           break;
+
+        }
+      }
       
-    ];
+      result.whenComplete(() {
+        result.then((value) {
+          if (value != null) {
+            setState(() {
+              bookList = value;
+              debugPrint('Length: ' + bookList.length.toString());
+              debugPrint(bookList.elementAt(0).storyName.toString());
+            });
+          }
+        });
+      });
+    }
  
   }
 
 
   @override
   Widget build(BuildContext context) {
+    fetchFileContent();
     return Padding(
       padding: EdgeInsets.all(5.sp),
       child: 
-        SizedBox(
+      bookList.isEmpty
+      ? const CircularProgressIndicator()
+      :  SizedBox(
         height: 230.0,  // specify a height
         child: ListView.builder(
           scrollDirection: Axis.horizontal,

@@ -29,11 +29,11 @@ class BookDisplayWidget extends StatelessWidget {
                 height: 160.sp,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5.sp),
-                  child: Image.network(story.storyCover!, fit: BoxFit.cover,))),
+                  child: Image.network(story.storyCover ?? '', fit: BoxFit.cover,))),
               5.verticalSpace,
               SizedBox(
                 width: 105.sp,
-                child:Text (story.storyName!, style: FontConstant.subTitleText, overflow: TextOverflow.ellipsis,))
+                child:Text (story.storyName ?? 'Null', style: FontConstant.subTitleText, overflow: TextOverflow.ellipsis,))
               
             ],),
         )

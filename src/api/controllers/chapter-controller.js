@@ -5,14 +5,7 @@ const Story = require("../models/story");
 const log = require('../logs/log');
 
 async function getAll(req, res) {
-    // Input validation
-    let result = validationResult(req);
-    if(result.errors.length > 0) {
-        log.error(result.errors[0].msg);
-        return res.json({code: 1, message: result.errors[0].msg});
-    }
-
-    let fk_storyId = req.body.fk_storyId;
+    let fk_storyId = req.query.fk_storyId || -1;
 
     let story = await Story.findOne({ _id: fk_storyId }); // find one record by id
     if(!story) {

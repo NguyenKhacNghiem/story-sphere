@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
     storyController.getAll(req, res);
 })
 
-router.get("/favorite-category", storyValidator.getStoryByFavCatValidator, (req, res) => {
+router.get("/favorite-category", (req, res) => {
     storyController.getStoryByFavCat(req, res);
 })
 

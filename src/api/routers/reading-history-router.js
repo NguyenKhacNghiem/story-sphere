@@ -4,7 +4,7 @@ const router = express.Router();
 const readingHistoryController = require("../controllers/reading-history-controller");
 const readingHistoryValidator = require("../validators/reading-history-validator");
 
-router.get("/", readingHistoryValidator.getAllValidator, (req, res) => {
+router.get("/", (req, res) => {
     readingHistoryController.getAll(req, res);
 })
 

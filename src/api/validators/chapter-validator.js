@@ -1,12 +1,6 @@
 const { check } = require('express-validator');
 
 module.exports = {
-    getAllValidator: [
-        check("fk_storyId")
-        .notEmpty()
-        .withMessage("Vui lòng nhập mã tác phẩm bạn muốn xem danh sách chương"),
-    ],
-
     createValidator: [
         check("fk_storyId")
         .notEmpty()

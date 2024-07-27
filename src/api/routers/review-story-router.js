@@ -4,11 +4,11 @@ const router = express.Router();
 const reviewStoryController = require("../controllers/review-story-controller");
 const reviewStoryValidator = require("../validators/review-story-validator");
 
-router.get("/", reviewStoryValidator.getAllValidator, (req, res) => {
+router.get("/", (req, res) => {
     reviewStoryController.getAll(req, res);
 })
 
-router.get("/filter", reviewStoryValidator.filterByStoryId, (req, res) => {
+router.get("/filter", (req, res) => {
     reviewStoryController.filterByStoryId(req, res);
 })
 

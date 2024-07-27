@@ -4,7 +4,7 @@ const router = express.Router();
 const chapterController = require("../controllers/chapter-controller");
 const chapterValidator = require("../validators/chapter-validator");
 
-router.get("/", chapterValidator.getAllValidator, (req, res) => {
+router.get("/", (req, res) => {
     chapterController.getAll(req, res);
 })
 

@@ -4,7 +4,7 @@ const router = express.Router();
 const commentController = require("../controllers/comment-controller");
 const commentValidator = require("../validators/comment-validator");
 
-router.get("/", commentValidator.getAllValidator, (req, res) => {
+router.get("/", (req, res) => {
     commentController.getAll(req, res);
 })
 

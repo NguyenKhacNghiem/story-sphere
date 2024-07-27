@@ -1,12 +1,6 @@
 const { check } = require('express-validator');
 
 module.exports = {
-    getAllValidator: [
-        check("userId")
-        .notEmpty()
-        .withMessage("Vui lòng nhập mã người dùng cần lấy danh sách yêu thích"),
-    ],
-
     createValidator: [
         check("userId")
         .notEmpty()

@@ -4,7 +4,7 @@ const router = express.Router();
 const favBookController = require("../controllers/fav-book-controller");
 const favBookValidator = require("../validators/fav-book-validator");
 
-router.get("/", favBookValidator.getAllValidator, (req, res) => {
+router.get("/", (req, res) => {
     favBookController.getAll(req, res);
 })
 

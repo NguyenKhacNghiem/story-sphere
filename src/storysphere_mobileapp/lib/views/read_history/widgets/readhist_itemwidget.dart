@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
+import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/models/chapter.dart';
 import 'package:storysphere_mobileapp/models/reading_history.dart';
@@ -25,18 +26,26 @@ class _HistoryItemWidget extends State<HistoryItemWidget> {
   @override
   Widget build(BuildContext context) {
     readingHistory = widget.readingHistory;
-    double itemWidth = (MediaQuery.of(context).size.width - 130.sp).sp;
+    double itemWidth = (MediaQuery.of(context).size.width - 150.sp).sp;
     initData();
 
     return InkWell(
-      onTap: () {context.pushRoute(StoryDetailPage(story: story));},
+      onTap: () {
+        context.pushRoute(StoryDetailPage(story: story));},
       child: 
+      Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: ColorConstants.formStrokeColor),
+          borderRadius: BorderRadius.circular(5.sp),
+        ),
+        child: 
     Padding(
       padding: EdgeInsets.symmetric(vertical: 10.sp),
       child:
          Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
             20.horizontalSpace,
@@ -50,6 +59,7 @@ class _HistoryItemWidget extends State<HistoryItemWidget> {
             
             20.horizontalSpace,
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //story name
                 SizedBox(
@@ -60,16 +70,21 @@ class _HistoryItemWidget extends State<HistoryItemWidget> {
                     overflow: TextOverflow.clip,
                     softWrap: true,),
                 ),
+                10.verticalSpace,
 
                 Row(
+                   mainAxisAlignment: MainAxisAlignment.start,
+                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(Strings.lastVisited, style: FontConstant.historyLabel,),
                     10.horizontalSpace,
                     Text(dateString, style: FontConstant.hisStoryData,),
                   ],
                 ),
-                10.verticalSpace,
+                5.verticalSpace,
                 Row(
+                   mainAxisAlignment: MainAxisAlignment.start,
+                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(Strings.lastReadChapter, style: FontConstant.historyLabel,),
                     10.horizontalSpace,
@@ -84,7 +99,7 @@ class _HistoryItemWidget extends State<HistoryItemWidget> {
 
             ]),
         ],)
-    ));
+    )));
    
   }
 

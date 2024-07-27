@@ -18,7 +18,6 @@ class ReadingHistoryPage extends StatefulWidget {
 
 class _ChapterListPage extends State<ReadingHistoryPage> {
   late List<ReadingHistory> readingHistoryList;
-  late Widget fromStory;
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +35,7 @@ class _ChapterListPage extends State<ReadingHistoryPage> {
             children: [
               40.verticalSpace,
               Text(Strings.readHistory, style: FontConstant.titleBigDisplayWhite,),
-              2.verticalSpace,
-              fromStory,
+
 
               ListView.builder(
                 scrollDirection: Axis.vertical,
@@ -57,5 +55,10 @@ class _ChapterListPage extends State<ReadingHistoryPage> {
 
   initData(){
     //get data
+    readingHistoryList = [
+      ReadingHistory(
+        readingHistoryId: 1, storyId: 1, chapterId: 1, lastVisited: DateTime.now(),
+      )
+    ];
   }
 }

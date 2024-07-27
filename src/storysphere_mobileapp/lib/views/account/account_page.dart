@@ -30,6 +30,7 @@ class _UserAccountPage extends State<UserAccountPage> {
 
   @override
   Widget build(BuildContext context) {
+    userId = currUser.userId!;
    
 
     return Scaffold(
@@ -91,7 +92,9 @@ class _UserAccountPage extends State<UserAccountPage> {
                     padding: EdgeInsets.symmetric(vertical: 15.sp, horizontal: 20.sp), // Remove padding
                     minimumSize: Size.zero,   // Remove minimum size constraints
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,),
-                  onPressed: (){}, 
+                  onPressed: (){
+                    context.pushRoute(ReadingHistoryPage(userId: userId));
+                  }, 
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -113,6 +116,7 @@ class _UserAccountPage extends State<UserAccountPage> {
                     color: ColorConstants.formStrokeColor,
                   ),
 
+                //log out
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                     backgroundColor: ColorConstants.primaryText,
@@ -128,9 +132,9 @@ class _UserAccountPage extends State<UserAccountPage> {
                       Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
-                          IconsSVG.notiBlack,
+                          IconsSVG.logout,
                           10.horizontalSpace,
-                          Text(Strings.notification, style: FontConstant.headline3, textAlign: TextAlign.center,)
+                          Text(Strings.logOut, style: FontConstant.headline3, textAlign: TextAlign.center,)
                         ],
                       ),
                       IconsSVG.arrowRight,

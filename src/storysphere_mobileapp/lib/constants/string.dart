@@ -35,7 +35,7 @@ class Strings {
   static const String myWorks = 'Tác phẩm của tôi';
   static const String editProfile = 'Chỉnh sửa tài khoản';
   static const String readHistory = 'Lịch sử đọc';
-  static const String notification = 'Thông báo';
+  static const String logOut = 'Đăng xuất';
   static const String previewAvatar = 'Ảnh đại diện';
   static const String userName = 'Tên người dùng';
   static const String userIntroduction = 'Giới thiệu';

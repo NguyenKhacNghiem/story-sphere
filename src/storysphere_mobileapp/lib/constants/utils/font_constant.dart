@@ -132,6 +132,16 @@ class FontConstant {
     fontWeight: FontWeight.w700
   );
 
+  static TextStyle historyLabel = subTitleText.copyWith(
+    fontSize: 10.sp,
+    color: ColorConstants.secondaryText,
+    fontWeight: FontWeight.w100
+  );
+
+  static TextStyle hisStoryData = historyLabel.copyWith(
+    fontWeight: FontWeight.bold,
+  );
+
   static TextStyle purpleText = subTitleText.copyWith(
     fontSize: 14.sp,
     color: ColorConstants.purpleLight,

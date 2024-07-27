@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
@@ -23,7 +24,7 @@ class BookResultSectionWidget extends StatelessWidget {
             height: 155.sp,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5.sp),
-              child: Image.network(story.storyCover!, fit: BoxFit.cover,))),
+              child: Image.network(story.storyCover ?? Strings.defaultCover, fit: BoxFit.cover,))),
         20.horizontalSpace,
         Column(
           mainAxisAlignment: MainAxisAlignment.start,

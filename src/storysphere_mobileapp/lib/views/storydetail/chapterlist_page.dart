@@ -45,7 +45,7 @@ class _ChapterListPage extends State<ChapterListPage> {
                 width: screenWidth,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: NetworkImage(widget.story.storyCover!),
+                      image: NetworkImage(widget.story.storyCover ?? Strings.defaultCover),
                       fit: BoxFit.fitWidth,
                     ),
                   ),

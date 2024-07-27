@@ -43,6 +43,12 @@ class Strings {
   //Library
   static const String yourLibNote = 'Những quyển sách bạn yêu thích đều lưu trữ tại đây!';
 
+  //READING HISTORY
+  static const String readingHistory = 'Lịch sử đọc';
+  static const String lastVisited = 'Lần ghé thăm gần nhất';
+  static const String lastReadChapter = 'Chương đang đọc';
+  static const String continuteToRead = 'Đọc tiếp';
+
   //My works
   static const String addNewStory = 'THÊM TÁC PHẨM MỚI';
   static const String addNewChapter = 'Thêm chương mới';
@@ -139,7 +145,7 @@ class Strings {
 
   //Default cover
   static const String defaultCover =
-      'https://firebasestorage.googleapis.com/v0/b/hivestories-322f6.appspot.com/o/default_cover.png?alt=media&token=448b4123-978e-4dd7-85b2-2f0efe84a541';
+      'https://www.boldstrokesbooks.com/assets/bsb/images/book-default-cover.jpg';
   static const String loginBackgroundImage = 'https://i.pinimg.com/564x/1f/35/90/1f359051b2c7f4a4fcd3b8fcfe960b6a.jpg';
 
   //CONFIG VALUES

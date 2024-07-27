@@ -80,9 +80,7 @@ class _LibraryPage extends State<LibraryPage> {
 
   @override
   Widget build(BuildContext context) {
-    
-   
-
+    initData();
     return Scaffold(
       bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 3,),
       body: SingleChildScrollView(

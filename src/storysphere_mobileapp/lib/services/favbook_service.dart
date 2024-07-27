@@ -21,15 +21,17 @@ class FavBookService {
 
      try {
         final http.Response response = await http.get(uri);
+        
 
         if (response.statusCode == 200) {
+          debugPrint(response.body);
           
           final Map<String, dynamic> temp = jsonDecode(response.body);
           // Truy cập trường result
           final List<dynamic> result = temp['result'];
           final currentPage = temp['currentPage'];
           final totalPage = temp['totalPages'];
-          //debugPrint(result.toString());
+          
           List<FavBook>? data = result.map((json) => FavBook.fromJson(json)).toList();
 
           

@@ -40,7 +40,7 @@ class StoryService {
     };
 
     final Uri uri = Uri.parse('$_apiUrl/favorite-category').replace(queryParameters: queryParams);
-    debugPrint(uri.toString());
+
     try {
         final http.Response response = await http.get(uri);
 
@@ -48,10 +48,15 @@ class StoryService {
           
           final Map<String, dynamic> temp = jsonDecode(response.body);
           // Truy cập trường result
-          final List<dynamic> result = temp['result'];
+          if (temp['result'] != null) {
+            final List<dynamic> result = temp['result'];
           
-          List<Story>? data = result.map((json) => Story.fromJson(json)).toList();
-          return data;
+            List<Story>? data = result.map((json) => Story.fromJson(json)).toList();
+            return data;
+          } else {
+            return null;
+          }
+          
 
         } else {
           debugPrint('Failed to load stories: ${response.statusCode}');
@@ -115,7 +120,6 @@ class StoryService {
         return null;
       }
   }
-
    
   Future<List<Story>?> recentlyUpdated() async {
     final Map<String, String> queryParams = {

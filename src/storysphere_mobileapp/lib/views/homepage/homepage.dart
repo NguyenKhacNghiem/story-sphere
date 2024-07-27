@@ -66,7 +66,7 @@ class _HSHomePage extends State<HSHomePage> {
                     child: Text(Strings.youWouldLike, style: FontConstant.headline2White,),
                   ),
                   5.verticalSpace,
-                  DisplayStoriesFlowHomepageWidget(title: Strings.youWouldLike, id: 'YOUWOULDLIKE', userId: 100000,),
+                  DisplayStoriesFlowHomepageWidget(title: Strings.youWouldLike, id: 'YOUWOULDLIKE', userId: 1000000,),
 
                   //most view stories
                   Padding(

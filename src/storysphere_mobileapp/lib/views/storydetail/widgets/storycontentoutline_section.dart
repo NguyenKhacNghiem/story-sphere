@@ -13,11 +13,7 @@ class StoryContentOutlineWidget extends StatefulWidget {
 }
 
 class _StoryContentOutlineWidget extends State<StoryContentOutlineWidget> {
-  String data =
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan tortor. '
-        'Donec et massa nec ante faucibus luctus. Vivamus scelerisque nibh et semper porta. '
-        'Suspendisse potenti. Integer vehicula, nulla in fermentum fringilla, sapien ligula venenatis elit, '
-        'sed fringilla lorem nulla sed elit. Donec euismod enim in libero ultricies vehicula.';
+  String data = '';
   late Widget showMoreButton;
   bool isExpanded = false;
 
@@ -77,9 +73,7 @@ class _StoryContentOutlineWidget extends State<StoryContentOutlineWidget> {
   
   void initData() {
     // Code ở đây sẽ chỉ chạy một lần khi state được khởi tạo
-    //data = widget.data;
-    
-
+    data = widget.data;
   }
    
 }

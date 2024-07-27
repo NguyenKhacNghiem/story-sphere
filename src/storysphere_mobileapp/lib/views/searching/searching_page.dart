@@ -6,6 +6,7 @@ import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/models/category.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
+import 'package:storysphere_mobileapp/services/category_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 import 'package:storysphere_mobileapp/views/searching/widgets/searchingbar_widget.dart';
 
@@ -22,20 +23,21 @@ class _SearchingPage extends State<SearchingPage> {
   String? selectedBookItem;
   bool isNovelExpanded = false;
   bool isBookExpanded = false;
+  List<Category> categories = [];
 
   Category sampleCategory = Category(
-    categoryId: 100000, categoryName: 'Khoa học kỹ thuật', 
+    categoryId: 100000, categoryName: 'Khoa học kỹ thuật', categoryUrl: 'phi-tieu-thuyet',
     categoryDescription: 'Những câu chuyện giúp bạn không bao giờ cô đơn vì luôn cảm thấy bên cạnh mình luôn có người',
     isCategory: true
   );
 
-  final List<String> dropdownNovelCategories = [
-    'Bí ẩn','Kinh dị', 'Khoan học viễn tưởng', 'Lãng mạn', 'Cổ tích', 'Truyện thiếu nhi','Viễn tưởng'
-  ];
+  List<Category> dropdownNovelCategories = [];
+  //   'Bí ẩn','Kinh dị', 'Khoan học viễn tưởng', 'Lãng mạn', 'Cổ tích', 'Truyện thiếu nhi','Viễn tưởng'
+  // ];
 
-  final List<String> dropdownBookCategories = [
-    'Sách tâm lý', 'Sách kỹ năng', 'Sách y học', 'Sách lịch sử', 'Sách tài chính', 'Sách khoa học công nghệ', 'Sách tôn giáo - tâm linh'
-  ];
+  List<Category> dropdownBookCategories = [];
+  //   'Sách tâm lý', 'Sách kỹ năng', 'Sách y học', 'Sách lịch sử', 'Sách tài chính', 'Sách khoa học công nghệ', 'Sách tôn giáo - tâm linh'
+  // ];
 
   @override
   void dispose() {
@@ -44,6 +46,7 @@ class _SearchingPage extends State<SearchingPage> {
 
   @override
   Widget build(BuildContext context) {
+    initData();
     return Scaffold(
       bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 1),
       body: SingleChildScrollView(
@@ -107,19 +110,18 @@ class _SearchingPage extends State<SearchingPage> {
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: dropdownNovelCategories.map((String item) {
+                      children: dropdownNovelCategories.map((Category item) {
                         return InkWell(
                           onTap: () {
                             Navigator.pop(context);
                             context.pushRoute(FilterByCategoryPage(category: sampleCategory));
                             setState(() {
-                              selectedItem = item;
                               isNovelExpanded = false;
                             });
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: 12.sp, horizontal: 16.sp),
-                            child: Text(item),
+                            child: Text(item.categoryName ?? ''),
                           ),
                         );
                       }).toList(),
@@ -166,19 +168,18 @@ class _SearchingPage extends State<SearchingPage> {
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: dropdownBookCategories.map((String item) {
+                      children: dropdownBookCategories.map((Category item) {
                         return InkWell(
                           onTap: () {
                               Navigator.pop(context);
                               context.pushRoute(FilterByCategoryPage(category: sampleCategory));
                             setState(() {
-                              selectedBookItem = item;
                               isBookExpanded = false;
                             });
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: 12.sp, horizontal: 16.sp),
-                            child: Text(item),
+                            child: Text(item.categoryName?? ''),
                           ),
                         );
                       }).toList(),
@@ -186,11 +187,31 @@ class _SearchingPage extends State<SearchingPage> {
                   )
                 : 0.verticalSpace,
           ),
-          
-
           ],
         )
       )),
     );
    }
+
+   void initData() {
+    // GET DATA
+     if (categories.isEmpty) {
+      final result =  CategoryService().getAllCategory();
+      result.whenComplete(() {
+        result.then((value) {
+          if (value != null) {
+            setState(() {
+              categories = value;
+              //WIDGET PREPARE
+              dropdownNovelCategories = categories.where((category) => 
+                  category.categoryUrl == 'tieu-thuyet').toList();
+
+              dropdownBookCategories = categories.where((category) => 
+                  category.categoryUrl == 'phi-tieu-thuyet').toList();
+            });
+          }
+        });
+      });
+    }
+  }
 }

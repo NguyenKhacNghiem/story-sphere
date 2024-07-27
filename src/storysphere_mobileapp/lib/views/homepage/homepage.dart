@@ -66,7 +66,7 @@ class _HSHomePage extends State<HSHomePage> {
                     child: Text(Strings.youWouldLike, style: FontConstant.headline2White,),
                   ),
                   5.verticalSpace,
-                  const DisplayStoriesFlowHomepageWidget(title: Strings.youWouldLike, id: 'YOUWOULDLIKE'),
+                  DisplayStoriesFlowHomepageWidget(title: Strings.youWouldLike, id: 'YOUWOULDLIKE', userId: 1000000,),
 
                   //most view stories
                   Padding(
@@ -74,15 +74,15 @@ class _HSHomePage extends State<HSHomePage> {
                     child: Text(Strings.hotStories, style: FontConstant.headline2White,),
                   ),
                   5.verticalSpace,
-                  const DisplayStoriesFlowHomepageWidget(title: Strings.hotStories, id: 'HOTSTORIES'),
+                  DisplayStoriesFlowHomepageWidget(title: Strings.hotStories, id: 'HOTSTORIES',),
 
                   //RECENTLY UPDATED
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15.sp),
-                    child: Text(Strings.updatedRecently, style: FontConstant.headline2White,),
+                    child: Text(Strings.updatedRecently, style: FontConstant.headline2White, ),
                   ),
                   5.verticalSpace,
-                  const DisplayStoriesFlowHomepageWidget(title: Strings.updatedRecently, id: 'UPDATEDRECENTLY'),
+                  DisplayStoriesFlowHomepageWidget(title: Strings.updatedRecently, id: 'UPDATEDRECENTLY', userId: 100000,),
 
                   //HIGHLY RECOMMEND
                   Padding(
@@ -90,7 +90,7 @@ class _HSHomePage extends State<HSHomePage> {
                     child: Text(Strings.storyRecommended, style: FontConstant.headline2White,),
                   ),
                   5.verticalSpace,
-                  const DisplayStoriesFlowHomepageWidget(title: Strings.storyRecommended, id: 'STORYRECOMMENDED'),
+                  DisplayStoriesFlowHomepageWidget(title: Strings.storyRecommended, id: 'STORYRECOMMENDED', userId: 100000,),
 
                   30.verticalSpace,
                 ],

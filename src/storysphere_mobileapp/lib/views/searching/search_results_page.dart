@@ -115,6 +115,10 @@ class _SearchingResultsPage extends State<SearchingResultsPage> {
               currentPage = value.currentPage;
               totalPages = value.totalPages;
             });
+          } 
+           else {
+            //content not found
+            notFound = true;
           }
         });
       });

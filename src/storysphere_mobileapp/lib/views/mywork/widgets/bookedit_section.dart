@@ -26,7 +26,7 @@ class BookEditSectionWidget extends StatelessWidget {
             height: 155.sp,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5.sp),
-              child: Image.network(story.storyCover!, fit: BoxFit.cover,))),
+              child: Image.network(story.storyCover ?? Strings.defaultCover, fit: BoxFit.cover,))),
         20.horizontalSpace,
         Column(
           mainAxisAlignment: MainAxisAlignment.start,

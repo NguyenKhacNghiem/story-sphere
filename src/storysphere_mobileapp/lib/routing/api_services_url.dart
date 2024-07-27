@@ -24,6 +24,7 @@ class APIUrlSerivces {
   //story detail
   static const story = '${server}story';
   static const category = '${server}category/no-paging';
+  static const review = '${server}review-story';
 
   //chapter
   static const chapter  = '${server}chapter';

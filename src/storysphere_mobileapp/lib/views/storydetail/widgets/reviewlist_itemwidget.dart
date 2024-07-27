@@ -25,7 +25,6 @@ class _ReviewListItemWidget extends State<ReviewListItemWidget> {
 
   @override
   Widget build(BuildContext context) {
-
     return SingleChildScrollView(
       padding: EdgeInsets.only(top: 10.sp),
       child: 

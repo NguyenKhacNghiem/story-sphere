@@ -44,13 +44,14 @@ dependencies:
   flutter_svg: ^2.0.10+1
   carousel_slider: ^4.2.1
   http: ^1.2.1
-  flutter_quill: 9.3.11
+  # flutter_quill: 9.3.11
   flutter_widget_from_html: ^0.15.1
   shared_preferences: ^2.2.1
   google_sign_in: ^6.2.1
   pin_code_fields: ^8.0.1
   image_picker: ^1.1.2
   html: ^0.15.4
+  html_editor_enhanced: 2.5.1
 
 dev_dependencies:
   flutter_test:

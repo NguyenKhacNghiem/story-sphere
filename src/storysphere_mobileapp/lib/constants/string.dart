@@ -152,6 +152,7 @@ class Strings {
   static const String defaultDateFormat = 'dd/MM/yyyy';
 
   //button title
+  static const String error = 'Có lỗi xảy ra';
   static const String submitPublish = 'Đăng';
   static const String submitForReview = 'Gửi duyệt';
   static const String submitDraft = 'Lưu nháp';

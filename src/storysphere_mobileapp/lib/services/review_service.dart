@@ -58,6 +58,7 @@ class ReviewService {
     'userId': review.userId,
     'storyId': review.storyId,
     'reviewContent': review.reviewContent,
+    'reviewTime': review.reviewTime!.toIso8601String(),
     if (review.ratePoint != null) 'ratePoint': review.ratePoint,
     if (review.replyTo != null) 'replyTo': review.replyTo,
   };

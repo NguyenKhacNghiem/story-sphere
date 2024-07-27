@@ -119,7 +119,10 @@ class UserCoverSectionWidget extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 15.sp, horizontal: 20.sp), // Remove padding
                     minimumSize: Size.zero,   // Remove minimum size constraints
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,),
-                  onPressed: (){}, 
+                  onPressed: (){
+                    Navigator.pop(context);
+                    context.pushRoute(LibraryPage(userId: user.userId ?? -1));
+                  }, 
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,

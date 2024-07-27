@@ -15,7 +15,7 @@ class SPBottomNavigationBar extends StatefulWidget {
 
 class _SPBottomNavigationBarState extends State<SPBottomNavigationBar> {
   int selectedIndex = 0;
-  int currentUser = 100004;
+  int currentUser = 100001;
 
   Future<void> getCurrentUser() async {
     //var currUser = FirebaseAuth.instance.currentUser;

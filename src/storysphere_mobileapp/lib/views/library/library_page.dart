@@ -10,6 +10,7 @@ import 'package:storysphere_mobileapp/services/favbook_service.dart';
 import 'package:storysphere_mobileapp/services/story_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 import 'package:storysphere_mobileapp/views/widgets/book_display_widget.dart';
+import 'package:storysphere_mobileapp/views/widgets/notfound_widget.dart';
 
 @RoutePage()
 class LibraryPage extends StatefulWidget {
@@ -54,7 +55,7 @@ class _LibraryPage extends State<LibraryPage> {
             Text(Strings.yourLibNote, style: FontConstant.categoryDescrip,),
             
             displayStoryList.isEmpty
-            ? const CircularProgressIndicator()
+            ? (!notFound) ? const CircularProgressIndicator() : 0.verticalSpace
             : GridView.builder(
             scrollDirection: Axis.vertical,
             controller: ScrollController(),
@@ -71,7 +72,8 @@ class _LibraryPage extends State<LibraryPage> {
                     story: displayStoryList[index],
                   );
 
-              })
+              }),
+            if (notFound) const NotFoundWidget(),
       ]))),
     );
    }

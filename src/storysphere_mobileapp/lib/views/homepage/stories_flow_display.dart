@@ -44,6 +44,10 @@ class _DisplayStoriesFlowHomepageWidgetState extends State<DisplayStoriesFlowHom
           result =  StoryService().getHorStories();
           break;
           }
+        case 'UPDATEDRECENTLY' :{
+          result =  StoryService().recentlyUpdated();
+          break;
+        }
         case 'STORYRECOMMENDED': {
           result = StoryService().getMostRating();
           break;

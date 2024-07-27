@@ -85,11 +85,41 @@ class StoryService {
         return null;
       }
   }
-
   
   Future<List<Story>?> getMostRating() async {
     final Map<String, String> queryParams = {
       'ratingPoint': '5',
+    };
+
+     final Uri uri = Uri.parse('$_apiUrl/filter').replace(queryParameters: queryParams);
+
+     try {
+        final http.Response response = await http.get(uri);
+
+        if (response.statusCode == 200) {
+          
+          final Map<String, dynamic> temp = jsonDecode(response.body);
+          // Truy cập trường result
+          final List<dynamic> result = temp['result'];
+          //debugPrint(result.toString());
+          List<Story>? data = result.map((json) => Story.fromJson(json)).toList();
+
+        
+          return data.take(5).toList();
+        } else {
+          debugPrint('Failed to load stories: ${response.statusCode}');
+          return null;
+        }
+      } catch (e) {
+        debugPrint('Error occurred: $e');
+        return null;
+      }
+  }
+
+   
+  Future<List<Story>?> recentlyUpdated() async {
+    final Map<String, String> queryParams = {
+      'isLastUpdated': 'true',
     };
 
      final Uri uri = Uri.parse('$_apiUrl/filter').replace(queryParameters: queryParams);

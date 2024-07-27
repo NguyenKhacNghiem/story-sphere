@@ -25,7 +25,7 @@ class ReadingHistory {
   DateTime? lastVisited;
 
   factory ReadingHistory.fromJson(Map<String, dynamic> json) => ReadingHistory(
-        readingHistoryId: json["readingHistoryId"],
+        readingHistoryId: json["_id"],
         userId: json["userId"],
         storyId: json["storyId"],
         chapterId: json["chapterId"],

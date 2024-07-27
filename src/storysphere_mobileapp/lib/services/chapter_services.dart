@@ -45,4 +45,28 @@ class ChapterService {
         return null;
       }
   }
+
+  Future<Chapter?> getChapterById(int id) async {
+     final Uri uri = Uri.parse('$_apiChapter/$id');
+
+     try {
+        final http.Response response = await http.get(uri);
+
+        if (response.statusCode == 200) {
+          final Map<String, dynamic> temp = jsonDecode(response.body);
+          // Truy cập trường result
+          final result = temp['result'];
+          Chapter? data = Chapter.fromJson(result);   
+
+          return data;
+        } else {
+          debugPrint('Failed to load stories: ${response.statusCode}');
+          return null;
+        }
+      } catch (e) {
+        debugPrint('Error occurred: $e');
+        return null;
+      }
+  }
+
 }

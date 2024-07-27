@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/models/reading_history.dart';
+import 'package:storysphere_mobileapp/services/reading_history_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 import 'package:storysphere_mobileapp/views/read_history/widgets/readhist_itemwidget.dart';
 
@@ -17,7 +18,10 @@ class ReadingHistoryPage extends StatefulWidget {
 }
 
 class _ChapterListPage extends State<ReadingHistoryPage> {
-  late List<ReadingHistory> readingHistoryList;
+  List<ReadingHistory> readingHistoryList = [];
+  int currentPage = 1;
+  int totalPages = 1;
+  bool noHistory = false;
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +40,18 @@ class _ChapterListPage extends State<ReadingHistoryPage> {
               40.verticalSpace,
               Text(Strings.readHistory, style: FontConstant.titleBigDisplayWhite,),
 
-
-              ListView.builder(
+            readingHistoryList.isEmpty
+            ? noHistory ? 0.verticalSpace : const CircularProgressIndicator()
+            :  ListView.builder(
                 scrollDirection: Axis.vertical,
                 controller: ScrollController(),
                 physics: const ClampingScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: readingHistoryList.length,
                 itemBuilder: (context, index) {
-                  return HistoryItemWidget(readingHistory: readingHistoryList.elementAt(index)); 
+                  return Padding(padding: EdgeInsets.symmetric(vertical: 10.sp),
+                  child: 
+                    HistoryItemWidget(readingHistory: readingHistoryList.elementAt(index))); 
                 }),
               
             ],
@@ -55,10 +62,22 @@ class _ChapterListPage extends State<ReadingHistoryPage> {
 
   initData(){
     //get data
-    readingHistoryList = [
-      ReadingHistory(
-        readingHistoryId: 1, storyId: 1, chapterId: 1, lastVisited: DateTime.now(),
-      )
-    ];
+    if (readingHistoryList.isEmpty) {
+      final result =  ReadingHistoryService().getHistoryByUserId(widget.userId, currentPage);
+      result.whenComplete(() {
+        result.then((value) {
+          if (value != null) {
+            setState(() {
+              readingHistoryList = value.result;
+              currentPage = value.currentPage;
+              totalPages = value.totalPages;
+            });
+          } else {
+            noHistory = true;
+          }
+        });
+      });
+    }
+
   }
 }

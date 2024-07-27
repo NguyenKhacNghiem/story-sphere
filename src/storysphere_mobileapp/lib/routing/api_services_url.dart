@@ -21,6 +21,9 @@ class APIUrlSerivces {
   //library
   static const favBook = '${server}fav-book';
 
+  //reading history
+  static const readingHistory = '${server}reading-history';
+
   //story detail
   static const story = '${server}story';
   static const category = '${server}category/no-paging';

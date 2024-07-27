@@ -225,7 +225,7 @@ class Strings {
   // modal
   static const String close = 'Close';
   static const String saveChange = 'Lưu thay đổi';
-
+  static const String deletedContent = 'Nội dung đã bị xóa';
   static const String next = 'Tiếp';
   static const String nextPage = '>';
   static const String previousPage = '<';

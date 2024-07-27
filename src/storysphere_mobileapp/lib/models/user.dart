@@ -43,7 +43,7 @@ class User {
         role: json["role"],
         displayName: json["displayName"],
         selfIntroduction: json["selfIntroduction"],
-        dateOfBirth: DateTime.parse(json["dateOfBirth"]),
+        dateOfBirth: DateTime.tryParse(json["dateOfBirth"]),
         favGenreKeywords: json["favGenreKeywords"],
         accountBalance: json["accountBalance"]*1.0,
         avatar: json["avatar"],

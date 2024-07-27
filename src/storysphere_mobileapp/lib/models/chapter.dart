@@ -44,7 +44,7 @@ class Chapter {
   double? chapterSellPrice;
 
   factory Chapter.fromJson(Map<String, dynamic> json) => Chapter(
-        chapterId: json["chapterId"],
+        chapterId: json["_id"],
         fkStoryId: json["fk_storyId"],
         chapterName: json["chapterName"].toString(),
         chapterUrlKey: json["chapterUrlKey"].toString(),

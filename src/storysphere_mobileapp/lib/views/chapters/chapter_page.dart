@@ -209,7 +209,7 @@ class _ChapterPage extends State<ChapterPage> {
               20.horizontalSpace,
               InkWell(
                 onTap: (){
-                  context.pushRoute(AddCommentPage(chapterId: widget.chapter.chapterId ?? -1));
+                  context.pushRoute(AddCommentPage(chapterId: chapter.chapterId ?? -1));
                 },
                 child: IconsSVG.commentBig,
               ),

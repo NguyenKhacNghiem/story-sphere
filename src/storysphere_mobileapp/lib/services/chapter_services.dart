@@ -30,7 +30,6 @@ class ChapterService {
           final List<dynamic> result = temp['result'];
           final currentPage = temp['currentPage'];
           final totalPage = temp['totalPages'];
-          debugPrint(result.toString());
           List<Chapter> data = result.map((json) => Chapter.fromJson(json)).toList();   
 
           

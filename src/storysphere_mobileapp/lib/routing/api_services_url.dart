@@ -28,6 +28,9 @@ class APIUrlSerivces {
   //chapter
   static const chapter  = '${server}chapter';
 
+  //comment
+  static const comment = '${server}comment';
+
   //my works
   static const createStory = '${server}story/create';
 }

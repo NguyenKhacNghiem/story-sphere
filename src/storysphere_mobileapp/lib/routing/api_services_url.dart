@@ -18,8 +18,12 @@ class APIUrlSerivces {
   static const filter = '${server}story/filter';
   static const search = '${server}story/search';
 
+  //library
+  static const favBook = '${server}fav-book';
+
   //story detail
   static const storyById = '${server}story/id';
+  static const category = '${server}category/no-paging';
 
   //chapter
   static const chapter  = '${server}chapter';

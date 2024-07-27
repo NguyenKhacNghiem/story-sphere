@@ -202,19 +202,16 @@ class _SearchingPage extends State<SearchingPage> {
           if (value != null) {
             setState(() {
               categories = value;
+              //WIDGET PREPARE
+              dropdownNovelCategories = categories.where((category) => 
+                  category.categoryUrl == 'tieu-thuyet').toList();
+
+              dropdownBookCategories = categories.where((category) => 
+                  category.categoryUrl == 'phi-tieu-thuyet').toList();
             });
           }
         });
       });
-
-      //WIDGET PREPARE
-      dropdownNovelCategories = categories.where((category) => 
-          category.categoryUrl == 'tieu-thuyet').toList();
-
-      dropdownBookCategories = categories.where((category) => 
-          category.categoryUrl == 'phi-tieu-thuyet').toList();
-
-
     }
   }
 }

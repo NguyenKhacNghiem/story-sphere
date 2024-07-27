@@ -23,9 +23,9 @@ class CategoryService {
           final Map<String, dynamic> temp = jsonDecode(response.body);
           // Truy cập trường result
           final List<dynamic> result = temp['result'];
-          //debugPrint(result.toString());
+          
           List<Category>? data = result.map((json) => Category.fromJson(json)).toList();
-
+          //debugPrint('Data length:' + data.length.toString());
           
           return data;
         } else {

@@ -2226,3 +2226,65 @@
 [INFO]  27/07/2024 02:46:18 Lấy danh sách danh mục thành công
 [INFO]  27/07/2024 02:47:43 Lấy danh sách danh mục thành công
 [INFO]  27/07/2024 02:47:49 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 14:02:29 API server has been started.
+[INFO]  27/07/2024 14:02:30 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 14:02:55 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 14:02:56 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 14:02:56 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 14:03:18 Lấy thông tin người dùng thành công
+[INFO]  27/07/2024 14:03:23 Lấy thông tin tác phẩm thành công
+[INFO]  27/07/2024 14:03:26 Lấy thông tin tác phẩm thành công
+[INFO]  27/07/2024 14:03:32 Lấy thông tin tác phẩm thành công
+[INFO]  27/07/2024 14:03:40 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 14:03:43 Lọc tác phẩm thành công
+[INFO]  27/07/2024 14:03:48 Lấy thông tin danh mục thành công
+[INFO]  27/07/2024 14:03:56 Lấy danh sách người dùng thành công
+[INFO]  27/07/2024 20:33:12 API server has been started.
+[INFO]  27/07/2024 20:33:13 Lấy danh sách người dùng thành công
+[INFO]  27/07/2024 20:33:14 Lấy danh sách danh mục thành công
+[INFO]  27/07/2024 20:33:15 Lấy danh sách người dùng thành công
+[INFO]  27/07/2024 20:33:18 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 20:35:47 API server has been started.
+[INFO]  27/07/2024 20:52:40 API server has been started.
+[INFO]  27/07/2024 20:53:02 API server has been started.
+[INFO]  27/07/2024 20:53:12 API server has been started.
+[INFO]  27/07/2024 20:53:54 API server has been started.
+[INFO]  27/07/2024 20:55:11 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 20:55:11 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 20:55:22 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 20:55:26 Lấy thông tin người dùng thành công
+[INFO]  27/07/2024 20:56:00 Lấy thông tin tác phẩm thành công
+[INFO]  27/07/2024 20:57:27 Lấy thông tin người dùng thành công
+[INFO]  27/07/2024 20:58:06 Lấy thông tin người dùng thành công
+[INFO]  27/07/2024 20:58:09 Lấy thông tin người dùng thành công
+[INFO]  27/07/2024 20:59:02 Lấy thông tin người dùng thành công
+[INFO]  27/07/2024 20:59:11 Lấy thông tin tác phẩm thành công
+[INFO]  27/07/2024 21:01:54 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 21:01:56 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 21:01:57 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 21:01:57 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 21:01:57 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 21:02:02 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 21:02:02 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 21:02:03 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 21:03:24 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 21:06:25 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 21:06:27 Lấy thông tin người dùng thành công
+[INFO]  27/07/2024 21:06:39 Tìm tác phẩm thành công
+[INFO]  27/07/2024 21:06:43 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 21:06:45 Lấy thông tin tác phẩm thành công
+[INFO]  27/07/2024 21:07:40 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 21:07:41 Lấy thông tin người dùng thành công
+[INFO]  27/07/2024 21:07:50 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 21:07:50 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 21:07:51 Lấy thông tin người dùng thành công
+[INFO]  27/07/2024 21:07:55 Lấy thông tin người dùng thành công
+[INFO]  27/07/2024 21:07:58 Lấy thông tin người dùng thành công
+[INFO]  27/07/2024 21:09:45 Lấy danh sách tác phẩm thành công
+[INFO]  27/07/2024 21:09:46 Lấy thông tin người dùng thành công
+[INFO]  27/07/2024 21:09:48 Lấy thông tin người dùng thành công
+[INFO]  27/07/2024 21:09:51 Lấy thông tin người dùng thành công
+[INFO]  27/07/2024 21:09:57 Lấy thông tin tác phẩm thành công
+[INFO]  27/07/2024 21:10:06 Lấy thông tin tác phẩm thành công
+[INFO]  27/07/2024 21:10:11 Lấy thông tin tác phẩm thành công
+[INFO]  27/07/2024 21:10:17 Lấy danh sách danh mục thành công

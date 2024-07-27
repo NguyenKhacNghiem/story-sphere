@@ -148,7 +148,7 @@ function showResult(json) {
                         <td>${story.publisherName}</td>
                         <td>${story.chapterCount}</td>
                         <td><a onclick="showModalUserDetail('${story.fk_publisherAccount}')" href="#" class="text-decoration-underline">${story.fk_publisherAccount}</a></td>
-                        <td>${story.createdDate}</td>
+                        <td>${formatDateTime(story.createdDate)}</td>
                         <td>${story.published ? 
                             "<span class='badge badge-success rounded-pill d-inline'>Đã đăng</span>" :
                             "<span class='badge badge-danger rounded-pill d-inline'>Chưa đăng</span>"}
@@ -224,7 +224,7 @@ function showModalStoryDetail(_id) {
             detailName.innerHTML = json.result.storyName;
             detailAuthor.innerHTML = json.result.authorName; 
             detailUser.innerHTML = json.result.fk_publisherAccount;
-            detailCreateDate.innerHTML = json.result.createdDate; 
+            detailCreateDate.innerHTML = formatDateTime(json.result.createdDate); 
             showStarRating(json.result.ratingPoint - 0);
             detailView.innerHTML = formatNumber(json.result.viewCount - 0); 
             detailVote.innerHTML = formatNumber(json.result.voteCount - 0); 
@@ -240,7 +240,7 @@ function showModalStoryDetail(_id) {
             detailStatus.innerHTML = "<b>Trạng thái: </b>" + (json.result.published ? 
             "<span class='badge badge-success rounded-pill d-inline'>Đã đăng</span>" :
             "<span class='badge badge-danger rounded-pill d-inline'>Chưa đăng</span>");
-            detailPublishDate.innerHTML = "<b>Ngày phát hành: </b>" + json.result.publishDate; 
+            detailPublishDate.innerHTML = "<b>Ngày phát hành: </b>" + formatDateTime(json.result.publishDate); 
             detailCommercial.innerHTML = "<b>Sách thương mại: </b>" + (json.result.commercialActivated ? '<i class="fa-solid fa-thumbs-up text-success"></i>' : '<i class="fa-solid fa-thumbs-down text-danger"></i>');
             detailPrice.innerHTML = "<b>Giá bán: </b>" + json.result.storySellPrice.toLocaleString('vi-VN') + "đ";
 
@@ -308,7 +308,7 @@ function showModalUserDetail(_id) {
             detailUserEmail.innerHTML = "<b>Email: </b>" + json.result.email;
             detailUserRole.innerHTML = "<b>Vai trò: </b>" + json.result.role;
             detailUserSelfIntroduction.innerHTML = "<b>Giới thiệu: </b>" + json.result.selfIntroduction;
-            detailUserDateOfBirth.innerHTML = "<b>Ngày sinh: </b>" + json.result.dateOfBirth;
+            detailUserDateOfBirth.innerHTML = "<b>Ngày sinh: </b>" + formatDateTime(json.result.dateOfBirth);
             detailUserFavGenreKeywords.innerHTML = "<b>Thể loại yêu thích: </b>" + json.result.favGenreKeywords;
             detailUserAccountBalance.innerHTML = "<b>Số dư: </b>" + json.result.accountBalance.toLocaleString('vi-VN') + "đ";
 

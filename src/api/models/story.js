@@ -62,11 +62,11 @@ let storySchema = new Schema({
     },
     createdDate: {
         type: String,
-        default: utils.getCurrentDate(),
+        default: utils.getCurrentDateTime(),
     },
     lastUpdate: {
         type: String,
-        default: utils.getCurrentDate(),
+        default: utils.getCurrentDateTime(),
     },
     commercialActivated: Boolean,
     storySellPrice: Number,

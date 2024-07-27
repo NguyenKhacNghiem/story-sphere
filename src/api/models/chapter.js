@@ -49,11 +49,11 @@ let chapterSchema = new Schema({
     wordsCount : Number,
     createDate : {
         type: String,
-        default: utils.getCurrentDate(),
+        default: utils.getCurrentDateTime(),
     },
     lastUpdate : {
         type: String,
-        default: utils.getCurrentDate(),
+        default: utils.getCurrentDateTime(),
     },
     commercialActivated : Boolean,
     chapterSellPrice : Number,

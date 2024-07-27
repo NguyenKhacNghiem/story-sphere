@@ -36,14 +36,18 @@ class _DisplayStoriesFlowHomepageWidgetState extends State<DisplayStoriesFlowHom
       final result;
       switch (id) {
         case 'YOUWOULDLIKE': {
-                      //result =  StoryService().getStoryByFavGenre(userId);
-                      result =  StoryService().getHorStories();
-                      break;
-                      }
+          //result =  StoryService().getStoryByFavGenre(userId);
+           result =  StoryService().getHorStories();
+          break;
+          }
         case 'HOTSTORIES': {
-                      result =  StoryService().getHorStories();
-                      break;
-                      }
+          result =  StoryService().getHorStories();
+          break;
+          }
+        case 'STORYRECOMMENDED': {
+          result = StoryService().getMostRating();
+          break;
+        }
         default: {
            result =  StoryService().getHorStories();
            break;
@@ -56,8 +60,7 @@ class _DisplayStoriesFlowHomepageWidgetState extends State<DisplayStoriesFlowHom
           if (value != null) {
             setState(() {
               bookList = value;
-              debugPrint('Length: ' + bookList.length.toString());
-              debugPrint(bookList.elementAt(0).storyName.toString());
+              debugPrint('Length: ' + id + bookList.length.toString());
             });
           }
         });

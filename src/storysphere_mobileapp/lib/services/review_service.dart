@@ -51,4 +51,29 @@ class ReviewService {
       }
   }
 
+  Future<http.Response> sendReview(Review review) async {
+  final url = Uri.parse('$_apiUrl/create');
+  final headers = {'Content-Type': 'application/json'};
+  final Map<String, dynamic> reviewData = {
+    'userId': review.userId,
+    'storyId': review.storyId,
+    'reviewContent': review.reviewContent,
+    if (review.ratePoint != null) 'ratePoint': review.ratePoint,
+    if (review.replyTo != null) 'replyTo': review.replyTo,
+  };
+
+  final response = await http.post(
+    url,
+    headers: headers,
+    body: jsonEncode(reviewData),
+  );
+
+  if (response.statusCode == 200) {
+    // Success
+    return response;
+  } else {
+    // Error
+    throw Exception('Failed to send review');
+  }
+}
 }

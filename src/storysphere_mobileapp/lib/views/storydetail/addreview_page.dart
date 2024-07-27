@@ -2,11 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
+import 'package:storysphere_mobileapp/models/review.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
+import 'package:storysphere_mobileapp/services/review_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 
@@ -26,12 +29,14 @@ class _AddReviewPage extends State<AddReviewPage> {
   int wordcount = 0;
   final FocusNode focusNode = FocusNode();
   late bool isKeyboardVisible;
+  int userId = -1;
 
   
   @override
   void initState() {
     super.initState();
     reviewContentController.addListener(onFocusChanged);
+    _loadUserId();
   }
 
   @override
@@ -217,7 +222,7 @@ class _AddReviewPage extends State<AddReviewPage> {
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
                             ),
                       onPressed: () {
-                      
+                        validationAndSubmit();
                       },
                     child: Container(
                       decoration: BoxDecoration(
@@ -244,11 +249,6 @@ class _AddReviewPage extends State<AddReviewPage> {
           ],
         ),
       );
-      
-      
-      
-      
-    
    }
 
   initData(){
@@ -270,4 +270,30 @@ class _AddReviewPage extends State<AddReviewPage> {
         ),
       );
    }
+
+  Future<void> validationAndSubmit() async {
+    Review newReview = Review();
+    newReview.ratePoint = ratePoint;
+    newReview.replyTo = null;
+    newReview.reviewTime = DateTime.now();
+    newReview.userId = 100004;
+    newReview.reviewContent = 'clkjascke';
+    newReview.storyId = widget.story.storyId;
+
+    try {
+      final response = await ReviewService().sendReview(newReview);
+      debugPrint('Review sent successfully: ${response.body}');
+    } catch (e) {
+      debugPrint('Error sending review: $e');
+    }
+    
+    
+  }
+
+  Future<void> _loadUserId() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userId = prefs.getInt('userId') ?? -1;
+    });
+  }
 }

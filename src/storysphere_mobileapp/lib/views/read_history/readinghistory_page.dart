@@ -53,6 +53,12 @@ class _ChapterListPage extends State<ReadingHistoryPage> {
                   child: 
                     HistoryItemWidget(readingHistory: readingHistoryList.elementAt(index))); 
                 }),
+
+              20.verticalSpace,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: _buildPageButtons(),
+              ),
               
             ],
           )
@@ -80,4 +86,53 @@ class _ChapterListPage extends State<ReadingHistoryPage> {
     }
 
   }
+
+   
+
+  List<Widget> _buildPageButtons() {
+    List<Widget> buttons = [];
+
+    // Add previous button if not on the first page
+    if (currentPage > 1) {
+      buttons.add(
+        _buildPageButton(currentPage - 1, 'Previous'),
+      );
+    }
+
+    // Add page number buttons
+    for (int i = 1; i <= totalPages; i++) {
+      buttons.add(
+        _buildPageButton(i, i.toString()),
+      );
+    }
+
+    // Add next button if not on the last page
+    if (currentPage < totalPages) {
+      buttons.add(
+        _buildPageButton(currentPage + 1, 'Next'),
+      );
+    }
+
+    return buttons;
+  }
+
+  Widget _buildPageButton(int pageNumber, String label) {
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: ElevatedButton(
+        onPressed: () {
+          setState(() {
+            currentPage = pageNumber;
+          });
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: currentPage == pageNumber ? Colors.blue : Colors.grey,
+        ),
+        child: Text(label, style: FontConstant.buttonTextWhite,),
+      ),
+    );
+  }
+
+
+
 }

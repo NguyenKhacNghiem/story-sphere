@@ -24,7 +24,6 @@ class FavBookService {
         
 
         if (response.statusCode == 200) {
-          debugPrint(response.body);
           
           final Map<String, dynamic> temp = jsonDecode(response.body);
           // Truy cập trường result

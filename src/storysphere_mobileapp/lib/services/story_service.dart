@@ -11,7 +11,7 @@ class StoryService {
   static const String _apiUrl = APIUrlSerivces.story;
 
   Future<Story?> getStoryById(int storyId) async {
-     final Uri uri = Uri.parse('$_apiUrl/id/$storyId');
+     final Uri uri = Uri.parse('$_apiUrl/$storyId');
 
      try {
         final http.Response response = await http.get(uri);
@@ -21,7 +21,7 @@ class StoryService {
           final Map<String, dynamic> temp = jsonDecode(response.body);
           // Truy cập trường result
           final result = temp['result'];
-          Story? data = result.map((json) => Story.fromJson(json)).toList();
+          Story? data = Story.fromJson(result);
           return data;
 
         } else {

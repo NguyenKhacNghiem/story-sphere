@@ -7,6 +7,7 @@ import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/user.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
+import 'package:storysphere_mobileapp/services/account_service.dart';
 import 'package:storysphere_mobileapp/views/account/widgets/user_avatar_section.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 
@@ -21,28 +22,34 @@ class UserAccountPage extends StatefulWidget {
 
 class _UserAccountPage extends State<UserAccountPage> {
   late int userId;
-  User currUser = User(
-    userId: 1, userPassword: 'kcaoico02ic', dateOfBirth: DateTime.tryParse('17/07/2005'),
-    username: 'nguyenthanhdanh', displayName: 'Nguyễn Thành Danh', selfIntroduction: 'Giới thiệu tác giả không có gì để ghi\nCũng chẳng có gì để xem',
-    avatar: 'https://i.pinimg.com/564x/4b/79/a5/4b79a5084ea8aba629b601cc209c11a7.jpg',
-    bgImg: 'https://i.pinimg.com/564x/58/6d/4c/586d4c295438d50d25cbd4a287800b02.jpg',
-  );
+  User? currUser; 
+  // User(
+  //   userId: 1, userPassword: 'kcaoico02ic', dateOfBirth: DateTime.tryParse('17/07/2005'),
+  //   username: 'nguyenthanhdanh', displayName: 'Nguyễn Thành Danh', selfIntroduction: 'Giới thiệu tác giả không có gì để ghi\nCũng chẳng có gì để xem',
+  //   avatar: 'https://i.pinimg.com/564x/4b/79/a5/4b79a5084ea8aba629b601cc209c11a7.jpg',
+  //   bgImg: 'https://i.pinimg.com/564x/58/6d/4c/586d4c295438d50d25cbd4a287800b02.jpg',
+  // );
 
   @override
   Widget build(BuildContext context) {
-   
-
+    userId = widget.userId;
+    if (currUser == null) {
+      initData();
+    }
     return Scaffold(
       bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 4),
       backgroundColor: ColorConstants.darkGreenBackground,
       body: Container(
         color: ColorConstants.darkGreenBackground,
-        child: Column(
+        child: 
+        currUser == null 
+        ? const Center(child:  CircularProgressIndicator())
+        : Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            UserCoverSectionWidget(user: currUser),
+            UserCoverSectionWidget(user: currUser!),
 
             Container(
               width: MediaQuery.of(context).size.width*0.8,
@@ -54,6 +61,7 @@ class _UserAccountPage extends State<UserAccountPage> {
             Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
+                //EDIT ACCOUNT
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                     backgroundColor: ColorConstants.primaryText,
@@ -62,7 +70,7 @@ class _UserAccountPage extends State<UserAccountPage> {
                     minimumSize: Size.zero,   // Remove minimum size constraints
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,),
                   onPressed: (){
-                    context.pushRoute(EditAccountPage(user: currUser));
+                    context.pushRoute(EditAccountPage(user: currUser!));
                   }, 
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,6 +92,7 @@ class _UserAccountPage extends State<UserAccountPage> {
                   color: ColorConstants.formStrokeColor,
                 ),
 
+                //READING HISTORY
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                     backgroundColor: ColorConstants.primaryText,
@@ -91,7 +100,9 @@ class _UserAccountPage extends State<UserAccountPage> {
                     padding: EdgeInsets.symmetric(vertical: 15.sp, horizontal: 20.sp), // Remove padding
                     minimumSize: Size.zero,   // Remove minimum size constraints
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,),
-                  onPressed: (){}, 
+                  onPressed: (){
+                    context.pushRoute(ReadingHistoryPage(userId: userId));
+                  }, 
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -113,6 +124,7 @@ class _UserAccountPage extends State<UserAccountPage> {
                     color: ColorConstants.formStrokeColor,
                   ),
 
+                //log out
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                     backgroundColor: ColorConstants.primaryText,
@@ -128,9 +140,9 @@ class _UserAccountPage extends State<UserAccountPage> {
                       Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
-                          IconsSVG.notiBlack,
+                          IconsSVG.logout,
                           10.horizontalSpace,
-                          Text(Strings.notification, style: FontConstant.headline3, textAlign: TextAlign.center,)
+                          Text(Strings.logOut, style: FontConstant.headline3, textAlign: TextAlign.center,)
                         ],
                       ),
                       IconsSVG.arrowRight,
@@ -140,5 +152,19 @@ class _UserAccountPage extends State<UserAccountPage> {
         )
       ),
     );
+    
    }
+
+  void initData(){
+      final result =  AccountService().getUserById(userId);
+      result.whenComplete(() {
+        result.then((value) {
+          if (value != null) {
+            setState(() {
+              currUser = value;
+            });
+          }
+        });
+      });
+  }
 }

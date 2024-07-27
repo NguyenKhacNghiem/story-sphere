@@ -1,14 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:html_editor_enhanced/html_editor.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
+import 'package:storysphere_mobileapp/models/review.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
+import 'package:storysphere_mobileapp/services/review_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
-import 'package:flutter_quill/flutter_quill.dart' as quill;
+import 'package:storysphere_mobileapp/views/main_widgets/hs_enhanced_html_editor.dart';
 
 @RoutePage()
 class AddReviewPage extends StatefulWidget {
@@ -22,45 +25,30 @@ class AddReviewPage extends StatefulWidget {
 class _AddReviewPage extends State<AddReviewPage> {
   late Widget fromStory;
   int ratePoint = 0;
-  final quill.QuillController reviewContentController = quill.QuillController.basic();
-  int wordcount = 0;
-  final FocusNode focusNode = FocusNode();
+  final HtmlEditorController reviewContentController = HtmlEditorController();
+  late HSEnhancedHtmlEditor contentEditor;
   late bool isKeyboardVisible;
+  int userId = -1;
 
   
   @override
   void initState() {
     super.initState();
-    reviewContentController.addListener(onFocusChanged);
+    _loadUserId();
   }
 
   @override
   void dispose() {
-    reviewContentController.dispose();
-    reviewContentController.removeListener(onFocusChanged);
     super.dispose();
   }
 
-  void onFocusChanged() {
-    String? plainText = reviewContentController.getPlainText();
-    
-    debugPrint(plainText);
-    setState(() {
-      if (plainText != "") {     
-        wordcount = plainText.split(' ').length;
-      } else {
-        wordcount = 0;
-      }
-    });
-     
-  }
 
   @override
   Widget build(BuildContext context) {
-    initData();
     double screenWidth = MediaQuery.of(context).size.width;
     double screnHeight = MediaQuery.of(context).size.height;
     isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
+    initData();
 
     return Scaffold(
       bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 1),
@@ -177,34 +165,7 @@ class _AddReviewPage extends State<AddReviewPage> {
                     20.verticalSpace,
 
                     //REVIEW CONTENT
-                    Container(
-                      color: ColorConstants.secondaryText,
-                      child: 
-                      QuillToolbar.simple(
-                        configurations: QuillSimpleToolbarConfigurations(
-                          controller: reviewContentController,
-                          color: ColorConstants.secondaryText,
-                          toolbarIconAlignment: WrapAlignment.center,
-                          multiRowsDisplay: false,
-                          toolbarIconCrossAlignment: WrapCrossAlignment.center,
-                          showAlignmentButtons: false,
-                        ),
-                    )),
-                    Container(
-                      height: isKeyboardVisible ? 280.sp:  450.sp,
-                      padding: EdgeInsets.all(10.sp),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: ColorConstants.formStrokeColor),
-                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5.sp), bottomRight: Radius.circular(5.sp))
-                      ),
-                      child: quill.QuillEditor.basic(
-                        configurations: QuillEditorConfigurations(
-                            controller: reviewContentController,
-                            autoFocus: false,
-                          ),
-                          focusNode: focusNode, 
-                      ),
-                    ),
+                    contentEditor,
                     
                     //SUBMIT BUTTON
                     20.verticalSpace,
@@ -217,7 +178,7 @@ class _AddReviewPage extends State<AddReviewPage> {
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
                             ),
                       onPressed: () {
-                      
+                        validationAndSubmit();
                       },
                     child: Container(
                       decoration: BoxDecoration(
@@ -244,14 +205,14 @@ class _AddReviewPage extends State<AddReviewPage> {
           ],
         ),
       );
-      
-      
-      
-      
-    
    }
 
   initData(){
+    contentEditor = HSEnhancedHtmlEditor(
+      controller: reviewContentController,
+      initialValue: '',
+      initialHeight:  isKeyboardVisible ? 280.sp:  450.sp,
+    );
     fromStory = Center(
         child: Text.rich(
           TextSpan(
@@ -270,4 +231,31 @@ class _AddReviewPage extends State<AddReviewPage> {
         ),
       );
    }
+
+  Future<void> validationAndSubmit() async {
+    Review newReview = Review();
+     var temptstoryContentString = reviewContentController.getText();
+    temptstoryContentString.whenComplete(() => temptstoryContentString.then((value) async {
+      newReview.reviewContent = value;
+      newReview.ratePoint = ratePoint;
+      newReview.replyTo = null;
+      newReview.reviewTime = DateTime.now();
+      newReview.userId = userId;
+      newReview.storyId = widget.story.storyId;
+
+    try {
+      final response = await ReviewService().sendReview(newReview);
+      debugPrint('Review sent successfully: ${response.body}');
+    } catch (e) {
+      debugPrint('Error sending review: $e');
+    }
+    }));
+  }
+
+  Future<void> _loadUserId() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userId = prefs.getInt('userId') ??  100004;
+    });
+  }
 }

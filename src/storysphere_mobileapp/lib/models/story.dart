@@ -67,7 +67,7 @@ class Story {
        bookAuthorName: json["authorName"],
        bookPublisherName: json["publisherName"],
        bookISBNcode: json["ISBNcode"],
-        bookPublishDate: DateTime.parse(json["publishDate"]),
+        bookPublishDate: DateTime.tryParse(json["publishDate"]),
        categoriesAndTags: json["categoriesAndTags"].toString(),
         selfComposedStory: json["selfComposedStory"],
         matureContent: json["matureContent"],

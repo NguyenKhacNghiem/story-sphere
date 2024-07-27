@@ -21,13 +21,23 @@ class APIUrlSerivces {
   //library
   static const favBook = '${server}fav-book';
 
+  //reading history
+  static const readingHistory = '${server}reading-history';
+
   //story detail
   static const story = '${server}story';
   static const category = '${server}category/no-paging';
+  static const review = '${server}review-story';
 
   //chapter
   static const chapter  = '${server}chapter';
 
+  //comment
+  static const comment = '${server}comment';
+
   //my works
   static const createStory = '${server}story/create';
+
+  //user
+  static const account = '${server}user/profile';
 }

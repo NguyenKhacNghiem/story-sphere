@@ -27,7 +27,7 @@ class Review {
   int? replyTo;
 
   factory Review.fromJson(Map<String, dynamic> json) => Review(
-        reviewId: json["reviewId"],
+        reviewId: json["_id"],
         userId: json["userId"],
         storyId: json["storyId"],
         ratePoint: json["ratePoint"],

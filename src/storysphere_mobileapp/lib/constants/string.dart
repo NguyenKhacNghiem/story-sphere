@@ -35,7 +35,7 @@ class Strings {
   static const String myWorks = 'Tác phẩm của tôi';
   static const String editProfile = 'Chỉnh sửa tài khoản';
   static const String readHistory = 'Lịch sử đọc';
-  static const String notification = 'Thông báo';
+  static const String logOut = 'Đăng xuất';
   static const String previewAvatar = 'Ảnh đại diện';
   static const String userName = 'Tên người dùng';
   static const String userIntroduction = 'Giới thiệu';
@@ -152,6 +152,7 @@ class Strings {
   static const String defaultDateFormat = 'dd/MM/yyyy';
 
   //button title
+  static const String error = 'Có lỗi xảy ra';
   static const String submitPublish = 'Đăng';
   static const String submitForReview = 'Gửi duyệt';
   static const String submitDraft = 'Lưu nháp';
@@ -225,7 +226,7 @@ class Strings {
   // modal
   static const String close = 'Close';
   static const String saveChange = 'Lưu thay đổi';
-
+  static const String deletedContent = 'Nội dung đã bị xóa';
   static const String next = 'Tiếp';
   static const String nextPage = '>';
   static const String previousPage = '<';

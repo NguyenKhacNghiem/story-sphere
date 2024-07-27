@@ -66,7 +66,7 @@ class _HSHomePage extends State<HSHomePage> {
                     child: Text(Strings.youWouldLike, style: FontConstant.headline2White,),
                   ),
                   5.verticalSpace,
-                  DisplayStoriesFlowHomepageWidget(title: Strings.youWouldLike, id: 'YOUWOULDLIKE', userId: 1000000,),
+                  DisplayStoriesFlowHomepageWidget(title: Strings.youWouldLike, id: 'YOUWOULDLIKE', userId: 100000,),
 
                   //most view stories
                   Padding(
@@ -82,7 +82,7 @@ class _HSHomePage extends State<HSHomePage> {
                     child: Text(Strings.updatedRecently, style: FontConstant.headline2White, ),
                   ),
                   5.verticalSpace,
-                  DisplayStoriesFlowHomepageWidget(title: Strings.updatedRecently, id: 'UPDATEDRECENTLY', userId: 100000,),
+                  DisplayStoriesFlowHomepageWidget(title: Strings.updatedRecently, id: 'UPDATEDRECENTLY'),
 
                   //HIGHLY RECOMMEND
                   Padding(
@@ -90,7 +90,7 @@ class _HSHomePage extends State<HSHomePage> {
                     child: Text(Strings.storyRecommended, style: FontConstant.headline2White,),
                   ),
                   5.verticalSpace,
-                  DisplayStoriesFlowHomepageWidget(title: Strings.storyRecommended, id: 'STORYRECOMMENDED', userId: 100000,),
+                  DisplayStoriesFlowHomepageWidget(title: Strings.storyRecommended, id: 'STORYRECOMMENDED'),
 
                   30.verticalSpace,
                 ],

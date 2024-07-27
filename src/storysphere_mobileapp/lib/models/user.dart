@@ -36,16 +36,16 @@ class User {
   String? bgImg;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        userId: json["userId"],
+        userId: json["_id"],
         username: json["username"],
         userPassword: json["userPassword"],
         email: json["email"],
         role: json["role"],
         displayName: json["displayName"],
         selfIntroduction: json["selfIntroduction"],
-        dateOfBirth: DateTime.parse(json["dateOfBirth"]),
+        dateOfBirth: DateTime.tryParse(json["dateOfBirth"]),
         favGenreKeywords: json["favGenreKeywords"],
-        accountBalance: json["accountBalance"],
+        accountBalance: json["accountBalance"]*1.0,
         avatar: json["avatar"],
         bgImg: json["bgImg"],
 

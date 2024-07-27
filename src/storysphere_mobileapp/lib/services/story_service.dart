@@ -1,7 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:storysphere_mobileapp/models/pagination_result.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
 import 'package:storysphere_mobileapp/routing/api_services_url.dart';
 
@@ -11,7 +11,7 @@ class StoryService {
   static const String _apiUrl = APIUrlSerivces.story;
 
   Future<Story?> getStoryById(int storyId) async {
-     final Uri uri = Uri.parse('$_apiUrl/id/$storyId');
+     final Uri uri = Uri.parse('$_apiUrl/$storyId');
 
      try {
         final http.Response response = await http.get(uri);
@@ -21,7 +21,7 @@ class StoryService {
           final Map<String, dynamic> temp = jsonDecode(response.body);
           // Truy cập trường result
           final result = temp['result'];
-          Story? data = result.map((json) => Story.fromJson(json)).toList();
+          Story? data = Story.fromJson(result);
           return data;
 
         } else {
@@ -33,6 +33,42 @@ class StoryService {
         return null;
       }
   }
+
+  Future<PaginationResult<Story>?> getStoriesByUserId(int userId, int? page) async {
+    final Map<String, String> queryParams = {
+      'userId': userId.toString(),
+      if (page!= null) 'page': page.toString(),
+    };
+
+     final Uri uri = Uri.parse(_apiUrl).replace(queryParameters: queryParams);
+
+     debugPrint(uri.toString());
+
+     try {
+        final http.Response response = await http.get(uri);
+
+        if (response.statusCode == 200) {
+          final Map<String, dynamic> temp = jsonDecode(response.body);
+          // Truy cập trường result
+          final List<dynamic> result = temp['result'];
+          final currentPage = temp['currentPage'];
+          final totalPage = temp['totalPages'];
+          List<Story> data = result.map((json) => Story.fromJson(json)).toList();   
+
+          
+          PaginationResult<Story> paginationResult = PaginationResult(result: data, currentPage: currentPage, totalPages: totalPage);
+
+          return paginationResult;
+        } else {
+          debugPrint('Failed to load stories: ${response.statusCode}');
+          return null;
+        }
+      } catch (e) {
+        debugPrint('Error occurred: $e');
+        return null;
+      }
+  }
+
 
   Future<List<Story>?> getStoryByFavGenre(int userId) async {
     final Map<String, String> queryParams = {

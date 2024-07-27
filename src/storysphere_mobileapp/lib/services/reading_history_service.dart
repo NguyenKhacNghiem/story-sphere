@@ -2,16 +2,16 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:storysphere_mobileapp/models/favbook.dart';
 import 'package:storysphere_mobileapp/models/pagination_result.dart';
+import 'package:storysphere_mobileapp/models/reading_history.dart';
 import 'package:storysphere_mobileapp/routing/api_services_url.dart';
 
 
-class FavBookService {
-  static FavBookService get shared => FavBookService();
-  static const String _apiUrl = APIUrlSerivces.favBook;
+class ReadingHistoryService {
+  static ReadingHistoryService get shared => ReadingHistoryService();
+  static const String _apiUrl = APIUrlSerivces.readingHistory;
 
-  Future<PaginationResult?> getFavBookByUserId(int userId, int? page) async {
+  Future<PaginationResult<ReadingHistory>?> getHistoryByUserId(int userId, int? page) async {
     final Map<String, String> queryParams = {
       'userId': userId.toString(),
       if (page!= null) 'page': page.toString(),
@@ -21,8 +21,6 @@ class FavBookService {
 
      try {
         final http.Response response = await http.get(uri);
-        
-
         if (response.statusCode == 200) {
           
           final Map<String, dynamic> temp = jsonDecode(response.body);
@@ -31,10 +29,10 @@ class FavBookService {
           final currentPage = temp['currentPage'];
           final totalPage = temp['totalPages'];
           
-          List<FavBook>? data = result.map((json) => FavBook.fromJson(json)).toList();
+          List<ReadingHistory>? data = result.map((json) => ReadingHistory.fromJson(json)).toList();
 
           
-          PaginationResult<FavBook> paginationResult = PaginationResult(result: data, currentPage: currentPage, totalPages: totalPage);
+          PaginationResult<ReadingHistory> paginationResult = PaginationResult(result: data, currentPage: currentPage, totalPages: totalPage);
 
           return paginationResult;
         } else {

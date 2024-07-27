@@ -5,8 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
-import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/comment.dart';
+import 'package:storysphere_mobileapp/services/comment_service.dart';
 import 'package:storysphere_mobileapp/views/chapters/widgets/comlist_itemwidget.dart';
 
 @RoutePage()
@@ -22,17 +22,12 @@ class _AddCommentPage extends State<AddCommentPage> {
   late int chapterId;
   late int userId;
   final TextEditingController commentController = TextEditingController();
-  List<Comment> commentList = [
-    Comment(comtId: 1, userId: 1, chapterId: 1, comtTime: DateTime(2021, 2, 18, 15, 30), comtContent: 'Tác phẩm đã cuốn hút tôi ngay từ những trang đầu tiên. Bước vào cung điện của sự huyền bí, cùng với nhân vật Hue, tôi đã được đưa vào một thế giới đầy mê hoặc và kỳ diệu. Tác giả xây dựng cốt truyện chặt chẽ, mỗi chương đều đầy ắp những chi tiết ly kỳ và bất ngờ. Từ những thử thách cam go đến những bí mật cổ xưa, hành trình của Hue đã khiến tôi không thể đặt sách xuống. Một câu chuyện tuyệt vời, đầy sáng tạo và cảm xúc. Rất đáng để đọc!', replyTo: null ),
-    Comment(comtId: 2, userId: 2, chapterId: 1, comtTime: DateTime(2021, 3, 20, 14, 21), comtContent: 'Truyện không hay lắm', replyTo: null),
-    Comment(comtId: 3, userId: 3, chapterId: 1, comtTime: DateTime(2022, 3, 12, 1, 30), comtContent: 'Tác phẩm mở đầu rất hứa hẹn với một bối cảnh huyền bí và hấp dẫn. Hành trình của Hue bước vào cung điện cổ xưa đã khơi dậy sự tò mò và tưởng tượng. Tuy nhiên, mặc dù câu chuyện có nhiều chi tiết thú vị và đầy bất ngờ, nhưng một số chương lại hơi dàn trải và thiếu điểm nhấn. Một số đoạn cao trào chưa thực sự đủ sức gây ấn tượng mạnh mẽ.', replyTo: null),
-    Comment(comtId: 4, userId: 2, chapterId: 1, comtTime: DateTime(2022, 3, 12, 1, 30), comtContent: 'Đọc tới chương 5 thì drop vì chịu không nổi nữ9', replyTo: 2),
-    Comment(comtId: 5, userId: 2, chapterId: 1, comtTime: DateTime(2022, 3, 12, 3, 30), comtContent: 'Same, mình drop ở chương 10. Truyện này 3*', replyTo: 2),
-  ];
+  List<Comment> commentList = [];
+  int currentPage = 1;
+  int totalPages = 1;
 
   @override
   void initState() {
-    // TODO: implement initState
     _loadUserId();
     super.initState();
   }
@@ -40,6 +35,7 @@ class _AddCommentPage extends State<AddCommentPage> {
   @override
   Widget build(BuildContext context) {
     chapterId = widget.chapterId;
+    initData();
   
     return Scaffold(
       body: SingleChildScrollView(
@@ -95,24 +91,38 @@ class _AddCommentPage extends State<AddCommentPage> {
                 )
                 ),
             ),
-
-             ListView.builder(
+             commentList.isEmpty
+             ? const Text(Strings.writeNewComment)
+             :ListView.builder(
               scrollDirection: Axis.vertical,
               controller: ScrollController(),
               physics: const ClampingScrollPhysics(),
               shrinkWrap: true,
               itemCount: commentList.length,
               itemBuilder: (context, index) {
-                Comment comment = commentList.elementAt(index);
-                if (comment.replyTo == null) {
-                  List<Comment> replyComment = commentList
-                    .where((review1) => review1.replyTo != null && review1.replyTo == comment.comtId)
+                Comment comment = commentList.elementAt(index); 
+                if (comment.replyTo == -1) {
+                   List<Comment> replyComment = [];
+                   replyComment = commentList
+                    .where((review1) => review1.replyTo == comment.comtId)
                     .toList();
+                
                   return Padding(
                         padding: EdgeInsets.only(top: 10.sp),
                         child: CommentListItemWidget(comment: comment, replyComment: replyComment,));
+                
+                } else {
+                  return 2.verticalSpace;
                 }
+                 
               }),
+
+            //Pagination
+            20.verticalSpace,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: _buildPageButtons(),
+            ),
              
           ],
         )
@@ -156,4 +166,69 @@ class _AddCommentPage extends State<AddCommentPage> {
       userId = prefs.getInt('userId') ?? -1;
     });
   }
+
+  void initData(){
+    // GET DATA
+     if (commentList.isEmpty) {
+      final result =  CommentService().getCommentByChapter(chapterId, currentPage);
+      result.whenComplete(() {
+        result.then((value) {
+          if (value != null) {
+            setState(() {
+              commentList = value.result;
+              currentPage = value.currentPage;
+              totalPages = value.totalPages;
+            });
+          }
+        });
+      });
+    }
+
+  }
+
+  
+  List<Widget> _buildPageButtons() {
+    List<Widget> buttons = [];
+
+    // Add previous button if not on the first page
+    if (currentPage > 1) {
+      buttons.add(
+        _buildPageButton(currentPage - 1, 'Previous'),
+      );
+    }
+
+    // Add page number buttons
+    for (int i = 1; i <= totalPages; i++) {
+      buttons.add(
+        _buildPageButton(i, i.toString()),
+      );
+    }
+
+    // Add next button if not on the last page
+    if (currentPage < totalPages) {
+      buttons.add(
+        _buildPageButton(currentPage + 1, 'Next'),
+      );
+    }
+
+    return buttons;
+  }
+
+  Widget _buildPageButton(int pageNumber, String label) {
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: ElevatedButton(
+        onPressed: () {
+          setState(() {
+            currentPage = pageNumber;
+          });
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: currentPage == pageNumber ? ColorConstants.buttonPastelGreen : ColorConstants.formStrokeColor,
+        ),
+        child: Text(label, style: FontConstant.buttonTextWhite,),
+      ),
+    );
+  }
+
 }

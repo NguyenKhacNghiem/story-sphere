@@ -44,11 +44,11 @@ class Chapter {
   double? chapterSellPrice;
 
   factory Chapter.fromJson(Map<String, dynamic> json) => Chapter(
-        chapterId: json["chapterId"],
+        chapterId: json["_id"],
         fkStoryId: json["fk_storyId"],
-        chapterName: json["chapterName"],
-        chapterUrlKey: json["chapterUrlKey"],
-        chapterContent: json["chapterContent"],
+        chapterName: json["chapterName"].toString(),
+        chapterUrlKey: json["chapterUrlKey"].toString(),
+        chapterContent: json["chapterContent"].toString(),
         chapterOrder: json["chapterOrder"],
         chapterStatus: json["chapterStatus"],
         matureContent: json["maturedContent"],
@@ -56,10 +56,10 @@ class Chapter {
         voteCount: json["voteCount"],
         commentCount: json["commentCount"],
         wordsCount: json["wordsCount"],
-        createdDate: DateTime.parse(json["createdDate"]),
-        lastUpdated: DateTime.parse(json["lastUpdate"]),
+        createdDate: DateTime.parse(json["createDate"].toString()),
+        lastUpdated: DateTime.parse(json["lastUpdate"].toString()),
         commercialActivated: json["commercialActivated"],
-        chapterSellPrice: json["chapterSellPrice"],
+        chapterSellPrice: json["chapterSellPrice"]*1.0,
       );
 
   Map<String, dynamic> toJson() => {

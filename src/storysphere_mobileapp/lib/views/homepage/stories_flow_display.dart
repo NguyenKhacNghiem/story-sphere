@@ -19,25 +19,25 @@ class _DisplayStoriesFlowHomepageWidgetState extends State<DisplayStoriesFlowHom
   List<Story> bookList = [];
   String title = '';
   int userId = -1;
-  String id = '';
+  String id = ''; 
+  bool noFav = false;
 
   @override
   void initState() {
-    super.initState();
-  }
-
-  void fetchFileContent(){
+    super.initState();    
     title = widget.title;
     if (widget.userId != null) userId = widget.userId!;
     id = widget.id;
+  }
 
+  void fetchFileContent(){
      // GET DATA
-     if (bookList.isEmpty) {
+     if (bookList.isEmpty || noFav) {
       final result;
       switch (id) {
         case 'YOUWOULDLIKE': {
-          //result =  StoryService().getStoryByFavGenre(userId);
-           result =  StoryService().getHorStories();
+          result =  StoryService().getStoryByFavGenre(userId);
+          // result =  StoryService().getHorStories();
           break;
           }
         case 'HOTSTORIES': {
@@ -65,6 +65,13 @@ class _DisplayStoriesFlowHomepageWidgetState extends State<DisplayStoriesFlowHom
             setState(() {
               bookList = value;
               debugPrint('Length: ' + id + bookList.length.toString());
+              noFav = false;
+            });
+          } else {
+            setState(() {
+              id = 'HOTSTORIES';
+              debugPrint('No Fav');
+              noFav = true;
             });
           }
         });

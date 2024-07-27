@@ -187,8 +187,8 @@ class IconsSVG {
       width: 25.sp,
       height: 25.sp,
   );
-  static SvgPicture notiBlack = SvgPicture.asset(
-     'assets/icons/notification-black.svg',
+  static SvgPicture logout = SvgPicture.asset(
+     'assets/icons/logout.svg',
       width: 25.sp,
       height: 25.sp,
   );

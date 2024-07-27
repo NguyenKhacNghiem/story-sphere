@@ -26,7 +26,7 @@ class Comment {
   int? replyTo;
 
   factory Comment.fromJson(Map<String, dynamic> json) => Comment(
-        comtId: json["comtId"],
+        comtId: json["_id"],
         userId: json["userId"],
         chapterId: json["chapterId"],
         atParagraph: json["atParagraph"],

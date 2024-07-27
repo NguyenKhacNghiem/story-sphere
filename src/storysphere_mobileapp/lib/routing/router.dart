@@ -99,5 +99,9 @@ class AppRouter extends $AppRouter {
           page: EditStoryPage.page, 
           path: '/edit-story', 
           transitionsBuilder: TransitionsBuilders.noTransition),
+        CustomRoute(
+          page: ReadingHistoryPage.page, 
+          path: '/reading-history', 
+          transitionsBuilder: TransitionsBuilders.noTransition),
       ];
 }

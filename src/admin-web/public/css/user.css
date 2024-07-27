@@ -1,3 +1,25 @@
 .table td, #inner-thead > th {
     vertical-align: middle;
 }
+
+.rounded-circle {
+    width: 100px;
+    height: 100px;
+}
+
+#detail-image {
+    width: 100%;
+    height: 100%;
+}
+
+#bg-user-image {
+    width: 100%; 
+    height: 200px; 
+}
+
+#detail-user-image {
+    width: 200px; 
+    height: 200px;
+    border-radius: 50%; 
+    object-fit: cover; 
+}

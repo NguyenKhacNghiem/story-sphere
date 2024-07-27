@@ -238,6 +238,25 @@ async function sort(req, res) {
     }
 }
 
+async function getAllWithoutPaging(req, res) {
+    let categories;
+
+    try {
+        categories = await Category.find().lean()
+
+        if (categories.length === 0) {
+            log.info("Danh sách danh mục hiện đang trống");
+            return res.json({code: 0, message: "Danh sách danh mục hiện đang trống", result: categories});
+        }
+
+        log.info("Lấy danh sách danh mục thành công");
+        res.json({ code: 0, message: "Lấy danh sách danh mục thành công", result: categories});
+    } catch (err) {
+        log.error(err.message);
+        res.json({ code: 1, message: "Lấy danh sách danh mục thất bại" });
+    }
+}
+
 module.exports = {
     getAll,
     getOne,
@@ -245,5 +264,6 @@ module.exports = {
     edit,
     remove,
     search,
-    sort
+    sort,
+    getAllWithoutPaging
 };

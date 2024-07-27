@@ -130,6 +130,7 @@ async function search(req, res) {
               { ISBNcode: searchContent }
             ]
           }); // Total records in database by a condition
+          
         let totalPages = Math.ceil(total / limit); // Total pages
 
         if (endIndex < total)
@@ -163,7 +164,7 @@ async function search(req, res) {
 }
 
 async function filter(req, res) {
-    let {categoryId, selfComposedStory, publisherName, ratingPoint, isLastUpdated} = req.query;
+    let {categoryId, selfComposedStory, publisherName, ratingPoint, isLastUpdated, fk_publisherAccount} = req.query;
 
     // Paging
     let page = parseInt(req.query.page) || 1; // current page, default is 1
@@ -186,6 +187,9 @@ async function filter(req, res) {
     
     if (ratingPoint && ratingPoint !== "")
         criterias.ratingPoint = ratingPoint;
+
+    if (fk_publisherAccount && fk_publisherAccount !== "")
+        criterias.fk_publisherAccount = fk_publisherAccount;
 
     // create sort criterias
     let sortCriterias = {}; 
@@ -303,6 +307,79 @@ async function remove(req, res) {
     res.json({code: 0, message: "Xóa tác phẩm thành công"});
 }
 
+async function getStoryByFavCat(req, res) {
+    // Input validation
+    let result = validationResult(req);
+    if(result.errors.length > 0) {
+        log.error(result.errors[0].msg);
+        return res.json({code: 1, message: result.errors[0].msg});
+    }
+
+    try {
+        let userId = req.body.userId;
+        let user = await User.findOne({ _id: userId }); // find one record by id
+
+        if(!user) {
+            log.error("Người dùng không tồn tại");
+            return res.json({code: 1, message: "Người dùng không tồn tại"});
+        }
+
+        let favGenreKeywords = user.favGenreKeywords.split(","); // Ex: "100,200,300" -> ["100","200","300"]
+        let regexString = favGenreKeywords.map(val => `(^${val}$)|(^${val},)|(,${val},)|(,${val}$)`).join("|");
+        let regex = new RegExp(regexString);
+
+        let stories;
+        let limit = 5;
+
+        // Get random limit stories by favGenreKeywords
+        stories = await Story.aggregate([
+            { $match: { categoriesAndTags: {$regex: regex} } }, // where categoriesAndTags in favGenreKeywords
+            { $sample: { size: limit } }
+        ]).exec();
+
+        if (stories.length === 0) {
+            log.info("Danh sách tác phẩm dựa theo danh mục yêu thích hiện đang trống");
+            return res.json({ code: 0, message: "Danh sách tác phẩm dựa theo danh mục yêu thích hiện đang trống", result: stories });
+        }
+
+        log.info("Lấy danh sách tác phẩm dựa theo danh mục yêu thích thành công");
+        res.json({ code: 0, message: "Lấy danh sách tác phẩm dựa theo danh mục yêu thích thành công", result: stories });
+    } catch (err) {
+        log.error(err.message);
+        res.json({ code: 1, message: "Lấy danh sách tác phẩm dựa theo danh mục yêu thích thất bại" });
+    }
+}
+
+async function getMostViewStories(req, res) {
+    // Paging
+    let page = parseInt(req.query.page) || 1; // current page, default is 1
+    let limit = 5; // 5 records per page
+    let startIndex = (page - 1) * limit; // Index of the first record on current page
+    let endIndex = page * limit; // Index of the last record on current page
+    let stories;
+
+    try {
+        let total = await Story.countDocuments(); // Total records in database
+        let totalPages = Math.ceil(total / limit); // Total pages
+
+        if (endIndex < total)
+            stories = await Story.find().sort({ viewCount: -1 }).lean().skip(startIndex).limit(limit);
+        else
+            stories = await Story.find().sort({ viewCount: -1 }).lean().skip(startIndex);
+
+        if (stories.length === 0) {
+            log.info("Danh sách tác phẩm có lượt xem cao nhất hiện đang trống");
+            return res.json({code: 0, message: "Danh sách tác phẩm có lượt xem cao nhất hiện đang trống", result: stories});
+        }
+
+        log.info("Lấy danh sách tác phẩm có lượt xem cao nhất thành công");
+        res.json({ code: 0, message: "Lấy danh sách tác phẩm có lượt xem cao nhất thành công", result: stories, totalPages: totalPages, currentPage: page });
+    } catch (err) {
+        log.error(err.message);
+        res.json({ code: 1, message: "Lấy danh sách tác phẩm có lượt xem cao nhất thất bại" });
+    }
+}
+
 module.exports = {
     getAll,
     getOne,
@@ -311,5 +388,7 @@ module.exports = {
     filter,
     sort,
     publish,
-    remove
+    remove,
+    getStoryByFavCat,
+    getMostViewStories
 };

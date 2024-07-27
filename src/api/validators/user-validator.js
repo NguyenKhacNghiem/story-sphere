@@ -135,5 +135,11 @@ module.exports = {
         .withMessage("Vui lòng nhập email")
         .isEmail()
         .withMessage("Email không đúng định dạng"),
-    ]
+    ],
+
+    lockValidator: [
+        check("_id")
+        .notEmpty()
+        .withMessage("Vui lòng nhập mã người dùng"),
+    ],
 };

@@ -5,6 +5,36 @@ const User = require("../models/user");
 const log = require('../logs/log');
 const utils = require("../utils");
 
+async function getAll(req, res) {
+    // Paging
+    let page = parseInt(req.query.page) || 1; // current page, default is 1
+    let limit = 5; // 5 records per page
+    let startIndex = (page - 1) * limit; // Index of the first record on current page
+    let endIndex = page * limit; // Index of the last record on current page
+    let users;
+
+    try {
+        let total = await User.countDocuments({role: {$ne: "admin"} }); // Total records in database
+        let totalPages = Math.ceil(total / limit); // Total pages
+
+        if (endIndex < total)
+            users = await User.find({role: {$ne: "admin"} }).lean().skip(startIndex).limit(limit);
+        else
+            users = await User.find({role: {$ne: "admin"} }).lean().skip(startIndex);
+
+        if (users.length === 0) {
+            log.info("Danh sách người dùng hiện đang trống");
+            return res.json({code: 0, message: "Danh sách người dùng hiện đang trống", result: users});
+        }
+
+        log.info("Lấy danh sách người dùng thành công");
+        res.json({ code: 0, message: "Lấy danh sách người dùng thành công", result: users, totalPages: totalPages, currentPage: page });
+    } catch (err) {
+        log.error(err.message);
+        res.json({ code: 1, message: "Lấy danh sách người dùng thất bại" });
+    }
+}
+
 function register(req, res) {
     // Input validation
     let result = validationResult(req);
@@ -298,7 +328,157 @@ function verifyEmail(req, res) {
 
 // TODO: Update avatar and bgImg
 
+async function search(req, res) {
+    // // Input validation
+    // let result = validationResult(req);
+    // if(result.errors.length > 0) {
+    //     log.error(result.errors[0].msg);
+    //     return res.json({code: 1, message: result.errors[0].msg});
+    // }
+
+    let searchContent = req.query.searchContent || "";
+
+    // Paging
+    let page = parseInt(req.query.page) || 1; // current page, default is 1
+    let limit = 5; // 5 records per page
+    let startIndex = (page - 1) * limit; // Index of the first record on current page
+    let endIndex = page * limit; // Index of the last record on current page
+    let users;
+
+    try {
+        let total = await User.countDocuments({
+            $or: [
+              { _id: parseInt(searchContent) ? parseInt(searchContent) : -1 },
+              { username: { $regex: searchContent, $options: 'i' } },
+              { email: { $regex: searchContent, $options: 'i' } },
+              { displayName: searchContent }
+            ],
+            role: {$ne: "admin"}
+          }); // Total records in database by a condition
+
+        let totalPages = Math.ceil(total / limit); // Total pages
+
+        if (endIndex < total)
+            users = await User.find({
+                $or: [
+                    { _id: parseInt(searchContent) ? parseInt(searchContent) : -1 },
+                    { username: { $regex: searchContent, $options: 'i' } },
+                    { email: { $regex: searchContent, $options: 'i' } },
+                    { displayName: searchContent }
+                ],
+                role: {$ne: "admin"}
+              }).lean().skip(startIndex).limit(limit);
+        else
+            users = await User.find({
+                $or: [
+                    { _id: parseInt(searchContent) ? parseInt(searchContent) : -1 },
+                    { username: { $regex: searchContent, $options: 'i' } },
+                    { email: { $regex: searchContent, $options: 'i' } },
+                    { displayName: searchContent }
+                ],
+                role: {$ne: "admin"}
+              }).lean().skip(startIndex);
+        
+        if (users.length === 0) {
+            log.info("Không tìm thấy người dùng nào phù hợp");
+            return res.json({code: 0, message: "Không tìm thấy người dùng nào phù hợp", result: users});
+        }
+
+        log.info("Tìm người dùng thành công");
+        res.json({ code: 0, message: "Tìm người dùng thành công", result: users, totalPages: totalPages, currentPage: page });
+    } catch (err) {
+        log.error(err.message);
+        res.json({ code: 1, message: "Tìm người dùng thất bại" });
+    }
+}
+
+async function sort(req, res) {
+    // Paging
+    let page = parseInt(req.query.page) || 1; // current page, default is 1
+    let limit = 5; // 5 records per page
+    let startIndex = (page - 1) * limit; // Index of the first record on current page
+    let endIndex = page * limit; // Index of the last record on current page
+    let users;
+
+    let criteria = {};
+
+    if (req.query.criteria - 0 === 1)
+        criteria._id = 1;
+    else if (req.query.criteria - 0 === 2)
+        criteria._id = -1;
+    else if (req.query.criteria - 0 === 3)
+        criteria.username = 1;
+    else if (req.query.criteria - 0 === 4)
+        criteria.username = -1;
+    else if (req.query.criteria - 0 === 5)
+        criteria.displayName = 1;
+    else if (req.query.criteria - 0 === 6)
+        criteria.displayName = -1;
+    else
+        ;
+    
+    try {
+        let total = await User.countDocuments({role: {$ne: "admin"}}); // Total records in database by a condition
+        let totalPages = Math.ceil(total / limit); // Total pages
+
+        if (endIndex < total)
+            users = await User.find({role: {$ne: "admin"}}).sort(criteria).lean().skip(startIndex).limit(limit);
+        else
+            users = await User.find({role: {$ne: "admin"}}).sort(criteria).lean().skip(startIndex);
+        
+        if (users.length === 0) {
+            log.info("Danh sách người dùng hiện đang trống");
+            return res.json({code: 0, message: "Danh sách người dùng hiện đang trống", result: users});
+        }
+
+        log.info("Sắp xếp danh sách người dùng thành công");
+        res.json({ code: 0, message: "Sắp xếp danh sách người dùng thành công", result: users, totalPages: totalPages, currentPage: page });
+    } catch (err) {
+        log.error(err.message);
+        res.json({ code: 1, message: "Sắp xếp danh sách người dùng thất bại" });
+    }
+}
+
+async function lock(req, res) {
+    // Input validation
+    let result = validationResult(req);
+    if(result.errors.length > 0) {
+        log.error(result.errors[0].msg);
+        return res.json({code: 1, message: result.errors[0].msg});
+    }
+
+    let _id = req.body._id;
+    let user = await User.findOne({ _id: _id }); // find one record by id
+
+    if(!user) {
+        log.error("Người dùng không tồn tại");
+        return res.json({code: 1, message: "Người dùng không tồn tại"});
+    }
+
+    // Change fields of record
+    user.isLock ? user.isLock = false : user.isLock = true;
+
+    await user.save();
+
+    user.isLock ? log.info("Khóa tài khoản người dùng thành công") : log.info("Mở khóa tài khoản người dùng thành công");
+    user.isLock ? res.json({code: 0, message: "Khóa tài khoản người dùng thành công"}) : res.json({code: 0, message: "Mở khóa tài khoản người dùng thành công"});
+}
+
+async function remove(req, res) {
+    let _id = req.params.id;
+    let deletedUser = await User.findOneAndDelete({ _id: _id }); // find one record and delete its if exists
+
+    if(!deletedUser) {
+        log.error("Người dùng không tồn tại");
+        return res.json({code: 1, message: "Người dùng không tồn tại"});
+    }
+
+    log.info("Xóa người dùng thành công");
+    res.json({code: 0, message: "Xóa người dùng thành công"});
+}
+
 module.exports = {
+    getAll,
     register,
     login,
     getProfile,
@@ -308,4 +488,8 @@ module.exports = {
     changePassword,
     forgetPassword,
     verifyEmail,
+    search,
+    sort,
+    lock,
+    remove
 };

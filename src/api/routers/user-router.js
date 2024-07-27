@@ -4,6 +4,10 @@ const router = express.Router();
 const userController = require("../controllers/user-controller");
 const userValidator = require("../validators/user-validator");
 
+router.get("/", (req, res) => {
+    userController.getAll(req, res);
+})
+
 router.post("/register", userValidator.registerValidator, (req, res) => {
     userController.register(req, res);
 })
@@ -39,6 +43,22 @@ router.put("/forget-password", userValidator.forgetPasswordValidator, (req, res)
 // Verify email when forget password or update new email
 router.post("/verify-email", userValidator.verifyEmailValidator, (req, res) => {
     userController.verifyEmail(req, res);
+})
+
+router.get("/search", (req, res) => {
+    userController.search(req, res);
+})
+
+router.get("/sort", (req, res) => {
+    userController.sort(req, res);
+})
+
+router.put("/lock", userValidator.lockValidator, (req, res) => {
+    userController.lock(req, res);
+})
+
+router.delete("/delete/:id", (req, res) => {
+    userController.remove(req, res);
 })
 
 module.exports = router;

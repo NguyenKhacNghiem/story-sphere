@@ -104,6 +104,7 @@ class Strings {
   static const String like = 'Thích';
   static const String liked = 'Đã thích';
   static const String comment = 'Bình luận';
+  static const String replyTo = 'Trả lời người dùng';
 
   //LOGIN PAGE
   static const String welcomeBack = 'Welcome Back !';

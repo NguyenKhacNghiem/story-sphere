@@ -109,7 +109,7 @@ class _AddCommentPage extends State<AddCommentPage> {
                 
                   return Padding(
                         padding: EdgeInsets.only(top: 10.sp),
-                        child: CommentListItemWidget(comment: comment, replyComment: replyComment,));
+                        child: CommentListItemWidget(comment: comment, replyComment: replyComment, userId: userId,));
                 
                 } else {
                   return 2.verticalSpace;

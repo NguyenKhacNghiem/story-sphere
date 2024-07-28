@@ -1,44 +1,65 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/comment.dart';
 import 'package:storysphere_mobileapp/models/user.dart';
+import 'package:storysphere_mobileapp/services/comment_service.dart';
 
+// ignore: must_be_immutable
 class CommentListItemWidget extends StatefulWidget {
   final Comment comment;
   List<Comment>? replyComment;
-  CommentListItemWidget({super.key, required this.comment, this.replyComment});
+  final int userId;
+  CommentListItemWidget({super.key, required this.comment, this.replyComment, required this.userId});
 
   @override
   State<CommentListItemWidget> createState() => _CommentListItemWidget();
 }
 
 class _CommentListItemWidget extends State<CommentListItemWidget> {
-
+  final TextEditingController commentController = TextEditingController();
   User user = User(userId: 1, displayName: 'Kathy Alueds', avatar: 'https://i.pinimg.com/564x/f5/6b/c6/f56bc61a256661afc80d2995d1dd0582.jpg');
+  bool isReply = false;
+  late int currentUser;
+  List<Comment> replyComment = [];
 
   @override
   Widget build(BuildContext context) {
+    currentUser = widget.userId;
+    replyComment = widget.replyComment ?? [];
 
     return Padding(
       padding: EdgeInsets.only(top: 10.sp),
       child:
       Column(
         children: [
-          buildcomment(widget.comment),
-          widget.replyComment != null && widget.replyComment!.isNotEmpty
+          InkWell(
+            onTap: () {
+              setState(() {
+                isReply = !isReply;
+              });
+            },
+          child: buildcomment(widget.comment)),
+          
+          AnimatedSize(
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.easeInOut,
+            child: isReply
+                ? commentEditor()
+                : 0.verticalSpace,
+          ),
+          replyComment != null && replyComment!.isNotEmpty
           ? ListView.builder(
             scrollDirection: Axis.vertical,
                 controller: ScrollController(),
                 physics: const ClampingScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: widget.replyComment!.length,
+                itemCount: replyComment!.length,
                 itemBuilder: (context, index) {
-                return buildReply(widget.replyComment!.elementAt(index));
+                return buildReply(replyComment!.elementAt(index));
           })
           : 0.verticalSpace,
     ]));
@@ -169,4 +190,96 @@ class _CommentListItemWidget extends State<CommentListItemWidget> {
     ));
   }
   
+  
+  Widget commentEditor (){
+   return  Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+   Container(
+      width: (MediaQuery.of(context).size.width - 25.sp).sp,
+      height: 100.sp,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: ColorConstants.formStrokeColor,
+          width: 1.sp,),
+        borderRadius: BorderRadius.circular(5.sp),
+      ),
+      child:Padding(
+          padding: EdgeInsets.all(5.sp),
+          child: TextField(
+            controller: commentController,
+            maxLines: 3,
+            style:  FontConstant.rateContentDisplay,
+            decoration: InputDecoration(
+              hintText: '${Strings.replyTo} ${user.displayName ?? ''}',
+              fillColor: ColorConstants.transparent,
+              border: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              errorBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
+              hintStyle: const TextStyle(color: ColorConstants.secondaryText),
+            ),
+        ), 
+    ),),
+      20.verticalSpace,
+      Center(
+        child: 
+          ElevatedButton(
+          style: ElevatedButton.styleFrom(
+                    backgroundColor: ColorConstants.transparent,
+                    shadowColor: ColorConstants.transparent,
+                    padding: EdgeInsets.zero, // Remove padding
+                    minimumSize: Size.zero,   // Remove minimum size constraints
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
+                  ),
+            onPressed: () {
+              validationAndSubmit();
+            },
+          child: Container(
+            decoration: BoxDecoration(
+              color: ColorConstants.buttonLightGreen,
+              borderRadius: BorderRadius.circular(5.sp),
+            ),
+            
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 10.sp),
+            child: 
+                  Text(Strings.submitConmment, style: FontConstant.bookTitleItem,),
+                )
+          
+          )
+          ),
+      ),
+    
+    ]);
+  }
+
+  
+   Future<void> validationAndSubmit() async {
+    Comment newComment = Comment();
+     var temptstoryContentString = commentController.text;
+      newComment.comtContent = temptstoryContentString;
+      newComment.replyTo = widget.comment.comtId;
+      newComment.comtTime = DateTime.now();
+      newComment.userId = currentUser;
+      newComment.chapterId = widget.comment.chapterId;
+
+    try {
+      final response = await CommentService().sendComment(newComment);
+      if (response.statusCode == 200) {
+        debugPrint('Review sent successfully: ${response.body}');
+        setState(() {
+          isReply = false;
+          replyComment.add(newComment);
+        });
+
+      }
+      
+    } catch (e) {
+      debugPrint('Error sending review: $e');
+    }
+    
+  }
 }

@@ -9,6 +9,7 @@ import 'package:storysphere_mobileapp/routing/api_services_url.dart';
 class StoryService {
   static StoryService get shared => StoryService();
   static const String _apiUrl = APIUrlSerivces.story;
+  static const String _apiSearch = APIUrlSerivces.search;
 
   Future<Story?> getStoryById(int storyId) async {
      final Uri uri = Uri.parse('$_apiUrl/$storyId');
@@ -42,8 +43,6 @@ class StoryService {
 
      final Uri uri = Uri.parse(_apiUrl).replace(queryParameters: queryParams);
 
-     debugPrint(uri.toString());
-
      try {
         final http.Response response = await http.get(uri);
 
@@ -53,7 +52,7 @@ class StoryService {
           final List<dynamic> result = temp['result'];
           final currentPage = temp['currentPage'];
           final totalPage = temp['totalPages'];
-          List<Story> data = result.map((json) => Story.fromJson(json)).toList();   
+          List<Story>? data = result.map((json) => Story.fromJson(json)).toList();
 
           
           PaginationResult<Story> paginationResult = PaginationResult(result: data, currentPage: currentPage, totalPages: totalPage);

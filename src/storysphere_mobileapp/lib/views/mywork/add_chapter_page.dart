@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,11 +8,16 @@ import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
+import 'package:storysphere_mobileapp/models/chapter.dart';
+import 'package:storysphere_mobileapp/models/story.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
+import 'package:storysphere_mobileapp/services/chapter_services.dart';
+import 'package:storysphere_mobileapp/views/main_widgets/hs_enhanced_html_editor.dart';
 
 @RoutePage()
 class AddChapterPage extends StatefulWidget {
-  final int storyId;
-  const AddChapterPage({super.key, required this.storyId});
+  final Story story;
+  const AddChapterPage({super.key, required this.story});
 
   @override
   State<AddChapterPage> createState() => _AddChapterPage();
@@ -22,8 +29,7 @@ class _AddChapterPage extends State<AddChapterPage> {
   late Widget chapterTilteField;
   late Widget buttonList;
   final HtmlEditorController chapterController = HtmlEditorController();
-  int wordcount = 0;
-  final FocusNode focusNode = FocusNode();
+  late HSEnhancedHtmlEditor contentEditor;
   late bool isKeyboardVisible;
 
 
@@ -38,26 +44,12 @@ class _AddChapterPage extends State<AddChapterPage> {
     
     super.dispose();
   }
-
-  void onFocusChanged() {
-    String? plainText = '';
-    
-    debugPrint(plainText);
-    setState(() {
-      if (plainText != "") {     
-        wordcount = plainText.split(' ').length;
-      } else {
-        wordcount = 0;
-      }
-    });
-     
-  }
   
 
   @override
   Widget build(BuildContext context) {
-    initData();
     isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
+    initData();
   
     return Scaffold(
       body: SingleChildScrollView(
@@ -73,7 +65,6 @@ class _AddChapterPage extends State<AddChapterPage> {
             40.verticalSpace,
             Text(Strings.addNewChapter, style: FontConstant.headline1White,),
             10.verticalSpace,
-
             //BUTTON LIST
             buttonList,
 
@@ -83,48 +74,8 @@ class _AddChapterPage extends State<AddChapterPage> {
             
             //CHAPTER CONTENT EDITOR
             10.verticalSpace,
-            // Container(
-            //   color: ColorConstants.secondaryText,
-            //   child: 
-            // QuillToolbar.simple(
-            //   configurations: QuillSimpleToolbarConfigurations(
-            //     controller: chapterController,
-            //     color: ColorConstants.secondaryText,
-            //     toolbarIconAlignment: WrapAlignment.center,
-            //     multiRowsDisplay: false,
-            //     toolbarIconCrossAlignment: WrapCrossAlignment.center,
-            //     showAlignmentButtons: false,
-            //   ),
-              
-              
-            // )),
-            //  Container(
-            //     height: isKeyboardVisible ? 280.sp:  500.sp,
-            //     padding: EdgeInsets.all(10.sp),
-            //     decoration: BoxDecoration(
-            //       border: Border.all(color: ColorConstants.formStrokeColor),
-            //       borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5.sp), bottomRight: Radius.circular(5.sp))
-            //     ),
-            //     child: quill.QuillEditor.basic(
-            //       configurations: QuillEditorConfigurations(
-            //           controller: chapterController,
-            //           autoFocus: false,
-            //         ),
-            //         focusNode: focusNode,
-                    
-                  
-            //   ),
-             
-                
-              
-            // ),
-            5.verticalSpace,
-            Align(
-              alignment: Alignment.centerRight,
-              child: Text(wordcount.toString() + Strings.words, style: FontConstant.authorNameDisplay,),
-            ),
+            contentEditor,
 
-           
           ],
         )),
       ),
@@ -132,7 +83,13 @@ class _AddChapterPage extends State<AddChapterPage> {
    }
 
   initData(){
-    storyId = widget.storyId;
+    storyId = widget.story.storyId?? - 1;
+    contentEditor = HSEnhancedHtmlEditor(
+      controller: chapterController,
+      initialValue: '',
+      initialHeight:  isKeyboardVisible ? 280.sp:  450.sp,
+    );
+
     chapterTilteField = Container(
         decoration: BoxDecoration(
           border: Border.all(
@@ -171,7 +128,9 @@ class _AddChapterPage extends State<AddChapterPage> {
                             minimumSize: Size.zero,   // Remove minimum size constraints
                             tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
                           ),
-                  onPressed: () {},
+                  onPressed: () {
+                    validationAndSubmit(0);
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                       color: ColorConstants.secondaryText,
@@ -199,7 +158,7 @@ class _AddChapterPage extends State<AddChapterPage> {
                             tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
                           ),
                   onPressed: () {
-                   
+                   validationAndSubmit(2);
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -221,7 +180,39 @@ class _AddChapterPage extends State<AddChapterPage> {
                   ),
               ],
             );
-
-
    }
+
+   
+  Future<void> validationAndSubmit(int status) async {
+    Chapter newChapter = Chapter();
+     var temptstoryContentString = chapterController.getText();
+    temptstoryContentString.whenComplete(() => temptstoryContentString.then((value) async {
+      newChapter.chapterContent = value;
+      newChapter.fkStoryId = widget.story.storyId;
+      newChapter.chapterName = titleController.text;
+      newChapter.chapterUrlKey = DateTime.now().toIso8601String();
+      newChapter.chapterOrder = widget.story.chapterCount;
+      newChapter.chapterStatus = status;
+      newChapter.matureContent = false;
+      newChapter.wordsCount =  value.split(' ').length;
+      newChapter.commercialActivated = false;
+      newChapter.chapterSellPrice = 0.0;
+
+    try {
+      final response = await ChapterService().createChapter(newChapter);
+      debugPrint('Chapter sent successfully: ${response.body}');
+      if (status == 2) {
+          final Map<String, dynamic> temp = jsonDecode(response.body);
+          // Truy cập trường result
+          final result = temp['result'];
+          Chapter data = Chapter.fromJson(result);
+          context.pushRoute(ChapterPage(chapter: data, storyName: widget.story.storyName ?? ''));
+      } else {
+        context.pushRoute(EditStoryPage(story: widget.story));
+      }
+    } catch (e) {
+      debugPrint('Error sending Chapter: $e');
+    }
+    }));
+  }
 }

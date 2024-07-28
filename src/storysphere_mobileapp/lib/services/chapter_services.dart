@@ -11,6 +11,8 @@ class ChapterService {
   static ChapterService get shared => ChapterService();
   static const String _apiChapter = APIUrlSerivces.chapter;
 
+
+//GET API REQUESTS
  Future<PaginationResult?> getChaptesrByStoryId(int storyId, int? page) async {
     final Map<String, String> queryParams = {
       'fk_storyId': storyId.toString(),
@@ -69,4 +71,34 @@ class ChapterService {
       }
   }
 
+  //POST API REQUESTS
+  Future<http.Response> createChapter(Chapter chapter) async {
+    final url = Uri.parse('$_apiChapter/create');
+    final headers = {'Content-Type': 'application/json'};
+    final Map<String, dynamic> data = {
+      'fk_storyId': chapter.fkStoryId,
+      'chapterName': chapter.chapterName,
+      'chapterContent': chapter.chapterContent,
+      'chapterUrlKey': chapter.chapterUrlKey,
+      'chapterOrder': chapter.chapterOrder,
+      'matureContent': chapter.matureContent,
+      'wordsCount': chapter.wordsCount,
+      'commercialActivated': chapter.commercialActivated,
+      'chapterSellPrice': chapter.chapterSellPrice,
+    };
+
+    final response = await http.post(
+      url,
+      headers: headers,
+      body: jsonEncode(data),
+    );
+
+    if (response.statusCode == 200) {
+      // Success
+      return response;
+    } else {
+      // Error
+      throw Exception('Failed to send review');
+    }
+  }
 }

@@ -9,7 +9,6 @@ import 'package:storysphere_mobileapp/routing/api_services_url.dart';
 class StoryService {
   static StoryService get shared => StoryService();
   static const String _apiUrl = APIUrlSerivces.story;
-  static const String _apiSearch = APIUrlSerivces.search;
 
 
 //GET API REQUESTS
@@ -215,8 +214,6 @@ class StoryService {
     headers: headers,
     body: jsonEncode(data),
   );
-
-  debugPrint(response.body);
 
   if (response.statusCode == 200) {
     // Success

@@ -101,7 +101,7 @@ class BookEditSectionWidget extends StatelessWidget {
                   ),
           onPressed: () {
             Navigator.pop(context);
-            context.pushRoute(AddChapterPage(storyId: story.storyId ?? -1));
+            context.pushRoute(AddChapterPage(story: story));
           },
           child: Container(
             decoration: BoxDecoration(

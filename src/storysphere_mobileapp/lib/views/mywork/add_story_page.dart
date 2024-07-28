@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +12,7 @@ import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/category.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
 import 'package:storysphere_mobileapp/models/user.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/services/account_service.dart';
 import 'package:storysphere_mobileapp/services/category_service.dart';
 import 'package:storysphere_mobileapp/services/story_service.dart';
@@ -465,14 +468,19 @@ Widget buildCategorySelection(){
       newStory.matureContent = false;
       newStory.commercialActivated = false;
       newStory.bookPublishDate = DateTime.now();
-      newStory.bookISBNcode = 'NOCODE';
+      newStory.bookISBNcode = 'NOCODE${DateTime.now().toIso8601String()}';
 
       
     try {
       final response = await StoryService().createStory(newStory);
       if (response.statusCode == 200) {
         debugPrint('Story create successfully: ${response.body}');
-        //context.pushRoute(AddChapterPage(storyId: storyId));
+         final Map<String, dynamic> temp = jsonDecode(response.body);
+          // Truy cập trường result
+          final result = temp['result'];
+          Story data = Story.fromJson(result);
+        
+          context.pushRoute(AddChapterPage(story: data));
 
       }
       

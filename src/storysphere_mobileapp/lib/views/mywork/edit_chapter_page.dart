@@ -6,7 +6,6 @@ import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
-import 'package:html/parser.dart' as htmlParser;
 import 'package:storysphere_mobileapp/models/chapter.dart';
 
 @RoutePage()
@@ -32,7 +31,6 @@ class _EditChapterPage extends State<EditChapterPage> {
   @override
   void initState() {
     super.initState();
-    final document = htmlParser.parse(widget.chapter.chapterContent ?? '');
   }
 
   @override

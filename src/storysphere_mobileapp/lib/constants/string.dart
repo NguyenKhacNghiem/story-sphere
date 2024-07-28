@@ -65,6 +65,8 @@ class Strings {
   static const String tag = 'Tags';
   static const String published = 'Đã xuất bản';
   static const String drarf = 'Nháp';
+  static const String alertTitle = 'Thiếu thông tin';
+  static const String alertContent = 'Bạn đang thiết tên truyện hoặc thể loại!';
 
   //Story Details
   static const String readMore = 'Đọc thêm';

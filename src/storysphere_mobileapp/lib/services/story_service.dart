@@ -11,6 +11,8 @@ class StoryService {
   static const String _apiUrl = APIUrlSerivces.story;
   static const String _apiSearch = APIUrlSerivces.search;
 
+
+//GET API REQUESTS
   Future<Story?> getStoryById(int storyId) async {
      final Uri uri = Uri.parse('$_apiUrl/$storyId');
 
@@ -67,7 +69,6 @@ class StoryService {
         return null;
       }
   }
-
 
   Future<List<Story>?> getStoryByFavGenre(int userId) async {
     final Map<String, String> queryParams = {
@@ -185,5 +186,45 @@ class StoryService {
         return null;
       }
   }
+
+  //POST API REQUESTS
+  
+  Future<http.Response> createStory(Story story) async {
+  final url = Uri.parse('$_apiUrl/create');
+  final headers = {'Content-Type': 'application/json'};
+  final Map<String, dynamic> data = {
+    'storyName': story.storyName,
+    'url': story.storyName,
+    'cover': story.storyCover,
+    'contentOutline': story.storyContentOutline,
+    'fk_publisherAccount': story.fkPublisherAccount,
+    'authorName': story.bookAuthorName,
+    'publisherName': story.bookPublisherName,
+    'ISBNcode': story.bookISBNcode,
+    'publishDate': story.bookPublishDate!.toIso8601String(),
+    'categoriesAndTags': story.categoriesAndTags,
+    'selfComposedStory': story.selfComposedStory,
+    'matureContent': story.matureContent,
+    'chapterCount': story.chapterCount,
+    'commercialActivated':story.commercialActivated,
+    'storySellPrice': story.storySellPrice,
+  };
+
+  final response = await http.post(
+    url,
+    headers: headers,
+    body: jsonEncode(data),
+  );
+
+  debugPrint(response.body);
+
+  if (response.statusCode == 200) {
+    // Success
+    return response;
+  } else {
+    // Error
+    throw Exception('Failed to send review');
+  }
+}
 
 }

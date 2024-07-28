@@ -22,7 +22,7 @@ class Category {
   bool? isCategory;
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
-        categoryId: json["categoryId"],
+        categoryId: json["_id"],
         categoryUrl: json["categoryUrl"],
         categoryName: json["categoryName"],
         categoryDescription: json["categoryDescription"],
@@ -30,7 +30,7 @@ class Category {
       );
 
   Map<String, dynamic> toJson() => {
-        "categoryId": categoryId,
+        "_id": categoryId,
         "categoryUrl": categoryUrl,
         "categoryName": categoryName,
         "categoryDescription": categoryDescription,

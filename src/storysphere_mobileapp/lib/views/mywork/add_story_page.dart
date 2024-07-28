@@ -8,7 +8,11 @@ import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/category.dart';
-import 'package:storysphere_mobileapp/routing/router.gr.dart';
+import 'package:storysphere_mobileapp/models/story.dart';
+import 'package:storysphere_mobileapp/models/user.dart';
+import 'package:storysphere_mobileapp/services/account_service.dart';
+import 'package:storysphere_mobileapp/services/category_service.dart';
+import 'package:storysphere_mobileapp/services/story_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 
 @RoutePage()
@@ -30,21 +34,12 @@ class _AddStoryPage extends State<AddStoryPage> {
   bool isCategorySelectExpand = false;
   late Widget categorySelect;
   late Widget tagsSelect;
-  String? selectedItem;
+  User? currentUser;
+  Category? selectedCategory;
   List<int> selectedTags = [];
-  List<Category> listTag = [
-    Category(categoryId: 1, categoryName: 'Kinh dị'),
-    Category(categoryId: 2, categoryName: 'Trinh thám'),
-    Category(categoryId: 3, categoryName: 'Cơ khí'),
-    Category(categoryId: 4, categoryName: 'Lãng mạn'),
-  ];
-
-  final List<String> dropdownBookCategories = [
-    'Sách tâm lý', 'Sách kỹ năng', 'Sách y học', 'Sách lịch sử', 'Sách tài chính', 'Sách khoa học công nghệ', 'Sách tôn giáo - tâm linh'
-  ];
-  final List<String> dropdownNovelCategories = [
-    'Bí ẩn','Kinh dị', 'Khoan học viễn tưởng', 'Lãng mạn', 'Cổ tích', 'Truyện thiếu nhi','Viễn tưởng'
-  ];
+  List<Category> listTag = [];
+  List<Category> dropdownBookCategories = [];
+  List<Category> dropdownNovelCategories = [];
   
   @override
   void dispose() {
@@ -56,6 +51,8 @@ class _AddStoryPage extends State<AddStoryPage> {
 
   @override
   Widget build(BuildContext context) {
+    fetchCategories();
+    fetchUser();
   
     return Scaffold(
       bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 2),
@@ -230,13 +227,17 @@ class _AddStoryPage extends State<AddStoryPage> {
           
             //CATEGORY SELECTION
             20.verticalSpace,
-            buildCategorySelection(),
+            listTag.isEmpty
+            ? const CircularProgressIndicator()
+            : buildCategorySelection(),
 
             //TAG SELECTION
             20.verticalSpace,
             Text(Strings.tag, style: FontConstant.ratingPointDisplay,),
             5.verticalSpace,
-            Wrap(
+            listTag.isEmpty
+            ? const CircularProgressIndicator()
+            : Wrap(
               children: 
                 listTag.map((item) => _buildCustomSelection(item)).toList()),
 
@@ -245,8 +246,13 @@ class _AddStoryPage extends State<AddStoryPage> {
               child: 
             ElevatedButton(
               onPressed: (){
-                //create story and get storyID
-                context.pushRoute(AddChapterPage(storyId: 1));
+                if (selectedCategory == null || storyNameController.text.isEmpty) {
+                  _showWarningDialog(context);
+                } else {
+                  // Thực hiện hành động khi thể loại được chọn
+                  validationAndSubmit();
+                }
+                
               },
               child:Padding(padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 10.sp),
                   child: Text(Strings.next, style: FontConstant.headline3White, textAlign: TextAlign.center,),), 
@@ -257,10 +263,53 @@ class _AddStoryPage extends State<AddStoryPage> {
     );
   }
 
-  Widget buildCategorySelection(){
-    if (isNonFiction) {
-      //get category
+
+Future<void> fetchUser() async{
+    if (currentUser == null) {
+    final result =  AccountService().getUserById(widget.userId);
+      result.whenComplete(() {
+        result.then((value) {
+          if (value != null) {
+           currentUser = value;
+           debugPrint(currentUser!.displayName.toString());
+          }
+          else {
+            return null;
+          }
+        });
+      });
+  }
+    
+}
+
+Future<void> fetchCategories() async {
+   if (listTag.isEmpty) {
+      final result =  CategoryService().getAllCategory();
+      result.whenComplete(() {
+        result.then((value) {
+          if (value != null) {
+            debugPrint( 'Value: ' + value.length.toString());
+            setState(() {
+              listTag = value;
+
+              //WIDGET PREPARE
+              dropdownNovelCategories = listTag.where((category) => 
+                  category.categoryUrl== true && category.isCategory == true).toList();
+
+              dropdownBookCategories = listTag.where((category) => 
+                  category.categoryUrl == false && category.isCategory == true).toList();
+                    });
+            return value;
+          } else {
+            return null;
+          }
+        });
+      });
     }
+    
+}
+
+Widget buildCategorySelection(){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -281,7 +330,9 @@ class _AddStoryPage extends State<AddStoryPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    selectedItem ?? Strings.novelCategories,
+                    selectedCategory != null 
+                    ?  selectedCategory!.categoryName ?? ''
+                    :  isNonFiction ? Strings.bookCategories : Strings.novelCategories,
                     style: FontConstant.dropdownText.copyWith(fontWeight: FontWeight.bold),
                   ),
                   Icon(
@@ -304,12 +355,30 @@ class _AddStoryPage extends State<AddStoryPage> {
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: dropdownNovelCategories.map((String item) {
+                      children:
+                      isNonFiction 
+                      ? dropdownBookCategories.map((Category item) {
                         return InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            setState(() {
+                               selectedCategory = item;
+                              isCategorySelectExpand = false;
+                            });
+                          },
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: 12.sp, horizontal: 16.sp),
-                            child: Text(item),
+                            child: Text(item.categoryName ?? ''),
+                          ),
+                        );
+                      }).toList()
+                      : dropdownNovelCategories.map((Category item) {
+                        return InkWell(
+                          onTap: () {
+                            selectedCategory = item;
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 12.sp, horizontal: 16.sp),
+                            child: Text(item.categoryName ?? ''),
                           ),
                         );
                       }).toList(),
@@ -319,10 +388,11 @@ class _AddStoryPage extends State<AddStoryPage> {
           ),]);
   }
 
- 
-
   Widget _buildCustomSelection(Category item) {
-    bool isSelected = selectedTags.contains(item.categoryId!);
+    bool isSelected = selectedTags.contains(item.categoryId ?? '');
+    if (item.isCategory == true) {
+      return 0.verticalSpace;
+    }
     return InkWell(
       onTap: () => _toggleSelection(item.categoryId ?? -1),
       borderRadius: BorderRadius.circular(25),
@@ -368,4 +438,71 @@ class _AddStoryPage extends State<AddStoryPage> {
       });
     }
   }
+
+  Future<void> validationAndSubmit() async {
+    Story newStory = Story();
+    String categories = selectedCategory!.categoryId.toString();
+    String tags = '';
+    for (int tag in selectedTags) {
+      tags+= ',$tag';
+    }
+     var temptstoryContentString = storyContentOutlineController.text;
+
+      newStory.storyContentOutline = temptstoryContentString;
+      newStory.storyCover = coverController.text;
+      newStory.storyName = storyNameController.text;
+      newStory.fkPublisherAccount = widget.userId;
+      newStory.chapterCount = 0;
+      newStory.viewCount = 0;
+      newStory.bookAuthorName = currentUser?.displayName ?? '';
+      newStory.bookPublisherName = currentUser?.displayName ?? '';
+      newStory.selfComposedStory = true;
+      //get selected category
+      newStory.categoriesAndTags = categories;
+      //get selected tags
+      newStory.categoriesAndTags = '${newStory.categoriesAndTags}$tags';
+      newStory.storySellPrice = 0.0;
+      newStory.matureContent = false;
+      newStory.commercialActivated = false;
+      newStory.bookPublishDate = DateTime.now();
+      newStory.bookISBNcode = 'NOCODE';
+
+      
+    try {
+      final response = await StoryService().createStory(newStory);
+      if (response.statusCode == 200) {
+        debugPrint('Story create successfully: ${response.body}');
+        //context.pushRoute(AddChapterPage(storyId: storyId));
+
+      }
+      
+    } catch (e) {
+      debugPrint('Error sending review: $e');
+    }
+    
+  }
+
+  void _showWarningDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(Strings.alertTitle, style: FontConstant.headline2White,),
+          content: Text(Strings.alertContent,  style: FontConstant.subTitleText,),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK', style: FontConstant.buttonTextWhite,),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+
+
 }

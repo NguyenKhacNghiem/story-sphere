@@ -11,7 +11,6 @@ class CategoryService {
   static const String _apiUrl = APIUrlSerivces.category;
 
   Future<List<Category>?> getAllCategory() async {
-    
 
      final Uri uri = Uri.parse(_apiUrl);
 

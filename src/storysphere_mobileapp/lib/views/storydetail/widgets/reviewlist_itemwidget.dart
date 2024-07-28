@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
@@ -99,11 +100,9 @@ class _ReviewListItemWidget extends State<ReviewListItemWidget> {
             //review content
             SizedBox(
               width: 260.sp,
-              child: Text(
+              child: HtmlWidget(
                 review.reviewContent ?? '',
-                style: FontConstant.rateContentDisplay,
-                overflow: TextOverflow.clip,
-                textAlign: TextAlign.justify,
+                textStyle: FontConstant.rateContentDisplay,
               ),
             ),
             5.verticalSpace,

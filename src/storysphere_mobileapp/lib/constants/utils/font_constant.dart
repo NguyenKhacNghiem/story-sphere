@@ -176,7 +176,8 @@ class FontConstant {
     fontWeight: FontWeight.w100, 
     fontSize: 12.sp,
     letterSpacing: 0.7.sp,
-    height: 1.5.sp
+    height: 1.5.sp,
+    overflow: TextOverflow.clip,
   );
 
   static TextStyle rateUserNameDisplay = subTitleText.copyWith(

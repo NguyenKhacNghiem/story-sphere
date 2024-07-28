@@ -21,12 +21,17 @@ class BookEditSectionWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        SizedBox(
+      InkWell(
+        onTap: (){
+          context.pushRoute(StoryDetailPage(story: story));
+        },
+        child:  SizedBox(
             width: 100.sp,
             height: 155.sp,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5.sp),
-              child: Image.network(story.storyCover ?? Strings.defaultCover, fit: BoxFit.cover,))),
+              child: Image.network(story.storyCover ?? Strings.defaultCover, fit: BoxFit.cover,)))
+      ),
         20.horizontalSpace,
         Column(
           mainAxisAlignment: MainAxisAlignment.start,

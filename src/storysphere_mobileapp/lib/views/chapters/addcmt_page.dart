@@ -74,7 +74,7 @@ class _AddCommentPage extends State<AddCommentPage> {
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
                         ),
                   onPressed: () {
-                  
+                    validationAndSubmit();
                   },
                 child: Container(
                   decoration: BoxDecoration(
@@ -109,7 +109,7 @@ class _AddCommentPage extends State<AddCommentPage> {
                 
                   return Padding(
                         padding: EdgeInsets.only(top: 10.sp),
-                        child: CommentListItemWidget(comment: comment, replyComment: replyComment,));
+                        child: CommentListItemWidget(comment: comment, replyComment: replyComment, userId: userId,));
                 
                 } else {
                   return 2.verticalSpace;
@@ -163,7 +163,7 @@ class _AddCommentPage extends State<AddCommentPage> {
   Future<void> _loadUserId() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      userId = prefs.getInt('userId') ?? -1;
+      userId = prefs.getInt('userId') ?? 100004;
     });
   }
 
@@ -186,7 +186,31 @@ class _AddCommentPage extends State<AddCommentPage> {
 
   }
 
-  
+   Future<void> validationAndSubmit() async {
+    Comment newComment = Comment();
+     var temptstoryContentString = commentController.text;
+      newComment.comtContent = temptstoryContentString;
+      newComment.replyTo = null;
+      newComment.comtTime = DateTime.now();
+      newComment.userId = userId;
+      newComment.chapterId = widget.chapterId;
+
+    try {
+      final response = await CommentService().sendComment(newComment);
+      if (response.statusCode == 200) {
+        debugPrint('Review sent successfully: ${response.body}');
+        setState(() {
+          commentList.add(newComment);
+        });
+
+      }
+      
+    } catch (e) {
+      debugPrint('Error sending review: $e');
+    }
+    
+  }
+
   List<Widget> _buildPageButtons() {
     List<Widget> buttons = [];
 

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:intl/intl.dart';
+
 List<Comment> commentsFromJson(String str) => List<Comment>.from(json.decode(str).map((x) => Comment.fromJson(x)));
 
 Comment commentFromJson(String str) => Comment.fromJson(json.decode(str));
@@ -31,7 +33,7 @@ class Comment {
         chapterId: json["chapterId"],
         atParagraph: json["atParagraph"],
         comtContent: json["comtContent"],
-        comtTime: DateTime.parse(json["comtTime"]),
+        comtTime: tryParseString(json["comtTime"]),
         replyTo: json["replyTo"],
       );
 
@@ -45,3 +47,24 @@ class Comment {
         "replyTo": replyTo,
       };
 }
+
+// Function to try parsing date strings
+  DateTime? tryParseString(String? inputDateTime) {
+    if (inputDateTime == null || inputDateTime.isEmpty) {
+      return null;
+    }
+    try {
+      // Try parsing as ISO 8601 string
+      DateTime? dateTime = DateTime.tryParse(inputDateTime);
+      if (dateTime != null) {
+        return dateTime;
+      }
+
+      // Try parsing as custom format
+      DateFormat inputFormat = DateFormat('dd/MM/yyyy HH:mm:ss');
+      dateTime = inputFormat.parse(inputDateTime);
+      return dateTime;
+    } catch (e) {
+      return null;
+    }
+  }

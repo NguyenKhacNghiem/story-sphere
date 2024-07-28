@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:intl/intl.dart';
+
 List<Story> storiesFromJson(String str) => List<Story>.from(json.decode(str).map((x) => Story.fromJson(x)));
 
 Story storyFromJson(String str) => Story.fromJson(json.decode(str));
@@ -67,7 +69,7 @@ class Story {
        bookAuthorName: json["authorName"],
        bookPublisherName: json["publisherName"],
        bookISBNcode: json["ISBNcode"],
-        bookPublishDate: DateTime.tryParse(json["publishDate"]),
+        bookPublishDate: tryParseString(json["publishDate"]),
        categoriesAndTags: json["categoriesAndTags"].toString(),
         selfComposedStory: json["selfComposedStory"],
         matureContent: json["matureContent"],
@@ -75,25 +77,25 @@ class Story {
         viewCount: json["viewCount"],
         voteCount: json["voteCount"],
         commentCount: json["commentCount"],
-        ratingPoint: json["ratingPoint"]*1.0,
+        ratingPoint: double.tryParse(json["ratingPoint"].toString()),
         chapterCount: json["chapterCount"],
-        createdDate: DateTime.parse(json["createdDate"]),
-        lastUpdate: DateTime.parse(json["lastUpdate"]),
+        createdDate: tryParseString(json["createdDate"]),
+        lastUpdate: tryParseString(json["lastUpdate"]),
         commercialActivated: json["commercialActivated"],
-        storySellPrice: json["storySellPrice"]*1.0,
+        storySellPrice: double.tryParse(json["storySellPrice"].toString()),
       );
 
   Map<String, dynamic> toJson() => {
-        "storyId": storyId,
+        "_id": storyId,
         "storyName": storyName,
-        "storyUrl": storyUrl,
-        "storyCover": storyCover,
-        "storyContentOutline": storyContentOutline,
+        "url": storyUrl,
+        "cover": storyCover,
+        "contentOutline": storyContentOutline,
         "fk_publisherAccount": fkPublisherAccount,
-        "book_authorName": bookAuthorName,
-        "book_publisherName": bookPublisherName,
-        "book_ISBNcode": bookISBNcode,
-        "book_publishDate": bookPublishDate!.toIso8601String(),
+        "authorName": bookAuthorName,
+        "publisherName": bookPublisherName,
+        "ISBNcode": bookISBNcode,
+        "publishDate": bookPublishDate!.toIso8601String(),
         "categoriesAndTags": categoriesAndTags,
         "selfComposedStory": selfComposedStory,
         "matureContent": matureContent,
@@ -109,3 +111,24 @@ class Story {
         "storySellPrice": storySellPrice,
       };
 }
+
+// Function to try parsing date strings
+  DateTime? tryParseString(String? inputDateTime) {
+    if (inputDateTime == null || inputDateTime.isEmpty) {
+      return null;
+    }
+    try {
+      // Try parsing as ISO 8601 string
+      DateTime? dateTime = DateTime.tryParse(inputDateTime);
+      if (dateTime != null) {
+        return dateTime;
+      }
+
+      // Try parsing as custom format
+      DateFormat inputFormat = DateFormat('dd/MM/yyyy HH:mm:ss');
+      dateTime = inputFormat.parse(inputDateTime);
+      return dateTime;
+    } catch (e) {
+      return null;
+    }
+  }

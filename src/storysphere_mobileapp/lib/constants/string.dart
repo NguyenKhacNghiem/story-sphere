@@ -65,6 +65,8 @@ class Strings {
   static const String tag = 'Tags';
   static const String published = 'Đã xuất bản';
   static const String drarf = 'Nháp';
+  static const String alertTitle = 'Thiếu thông tin';
+  static const String alertContent = 'Bạn đang thiết tên truyện hoặc thể loại!';
 
   //Story Details
   static const String readMore = 'Đọc thêm';
@@ -104,6 +106,7 @@ class Strings {
   static const String like = 'Thích';
   static const String liked = 'Đã thích';
   static const String comment = 'Bình luận';
+  static const String replyTo = 'Trả lời người dùng';
 
   //LOGIN PAGE
   static const String welcomeBack = 'Welcome Back !';

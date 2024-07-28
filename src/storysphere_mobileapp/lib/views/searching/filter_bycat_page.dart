@@ -240,7 +240,7 @@ class _FilterByCategoryPage extends State<FilterByCategoryPage> {
           });
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: currentPage == pageNumber ? Colors.blue : Colors.grey,
+          backgroundColor: currentPage == pageNumber ? ColorConstants.buttonPastelGreen : ColorConstants.formStrokeColor,
         ),
         child: Text(label, style: FontConstant.buttonTextWhite,),
       ),

@@ -16,6 +16,7 @@ class AccountService {
 
      try {
         final http.Response response = await http.get(uri);
+        debugPrint(response.body);
 
         if (response.statusCode == 200) {
           final Map<String, dynamic> temp = jsonDecode(response.body);

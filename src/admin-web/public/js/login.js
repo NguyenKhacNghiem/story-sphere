@@ -21,7 +21,7 @@ function login() {
     .then(json => {
         if(json.code === 100) {
             toastr.success(json.message, "Thông báo");
-            setTimeout(() => document.location.href = "/story", 1000);
+            setTimeout(() => document.location.href = "/statistic", 1000);
         }
         else
             toastr.error("Thông tin đăng nhập không chính xác", "Thông báo")

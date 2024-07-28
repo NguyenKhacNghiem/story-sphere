@@ -1,0 +1,15 @@
+<div class="container-fluid pt-3" style="margin-bottom: 500px;">
+    <select onchange="getChart()" name="select-chart" class="custom-select mb-3" id="select-chart">
+        <option value="0">Thống kê số lượng</option>
+        <option value="1">Thống kê số lượng tác phẩm theo danh mục</option>
+        <option value="2">Top 10 người dùng đăng tải nhiều tác phẩm nhất</option>
+        <option value="3">Top 10 tác phẩm có nhiều lượt xem nhất</option>
+    </select>
+
+    <div id="outer-chart-0" class="m-auto">
+        <canvas id="chart0"></canvas>
+    </div>
+</div>
+
+<script src="/js/statistic.js"></script>
+<script src="/js/main.js"></script>

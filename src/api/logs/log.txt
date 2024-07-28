@@ -2636,3 +2636,125 @@
 [INFO]  28/07/2024 14:32:05 Thống kê số lượng thành công
 [INFO]  28/07/2024 14:32:07 Thống kê số lượng thành công
 [INFO]  28/07/2024 14:34:15 Thống kê số lượng tác phẩm theo danh mục thành công
+[INFO]  28/07/2024 14:56:17 API server has been started.
+[INFO]  28/07/2024 14:58:34 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 14:58:36 Lấy thông tin tác phẩm thành công
+[INFO]  28/07/2024 14:58:40 Lấy thông tin tác phẩm thành công
+[INFO]  28/07/2024 17:19:48 API server has been started.
+[INFO]  28/07/2024 17:22:17 API server has been started.
+[INFO]  28/07/2024 17:25:56 API server has been started.
+[INFO]  28/07/2024 17:28:23 API server has been started.
+[INFO]  28/07/2024 17:28:55 API server has been started.
+[INFO]  28/07/2024 17:29:46 API server has been started.
+[INFO]  28/07/2024 17:32:50 Upload file thành công
+[ERROR] 28/07/2024 17:35:34 Unexpected end of form
+[ERROR] 28/07/2024 17:38:30 Unexpected end of form
+[ERROR] 28/07/2024 17:52:20 Vui lòng chọn file để upload
+[INFO]  28/07/2024 19:30:08 Upload file thành công
+[INFO]  28/07/2024 19:42:44 Admin đăng nhập thành công
+[INFO]  28/07/2024 19:42:46 Thống kê số lượng thành công
+[INFO]  28/07/2024 19:42:48 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 19:43:47 Lấy danh sách danh mục thành công
+[INFO]  28/07/2024 19:44:30 Thống kê số lượng thành công
+[INFO]  28/07/2024 19:44:31 Thống kê 10 người dùng đăng tải nhiều tác phẩm nhất thành công
+[INFO]  28/07/2024 19:44:32 Thống kê 10 tác phẩm có lượt xem cao nhất thành công
+[INFO]  28/07/2024 19:44:35 Thống kê số lượng tác phẩm theo danh mục thành công
+[INFO]  28/07/2024 19:44:37 Thống kê số lượng thành công
+[INFO]  28/07/2024 19:44:38 Lấy danh sách người dùng thành công
+[INFO]  28/07/2024 19:44:38 Lấy danh sách danh mục thành công
+[INFO]  28/07/2024 19:44:39 Lấy danh sách người dùng thành công
+[INFO]  28/07/2024 19:44:40 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 19:44:44 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 19:44:45 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 19:46:33 Thống kê số lượng thành công
+[INFO]  28/07/2024 19:46:35 Thống kê 10 người dùng đăng tải nhiều tác phẩm nhất thành công
+[INFO]  28/07/2024 19:46:36 Thống kê số lượng tác phẩm theo danh mục thành công
+[INFO]  28/07/2024 19:46:37 Thống kê số lượng thành công
+[INFO]  28/07/2024 19:46:38 Thống kê số lượng thành công
+[INFO]  28/07/2024 19:46:40 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 19:47:22 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 19:47:23 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 19:47:30 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 19:47:31 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 19:52:40 Thống kê số lượng thành công
+[INFO]  28/07/2024 19:52:43 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 20:04:01 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 20:04:03 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 20:04:21 Lấy danh sách danh mục thành công
+[INFO]  28/07/2024 20:04:22 Lấy danh sách người dùng thành công
+[INFO]  28/07/2024 20:04:24 Thống kê số lượng thành công
+[INFO]  28/07/2024 20:04:26 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 20:04:29 Thống kê số lượng thành công
+[INFO]  28/07/2024 20:04:38 Thống kê số lượng tác phẩm theo danh mục thành công
+[INFO]  28/07/2024 20:04:49 Thống kê số lượng thành công
+[INFO]  28/07/2024 20:04:59 Thống kê 10 người dùng đăng tải nhiều tác phẩm nhất thành công
+[INFO]  28/07/2024 20:05:01 Thống kê 10 tác phẩm có lượt xem cao nhất thành công
+[INFO]  28/07/2024 20:05:17 Thống kê số lượng thành công
+[INFO]  28/07/2024 20:10:29 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 20:10:33 Lấy danh sách danh mục thành công
+[INFO]  28/07/2024 20:10:34 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 20:10:40 Lấy thông tin tác phẩm thành công
+[INFO]  28/07/2024 20:10:46 Lấy thông tin người dùng thành công
+[INFO]  28/07/2024 22:13:38 Lấy thông tin tác phẩm thành công
+[INFO]  28/07/2024 22:13:42 Lấy danh sách danh mục thành công
+[INFO]  28/07/2024 22:13:46 Lấy thông tin danh mục thành công
+[INFO]  28/07/2024 22:13:48 Lấy danh sách người dùng thành công
+[INFO]  28/07/2024 22:13:49 Thống kê số lượng thành công
+[INFO]  28/07/2024 22:23:23 API server has been started.
+[INFO]  28/07/2024 22:24:02 Upload file thành công
+[INFO]  28/07/2024 22:39:37 API server has been started.
+[INFO]  28/07/2024 22:40:38 API server has been started.
+[INFO]  28/07/2024 22:40:58 API server has been started.
+[INFO]  28/07/2024 22:41:33 API server has been started.
+[INFO]  28/07/2024 22:41:39 API server has been started.
+[INFO]  28/07/2024 22:42:50 API server has been started.
+[INFO]  28/07/2024 22:46:16 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 22:46:17 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 22:46:19 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 22:54:11 API server has been started.
+[INFO]  28/07/2024 23:02:33 API server has been started.
+[INFO]  28/07/2024 23:03:47 API server has been started.
+[INFO]  28/07/2024 23:04:59 API server has been started.
+[INFO]  28/07/2024 23:05:40 API server has been started.
+[INFO]  28/07/2024 23:06:43 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 23:06:46 Lấy danh sách người dùng thành công
+[INFO]  28/07/2024 23:11:11 Admin đăng nhập thành công
+[INFO]  28/07/2024 23:11:12 Thống kê số lượng thành công
+[INFO]  28/07/2024 23:11:15 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 23:11:23 Lấy thông tin người dùng thành công
+[INFO]  28/07/2024 23:11:27 Lấy thông tin người dùng thành công
+[INFO]  28/07/2024 23:11:31 Lấy thông tin tác phẩm thành công
+[INFO]  28/07/2024 23:11:34 Lấy thông tin tác phẩm thành công
+[INFO]  28/07/2024 23:11:40 Lấy thông tin tác phẩm thành công
+[INFO]  28/07/2024 23:11:48 Lấy thông tin tác phẩm thành công
+[INFO]  28/07/2024 23:12:18 Lấy thông tin tác phẩm thành công
+[INFO]  28/07/2024 23:12:20 Lấy thông tin tác phẩm thành công
+[INFO]  28/07/2024 23:12:31 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 23:12:32 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 23:12:33 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 23:12:43 Lấy danh sách người dùng thành công
+[INFO]  28/07/2024 23:12:44 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 23:12:45 Thống kê số lượng thành công
+[INFO]  28/07/2024 23:12:46 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 23:12:52 Lấy danh sách danh mục thành công
+[INFO]  28/07/2024 23:12:54 Lọc tác phẩm thành công
+[INFO]  28/07/2024 23:12:58 Lọc tác phẩm thành công
+[INFO]  28/07/2024 23:13:01 Lấy danh sách danh mục thành công
+[INFO]  28/07/2024 23:13:02 Lấy danh sách người dùng thành công
+[INFO]  28/07/2024 23:13:09 Không lọc được tác phẩm nào phù hợp
+[INFO]  28/07/2024 23:13:12 Không lọc được tác phẩm nào phù hợp
+[INFO]  28/07/2024 23:13:14 Không lọc được tác phẩm nào phù hợp
+[INFO]  28/07/2024 23:13:20 Không lọc được tác phẩm nào phù hợp
+[INFO]  28/07/2024 23:14:13 Lấy danh sách người dùng thành công
+[INFO]  28/07/2024 23:14:16 Thống kê số lượng thành công
+[INFO]  28/07/2024 23:14:20 Thống kê số lượng tác phẩm theo danh mục thành công
+[INFO]  28/07/2024 23:14:22 Thống kê 10 người dùng đăng tải nhiều tác phẩm nhất thành công
+[INFO]  28/07/2024 23:14:23 Thống kê 10 tác phẩm có lượt xem cao nhất thành công
+[INFO]  28/07/2024 23:14:24 Thống kê số lượng thành công
+[INFO]  28/07/2024 23:14:26 Thống kê số lượng thành công
+[INFO]  28/07/2024 23:14:30 Thống kê số lượng thành công
+[INFO]  28/07/2024 23:14:31 Lấy danh sách người dùng thành công
+[INFO]  28/07/2024 23:14:31 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 23:14:32 Thống kê số lượng thành công
+[INFO]  28/07/2024 23:15:41 Lấy danh sách tác phẩm thành công
+[INFO]  28/07/2024 23:44:41 API server has been started.

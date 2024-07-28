@@ -14,6 +14,7 @@ const commentRouter = require('./routers/comment-router');
 const reviewStoryRouter = require('./routers/review-story-router');
 const readingHistoryRouter = require('./routers/reading-history-router');
 const statisticRouter = require('./routers/statistic-router');
+const cloudinaryRouter = require('./routers/cloudinary-router');
 
 // Get data from .env file
 const PORT = process.env.PORT;
@@ -22,7 +23,6 @@ const CONNECTION_STRING = process.env.CONNECTION_STRING;
 // Config projects
 const app = express()
 app.use(cors());
-app.use(express.static(__dirname + '/public')) // access folder public to use img, ...
 app.use(express.json());  // get data from request in JSON format
 app.use(express.urlencoded({ extended: true })); // get data from request in URL-ENCODED format 
 
@@ -36,6 +36,7 @@ app.use('/comment', commentRouter);
 app.use('/review-story', reviewStoryRouter);
 app.use('/reading-history', readingHistoryRouter);
 app.use('/statistic', statisticRouter);
+app.use('/cloudinary', cloudinaryRouter);
 
 // Import log writer module
 const log = require('./logs/log');

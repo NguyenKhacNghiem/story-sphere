@@ -51,6 +51,7 @@ function register(req, res) {
 
     // TODO: verify email when register new account
     
+    
     newUser.save()
     .then(result => {        
         log.info("Đăng ký tài khoản thành công");
@@ -162,7 +163,9 @@ async function updateProfile(req, res) {
         // Change fields of record
         user.displayName = req.body.displayName; 
         user.selfIntroduction = req.body.selfIntroduction ? req.body.selfIntroduction : user.selfIntroduction ; 
-        user.dateOfBirth = req.body.dateOfBirth; 
+        user.dateOfBirth = req.body.dateOfBirth;
+        user.avatar = req.body.avatar ? req.body.avatar : user.avatar ; 
+        user.bgImg = req.body.bgImg ? req.body.bgImg : user.bgImg ; 
 
         await user.save();
 
@@ -325,8 +328,6 @@ function verifyEmail(req, res) {
         res.json({code: 1, message: "Xác thực email thất bại"});
     }
 }
-
-// TODO: Update avatar and bgImg
 
 async function search(req, res) {
     // // Input validation

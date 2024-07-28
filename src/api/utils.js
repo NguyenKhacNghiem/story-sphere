@@ -52,7 +52,7 @@ async function sendEmail(receiver, otp) {
                             }
                             .email-wrapper {
                                 width: 100%;
-                                background: url('https://github.com/NguyenKhacNghiem/story-sphere/blob/main/src/api/public/img/email-background.jpg?raw=true') no-repeat center center;
+                                background: url('https://res.cloudinary.com/story-sphere/image/upload/v1722181117/email-background_hneqzm.jpg') no-repeat center center;
                                 background-size: cover;
                                 padding: 40px 0;
                             }
@@ -111,7 +111,7 @@ async function sendEmail(receiver, otp) {
                         <div class="email-wrapper">
                             <div class="email-container">
                                 <div class="header">
-                                    <img src="https://github.com/NguyenKhacNghiem/story-sphere/blob/main/src/api/public/img/logo.png?raw=true" alt="Story Sphere">
+                                    <img src="https://res.cloudinary.com/story-sphere/image/upload/v1722181111/logo_q87hdd.png" alt="Story Sphere">
                                     <h2 style="color: black">Story Sphere</h2>
                                 </div>
                                 <div class="content">

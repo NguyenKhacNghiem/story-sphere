@@ -122,7 +122,7 @@ function showResult(json) {
 
         json.result.forEach(user => {
             rows += `<tr>
-                        <td><img src="https://cdn.thestorygraph.com/tramdo57b9nn0eewwszz8dme47v2" class="rounded-circle"/></td>
+                        <td><img src="${user.avatar}" class="rounded-circle"/></td>
                         <td>${user._id}</td>
                         <td>${user.username}</td>
                         <td>${user.email}</td>
@@ -228,7 +228,7 @@ function showModalStoryOf(_id) {
         if (json.code === 0) {
             json.result.forEach(story => {
                 rows += `<tr>
-                            <td><img src="https://cdn.thestorygraph.com/tramdo57b9nn0eewwszz8dme47v2" class="w-100"></td>
+                            <td><img src="${story.cover}" class="w-100"></td>
                             <td>${story._id}</td>
                             <td>${story.storyName}</td>
                             <td>${story.authorName}</td>
@@ -255,8 +255,8 @@ function showModalUserDetail(_id) {
     .then(json => {
         if(json.code === 0) {
             detailUserId.innerHTML = _id;
-            detailBgUserImage.setAttribute("src", "https://cdn.thestorygraph.com/tramdo57b9nn0eewwszz8dme47v2");
-            detailUserImage.setAttribute("src", "https://cdn.thestorygraph.com/tramdo57b9nn0eewwszz8dme47v2");
+            detailBgUserImage.setAttribute("src", json.result.bgImg);
+            detailUserImage.setAttribute("src", json.result.avatar);
             detailUserUsername.innerHTML = "<b>Tài khoản: </b>" + json.result.username;
             detailUserDisplayName.innerHTML = "<b>Tên hiển thị: </b>" + json.result.displayName;
             detailUserEmail.innerHTML = "<b>Email: </b>" + json.result.email;

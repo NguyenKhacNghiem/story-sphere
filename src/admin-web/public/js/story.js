@@ -220,7 +220,7 @@ function showModalStoryDetail(_id) {
     .then(json => {
         if(json.code === 0) {
             detailId.innerHTML = _id;
-            detailImage.setAttribute("src", "https://cdn.thestorygraph.com/tramdo57b9nn0eewwszz8dme47v2");
+            detailImage.setAttribute("src", json.result.cover);
             detailName.innerHTML = json.result.storyName;
             detailAuthor.innerHTML = json.result.authorName; 
             detailUser.innerHTML = json.result.fk_publisherAccount;
@@ -301,8 +301,8 @@ function showModalUserDetail(_id) {
     .then(json => {
         if(json.code === 0) {
             detailUserId.innerHTML = _id;
-            detailBgUserImage.setAttribute("src", "https://cdn.thestorygraph.com/tramdo57b9nn0eewwszz8dme47v2");
-            detailUserImage.setAttribute("src", "https://cdn.thestorygraph.com/tramdo57b9nn0eewwszz8dme47v2");
+            detailBgUserImage.setAttribute("src", json.result.bgImg);
+            detailUserImage.setAttribute("src", json.result.avatar);
             detailUserUsername.innerHTML = "<b>Tài khoản: </b>" + json.result.username;
             detailUserDisplayName.innerHTML = "<b>Tên hiển thị: </b>" + json.result.displayName;
             detailUserEmail.innerHTML = "<b>Email: </b>" + json.result.email;

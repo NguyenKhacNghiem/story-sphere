@@ -39,5 +39,5 @@ class APIUrlSerivces {
   static const createStory = '${server}story/create';
 
   //user
-  static const account = '${server}user/profile';
+  static const account = '${server}user';
 }

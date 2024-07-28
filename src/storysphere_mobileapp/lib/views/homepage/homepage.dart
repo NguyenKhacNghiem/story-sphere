@@ -39,7 +39,7 @@ class _HSHomePage extends State<HSHomePage> {
   @override
   void initState() {
     super.initState();
-    _checkLoginStatus();
+    //_checkLoginStatus();
   }
 
   @override
@@ -50,7 +50,7 @@ class _HSHomePage extends State<HSHomePage> {
   @override
   Widget build(BuildContext context) {
     if (userId == null && loggedIn) {
-      _loadUserId();
+      //_loadUserId();
     }
     // if (userId != null) {
     //   try {

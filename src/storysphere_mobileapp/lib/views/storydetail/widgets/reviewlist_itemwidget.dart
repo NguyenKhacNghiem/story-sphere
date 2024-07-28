@@ -8,6 +8,8 @@ import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/review.dart';
 import 'package:storysphere_mobileapp/models/user.dart';
+import 'package:storysphere_mobileapp/models/user_of_cmt.dart';
+import 'package:storysphere_mobileapp/services/account_service.dart';
 import 'package:storysphere_mobileapp/services/review_service.dart';
 
 // ignore: must_be_immutable
@@ -22,9 +24,10 @@ class ReviewListItemWidget extends StatefulWidget {
 
 class _ReviewListItemWidget extends State<ReviewListItemWidget> {
   final TextEditingController commentController = TextEditingController();
-  User user = User(userId: 1, displayName: 'Kathy Alueds', avatar: 'https://i.pinimg.com/564x/f5/6b/c6/f56bc61a256661afc80d2995d1dd0582.jpg');
+  List<UserOfContent> userList = []; //0 - main review --> toReply
   bool isReply = false;
-  late int currentUser;
+  late int currUserId;
+  User? currentUser;
   List<Review> replyComment = [];
 
   @override
@@ -37,6 +40,7 @@ class _ReviewListItemWidget extends State<ReviewListItemWidget> {
   @override
   Widget build(BuildContext context) {
     replyComment = widget.replyReview ?? [];
+    fetchUser();
 
     return SingleChildScrollView(
       padding: EdgeInsets.only(top: 10.sp),
@@ -54,7 +58,7 @@ class _ReviewListItemWidget extends State<ReviewListItemWidget> {
             duration: const Duration(milliseconds: 400),
             curve: Curves.easeInOut,
             child: isReply
-                ? commentEditor()
+                ? commentEditor(userList.elementAt(0).user!)
                 : 0.verticalSpace,
           ),
           widget.replyReview != null && widget.replyReview!.isNotEmpty
@@ -75,7 +79,8 @@ class _ReviewListItemWidget extends State<ReviewListItemWidget> {
 
   Widget buildReview(Review review){
     //get user by userID
-    User userReview = user;
+    UserOfContent uoc = userList.where((element) => element.id! == review.reviewId).first;
+    User userReview = uoc.user!;
     int ratePoint = review.ratePoint ?? 0;
     String dateString = 'D';
     if (review.reviewTime != null) {
@@ -142,7 +147,7 @@ class _ReviewListItemWidget extends State<ReviewListItemWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Container(
-                  width: 75.sp,
+                  width: 70.sp,
                   height: 0.7.sp,
                   color: ColorConstants.bgWhite,
                 ),
@@ -161,13 +166,14 @@ class _ReviewListItemWidget extends State<ReviewListItemWidget> {
   Future<void> _loadUserId() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      currentUser = prefs.getInt('userId') ?? 100004;
+      currUserId = prefs.getInt('userId') ?? 100004;
     });
   }
   
   Widget buildReply(Review review){
     //get user by userID
-    User userReview = user;
+    UserOfContent uoc = userList.where((element) => element.id! == review.reviewId).first;
+    User userReview = uoc.user!;
     String dateString = 'D';
     if (review.reviewTime != null) {
        dateString = "${review.reviewTime!.day}/${review.reviewTime!.month}/${review.reviewTime!.year}";
@@ -204,7 +210,7 @@ class _ReviewListItemWidget extends State<ReviewListItemWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
               Text(userReview.displayName ?? '', style: FontConstant.rateUserNameDisplay.copyWith(color: ColorConstants.secondaryText)),
-              50.horizontalSpace,
+              10.horizontalSpace,
               Text(dateString, style: FontConstant.userIntroduction,),
               ],
             ),
@@ -229,9 +235,7 @@ class _ReviewListItemWidget extends State<ReviewListItemWidget> {
     ));
   }
   
-  
-  
-  Widget commentEditor (){
+  Widget commentEditor (User user){
    return  Column(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
@@ -296,13 +300,13 @@ class _ReviewListItemWidget extends State<ReviewListItemWidget> {
     ]);
   }
 
-     Future<void> validationAndSubmit() async {
+  Future<void> validationAndSubmit() async {
     Review newComment = Review();
      var temptstoryContentString = commentController.text;
       newComment.reviewContent = temptstoryContentString;
       newComment.replyTo = widget.review.reviewId;
       newComment.reviewTime = DateTime.now();
-      newComment.userId = currentUser;
+      newComment.userId = currUserId;
       newComment.storyId = widget.review.storyId;
 
     try {
@@ -320,6 +324,40 @@ class _ReviewListItemWidget extends State<ReviewListItemWidget> {
       debugPrint('Error sending review: $e');
     }
     
+  }
+
+  void fetchUser(){
+     if (userList.isEmpty) {
+      final result =  AccountService().getUserById(widget.review.userId ?? 10004);
+      List<UserOfContent> tempList = [];
+      result.whenComplete(() {
+        result.then((value) async {
+          if (value != null) {
+            List<Future<void>> futures = [];
+            UserOfContent userOfContent = UserOfContent(id: widget.review.reviewId ?? -1, user: value);
+            tempList.add(userOfContent);
+
+             if (widget.replyReview != null){
+                for (Review replyReviewItem in widget.replyReview!) {
+                  futures.add(
+                    AccountService().getUserById(replyReviewItem.userId ?? -1).then((value1) {
+                      if (value1 != null) {
+                         UserOfContent userOfContent1 = UserOfContent(id: replyReviewItem.reviewId ?? -1, user: value1);
+                        tempList.add(userOfContent1);
+                      }
+                    }),
+                  );
+                }
+              }
+            await Future.wait(futures);
+
+            setState(() {
+              userList = tempList;
+            });
+          }
+        });
+      });
+     }
   }
 
 

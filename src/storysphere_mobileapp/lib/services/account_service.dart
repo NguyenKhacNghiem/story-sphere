@@ -10,7 +10,7 @@ class AccountService {
   static const String _apiUrl= APIUrlSerivces.account;
 
  Future<User?> getUserById(int id) async {
-     final Uri uri = Uri.parse('$_apiUrl/$id');
+     final Uri uri = Uri.parse('$_apiUrl/profile/$id');
 
      debugPrint(uri.toString());
 
@@ -35,7 +35,7 @@ class AccountService {
       }
   }
 
-  Future<http.Response> register(int username, String password, String confirmPassword, String email) async {
+  Future<http.Response> register(String username, String password, String confirmPassword, String email) async {
     final url = Uri.parse('$_apiUrl/register');
     final headers = {'Content-Type': 'application/json'};
     final Map<String, dynamic> data = {
@@ -45,34 +45,15 @@ class AccountService {
       'email': email,
     };
 
-    final response = await http.post(
-      url,
-      headers: headers,
-      body: jsonEncode(data),
-    );
-
-    if (response.statusCode == 200) {
-      // Success
-      return response;
-    } else {
-      // Error
-      throw Exception('Failed to send review');
-    }
-  }
-
-  Future<http.Response> login(int username, String password) async {
-    final url = Uri.parse('$_apiUrl/register');
-    final headers = {'Content-Type': 'application/json'};
-    final Map<String, dynamic> data = {
-      'username': username,
-      'password': password,
-    };
+    debugPrint(url.toString());
 
     final response = await http.post(
       url,
       headers: headers,
       body: jsonEncode(data),
     );
+
+    debugPrint(response.body);
 
     if (response.statusCode == 200) {
       // Success
@@ -84,7 +65,7 @@ class AccountService {
   }
 
   Future<http.Response> updateProfile(User user) async {
-    final url = Uri.parse('$_apiUrl/register');
+    final url = Uri.parse('$_apiUrl/profile');
     final headers = {'Content-Type': 'application/json'};
     final Map<String, dynamic> data = {
       '_id': user.userId,

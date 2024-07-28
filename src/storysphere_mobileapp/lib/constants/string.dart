@@ -126,8 +126,9 @@ class Strings {
   static const String forgotPassword = 'Quên mật khẩu';
   static const String privacy = 'Điều khoản riêng tư';
   static const String terms = 'Điều khoản';
+  static const String registerTYTitle = 'Đăng ký thành công!';
   static const String registrationThankyou =
-      'Cảm ơn bạn đã đăng ký tài khoản với StorySphere. Vui lòng kích hoạt tài khoản thông qua email.';
+      'Cảm ơn bạn đã đăng ký tài khoản với StorySphere. Bây giờ bạn có thể đăng nhập bằng tài khoản vừa tạo!';
 
   static const String login = 'Đăng nhập';
   static const String signInWithGoogleButtonText = 'Đăng nhập với Google';

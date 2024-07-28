@@ -182,7 +182,7 @@ class FontConstant {
 
   static TextStyle rateUserNameDisplay = subTitleText.copyWith(
     fontWeight: FontWeight.bold, 
-    fontSize: 12.sp,
+    fontSize: 10.sp,
   );
 
   static TextStyle searchingText = subTitleText.copyWith(

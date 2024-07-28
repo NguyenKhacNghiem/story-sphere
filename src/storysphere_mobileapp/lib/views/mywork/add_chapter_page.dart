@@ -1,12 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
-import 'package:flutter_quill/flutter_quill.dart' as quill;
 
 @RoutePage()
 class AddChapterPage extends StatefulWidget {
@@ -22,7 +21,7 @@ class _AddChapterPage extends State<AddChapterPage> {
   final TextEditingController titleController = TextEditingController();
   late Widget chapterTilteField;
   late Widget buttonList;
-  final quill.QuillController chapterController = quill.QuillController.basic();
+  final HtmlEditorController chapterController = HtmlEditorController();
   int wordcount = 0;
   final FocusNode focusNode = FocusNode();
   late bool isKeyboardVisible;
@@ -31,19 +30,17 @@ class _AddChapterPage extends State<AddChapterPage> {
   @override
   void initState() {
     super.initState();
-    chapterController.addListener(onFocusChanged);
   }
 
   @override
   void dispose() {
-    chapterController.dispose();
     titleController.dispose();
-    chapterController.removeListener(onFocusChanged);
+    
     super.dispose();
   }
 
   void onFocusChanged() {
-    String? plainText = chapterController.getPlainText();
+    String? plainText = '';
     
     debugPrint(plainText);
     setState(() {
@@ -86,41 +83,41 @@ class _AddChapterPage extends State<AddChapterPage> {
             
             //CHAPTER CONTENT EDITOR
             10.verticalSpace,
-            Container(
-              color: ColorConstants.secondaryText,
-              child: 
-            QuillToolbar.simple(
-              configurations: QuillSimpleToolbarConfigurations(
-                controller: chapterController,
-                color: ColorConstants.secondaryText,
-                toolbarIconAlignment: WrapAlignment.center,
-                multiRowsDisplay: false,
-                toolbarIconCrossAlignment: WrapCrossAlignment.center,
-                showAlignmentButtons: false,
-              ),
+            // Container(
+            //   color: ColorConstants.secondaryText,
+            //   child: 
+            // QuillToolbar.simple(
+            //   configurations: QuillSimpleToolbarConfigurations(
+            //     controller: chapterController,
+            //     color: ColorConstants.secondaryText,
+            //     toolbarIconAlignment: WrapAlignment.center,
+            //     multiRowsDisplay: false,
+            //     toolbarIconCrossAlignment: WrapCrossAlignment.center,
+            //     showAlignmentButtons: false,
+            //   ),
               
               
-            )),
-             Container(
-                height: isKeyboardVisible ? 280.sp:  500.sp,
-                padding: EdgeInsets.all(10.sp),
-                decoration: BoxDecoration(
-                  border: Border.all(color: ColorConstants.formStrokeColor),
-                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5.sp), bottomRight: Radius.circular(5.sp))
-                ),
-                child: quill.QuillEditor.basic(
-                  configurations: QuillEditorConfigurations(
-                      controller: chapterController,
-                      autoFocus: false,
-                    ),
-                    focusNode: focusNode,
+            // )),
+            //  Container(
+            //     height: isKeyboardVisible ? 280.sp:  500.sp,
+            //     padding: EdgeInsets.all(10.sp),
+            //     decoration: BoxDecoration(
+            //       border: Border.all(color: ColorConstants.formStrokeColor),
+            //       borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5.sp), bottomRight: Radius.circular(5.sp))
+            //     ),
+            //     child: quill.QuillEditor.basic(
+            //       configurations: QuillEditorConfigurations(
+            //           controller: chapterController,
+            //           autoFocus: false,
+            //         ),
+            //         focusNode: focusNode,
                     
                   
-              ),
+            //   ),
              
                 
               
-            ),
+            // ),
             5.verticalSpace,
             Align(
               alignment: Alignment.centerRight,

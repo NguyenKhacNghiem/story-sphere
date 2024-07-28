@@ -34,4 +34,78 @@ class AccountService {
         return null;
       }
   }
+
+  Future<http.Response> register(int username, String password, String confirmPassword, String email) async {
+    final url = Uri.parse('$_apiUrl/register');
+    final headers = {'Content-Type': 'application/json'};
+    final Map<String, dynamic> data = {
+      'username': username,
+      'password': password,
+      'confirmPassword': confirmPassword,
+      'email': email,
+    };
+
+    final response = await http.post(
+      url,
+      headers: headers,
+      body: jsonEncode(data),
+    );
+
+    if (response.statusCode == 200) {
+      // Success
+      return response;
+    } else {
+      // Error
+      throw Exception('Failed to send review');
+    }
+  }
+
+  Future<http.Response> login(int username, String password) async {
+    final url = Uri.parse('$_apiUrl/register');
+    final headers = {'Content-Type': 'application/json'};
+    final Map<String, dynamic> data = {
+      'username': username,
+      'password': password,
+    };
+
+    final response = await http.post(
+      url,
+      headers: headers,
+      body: jsonEncode(data),
+    );
+
+    if (response.statusCode == 200) {
+      // Success
+      return response;
+    } else {
+      // Error
+      throw Exception('Failed to send review');
+    }
+  }
+
+  Future<http.Response> updateProfile(User user) async {
+    final url = Uri.parse('$_apiUrl/register');
+    final headers = {'Content-Type': 'application/json'};
+    final Map<String, dynamic> data = {
+      '_id': user.userId,
+      'displayName': user.displayName,
+      'selfIntroduction': user.selfIntroduction,
+      'dateOfBirth': user.dateOfBirth,
+    };
+
+    final response = await http.put(
+      url,
+      headers: headers,
+      body: jsonEncode(data),
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 204 ) {
+      // Success
+      return response;
+    } else {
+      // Error
+      throw Exception('Failed to send review');
+    }
+  }
+  
 }

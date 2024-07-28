@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable, avoid_init_to_null
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,11 +25,13 @@ class _LogInPage extends State<LogInPage> {
   String _errorMessage = '';
   bool _obscureText = true;
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+  late bool isKeyboardVisible;
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      // top: false,
+    isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
+    return PopScope(
+      canPop:false,
       child: Scaffold(
         body:
         Container(
@@ -42,7 +42,7 @@ class _LogInPage extends State<LogInPage> {
              ),
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 20.sp),
+            padding: EdgeInsets.symmetric(horizontal: 20.sp),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -111,7 +111,9 @@ class _LogInPage extends State<LogInPage> {
                   ),
 
                 //or continute with
-                Row(
+                isKeyboardVisible 
+                ? 0.verticalSpace
+                : Row(
                   children: [
                     const Expanded(
                       child: Divider(
@@ -136,7 +138,9 @@ class _LogInPage extends State<LogInPage> {
                 ),
                 
                 20.verticalSpace,
-                Row(
+                isKeyboardVisible 
+                ? 0.verticalSpace
+                : Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,           
                   children: [
@@ -174,7 +178,7 @@ class _LogInPage extends State<LogInPage> {
                     5.horizontalSpace,
                     InkWell(
                       onTap: (){
-                        context.pushRoute(const SignUpPage());
+                       context.pushRoute(const SignUpPage());
                       },
                       child: Text(Strings.register, style: FontConstant.subTitleText.copyWith(fontWeight: FontWeight.bold)),
                     )
@@ -201,17 +205,17 @@ class _LogInPage extends State<LogInPage> {
     String password = _passwordController.text;
 
     try {
-      //bool isLoggedIn = await _loginService.login(username, password);
-      //if (isLoggedIn) {
-        //if (widget.newAccount != null && widget.newAccount!)
+      bool isLoggedIn = await _loginService.login(username, password);
+      if (isLoggedIn) {
+        if (widget.newAccount != null && widget.newAccount!)
           context.pushRoute(AddFavCategory());
-        // else
-        //   context.pushRoute(const HSHomePage());
-      // } else {
-      //   setState(() {
-      //     _errorMessage = 'Login failed. Please check your credentials.';
-      //   });
-      // }
+        else
+          context.pushRoute(const HSHomePage());
+      } else {
+        setState(() {
+          _errorMessage = 'Login failed. Please check your credentials.';
+        });
+      }
     } catch (e) {
       setState(() {
         _errorMessage = 'An error occurred. Please try again.';

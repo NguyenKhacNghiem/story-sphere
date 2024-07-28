@@ -9,6 +9,7 @@ import 'package:storysphere_mobileapp/models/user.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/services/account_service.dart';
 import 'package:storysphere_mobileapp/views/account/widgets/user_avatar_section.dart';
+import 'package:storysphere_mobileapp/views/log_in/services/login_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 
 @RoutePage()
@@ -132,7 +133,10 @@ class _UserAccountPage extends State<UserAccountPage> {
                     padding: EdgeInsets.symmetric(vertical: 15.sp, horizontal: 20.sp), // Remove padding
                     minimumSize: Size.zero,   // Remove minimum size constraints
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,),
-                  onPressed: (){}, 
+                  onPressed: (){
+                     logOut();
+                     context.pushRoute(LogInPage());
+                  }, 
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -154,6 +158,9 @@ class _UserAccountPage extends State<UserAccountPage> {
     );
     
    }
+  Future<void> logOut() async {
+     await LoginService().logout();
+  }
 
   void initData(){
       final result =  AccountService().getUserById(userId);

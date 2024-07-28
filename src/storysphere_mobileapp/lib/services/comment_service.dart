@@ -52,4 +52,30 @@ class CommentService {
       }
   }
 
+  
+  Future<http.Response> sendComment(Comment comment) async {
+    final url = Uri.parse('$_apiUrl/create');
+    final headers = {'Content-Type': 'application/json'};
+    final Map<String, dynamic> reviewData = {
+      'userId': comment.userId,
+      'chapterId': comment.chapterId,
+      'comtContent': comment.comtContent,
+      'comtTime': comment.comtTime!.toIso8601String(),
+      if (comment.replyTo != null) 'replyTo': comment.replyTo,
+    };
+
+    final response = await http.post(
+      url,
+      headers: headers,
+      body: jsonEncode(reviewData),
+    );
+
+    if (response.statusCode == 200) {
+      // Success
+      return response;
+    } else {
+      // Error
+      throw Exception('Failed to send comment');
+    }
+  }
 }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 List<Chapter> chaptersFromJson(String str) => List<Chapter>.from(json.decode(str).map((x) => Chapter.fromJson(x)));
 
@@ -56,10 +57,10 @@ class Chapter {
         voteCount: json["voteCount"],
         commentCount: json["commentCount"],
         wordsCount: json["wordsCount"],
-        createdDate: DateTime.parse(json["createDate"].toString()),
-        lastUpdated: DateTime.parse(json["lastUpdate"].toString()),
+        createdDate: tryParseString(json["createDate"]),
+        lastUpdated: tryParseString(json["lastUpdate"]),
         commercialActivated: json["commercialActivated"],
-        chapterSellPrice: json["chapterSellPrice"]*1.0,
+        chapterSellPrice: double.tryParse(json["chapterSellPrice"].toString()),
       );
 
   Map<String, dynamic> toJson() => {
@@ -81,3 +82,24 @@ class Chapter {
         "chapterSellPrice": chapterSellPrice,
       };
 }
+
+ // Function to try parsing date strings
+  DateTime? tryParseString(String? inputDateTime) {
+    if (inputDateTime == null || inputDateTime.isEmpty) {
+      return null;
+    }
+    try {
+      // Try parsing as ISO 8601 string
+      DateTime? dateTime = DateTime.tryParse(inputDateTime);
+      if (dateTime != null) {
+        return dateTime;
+      }
+
+      // Try parsing as custom format
+      DateFormat inputFormat = DateFormat('dd/MM/yyyy HH:mm:ss');
+      dateTime = inputFormat.parse(inputDateTime);
+      return dateTime;
+    } catch (e) {
+      return null;
+    }
+  }

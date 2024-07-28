@@ -26,3 +26,27 @@ function formatDateTime(isoString) {
     // return date in dd/mm/yyyy format
     return `${day}/${month}/${year}`;
 }
+
+function getRandomColor() {
+    let r, g, b;
+    let isWhite = true;
+
+    while (isWhite) {
+        r = Math.floor(Math.random() * 256);
+        g = Math.floor(Math.random() * 256);
+        b = Math.floor(Math.random() * 256);
+
+        isWhite = (r === 255 && g === 255 && b === 255);
+    }
+
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
+function getRandomColorArray(n) {
+    let arrayColor = [];
+
+    for (let i = 0; i < n; i++)
+        arrayColor.push(getRandomColor());
+    
+    return arrayColor;
+}

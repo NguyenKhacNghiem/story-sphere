@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
@@ -15,13 +16,13 @@ class SPBottomNavigationBar extends StatefulWidget {
 
 class _SPBottomNavigationBarState extends State<SPBottomNavigationBar> {
   int selectedIndex = 0;
-  int currentUser = 100004;
+  int? userId;
 
-  Future<void> getCurrentUser() async {
-    //var currUser = FirebaseAuth.instance.currentUser;
-    //if (currUser != null) {
-      currentUser = 0;
-    //}
+   Future<void> _loadUserId() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userId = prefs.getInt('userId');
+    });
   }
   void _onItemTapped(int index) {
     setState(() {
@@ -36,15 +37,15 @@ class _SPBottomNavigationBarState extends State<SPBottomNavigationBar> {
               break;
         case 2:
               Navigator.pop(context);
-              context.pushRoute(MyWorksPage(userId: currentUser ));
+              context.pushRoute(MyWorksPage(userId: userId ?? 100004 ));
               break;
         case 3:
               Navigator.pop(context);
-              context.pushRoute(LibraryPage(userId: currentUser));
+              context.pushRoute(LibraryPage(userId: userId ?? 100004));
               break;
         case 4:
               Navigator.pop(context);
-              context.pushRoute(UserAccountPage(userId: currentUser ));
+              context.pushRoute(UserAccountPage(userId: userId ?? 100004 ));
               break;
         default:
               Navigator.pop(context);
@@ -57,6 +58,9 @@ class _SPBottomNavigationBarState extends State<SPBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     selectedIndex = widget.selectedIndex;
+    if (userId == null){
+      _loadUserId();
+    }
 
     return BottomNavigationBar(
         fixedColor: ColorConstants.darkGreenBackground,

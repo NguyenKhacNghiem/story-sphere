@@ -27,7 +27,9 @@ class UserCoverSectionWidget extends StatelessWidget {
             width: screenWidth,
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: NetworkImage(user.bgImg ?? 'https://i.pinimg.com/564x/c4/81/40/c48140f48c3a348b18f6972574d84542.jpg'),
+                  image: user.bgImg != null && user.bgImg! != "???"
+                  ? NetworkImage(user.bgImg!)
+                  : const NetworkImage( 'https://i.pinimg.com/564x/c4/81/40/c48140f48c3a348b18f6972574d84542.jpg'),
                   fit: BoxFit.fitWidth,
                 ),
               ),

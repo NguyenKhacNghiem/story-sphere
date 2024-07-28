@@ -25,7 +25,10 @@ class StoryCoverSectionWidget extends StatelessWidget {
             width: screenWidth,
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: NetworkImage(story.storyCover!),
+                  image: 
+                  story.storyCover != null && story.storyCover! != "???"
+                  ? NetworkImage(story.storyCover!)
+                  : const NetworkImage(Strings.defaultCover),
                   fit: BoxFit.fitWidth,
                 ),
               ),

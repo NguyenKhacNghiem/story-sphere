@@ -96,7 +96,10 @@ class _ReviewListItemWidget extends State<ReviewListItemWidget> {
           height: 40.sp,
           decoration: BoxDecoration(
             image: DecorationImage( 
-              image: NetworkImage(userReview.avatar ?? 'https://cdn-icons-png.flaticon.com/512/3607/3607444.png'),
+              image: 
+              userReview.avatar != null && userReview.avatar! != "???"
+              ? NetworkImage(userReview.avatar!)
+              : const NetworkImage('https://cdn-icons-png.flaticon.com/512/3607/3607444.png'),
               fit: BoxFit.cover,),
           borderRadius: BorderRadius.circular(20.sp)
           ),
@@ -193,7 +196,9 @@ class _ReviewListItemWidget extends State<ReviewListItemWidget> {
           height: 30.sp,
           decoration: BoxDecoration(
             image: DecorationImage( 
-              image: NetworkImage(userReview.avatar ?? 'https://cdn-icons-png.flaticon.com/512/3607/3607444.png'),
+              image: userReview.avatar != null && userReview.avatar! != "???"
+              ? NetworkImage(userReview.avatar!)
+              : const NetworkImage('https://cdn-icons-png.flaticon.com/512/3607/3607444.png'),
               fit: BoxFit.cover,),
           borderRadius: BorderRadius.circular(15.sp)
           ),

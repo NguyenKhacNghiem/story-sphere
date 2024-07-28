@@ -204,12 +204,7 @@ class _SignUpPage extends State<SignUpPage> {
       if (response.statusCode == 200) {
         final responseData = json.decode(response.body);
         if (responseData['code'] == 0 || responseData['code'] == 100) {
-          
-          
-        } else {
-         
-        }
-         showDialog(
+          showDialog(
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
@@ -227,6 +222,28 @@ class _SignUpPage extends State<SignUpPage> {
               );
             },
           );
+        } else {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(Strings.error),
+                content: Text(responseData['message']),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      context.pushRoute(LogInPage(newAccount: true));
+                    },
+                    child: Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
+         
+        }
+         
       }
       
     } catch (e) {

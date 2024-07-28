@@ -26,7 +26,7 @@ class _SearchingPage extends State<SearchingPage> {
   List<Category> categories = [];
 
   Category sampleCategory = Category(
-    categoryId: 100000, categoryName: 'Khoa học kỹ thuật', categoryUrl: 'phi-tieu-thuyet',
+    categoryId: 100000, categoryName: 'Khoa học kỹ thuật', categoryUrl: false,
     categoryDescription: 'Những câu chuyện giúp bạn không bao giờ cô đơn vì luôn cảm thấy bên cạnh mình luôn có người',
     isCategory: true
   );
@@ -204,10 +204,10 @@ class _SearchingPage extends State<SearchingPage> {
               categories = value;
               //WIDGET PREPARE
               dropdownNovelCategories = categories.where((category) => 
-                  category.categoryUrl == 'tieu-thuyet').toList();
+                  category.categoryUrl== true && category.isCategory == true).toList();
 
               dropdownBookCategories = categories.where((category) => 
-                  category.categoryUrl == 'phi-tieu-thuyet').toList();
+                  category.categoryUrl == false && category.isCategory == true).toList();
             });
           }
         });

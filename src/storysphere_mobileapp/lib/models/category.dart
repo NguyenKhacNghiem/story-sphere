@@ -16,7 +16,7 @@ class Category {
   });
 
   int? categoryId;
-  String? categoryUrl;
+  bool? categoryUrl;
   String? categoryName;
   String? categoryDescription;
   bool? isCategory;

@@ -76,9 +76,13 @@ abstract class $AppRouter extends _i24.RootStackRouter {
       );
     },
     AddFavCategory.name: (routeData) {
+      final args = routeData.argsAs<AddFavCategoryArgs>();
       return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.AddFavCategory(),
+        child: _i3.AddFavCategory(
+          key: args.key,
+          userId: args.userId,
+        ),
       );
     },
     AddReviewPage.name: (routeData) {
@@ -345,16 +349,40 @@ class AddCommentPageArgs {
 
 /// generated route for
 /// [_i3.AddFavCategory]
-class AddFavCategory extends _i24.PageRouteInfo<void> {
-  const AddFavCategory({List<_i24.PageRouteInfo>? children})
-      : super(
+class AddFavCategory extends _i24.PageRouteInfo<AddFavCategoryArgs> {
+  AddFavCategory({
+    _i25.Key? key,
+    required int userId,
+    List<_i24.PageRouteInfo>? children,
+  }) : super(
           AddFavCategory.name,
+          args: AddFavCategoryArgs(
+            key: key,
+            userId: userId,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'AddFavCategory';
 
-  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
+  static const _i24.PageInfo<AddFavCategoryArgs> page =
+      _i24.PageInfo<AddFavCategoryArgs>(name);
+}
+
+class AddFavCategoryArgs {
+  const AddFavCategoryArgs({
+    this.key,
+    required this.userId,
+  });
+
+  final _i25.Key? key;
+
+  final int userId;
+
+  @override
+  String toString() {
+    return 'AddFavCategoryArgs{key: $key, userId: $userId}';
+  }
 }
 
 /// generated route for

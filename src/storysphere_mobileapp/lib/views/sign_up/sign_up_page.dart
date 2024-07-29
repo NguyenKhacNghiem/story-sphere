@@ -8,7 +8,8 @@ import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/services/account_service.dart';
-import 'package:storysphere_mobileapp/views/log_in/services/login_service.dart';
+import 'package:storysphere_mobileapp/services/forgot_passowrd_service.dart';
+import 'package:storysphere_mobileapp/views/forgot_password/fp_otp_page.dart';
 
 @RoutePage()
 class SignUpPage extends StatefulWidget {
@@ -233,7 +234,7 @@ class _SignUpPage extends State<SignUpPage> {
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pop();
-                      context.pushRoute(LogInPage(newAccount: true));
+                      sendEmailHandle(email);
                     },
                     child: Text('OK'),
                   ),
@@ -251,4 +252,25 @@ class _SignUpPage extends State<SignUpPage> {
     }
     
   }
+
+  Future<void> sendEmailHandle(String email) async {
+    int otpCode = -1;
+    int userId = -1;
+    //send POST request
+     try {
+        final response = await ForgotPasswordService().verifyEmail(email);
+        debugPrint('Request sent successfully: ${response.body}');
+         final responseData = json.decode(response.body);
+          email = responseData['email'];
+          otpCode = responseData['otp'];
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => FPEnteringOTPPage(email: email, otpCode: otpCode, userId: userId, fromPageSU: true,)),
+          );
+         
+      } catch (e) {
+        debugPrint('Error sending review: $e');
+      }
+      
+   }
 }

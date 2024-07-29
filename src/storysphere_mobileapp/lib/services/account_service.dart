@@ -93,4 +93,26 @@ class AccountService {
     }
   }
   
+  Future<http.Response> updateFavGenreKeywords(int userId, String favGenreKeywords) async {
+    final url = Uri.parse('$_apiUrl/profile/favGenreKeywords');
+    final headers = {'Content-Type': 'application/json'};
+    final Map<String, dynamic> data = {
+      '_id': userId,
+      'favGenreKeywords': favGenreKeywords,
+    };
+    final response = await http.put(
+      url,
+      headers: headers,
+      body: jsonEncode(data),
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 204 ) {
+      // Success
+      return response;
+    } else {
+      // Error
+      throw Exception('Failed to send review');
+    }
+  }
+  
 }

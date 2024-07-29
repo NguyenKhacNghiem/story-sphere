@@ -103,7 +103,7 @@ class _ForgotPasswordPage extends State<ForgotPasswordPage> {
           otpCode = responseData['otp'];
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => FPEnteringOTPPage(email: email, otpCode: otpCode, userId: userId,)),
+            MaterialPageRoute(builder: (context) => FPEnteringOTPPage(email: email, otpCode: otpCode, userId: userId, fromPageSU: false,)),
           );
          
       } catch (e) {

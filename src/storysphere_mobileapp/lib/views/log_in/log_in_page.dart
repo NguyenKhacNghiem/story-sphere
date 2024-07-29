@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
@@ -207,8 +208,11 @@ class _LogInPage extends State<LogInPage> {
     try {
       bool isLoggedIn = await _loginService.login(username, password);
       if (isLoggedIn) {
-        if (widget.newAccount != null && widget.newAccount!)
-          context.pushRoute(AddFavCategory());
+        if (widget.newAccount != null && widget.newAccount!){
+          final SharedPreferences prefs = await SharedPreferences.getInstance();
+          context.pushRoute(AddFavCategory(userId: prefs.getInt('userId') ?? -1));
+        }
+         
         else
           context.pushRoute(const HSHomePage());
       } else {

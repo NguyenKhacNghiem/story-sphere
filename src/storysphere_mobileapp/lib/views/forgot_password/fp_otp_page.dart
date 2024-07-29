@@ -1,11 +1,13 @@
 import 'dart:convert';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/services/forgot_passowrd_service.dart';
 import 'package:storysphere_mobileapp/views/forgot_password/fp_updatepass_page.dart';
 
@@ -13,7 +15,8 @@ class FPEnteringOTPPage extends StatefulWidget {
   final String email;
   final int otpCode;
   final int userId;
-  const FPEnteringOTPPage({super.key, required this.email, required this.otpCode, required this.userId});
+  final bool fromPageSU;
+  const FPEnteringOTPPage({super.key, required this.email, required this.otpCode, required this.userId, required this.fromPageSU});
 
   @override
   State<FPEnteringOTPPage> createState() => _FPEnteringOTPPage();
@@ -107,10 +110,15 @@ class _FPEnteringOTPPage extends State<FPEnteringOTPPage> {
     //check
     int otp = int.tryParse(inputOtpCode) ?? 0;
     if (otp == trueOTP){
-        Navigator.push(
+      if (widget.fromPageSU){
+         context.pushRoute(LogInPage(newAccount: true));
+      } else {
+         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => FPUpdatePassword(userId: trueUserId,)),
         );
+      }
+       
     } else {
       setState(() {
         showMessage = true;

@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:storysphere_mobileapp/services/forgot_passowrd_service.dart';
 import 'package:storysphere_mobileapp/views/forgot_password/fp_updatepass_page.dart';
 
 class FPEnteringOTPPage extends StatefulWidget {
@@ -19,9 +22,18 @@ class FPEnteringOTPPage extends StatefulWidget {
 class _FPEnteringOTPPage extends State<FPEnteringOTPPage> {
   TextEditingController otpController = TextEditingController();
   bool showMessage = false;
+  bool resentOTP = false;
+  late String trueEmail;
+  late int trueOTP;
+  late int trueUserId;
 
   @override
   Widget build(BuildContext context) {
+    if (!resentOTP){
+      trueEmail = widget.email;
+      trueOTP = widget.otpCode;
+      trueUserId = widget.userId;
+    }
   
     return Scaffold(
       backgroundColor: ColorConstants.bgWhite,
@@ -78,7 +90,9 @@ class _FPEnteringOTPPage extends State<FPEnteringOTPPage> {
                 Text(Strings.didnotReceive, style: FontConstant.darkSubtitle,),
                 5.verticalSpace,
                 InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    resendOTP();
+                  },
                   child: Text(Strings.reSend, style: FontConstant.subTitleText.copyWith(
                     fontWeight: FontWeight.bold,
                     color: ColorConstants.buttonLightGreen,
@@ -92,10 +106,10 @@ class _FPEnteringOTPPage extends State<FPEnteringOTPPage> {
   void checkOTP(String inputOtpCode){
     //check
     int otp = int.tryParse(inputOtpCode) ?? 0;
-    if (otp == widget.otpCode){
+    if (otp == trueOTP){
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => FPUpdatePassword(userId: widget.userId,)),
+          MaterialPageRoute(builder: (context) => FPUpdatePassword(userId: trueUserId,)),
         );
     } else {
       setState(() {
@@ -104,5 +118,22 @@ class _FPEnteringOTPPage extends State<FPEnteringOTPPage> {
     }
 
      
+   }
+
+   Future<void> resendOTP() async {
+    //send POST request
+     try {
+        final response = await ForgotPasswordService().verifyEmail(trueEmail);
+        debugPrint('Request sent successfully: ${response.body}');
+         final responseData = json.decode(response.body);
+          setState(() {
+            trueOTP = responseData['otp'];
+            resentOTP = true;
+          });
+         
+      } catch (e) {
+        debugPrint('Error sending review: $e');
+      }
+      
    }
 }

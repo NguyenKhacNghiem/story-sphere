@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -6,6 +8,7 @@ import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
+import 'package:storysphere_mobileapp/services/forgot_passowrd_service.dart';
 import 'package:storysphere_mobileapp/views/forgot_password/fp_otp_page.dart';
 
 @RoutePage()
@@ -66,7 +69,7 @@ class _ForgotPasswordPage extends State<ForgotPasswordPage> {
                       hintStyle: TextStyle(color: ColorConstants.secondaryText),
                     ),
                   onSubmitted: (String value) {
-                   
+                     sendEmailHandle(value);
                   },
                   ),
                   ),
@@ -76,7 +79,7 @@ class _ForgotPasswordPage extends State<ForgotPasswordPage> {
                 40.verticalSpace,
                 ElevatedButton(
                   onPressed: (){
-                     sendEmailHandle();
+                     sendEmailHandle(emailController.text);
                   },
                   child:Padding(padding: EdgeInsets.symmetric(horizontal: 60.sp, vertical: 15.sp),
                       child: Text(Strings.sendActivationEmail, style: FontConstant.headline3White, textAlign: TextAlign.center,),), 
@@ -88,14 +91,24 @@ class _ForgotPasswordPage extends State<ForgotPasswordPage> {
     );
    }
 
-   void sendEmailHandle(){
-    String email = emailController.text;
-    int otpCode = 1940;
-    int userId = 1;
+   Future<void> sendEmailHandle(String email) async {
+    int otpCode = -1;
+    int userId = -1;
     //send POST request
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => FPEnteringOTPPage(email: email, otpCode: otpCode, userId: userId,)),
-      );
+     try {
+        final response = await ForgotPasswordService().verifyEmail(email);
+        debugPrint('Request sent successfully: ${response.body}');
+         final responseData = json.decode(response.body);
+          email = responseData['email'];
+          otpCode = responseData['otp'];
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => FPEnteringOTPPage(email: email, otpCode: otpCode, userId: userId,)),
+          );
+         
+      } catch (e) {
+        debugPrint('Error sending review: $e');
+      }
+      
    }
 }

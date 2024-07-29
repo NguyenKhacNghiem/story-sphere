@@ -15,7 +15,7 @@ class APIUrlSerivces {
 
   //forgot password
   static const forgotPasswordService = '${server}user/forget-password';
-  static const verifyEmailService = '{$server}user/verify-email';
+  static const verifyEmailService = '${server}user/verify-email';
 
   //searching - filtering
   static const filter = '${server}story/filter';

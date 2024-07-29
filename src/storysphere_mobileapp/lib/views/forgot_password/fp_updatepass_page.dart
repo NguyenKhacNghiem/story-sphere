@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
+import 'package:storysphere_mobileapp/services/forgot_passowrd_service.dart';
 import 'package:storysphere_mobileapp/views/forgot_password/fp_success_page.dart';
 
 class FPUpdatePassword extends StatefulWidget {
@@ -106,13 +109,47 @@ class _FPUpdatePassword extends State<FPUpdatePassword> {
     );
    }
 
-   void updatePassword(){
+   Future<void> updatePassword() async {
+    int userId = widget.userId;
+    String password = _passwordController.text;
+    String confirmEnterPassword = _confirmPasswordController.text;
      //send API
+      try {
+        final response = await ForgotPasswordService().resetPassword(userId, password,confirmEnterPassword); 
+        if(response.statusCode == 200) {
+          debugPrint('Request sent successfully: ${response.body}');
+           final responseData = json.decode(response.body);
+         if (responseData['code'] == 0 || responseData['code'] == 100) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => FPUpdateSuccessPage()),
+            );
+         } else {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text(Strings.error),
+                content: Text(responseData['message']),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      setState(() {});
+                    },
+                    child: const Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
+         }
 
+        }
+      } catch (e) {
+        debugPrint('Error sending review: $e');
+      }
      //route
-     Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => FPUpdateSuccessPage()),
-    );
+     
    }
 }

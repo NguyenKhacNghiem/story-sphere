@@ -3,6 +3,7 @@ const { validationResult } = require('express-validator');
 const Story = require("../models/story");
 const User = require("../models/user");
 const log = require('../logs/log');
+const utils = require("../utils");
 
 async function getAll(req, res) {
     // Paging
@@ -103,6 +104,52 @@ async function create(req, res) {
         else
             res.json({code: 1, message: "Tạo tác phẩm mới thất bại"});
     });
+}
+
+async function edit(req, res) {
+    try {
+        // Input validation
+        let result = validationResult(req);
+        if(result.errors.length > 0) {
+            log.error(result.errors[0].msg);
+            return res.json({code: 1, message: result.errors[0].msg});
+        }
+
+        let story = await Story.findOne({ _id: req.params.id }); // find one record by id
+
+        if(!story) {
+            log.error("Tác phẩm không tồn tại");
+            return res.json({code: 1, message: "Tác phẩm không tồn tại"});
+        }
+
+        // Change fields of record
+        story.storyName = req.body.storyName;
+        story.cover = req.body.cover;
+        story.contentOutline = req.body.contentOutline;
+        story.authorName = req.body.authorName;
+        story.publisherName = req.body.publisherName;
+        story.publishDate = req.body.publishDate;
+        story.categoriesAndTags = req.body.categoriesAndTags;
+        story.selfComposedStory = req.body.selfComposedStory;
+        story.matureContent = req.body.matureContent;
+        story.chapterCount = req.body.chapterCount;
+        story.viewCount = req.body.viewCount ? req.body.viewCount : story.viewCount;
+        story.voteCount = req.body.voteCount ? req.body.voteCount : story.voteCount;
+        story.commentCount = req.body.commentCount ? req.body.commentCount : story.commentCount;
+        story.ratingPoint = req.body.ratingPoint ? req.body.ratingPoint : story.ratingPoint;
+        story.lastUpdate = utils.getCurrentDateTime();
+        story.commercialActivated = req.body.commercialActivated;
+        story.storySellPrice = req.body.storySellPrice;
+
+        await story.save();
+
+        log.info("Cập nhật tác phẩm thành công");
+        res.json({code: 0, message: "Cập nhật tác phẩm thành công"});
+    }
+    catch (error) {
+        log.error(error.message);
+        res.json({code: 1, message: "Cập nhật tác phẩm thất bại"});
+    }
 }
 
 async function search(req, res) {
@@ -377,6 +424,7 @@ module.exports = {
     getAll,
     getOne,
     create,
+    edit,
     search,
     filter,
     sort,

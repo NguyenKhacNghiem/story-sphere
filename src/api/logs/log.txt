@@ -2808,3 +2808,22 @@
 [INFO]  29/07/2024 23:17:35 Đăng ký tài khoản thành công
 [ERROR] 29/07/2024 23:26:59 Illegal arguments: undefined, string
 [INFO]  29/07/2024 23:30:31 Đăng ký tài khoản thành công
+[INFO]  30/07/2024 01:53:20 API server has been started.
+[ERROR] 30/07/2024 01:53:27 Tác phẩm không tồn tại
+[ERROR] 30/07/2024 01:56:36 Tác phẩm không tồn tại
+[ERROR] 30/07/2024 01:57:04 Tác phẩm không tồn tại
+[INFO]  30/07/2024 01:57:17 API server has been started.
+[INFO]  30/07/2024 01:57:29 API server has been started.
+[ERROR] 30/07/2024 01:57:34 Cast to Number failed for value "NaN" (type number) at path "_id" for model "Story"
+[INFO]  30/07/2024 01:58:15 API server has been started.
+[INFO]  30/07/2024 01:58:19 API server has been started.
+[INFO]  30/07/2024 01:58:56 API server has been started.
+[INFO]  30/07/2024 01:58:58 Cập nhật tác phẩm thành công
+[INFO]  30/07/2024 01:59:28 Cập nhật tác phẩm thành công
+[INFO]  30/07/2024 01:59:32 Cập nhật tác phẩm thành công
+[INFO]  30/07/2024 01:59:50 Cập nhật tác phẩm thành công
+[ERROR] 30/07/2024 02:00:13 Page not found!
+[ERROR] 30/07/2024 02:00:21 Chương không tồn tại
+[INFO]  30/07/2024 02:01:40 Cập nhật chương thành công
+[INFO]  30/07/2024 02:01:56 Cập nhật chương thành công
+[INFO]  30/07/2024 02:02:01 Cập nhật chương thành công

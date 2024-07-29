@@ -28,9 +28,35 @@ module.exports = {
         .notEmpty()
         .withMessage('Vui lòng chọn "Chương có chứa nội dung người lớn?"'),
 
-        check("wordsCount")
+        check("commercialActivated")
         .notEmpty()
-        .withMessage("Vui lòng nhập số từ cho chương"),
+        .withMessage('Vui lòng chọn "Chương có tính phí?"'),
+
+        check("chapterSellPrice")
+        .notEmpty()
+        .withMessage("Vui lòng nhập giá mà người dùng phải trả cho chương"),
+    ],
+
+    editValidator: [
+        check("chapterName")
+        .notEmpty()
+        .withMessage("Vui lòng nhập tên chương"),
+
+        check("chapterContent")
+        .notEmpty()
+        .withMessage("Vui lòng nhập nội dung chương"),
+
+        check("chapterOrder")
+        .notEmpty()
+        .withMessage("Vui lòng nhập thứ tự chương"),
+
+        check("chapterStatus")
+        .notEmpty()
+        .withMessage("Vui lòng nhập trạng thái chương"),
+
+        check("matureContent")
+        .notEmpty()
+        .withMessage('Vui lòng chọn "Chương có chứa nội dung người lớn?"'),
 
         check("commercialActivated")
         .notEmpty()

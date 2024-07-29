@@ -12,6 +12,10 @@ router.post("/create", chapterValidator.createValidator, (req, res) => {
     chapterController.create(req, res);
 })
 
+router.put("/edit/:id", chapterValidator.editValidator, (req, res) => {
+    chapterController.edit(req, res);
+})
+
 router.put("/publish", chapterValidator.publishValidator, (req, res) => {
     chapterController.publish(req, res);
 })

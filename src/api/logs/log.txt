@@ -2758,3 +2758,53 @@
 [INFO]  28/07/2024 23:14:32 Thống kê số lượng thành công
 [INFO]  28/07/2024 23:15:41 Lấy danh sách tác phẩm thành công
 [INFO]  28/07/2024 23:44:41 API server has been started.
+[INFO]  29/07/2024 21:46:05 API server has been started.
+[INFO]  29/07/2024 21:48:09 API server has been started.
+[INFO]  29/07/2024 21:48:15 API server has been started.
+[INFO]  29/07/2024 21:48:30 API server has been started.
+[INFO]  29/07/2024 21:48:47 API server has been started.
+[INFO]  29/07/2024 21:48:57 API server has been started.
+[INFO]  29/07/2024 21:49:17 API server has been started.
+[INFO]  29/07/2024 21:49:28 API server has been started.
+[INFO]  29/07/2024 21:50:30 API server has been started.
+[INFO]  29/07/2024 21:50:35 API server has been started.
+[INFO]  29/07/2024 21:52:37 API server has been started.
+[INFO]  29/07/2024 21:53:11 API server has been started.
+[INFO]  29/07/2024 21:53:56 API server has been started.
+[INFO]  29/07/2024 21:54:25 API server has been started.
+[INFO]  29/07/2024 21:54:54 API server has been started.
+[INFO]  29/07/2024 21:54:59 API server has been started.
+[INFO]  29/07/2024 21:56:21 API server has been started.
+[INFO]  29/07/2024 21:56:38 API server has been started.
+[ERROR] 29/07/2024 21:59:06 Vui lòng nhập tài khoản
+[ERROR] 29/07/2024 21:59:54 newUser.save is not a function
+[INFO]  29/07/2024 22:41:14 API server has been started.
+[ERROR] 29/07/2024 22:41:16 Cannot read properties of undefined (reading 'save')
+[ERROR] 29/07/2024 22:41:46 newUser.save is not a function
+[INFO]  29/07/2024 22:42:15 API server has been started.
+[INFO]  29/07/2024 22:42:45 API server has been started.
+[INFO]  29/07/2024 22:43:07 API server has been started.
+[INFO]  29/07/2024 22:49:22 API server has been started.
+[INFO]  29/07/2024 22:49:55 API server has been started.
+[INFO]  29/07/2024 22:50:20 API server has been started.
+[ERROR] 29/07/2024 22:50:38 Tài khoản này đã tồn tại
+[ERROR] 29/07/2024 22:50:46 Email này đã tồn tại
+[ERROR] 29/07/2024 22:51:04 Mã OTP không chính xác.
+[ERROR] 29/07/2024 22:51:06 Mã OTP không chính xác.
+[ERROR] 29/07/2024 22:51:13 Mã OTP không chính xác.
+[ERROR] 29/07/2024 22:51:33 Mã OTP không chính xác.
+[ERROR] 29/07/2024 22:54:31 Mã OTP không chính xác.
+[ERROR] 29/07/2024 22:54:41 Mã OTP không chính xác.
+[INFO]  29/07/2024 22:54:58 API server has been started.
+[ERROR] 29/07/2024 22:55:20 Mã OTP không chính xác.
+[INFO]  29/07/2024 22:55:46 API server has been started.
+[ERROR] 29/07/2024 22:56:24 Mã OTP không chính xác.
+[INFO]  29/07/2024 22:56:27 Đăng ký tài khoản thành công
+[ERROR] 29/07/2024 22:57:03 Tài khoản này đã tồn tại
+[ERROR] 29/07/2024 22:57:08 Xác nhận mật khẩu không chính xác
+[ERROR] 29/07/2024 22:57:13 Email này đã tồn tại
+[INFO]  29/07/2024 22:58:04 API server has been started.
+[INFO]  29/07/2024 23:10:56 API server has been started.
+[INFO]  29/07/2024 23:17:35 Đăng ký tài khoản thành công
+[ERROR] 29/07/2024 23:26:59 Illegal arguments: undefined, string
+[INFO]  29/07/2024 23:30:31 Đăng ký tài khoản thành công

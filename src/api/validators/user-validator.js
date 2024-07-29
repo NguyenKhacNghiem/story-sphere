@@ -37,7 +37,6 @@ module.exports = {
         .withMessage("Vui lòng nhập mật khẩu"),
     ],
 
-    // TODO: Update email with verify email
     updateEmailValidator: [
         check("_id")
         .notEmpty()

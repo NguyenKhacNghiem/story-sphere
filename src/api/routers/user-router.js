@@ -12,6 +12,10 @@ router.post("/register", userValidator.registerValidator, (req, res) => {
     userController.register(req, res);
 })
 
+router.post("/save-user", (req, res) => {
+    userController.saveUser(req, res);
+})
+
 router.post("/login", userValidator.loginValidator, (req, res) => {
     userController.login(req, res);
 })

@@ -18,10 +18,10 @@ class NotFoundWidget extends StatelessWidget {
                 height: 100.sp,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5.sp),
-                  child: Image.asset('assets/images/404-error.png', fit: BoxFit.cover,))
+                  child: Image.asset('assets/images/404-error.png', fit: BoxFit.fill,))
                 ),
               20.verticalSpace,
-              Text(Strings.contentNotFound, style: FontConstant.headline2Light,)
+              Text(Strings.contentNotFound, style: FontConstant.categoryDescrip,)
             ])   
     );
   }

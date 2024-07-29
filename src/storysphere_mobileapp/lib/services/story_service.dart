@@ -192,7 +192,6 @@ class StoryService {
   }
 
   //POST API REQUESTS
-  
   Future<http.Response> createStory(Story story) async {
   final url = Uri.parse('$_apiUrl/create');
   final headers = {'Content-Type': 'application/json'};
@@ -229,4 +228,19 @@ class StoryService {
   }
 }
 
+  //DELETE API REQUESTS
+  Future<http.Response> deleteStoryById(int id) async {
+    final Uri uri = Uri.parse('$_apiUrl/delete/$id');
+
+    final http.Response response = await http.delete(uri);
+
+    if (response.statusCode == 200 || response.statusCode == 204) {
+    
+      return response;
+    } else {
+      throw Exception('Failed to send review');
+    }
+     
+  }
+  
 }

@@ -118,7 +118,10 @@ class _SearchingResultsPage extends State<SearchingResultsPage> {
           } 
            else {
             //content not found
-            notFound = true;
+            setState(() {
+              notFound = true;
+            });
+            
           }
         });
       });

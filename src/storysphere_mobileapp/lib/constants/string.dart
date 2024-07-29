@@ -70,6 +70,8 @@ class Strings {
   static const String drarf = 'Nháp';
   static const String alertTitle = 'Thiếu thông tin';
   static const String alertContent = 'Bạn đang thiết tên truyện hoặc thể loại!';
+  static const String deleteStoryAlert = 'Bạn có chắc muốn xóa truyện này?';
+  static const String deleteStory = 'Xóa truyện';
 
   //Story Details
   static const String readMore = 'Đọc thêm';

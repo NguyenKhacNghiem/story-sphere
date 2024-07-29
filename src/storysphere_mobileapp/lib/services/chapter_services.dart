@@ -101,4 +101,19 @@ class ChapterService {
       throw Exception('Failed to send review');
     }
   }
+
+  //DELETE API REQUESTS
+   Future<http.Response> deleteChapterById(int id) async {
+    final Uri uri = Uri.parse('$_apiChapter/delete/$id');
+
+    final http.Response response = await http.delete(uri);
+
+    if (response.statusCode == 200 || response.statusCode == 204) {
+    
+      return response;
+    } else {
+      throw Exception('Failed to send review');
+    }
+     
+  }
 }

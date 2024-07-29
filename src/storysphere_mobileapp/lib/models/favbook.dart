@@ -22,7 +22,7 @@ class FavBook {
   DateTime? addedDate;
 
   factory FavBook.fromJson(Map<String, dynamic> json) => FavBook(
-        favBookId: json["favBookId"],
+        favBookId: json["_id"],
         userId: json["userId"],
         storyId: json["storyId"],
         readingProgressChapter: json["readingProgressChapter"],

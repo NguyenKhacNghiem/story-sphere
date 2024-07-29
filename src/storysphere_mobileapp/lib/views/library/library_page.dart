@@ -70,6 +70,7 @@ class _LibraryPage extends State<LibraryPage> {
                 return BookDisplayWidget(
                     fromLib: true,
                     story: displayStoryList[index],
+                    favBookId: favBookList.elementAt(index).favBookId,
                   );
 
               }),

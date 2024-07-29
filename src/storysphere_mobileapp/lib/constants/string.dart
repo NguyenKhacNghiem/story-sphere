@@ -45,6 +45,8 @@ class Strings {
 
   //Library
   static const String yourLibNote = 'Những quyển sách bạn yêu thích đều lưu trữ tại đây!';
+  static const String removeFromLib = 'Xóa truyện ra khỏi thư viện';
+  static const String removeLibContent = 'Bạn có chắc muốn bỏ lưu truyện này?';
 
   //READING HISTORY
   static const String readingHistory = 'Lịch sử đọc';

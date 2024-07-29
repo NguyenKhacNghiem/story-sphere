@@ -37,15 +37,20 @@ class StoryService {
   }
 
   Future<PaginationResult<Story>?> getStoriesByUserId(int userId, int? page) async {
+    
     final Map<String, String> queryParams = {
-      'userId': userId.toString(),
+      'fk_publisherAccount': userId.toString(),
       if (page!= null) 'page': page.toString(),
     };
+    
+    final Uri uri = Uri.parse('$_apiUrl/filter').replace(queryParameters: queryParams);
 
-     final Uri uri = Uri.parse(_apiUrl).replace(queryParameters: queryParams);
+     debugPrint(uri.toString());
 
      try {
         final http.Response response = await http.get(uri);
+
+        debugPrint(response.body);
 
         if (response.statusCode == 200) {
           final Map<String, dynamic> temp = jsonDecode(response.body);

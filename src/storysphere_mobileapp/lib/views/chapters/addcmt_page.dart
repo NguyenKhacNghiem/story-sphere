@@ -25,6 +25,7 @@ class _AddCommentPage extends State<AddCommentPage> {
   List<Comment> commentList = [];
   int currentPage = 1;
   int totalPages = 1;
+  bool notFound = false;
 
   @override
   void initState() {
@@ -91,8 +92,9 @@ class _AddCommentPage extends State<AddCommentPage> {
                 )
                 ),
             ),
+            20.verticalSpace,
              commentList.isEmpty
-             ? const Text(Strings.writeNewComment)
+             ? Center(child: Text(Strings.beTheFirstComment, style: FontConstant.categoryDescrip,))
              :ListView.builder(
               scrollDirection: Axis.vertical,
               controller: ScrollController(),
@@ -119,7 +121,9 @@ class _AddCommentPage extends State<AddCommentPage> {
 
             //Pagination
             20.verticalSpace,
-            Row(
+            commentList.isEmpty
+            ? 0.verticalSpace
+            : Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: _buildPageButtons(),
             ),
@@ -169,7 +173,7 @@ class _AddCommentPage extends State<AddCommentPage> {
 
   void initData(){
     // GET DATA
-     if (commentList.isEmpty) {
+     if (commentList.isEmpty && !notFound) {
       final result =  CommentService().getCommentByChapter(chapterId, currentPage);
       result.whenComplete(() {
         result.then((value) {
@@ -178,6 +182,10 @@ class _AddCommentPage extends State<AddCommentPage> {
               commentList = value.result;
               currentPage = value.currentPage;
               totalPages = value.totalPages;
+            });
+          } else {
+            setState(() {
+              notFound = true;
             });
           }
         });

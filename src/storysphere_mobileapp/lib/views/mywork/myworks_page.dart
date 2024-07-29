@@ -10,6 +10,8 @@ import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/services/story_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 import 'package:storysphere_mobileapp/views/mywork/widgets/bookedit_section.dart';
+import 'package:storysphere_mobileapp/views/widgets/emtpy_widget.dart';
+
 @RoutePage()
 class MyWorksPage extends StatefulWidget {
   final int userId;
@@ -45,7 +47,10 @@ class _MyWorksPage extends State<MyWorksPage> {
             40.verticalSpace,
             Text(Strings.myWorks, style: FontConstant.resultTitleDisplay,),
             2.verticalSpace,
-            
+
+            displayStoryList.isEmpty
+            ? (!notFound) ? const CircularProgressIndicator() : const EmptyWidget()
+            :
             ListView.builder(
                 scrollDirection: Axis.vertical,
                 controller: ScrollController(),
@@ -61,7 +66,9 @@ class _MyWorksPage extends State<MyWorksPage> {
             }),
 
             20.verticalSpace,
-            Row(
+            displayStoryList.isEmpty
+            ? 0.verticalSpace
+            : Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: _buildPageButtons(),),
 
@@ -108,6 +115,7 @@ class _MyWorksPage extends State<MyWorksPage> {
 
    
   Future<void> initData() async {
+    debugPrint(widget.userId.toString());
     if (displayStoryList.isEmpty && !notFound) {
       final result =  StoryService().getStoriesByUserId(widget.userId, currentPage);
       result.whenComplete(() {
@@ -120,7 +128,10 @@ class _MyWorksPage extends State<MyWorksPage> {
             });
           } else {
             //content not found
-            notFound = true;
+            setState(() {
+              notFound = true;
+            });
+            
           }
         });
       });

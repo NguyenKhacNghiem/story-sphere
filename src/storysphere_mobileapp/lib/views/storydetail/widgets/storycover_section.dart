@@ -87,7 +87,9 @@ class StoryCoverSectionWidget extends StatelessWidget {
             height: 253.sp,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5.sp),
-              child: Image.network(story.storyCover ?? Strings.defaultCover, fit: BoxFit.cover,))),
+              child: story.storyCover != null && story.storyCover! != "???"
+              ? Image.network(story.storyCover!, fit: BoxFit.cover,)
+              : Image.network(Strings.defaultCover, fit: BoxFit.cover,))),
           ),
 
 

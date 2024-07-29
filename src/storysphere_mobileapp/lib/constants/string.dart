@@ -29,6 +29,7 @@ class Strings {
   static const String bookCategories = 'Sách phi tiểu thuyết';
   static const String searchResults = 'Kết quả tìm kiếm';
   static const String contentNotFound = 'Không tìm thấy kết quả phù hợp';
+  static const String noDataToDisplay = 'Không có dữ liệu';
 
   //User account page
   static const String myLibrary = 'Thư viện của tôi';
@@ -92,6 +93,7 @@ class Strings {
   static const String userComments = 'Bình luận độc giả';
   static const String writeNewComment = 'Viết bình luận';
   static const String submitConmment = 'Gửi';
+  static const String beTheFirstComment = 'Hãy trở thành người đầu tiên bình luận!';
 
 
   //LABELS - FOR BUTTON

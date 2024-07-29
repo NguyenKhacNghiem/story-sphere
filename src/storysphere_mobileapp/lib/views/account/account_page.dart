@@ -23,13 +23,7 @@ class UserAccountPage extends StatefulWidget {
 
 class _UserAccountPage extends State<UserAccountPage> {
   late int userId;
-  User? currUser; 
-  // User(
-  //   userId: 1, userPassword: 'kcaoico02ic', dateOfBirth: DateTime.tryParse('17/07/2005'),
-  //   username: 'nguyenthanhdanh', displayName: 'Nguyễn Thành Danh', selfIntroduction: 'Giới thiệu tác giả không có gì để ghi\nCũng chẳng có gì để xem',
-  //   avatar: 'https://i.pinimg.com/564x/4b/79/a5/4b79a5084ea8aba629b601cc209c11a7.jpg',
-  //   bgImg: 'https://i.pinimg.com/564x/58/6d/4c/586d4c295438d50d25cbd4a287800b02.jpg',
-  // );
+  User? currUser;
 
   @override
   Widget build(BuildContext context) {

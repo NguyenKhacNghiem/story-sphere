@@ -104,7 +104,9 @@ class _FilterByCategoryPage extends State<FilterByCategoryPage> {
             ),
 
             20.verticalSpace,
-            Row(
+            displayStoryList.isEmpty
+            ? 0.verticalSpace
+            : Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: _buildPageButtons(),
             ),

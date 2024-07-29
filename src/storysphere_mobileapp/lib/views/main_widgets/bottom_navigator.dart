@@ -18,7 +18,7 @@ class _SPBottomNavigationBarState extends State<SPBottomNavigationBar> {
   int selectedIndex = 0;
   int? userId;
 
-   Future<void> _loadUserId() async {
+  Future<void> _loadUserId() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       userId = prefs.getInt('userId');
@@ -37,15 +37,15 @@ class _SPBottomNavigationBarState extends State<SPBottomNavigationBar> {
               break;
         case 2:
               Navigator.pop(context);
-              context.pushRoute(MyWorksPage(userId: userId ?? 100004 ));
+              context.pushRoute(MyWorksPage(userId: userId ?? -1 ));
               break;
         case 3:
               Navigator.pop(context);
-              context.pushRoute(LibraryPage(userId: userId ?? 100004));
+              context.pushRoute(LibraryPage(userId: userId ?? -1));
               break;
         case 4:
               Navigator.pop(context);
-              context.pushRoute(UserAccountPage(userId: userId ?? 100004 ));
+              context.pushRoute(UserAccountPage(userId: userId ?? -1 ));
               break;
         default:
               Navigator.pop(context);

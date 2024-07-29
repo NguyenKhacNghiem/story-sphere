@@ -99,7 +99,7 @@ class _ReviewListItemWidget extends State<ReviewListItemWidget> {
               image: 
               userReview.avatar != null && userReview.avatar! != "???"
               ? NetworkImage(userReview.avatar!)
-              : const NetworkImage('https://cdn-icons-png.flaticon.com/512/3607/3607444.png'),
+              : const NetworkImage(Strings.defaultAvatar),
               fit: BoxFit.cover,),
           borderRadius: BorderRadius.circular(20.sp)
           ),
@@ -198,7 +198,7 @@ class _ReviewListItemWidget extends State<ReviewListItemWidget> {
             image: DecorationImage( 
               image: userReview.avatar != null && userReview.avatar! != "???"
               ? NetworkImage(userReview.avatar!)
-              : const NetworkImage('https://cdn-icons-png.flaticon.com/512/3607/3607444.png'),
+              : const NetworkImage(Strings.defaultAvatar),
               fit: BoxFit.cover,),
           borderRadius: BorderRadius.circular(15.sp)
           ),

@@ -10,6 +10,7 @@ import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/models/user.dart';
 import 'package:storysphere_mobileapp/services/account_service.dart';
+import 'package:storysphere_mobileapp/services/cloud_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 
 @RoutePage()
@@ -26,16 +27,14 @@ class _EditAccountPage extends State<EditAccountPage> {
   File? _image;
   File? _coverImgae;
   DateTime? _selectedDate;
-  final TextEditingController avatarController = TextEditingController();
-  final TextEditingController coverController = TextEditingController();
+  String userAvatarLinkPath = '';
+  String userCoverLinkPath = '';
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController userIntroductionController = TextEditingController();
  
   
   @override
   void dispose() {
-    avatarController.dispose();
-    coverController.dispose();
     userNameController.dispose();
     userIntroductionController.dispose();
     super.dispose();
@@ -44,8 +43,7 @@ class _EditAccountPage extends State<EditAccountPage> {
   @override
   Widget build(BuildContext context) {
     user = widget.user;
-    coverController.text = user.bgImg ?? Strings.coverLinkPath;
-    avatarController.text = user.avatar ?? Strings.avatar;
+    userAvatarLinkPath = user.avatar ?? Strings.defaultCover;
    
     return Scaffold(
       bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 4),
@@ -99,7 +97,7 @@ class _EditAccountPage extends State<EditAccountPage> {
                           child: _coverImgae == null 
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(5.sp),
-                                child: Image.network(user.bgImg ?? '', fit: BoxFit.cover,))
+                                child: Image.network(user.bgImg ?? Strings.defaultBgImg, fit: BoxFit.cover,))
                             : ClipRRect(
                                 borderRadius: BorderRadius.circular(5.sp),
                                 child: Image.file(_coverImgae!, fit: BoxFit.cover,))),
@@ -236,15 +234,26 @@ class _EditAccountPage extends State<EditAccountPage> {
   Future<void> _pickImage(ImageSource source, bool avt) async {
     final pickedFile = await ImagePicker().pickImage(source: source);
     if (pickedFile != null) {
-      if (avt) {
-        setState(() {
-          _image = File(pickedFile.path);
-        });
-      } else {
-         setState(() {
-          _coverImgae = File(pickedFile.path);
-        });
+      try {
+        final response = await CloudService().uploadFile(pickedFile);
+        if (response.statusCode == 200){
+          if (avt) {
+            setState(() {
+                _image = File(pickedFile.path);
+              });
+          } else {
+            setState(() {
+              _coverImgae = File(pickedFile.path);
+            });
+          } 
+        } else {
+          
+        }
+        debugPrint('Review sent successfully: ${response.body}');
+      } catch (e) {
+        debugPrint('Error sending review: $e');
       }
+      
       
     }
   }

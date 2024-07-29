@@ -29,7 +29,7 @@ class UserCoverSectionWidget extends StatelessWidget {
               image: DecorationImage(
                   image: user.bgImg != null && user.bgImg! != "???"
                   ? NetworkImage(user.bgImg!)
-                  : const NetworkImage( 'https://i.pinimg.com/564x/c4/81/40/c48140f48c3a348b18f6972574d84542.jpg'),
+                  : const NetworkImage(Strings.defaultBgImg),
                   fit: BoxFit.fitWidth,
                 ),
               ),
@@ -73,7 +73,7 @@ class UserCoverSectionWidget extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(45.sp),
-              child: Image.network(user.avatar ?? 'https://i.pinimg.com/564x/36/20/80/362080abb3296390a93111db932322fb.jpg', fit: BoxFit.cover,))),
+              child: Image.network(user.avatar ?? Strings.defaultAvatar, fit: BoxFit.cover,))),
           ),
 
            Align(

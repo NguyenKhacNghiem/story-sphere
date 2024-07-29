@@ -149,11 +149,12 @@ class Strings {
   static const String words = ' từ';
   static const String generalInfo = 'Thông tin chung';
 
-  //Default cover
-  static const String defaultCover =
-      'https://www.boldstrokesbooks.com/assets/bsb/images/book-default-cover.jpg';
-  static const String loginBackgroundImage = 'https://i.pinimg.com/564x/1f/35/90/1f359051b2c7f4a4fcd3b8fcfe960b6a.jpg';
-
+  //Default images
+  static const String defaultCover = 'https://res.cloudinary.com/story-sphere/image/upload/v1722226627/book-default-cover_xpv0yf.jpg';
+  static const String loginBackgroundImage = 'https://res.cloudinary.com/story-sphere/image/upload/v1722226710/1f359051b2c7f4a4fcd3b8fcfe960b6a_nfnxpd.jpg';
+  static const String defaultAvatar = 'https://res.cloudinary.com/story-sphere/image/upload/v1722182000/user_ubzndq.png';
+  static const String defaultBgImg = 'https://res.cloudinary.com/story-sphere/image/upload/v1722181117/email-background_hneqzm.jpg';
+  static const String defaultChapterBackground = 'https://res.cloudinary.com/story-sphere/image/upload/v1722226874/fb6195ed51a8ee4ea4fd8cdd1ceb5791_ddkqlf.jpg';
   //CONFIG VALUES
   static const String defaultDateFormat = 'dd/MM/yyyy';
 

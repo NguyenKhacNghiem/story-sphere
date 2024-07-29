@@ -109,7 +109,7 @@ class _ChapterPage extends State<ChapterPage> {
                 Container(
                   decoration: BoxDecoration(
                      image: const DecorationImage(
-                      image: NetworkImage('https://i.pinimg.com/564x/fb/61/95/fb6195ed51a8ee4ea4fd8cdd1ceb5791.jpg'),
+                      image: NetworkImage(Strings.defaultChapterBackground),
                       fit: BoxFit.fitWidth,
                     ),
                     borderRadius: BorderRadius.circular(10.sp)

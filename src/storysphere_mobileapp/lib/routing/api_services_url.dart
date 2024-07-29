@@ -10,6 +10,9 @@ class APIUrlSerivces {
   //login
   static const loginService = '${server}user/login';
 
+  //cloud service
+  static const cloudService = '${server}cloudinary';
+
   //forgot password
   static const forgotPasswordService = '${server}user/forget-password';
   static const verifyEmailService = '{$server}user/verify-email';

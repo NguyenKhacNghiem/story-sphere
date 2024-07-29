@@ -90,7 +90,7 @@ class _CommentListItemWidget extends State<CommentListItemWidget> {
               image: 
                 usercomment.avatar != null && usercomment.avatar! != "???"
                 ? NetworkImage(usercomment.avatar!)
-                : const NetworkImage('https://cdn-icons-png.flaticon.com/512/3607/3607444.png'),
+                : const NetworkImage(Strings.defaultAvatar),
               fit: BoxFit.cover,),
           borderRadius: BorderRadius.circular(20.sp)
           ),
@@ -156,7 +156,7 @@ class _CommentListItemWidget extends State<CommentListItemWidget> {
           height: 30.sp,
           decoration: BoxDecoration(
             image: DecorationImage( 
-              image: NetworkImage(userReview.avatar ?? 'https://cdn-icons-png.flaticon.com/512/3607/3607444.png'),
+              image: NetworkImage(userReview.avatar ?? Strings.defaultAvatar),
               fit: BoxFit.cover,),
           borderRadius: BorderRadius.circular(15.sp)
           ),

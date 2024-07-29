@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:storysphere_mobileapp/models/user.dart';
 import 'package:storysphere_mobileapp/routing/api_services_url.dart';
 
@@ -64,15 +65,18 @@ class AccountService {
     }
   }
 
-  Future<http.Response> updateProfile(User user) async {
+  Future<http.Response> updateProfile(int userId, String displayName, String introduction, DateTime dateOfBirth) async {
     final url = Uri.parse('$_apiUrl/profile');
     final headers = {'Content-Type': 'application/json'};
+    String formattedDate = DateFormat('dd/MM/yyyy').format(dateOfBirth);
     final Map<String, dynamic> data = {
-      '_id': user.userId,
-      'displayName': user.displayName,
-      'selfIntroduction': user.selfIntroduction,
-      'dateOfBirth': user.dateOfBirth,
+      '_id': userId,
+      'displayName': displayName,
+      'selfIntroduction': introduction,
+      'dateOfBirth': formattedDate,
     };
+
+    debugPrint('${dateOfBirth.day}/${dateOfBirth.month}/${dateOfBirth.year}');
 
     final response = await http.put(
       url,

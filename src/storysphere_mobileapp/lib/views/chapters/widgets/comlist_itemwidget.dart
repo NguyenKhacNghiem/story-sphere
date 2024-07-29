@@ -60,9 +60,9 @@ class _CommentListItemWidget extends State<CommentListItemWidget> {
                 controller: ScrollController(),
                 physics: const ClampingScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: replyComment!.length,
+                itemCount: replyComment.length,
                 itemBuilder: (context, index) {
-                return buildReply(replyComment!.elementAt(index));
+                return buildReply(replyComment.elementAt(index));
           })
           : 0.verticalSpace,
     ]));

@@ -39,6 +39,8 @@ class Strings {
   static const String previewAvatar = 'Ảnh đại diện';
   static const String userName = 'Tên người dùng';
   static const String userIntroduction = 'Giới thiệu';
+  static const String dateOfBirth = 'Ngày sinh';
+  static const String chooseDoB = 'Chọn ngày sinh';
 
   //Library
   static const String yourLibNote = 'Những quyển sách bạn yêu thích đều lưu trữ tại đây!';
@@ -56,7 +58,7 @@ class Strings {
   static const String chapterTitle = 'Tiêu đề chương';
   static const String newStory = 'Thêm tác phẩm mới';
   static const String storyInfor = 'THÔNG TIN TÁC PHẨM';
-  static const String previewCover = 'Xem trước ảnh bìa';
+  static const String previewCover = 'Ảnh bìa';
   static const String coverLinkPath = 'Đường dẫn ảnh bìa';
   static const String storyName = 'Tên tác phẩm';
   static const String storyIntro = 'Giới thiệu';

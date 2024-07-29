@@ -47,6 +47,46 @@ class FavBookService {
       }
   }
 
-   
+  //POST API REQUESTS
+    Future<http.Response> createFavStory(int userId, int storyId, int? readingProgressChapter) async {
+  final url = Uri.parse('$_apiUrl/create');
+  final headers = {'Content-Type': 'application/json'};
+  final Map<String, dynamic> data = {
+    'userId': userId,
+    'storyId': storyId,
+    if (readingProgressChapter != null) 'readingProgressChapter': readingProgressChapter,
+  };
+
+  final response = await http.post(
+    url,
+    headers: headers,
+    body: jsonEncode(data),
+  );
+
+  if (response.statusCode == 200) {
+    // Success
+    return response;
+  } else {
+    // Error
+    throw Exception('Failed to send review');
+  }
+}
+
+  //DELETE API REQUESTS
+  Future<http.Response> deleteStoryById(int id) async {
+    final Uri uri = Uri.parse('$_apiUrl/delete/$id');
+
+    debugPrint(uri.toString());
+
+    final http.Response response = await http.delete(uri);
+
+    if (response.statusCode == 200 || response.statusCode == 204) {
+    
+      return response;
+    } else {
+      throw Exception('Failed to send review');
+    }
+     
+  }
 
 }

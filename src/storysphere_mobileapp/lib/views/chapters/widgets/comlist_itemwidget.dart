@@ -6,6 +6,8 @@ import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/comment.dart';
 import 'package:storysphere_mobileapp/models/user.dart';
+import 'package:storysphere_mobileapp/models/user_of_cmt.dart';
+import 'package:storysphere_mobileapp/services/account_service.dart';
 import 'package:storysphere_mobileapp/services/comment_service.dart';
 
 // ignore: must_be_immutable
@@ -21,15 +23,16 @@ class CommentListItemWidget extends StatefulWidget {
 
 class _CommentListItemWidget extends State<CommentListItemWidget> {
   final TextEditingController commentController = TextEditingController();
-  User user = User(userId: 1, displayName: 'Kathy Alueds', avatar: 'https://i.pinimg.com/564x/f5/6b/c6/f56bc61a256661afc80d2995d1dd0582.jpg');
+  List<UserOfContent> userList = []; //0 - main review --> toReply
   bool isReply = false;
-  late int currentUser;
+  late int currUserId;
+  User? currentUser;
   List<Comment> replyComment = [];
 
   @override
   Widget build(BuildContext context) {
-    currentUser = widget.userId;
     replyComment = widget.replyComment ?? [];
+    fetchUser();
 
     return Padding(
       padding: EdgeInsets.only(top: 10.sp),
@@ -48,18 +51,18 @@ class _CommentListItemWidget extends State<CommentListItemWidget> {
             duration: const Duration(milliseconds: 400),
             curve: Curves.easeInOut,
             child: isReply
-                ? commentEditor()
+                  ? commentEditor(userList.elementAt(0).user!)
                 : 0.verticalSpace,
           ),
-          replyComment != null && replyComment!.isNotEmpty
+          widget.replyComment != null && replyComment.isNotEmpty
           ? ListView.builder(
             scrollDirection: Axis.vertical,
                 controller: ScrollController(),
                 physics: const ClampingScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: replyComment!.length,
+                itemCount: replyComment.length,
                 itemBuilder: (context, index) {
-                return buildReply(replyComment!.elementAt(index));
+                return buildReply(replyComment.elementAt(index));
           })
           : 0.verticalSpace,
     ]));
@@ -68,7 +71,8 @@ class _CommentListItemWidget extends State<CommentListItemWidget> {
 
   Widget buildcomment(Comment comment){
     //get user by userID
-    User usercomment = user;
+    UserOfContent uoc = userList.where((element) => element.id! == comment.comtId).first;
+    User usercomment = uoc.user!;
     String dateString = 'D';
     if (comment.comtTime != null) {
        dateString = "${comment.comtTime!.day}/${comment.comtTime!.month}/${comment.comtTime!.year}";
@@ -83,9 +87,12 @@ class _CommentListItemWidget extends State<CommentListItemWidget> {
           height: 40.sp,
           decoration: BoxDecoration(
             image: DecorationImage( 
-              image: NetworkImage(usercomment.avatar ?? 'https://cdn-icons-png.flaticon.com/512/3607/3607444.png'),
+              image: 
+                usercomment.avatar != null && usercomment.avatar! != "???"
+                ? NetworkImage(usercomment.avatar!)
+                : const NetworkImage(Strings.defaultAvatar),
               fit: BoxFit.cover,),
-          borderRadius: BorderRadius.circular(15.sp)
+          borderRadius: BorderRadius.circular(20.sp)
           ),
         ),
         10.horizontalSpace,
@@ -128,7 +135,8 @@ class _CommentListItemWidget extends State<CommentListItemWidget> {
  
   Widget buildReply(Comment comment){
     //get user by userID
-    User userReview = user;
+    UserOfContent uoc = userList.where((element) => element.id! == comment.comtId).first;
+    User userReview = uoc.user!;
     String dateString = 'D';
     if (comment.comtTime != null) {
        dateString = "${comment.comtTime!.day}/${comment.comtTime!.month}/${comment.comtTime!.year}";
@@ -148,7 +156,7 @@ class _CommentListItemWidget extends State<CommentListItemWidget> {
           height: 30.sp,
           decoration: BoxDecoration(
             image: DecorationImage( 
-              image: NetworkImage(userReview.avatar ?? 'https://cdn-icons-png.flaticon.com/512/3607/3607444.png'),
+              image: NetworkImage(userReview.avatar ?? Strings.defaultAvatar),
               fit: BoxFit.cover,),
           borderRadius: BorderRadius.circular(15.sp)
           ),
@@ -191,7 +199,7 @@ class _CommentListItemWidget extends State<CommentListItemWidget> {
   }
   
   
-  Widget commentEditor (){
+  Widget commentEditor (User user){
    return  Column(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
@@ -263,7 +271,7 @@ class _CommentListItemWidget extends State<CommentListItemWidget> {
       newComment.comtContent = temptstoryContentString;
       newComment.replyTo = widget.comment.comtId;
       newComment.comtTime = DateTime.now();
-      newComment.userId = currentUser;
+      newComment.userId = currUserId;
       newComment.chapterId = widget.comment.chapterId;
 
     try {
@@ -282,4 +290,40 @@ class _CommentListItemWidget extends State<CommentListItemWidget> {
     }
     
   }
+
+  
+  void fetchUser(){
+     if (userList.isEmpty) {
+      final result =  AccountService().getUserById(widget.comment.userId ?? 10004);
+      List<UserOfContent> tempList = [];
+      result.whenComplete(() {
+        result.then((value) async {
+          if (value != null) {
+            List<Future<void>> futures = [];
+            UserOfContent userOfContent = UserOfContent(id: widget.comment.comtId ?? -1, user: value);
+            tempList.add(userOfContent);
+
+             if (widget.replyComment != null){
+                for (Comment replyReviewItem in widget.replyComment!) {
+                  futures.add(
+                    AccountService().getUserById(replyReviewItem.userId ?? -1).then((value1) {
+                      if (value1 != null) {
+                        UserOfContent userOfContent1 = UserOfContent(id: replyReviewItem.comtId ?? -1, user: value1);
+                        tempList.add(userOfContent1);
+                      }
+                    }),
+                  );
+                }
+              }
+            await Future.wait(futures);
+
+            setState(() {
+              userList = tempList;
+            });
+          }
+        });
+      });
+     }
+  }
+
 }

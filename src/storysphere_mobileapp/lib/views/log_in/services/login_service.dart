@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storysphere_mobileapp/routing/api_services_url.dart';
@@ -22,6 +23,7 @@ class LoginService {
     );
 
     if (response.statusCode == 200) {
+      debugPrint(response.body);
       final responseData = json.decode(response.body);
 
       if (responseData['code'] == 0 || responseData['code'] == 100) {
@@ -50,5 +52,6 @@ class LoginService {
   Future<void> logout() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_isLoggedInKey);
+    await prefs.remove('userId');
   }
 }

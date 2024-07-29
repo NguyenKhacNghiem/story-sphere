@@ -7,6 +7,7 @@ import 'package:storysphere_mobileapp/models/reading_history.dart';
 import 'package:storysphere_mobileapp/services/reading_history_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 import 'package:storysphere_mobileapp/views/read_history/widgets/readhist_itemwidget.dart';
+import 'package:storysphere_mobileapp/views/widgets/emtpy_widget.dart';
 
 @RoutePage()
 class ReadingHistoryPage extends StatefulWidget {
@@ -41,7 +42,7 @@ class _ChapterListPage extends State<ReadingHistoryPage> {
               Text(Strings.readHistory, style: FontConstant.titleBigDisplayWhite,),
 
             readingHistoryList.isEmpty
-            ? noHistory ? 0.verticalSpace : const CircularProgressIndicator()
+            ? noHistory ? const EmptyWidget() : const CircularProgressIndicator()
             :  ListView.builder(
                 scrollDirection: Axis.vertical,
                 controller: ScrollController(),
@@ -55,7 +56,9 @@ class _ChapterListPage extends State<ReadingHistoryPage> {
                 }),
 
               20.verticalSpace,
-              Row(
+              readingHistoryList.isEmpty
+              ? 0.verticalSpace
+              : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: _buildPageButtons(),
               ),
@@ -68,7 +71,7 @@ class _ChapterListPage extends State<ReadingHistoryPage> {
 
   initData(){
     //get data
-    if (readingHistoryList.isEmpty) {
+    if (readingHistoryList.isEmpty && !noHistory) {
       final result =  ReadingHistoryService().getHistoryByUserId(widget.userId, currentPage);
       result.whenComplete(() {
         result.then((value) {
@@ -79,7 +82,10 @@ class _ChapterListPage extends State<ReadingHistoryPage> {
               totalPages = value.totalPages;
             });
           } else {
-            noHistory = true;
+            setState(() {
+               noHistory = true;
+            });
+           
           }
         });
       });

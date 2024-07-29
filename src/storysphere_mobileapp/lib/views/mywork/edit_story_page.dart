@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
@@ -9,6 +12,11 @@ import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/category.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
+import 'package:storysphere_mobileapp/models/user.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
+import 'package:storysphere_mobileapp/services/account_service.dart';
+import 'package:storysphere_mobileapp/services/category_service.dart';
+import 'package:storysphere_mobileapp/services/story_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 import 'package:storysphere_mobileapp/views/mywork/widgets/chapterlist_section.dart';
 
@@ -22,7 +30,7 @@ class EditStoryPage extends StatefulWidget {
 }
 
 class _EditStoryPage extends State<EditStoryPage> {
-  late int storyId;
+  late int userId;
   File? _image;
   final TextEditingController coverController = TextEditingController();
   final TextEditingController storyNameController = TextEditingController();
@@ -31,21 +39,18 @@ class _EditStoryPage extends State<EditStoryPage> {
   bool isCategorySelectExpand = false;
   late Widget categorySelect;
   late Widget tagsSelect;
-  String? selectedItem;
+  User? currentUser;
+  Category? selectedCategory;
   List<int> selectedTags = [];
-  List<Category> listTag = [
-    Category(categoryId: 1, categoryName: 'Kinh dị'),
-    Category(categoryId: 2, categoryName: 'Trinh thám'),
-    Category(categoryId: 3, categoryName: 'Cơ khí'),
-    Category(categoryId: 4, categoryName: 'Lãng mạn'),
-  ];
+  List<Category> listTag = [];
+  List<Category> dropdownBookCategories = [];
+  List<Category> dropdownNovelCategories = [];
 
-  final List<String> dropdownBookCategories = [
-    'Sách tâm lý', 'Sách kỹ năng', 'Sách y học', 'Sách lịch sử', 'Sách tài chính', 'Sách khoa học công nghệ', 'Sách tôn giáo - tâm linh'
-  ];
-  final List<String> dropdownNovelCategories = [
-    'Bí ẩn','Kinh dị', 'Khoan học viễn tưởng', 'Lãng mạn', 'Cổ tích', 'Truyện thiếu nhi','Viễn tưởng'
-  ];
+  @override
+  void initState() {
+    _loadUserId();
+    super.initState();
+  }
   
   @override
   void dispose() {
@@ -57,10 +62,9 @@ class _EditStoryPage extends State<EditStoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    coverController.text = widget.story.storyCover ?? '';
-    storyNameController.text = widget.story.storyName ?? '';
-    storyContentOutlineController.text = widget.story.storyContentOutline ?? '';
-    storyId = widget.story.storyId ?? -1;
+    initData();
+    fetchCategories();
+    fetchUser();
   
     return Scaffold(
       bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 2),
@@ -249,17 +253,66 @@ class _EditStoryPage extends State<EditStoryPage> {
                 listTag.map((item) => _buildCustomSelection(item)).toList()),
 
             40.verticalSpace,
-            ChapterListWriteSection(storyId: storyId),
+            ChapterListWriteSection(storyId: widget.story.storyId?? - 1),
             40.verticalSpace
           ],))
       ),
     );
   }
 
-  Widget buildCategorySelection(){
-    if (isNonFiction) {
-      //get category
+  initData(){
+    coverController.text = widget.story.storyCover ?? '';
+    storyNameController.text = widget.story.storyName ?? '';
+    storyContentOutlineController.text = widget.story.storyContentOutline ?? '';
+  }
+
+  
+Future<void> fetchUser() async{
+    if (currentUser == null) {
+    final result =  AccountService().getUserById(userId);
+      result.whenComplete(() {
+        result.then((value) {
+          if (value != null) {
+           currentUser = value;
+           debugPrint(currentUser!.displayName.toString());
+          }
+          else {
+            return null;
+          }
+        });
+      });
+  }
+    
+}
+
+Future<void> fetchCategories() async {
+   if (listTag.isEmpty) {
+      final result =  CategoryService().getAllCategory();
+      result.whenComplete(() {
+        result.then((value) {
+          if (value != null) {
+            debugPrint( 'Value: ' + value.length.toString());
+            setState(() {
+              listTag = value;
+
+              //WIDGET PREPARE
+              dropdownNovelCategories = listTag.where((category) => 
+                  category.categoryUrl== true && category.isCategory == true).toList();
+
+              dropdownBookCategories = listTag.where((category) => 
+                  category.categoryUrl == false && category.isCategory == true).toList();
+                    });
+            return value;
+          } else {
+            return null;
+          }
+        });
+      });
     }
+    
+}
+
+  Widget buildCategorySelection(){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -280,7 +333,9 @@ class _EditStoryPage extends State<EditStoryPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    selectedItem ?? Strings.novelCategories,
+                     selectedCategory != null 
+                    ?  selectedCategory!.categoryName ?? ''
+                    :  isNonFiction ? Strings.bookCategories : Strings.novelCategories,
                     style: FontConstant.dropdownText.copyWith(fontWeight: FontWeight.bold),
                   ),
                   Icon(
@@ -303,12 +358,14 @@ class _EditStoryPage extends State<EditStoryPage> {
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: dropdownNovelCategories.map((String item) {
+                      children: dropdownNovelCategories.map((Category item) {
                         return InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            selectedCategory = item;
+                          },
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: 12.sp, horizontal: 16.sp),
-                            child: Text(item),
+                            child: Text(item.categoryName ?? ''),
                           ),
                         );
                       }).toList(),
@@ -317,8 +374,6 @@ class _EditStoryPage extends State<EditStoryPage> {
                 : 0.verticalSpace,
           ),]);
   }
-
- 
 
   Widget _buildCustomSelection(Category item) {
     bool isSelected = selectedTags.contains(item.categoryId!);
@@ -367,4 +422,75 @@ class _EditStoryPage extends State<EditStoryPage> {
       });
     }
   }
+
+  Future<void> _loadUserId() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userId = prefs.getInt('userId') ?? 100004;
+    });
+  }
+  
+  void _showWarningDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(Strings.alertTitle, style: FontConstant.headline2White,),
+          content: Text(Strings.alertContent,  style: FontConstant.subTitleText,),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK', style: FontConstant.buttonTextWhite,),
+              onPressed: () {
+                
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  
+  Future<void> validationAndSubmit() async {
+    Story newStory = Story();
+    String categories = selectedCategory!.categoryId.toString();
+    String tags = '';
+    for (int tag in selectedTags) {
+      tags+= ',$tag';
+    }
+     var temptstoryContentString = storyContentOutlineController.text;
+
+      newStory.storyContentOutline = temptstoryContentString;
+      newStory.storyCover = coverController.text;
+      newStory.storyName = storyNameController.text;
+      newStory.fkPublisherAccount = userId;
+      newStory.chapterCount = 0;
+      newStory.viewCount = 0;
+      newStory.bookAuthorName = currentUser?.displayName ?? '';
+      newStory.bookPublisherName = currentUser?.displayName ?? '';
+      newStory.selfComposedStory = true;
+      //get selected category
+      newStory.categoriesAndTags = categories;
+      //get selected tags
+      newStory.categoriesAndTags = '${newStory.categoriesAndTags}$tags';
+      newStory.storySellPrice = 0.0;
+      newStory.matureContent = false;
+      newStory.commercialActivated = false;
+      newStory.bookPublishDate = DateTime.now();
+      newStory.bookISBNcode = 'NOCODE${DateTime.now().toIso8601String()}';
+
+      
+    try {
+      final response = await StoryService().createStory(newStory);
+      if (response.statusCode == 200 || response.statusCode == 204) {
+          context.pushRoute(StoryDetailPage(story: widget.story));
+      }
+      
+    } catch (e) {
+      debugPrint('Error sending review: $e');
+    }
+    
+  }
+
+
 }

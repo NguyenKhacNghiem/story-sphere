@@ -9,7 +9,6 @@ import 'package:storysphere_mobileapp/routing/api_services_url.dart';
 class StoryService {
   static StoryService get shared => StoryService();
   static const String _apiUrl = APIUrlSerivces.story;
-  static const String _apiSearch = APIUrlSerivces.search;
 
 
 //GET API REQUESTS
@@ -38,15 +37,20 @@ class StoryService {
   }
 
   Future<PaginationResult<Story>?> getStoriesByUserId(int userId, int? page) async {
+    
     final Map<String, String> queryParams = {
-      'userId': userId.toString(),
+      'fk_publisherAccount': userId.toString(),
       if (page!= null) 'page': page.toString(),
     };
+    
+    final Uri uri = Uri.parse('$_apiUrl/filter').replace(queryParameters: queryParams);
 
-     final Uri uri = Uri.parse(_apiUrl).replace(queryParameters: queryParams);
+     debugPrint(uri.toString());
 
      try {
         final http.Response response = await http.get(uri);
+
+        debugPrint(response.body);
 
         if (response.statusCode == 200) {
           final Map<String, dynamic> temp = jsonDecode(response.body);
@@ -188,7 +192,6 @@ class StoryService {
   }
 
   //POST API REQUESTS
-  
   Future<http.Response> createStory(Story story) async {
   final url = Uri.parse('$_apiUrl/create');
   final headers = {'Content-Type': 'application/json'};
@@ -216,8 +219,6 @@ class StoryService {
     body: jsonEncode(data),
   );
 
-  debugPrint(response.body);
-
   if (response.statusCode == 200) {
     // Success
     return response;
@@ -227,4 +228,19 @@ class StoryService {
   }
 }
 
+  //DELETE API REQUESTS
+  Future<http.Response> deleteStoryById(int id) async {
+    final Uri uri = Uri.parse('$_apiUrl/delete/$id');
+
+    final http.Response response = await http.delete(uri);
+
+    if (response.statusCode == 200 || response.statusCode == 204) {
+    
+      return response;
+    } else {
+      throw Exception('Failed to send review');
+    }
+     
+  }
+  
 }

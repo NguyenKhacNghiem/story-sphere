@@ -10,7 +10,7 @@ import 'package:storysphere_mobileapp/services/favbook_service.dart';
 import 'package:storysphere_mobileapp/services/story_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 import 'package:storysphere_mobileapp/views/widgets/book_display_widget.dart';
-import 'package:storysphere_mobileapp/views/widgets/notfound_widget.dart';
+import 'package:storysphere_mobileapp/views/widgets/emtpy_widget.dart';
 
 @RoutePage()
 class LibraryPage extends StatefulWidget {
@@ -70,10 +70,11 @@ class _LibraryPage extends State<LibraryPage> {
                 return BookDisplayWidget(
                     fromLib: true,
                     story: displayStoryList[index],
+                    favBookId: favBookList.elementAt(index).favBookId,
                   );
 
               }),
-            if (notFound) const NotFoundWidget(),
+            if (notFound) const EmptyWidget(),
       ]))),
     );
    }
@@ -106,7 +107,10 @@ class _LibraryPage extends State<LibraryPage> {
               displayStoryList = tempList;});
           } else {
             //content not found
-            notFound = true;
+            setState(() {
+              notFound = true;
+            });
+            
           }
         });
             });

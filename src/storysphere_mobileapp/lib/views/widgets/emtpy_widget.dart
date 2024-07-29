@@ -4,8 +4,8 @@ import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 
 
-class NotFoundWidget extends StatelessWidget {
-  const NotFoundWidget({super.key});
+class EmptyWidget extends StatelessWidget {
+  const EmptyWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,14 @@ class NotFoundWidget extends StatelessWidget {
             children: [
               40.verticalSpace,
               SizedBox(
-                width: 220.sp,
+                width: 100.sp,
                 height: 100.sp,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5.sp),
-                  child: Image.asset('assets/images/404-error.png', fit: BoxFit.fill,))
+                  child: Image.asset('assets/images/empty-box.png', fit: BoxFit.fill,))
                 ),
               20.verticalSpace,
-              Text(Strings.contentNotFound, style: FontConstant.categoryDescrip,)
+              Text(Strings.noDataToDisplay, style: FontConstant.categoryDescrip,)
             ])   
     );
   }

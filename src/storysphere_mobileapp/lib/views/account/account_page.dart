@@ -9,6 +9,7 @@ import 'package:storysphere_mobileapp/models/user.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/services/account_service.dart';
 import 'package:storysphere_mobileapp/views/account/widgets/user_avatar_section.dart';
+import 'package:storysphere_mobileapp/views/log_in/services/login_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 
 @RoutePage()
@@ -22,13 +23,7 @@ class UserAccountPage extends StatefulWidget {
 
 class _UserAccountPage extends State<UserAccountPage> {
   late int userId;
-  User? currUser; 
-  // User(
-  //   userId: 1, userPassword: 'kcaoico02ic', dateOfBirth: DateTime.tryParse('17/07/2005'),
-  //   username: 'nguyenthanhdanh', displayName: 'Nguyễn Thành Danh', selfIntroduction: 'Giới thiệu tác giả không có gì để ghi\nCũng chẳng có gì để xem',
-  //   avatar: 'https://i.pinimg.com/564x/4b/79/a5/4b79a5084ea8aba629b601cc209c11a7.jpg',
-  //   bgImg: 'https://i.pinimg.com/564x/58/6d/4c/586d4c295438d50d25cbd4a287800b02.jpg',
-  // );
+  User? currUser;
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +127,10 @@ class _UserAccountPage extends State<UserAccountPage> {
                     padding: EdgeInsets.symmetric(vertical: 15.sp, horizontal: 20.sp), // Remove padding
                     minimumSize: Size.zero,   // Remove minimum size constraints
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,),
-                  onPressed: (){}, 
+                  onPressed: (){
+                     logOut();
+                     context.pushRoute(LogInPage());
+                  }, 
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -154,6 +152,9 @@ class _UserAccountPage extends State<UserAccountPage> {
     );
     
    }
+  Future<void> logOut() async {
+     await LoginService().logout();
+  }
 
   void initData(){
       final result =  AccountService().getUserById(userId);

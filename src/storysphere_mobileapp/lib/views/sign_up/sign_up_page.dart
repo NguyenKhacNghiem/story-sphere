@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,7 +7,9 @@ import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
-import 'package:storysphere_mobileapp/views/log_in/services/login_service.dart';
+import 'package:storysphere_mobileapp/services/account_service.dart';
+import 'package:storysphere_mobileapp/services/forgot_passowrd_service.dart';
+import 'package:storysphere_mobileapp/views/forgot_password/fp_otp_page.dart';
 
 @RoutePage()
 class SignUpPage extends StatefulWidget {
@@ -23,12 +27,16 @@ class _SignUpPage extends State<SignUpPage> {
   String _errorMessage = '';
   bool _obscureText = true;
 
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       // top: false,
       child: Scaffold(
-        body: Container(
+        body: SingleChildScrollView(
+          child: 
+        Container(
+          height: MediaQuery.of(context).size.height,
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: NetworkImage(Strings.loginBackgroundImage,),
@@ -122,7 +130,7 @@ class _SignUpPage extends State<SignUpPage> {
                 20.verticalSpace,
                 ElevatedButton(
                   onPressed: (){
-                    context.pushRoute(LogInPage(newAccount: true));
+                    validationAndSubmit();
                   },
                   child:Padding(padding: EdgeInsets.symmetric(horizontal: 60.sp, vertical: 15.sp),
                       child: Text(Strings.register, style: FontConstant.headline3White, textAlign: TextAlign.center,),),
@@ -180,7 +188,89 @@ class _SignUpPage extends State<SignUpPage> {
             ),
         ),
       )
-      ),
+      )),
     );
   }
+
+  
+  Future<void> validationAndSubmit() async {
+    String username = _usernameController.text;
+    String password = _passwordController.text;
+    String confirmPassword = _confirmPasswordController.text;
+    String email = _emailController.text;
+    debugPrint('API Send');
+    try {
+      final response = await AccountService().register(username, password, confirmPassword, email);
+      debugPrint('Review sent: ${response.body}');
+      if (response.statusCode == 200) {
+        final responseData = json.decode(response.body);
+        if (responseData['code'] == 0 || responseData['code'] == 100) {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(Strings.registerTYTitle),
+                content: Text(Strings.registrationThankyou),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      context.pushRoute(LogInPage(newAccount: true));
+                    },
+                    child: Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
+        } else {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(Strings.error),
+                content: Text(responseData['message']),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      sendEmailHandle(email);
+                    },
+                    child: Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
+         
+        }
+         
+      }
+      
+    } catch (e) {
+      debugPrint('Error sending review: $e');
+    }
+    
+  }
+
+  Future<void> sendEmailHandle(String email) async {
+    int otpCode = -1;
+    int userId = -1;
+    //send POST request
+     try {
+        final response = await ForgotPasswordService().verifyEmail(email);
+        debugPrint('Request sent successfully: ${response.body}');
+         final responseData = json.decode(response.body);
+          email = responseData['email'];
+          otpCode = responseData['otp'];
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => FPEnteringOTPPage(email: email, otpCode: otpCode, userId: userId, fromPageSU: true,)),
+          );
+         
+      } catch (e) {
+        debugPrint('Error sending review: $e');
+      }
+      
+   }
 }

@@ -10,9 +10,12 @@ class APIUrlSerivces {
   //login
   static const loginService = '${server}user/login';
 
+  //cloud service
+  static const cloudService = '${server}cloudinary';
+
   //forgot password
   static const forgotPasswordService = '${server}user/forget-password';
-  static const verifyEmailService = '{$server}user/verify-email';
+  static const verifyEmailService = '${server}user/verify-email';
 
   //searching - filtering
   static const filter = '${server}story/filter';
@@ -39,5 +42,5 @@ class APIUrlSerivces {
   static const createStory = '${server}story/create';
 
   //user
-  static const account = '${server}user/profile';
+  static const account = '${server}user';
 }

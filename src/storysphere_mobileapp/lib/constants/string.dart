@@ -29,6 +29,7 @@ class Strings {
   static const String bookCategories = 'Sách phi tiểu thuyết';
   static const String searchResults = 'Kết quả tìm kiếm';
   static const String contentNotFound = 'Không tìm thấy kết quả phù hợp';
+  static const String noDataToDisplay = 'Không có dữ liệu';
 
   //User account page
   static const String myLibrary = 'Thư viện của tôi';
@@ -39,9 +40,13 @@ class Strings {
   static const String previewAvatar = 'Ảnh đại diện';
   static const String userName = 'Tên người dùng';
   static const String userIntroduction = 'Giới thiệu';
+  static const String dateOfBirth = 'Ngày sinh';
+  static const String chooseDoB = 'Chọn ngày sinh';
 
   //Library
   static const String yourLibNote = 'Những quyển sách bạn yêu thích đều lưu trữ tại đây!';
+  static const String removeFromLib = 'Xóa truyện ra khỏi thư viện';
+  static const String removeLibContent = 'Bạn có chắc muốn bỏ lưu truyện này?';
 
   //READING HISTORY
   static const String readingHistory = 'Lịch sử đọc';
@@ -56,7 +61,7 @@ class Strings {
   static const String chapterTitle = 'Tiêu đề chương';
   static const String newStory = 'Thêm tác phẩm mới';
   static const String storyInfor = 'THÔNG TIN TÁC PHẨM';
-  static const String previewCover = 'Xem trước ảnh bìa';
+  static const String previewCover = 'Ảnh bìa';
   static const String coverLinkPath = 'Đường dẫn ảnh bìa';
   static const String storyName = 'Tên tác phẩm';
   static const String storyIntro = 'Giới thiệu';
@@ -67,6 +72,8 @@ class Strings {
   static const String drarf = 'Nháp';
   static const String alertTitle = 'Thiếu thông tin';
   static const String alertContent = 'Bạn đang thiết tên truyện hoặc thể loại!';
+  static const String deleteStoryAlert = 'Bạn có chắc muốn xóa truyện này?';
+  static const String deleteStory = 'Xóa truyện';
 
   //Story Details
   static const String readMore = 'Đọc thêm';
@@ -90,6 +97,7 @@ class Strings {
   static const String userComments = 'Bình luận độc giả';
   static const String writeNewComment = 'Viết bình luận';
   static const String submitConmment = 'Gửi';
+  static const String beTheFirstComment = 'Hãy trở thành người đầu tiên bình luận!';
 
 
   //LABELS - FOR BUTTON
@@ -126,8 +134,9 @@ class Strings {
   static const String forgotPassword = 'Quên mật khẩu';
   static const String privacy = 'Điều khoản riêng tư';
   static const String terms = 'Điều khoản';
+  static const String registerTYTitle = 'Đăng ký thành công!';
   static const String registrationThankyou =
-      'Cảm ơn bạn đã đăng ký tài khoản với StorySphere. Vui lòng kích hoạt tài khoản thông qua email.';
+      'Cảm ơn bạn đã đăng ký tài khoản với StorySphere. Bây giờ bạn có thể đăng nhập bằng tài khoản vừa tạo!';
 
   static const String login = 'Đăng nhập';
   static const String signInWithGoogleButtonText = 'Đăng nhập với Google';
@@ -146,11 +155,12 @@ class Strings {
   static const String words = ' từ';
   static const String generalInfo = 'Thông tin chung';
 
-  //Default cover
-  static const String defaultCover =
-      'https://www.boldstrokesbooks.com/assets/bsb/images/book-default-cover.jpg';
-  static const String loginBackgroundImage = 'https://i.pinimg.com/564x/1f/35/90/1f359051b2c7f4a4fcd3b8fcfe960b6a.jpg';
-
+  //Default images
+  static const String defaultCover = 'https://res.cloudinary.com/story-sphere/image/upload/v1722226627/book-default-cover_xpv0yf.jpg';
+  static const String loginBackgroundImage = 'https://res.cloudinary.com/story-sphere/image/upload/v1722226710/1f359051b2c7f4a4fcd3b8fcfe960b6a_nfnxpd.jpg';
+  static const String defaultAvatar = 'https://res.cloudinary.com/story-sphere/image/upload/v1722182000/user_ubzndq.png';
+  static const String defaultBgImg = 'https://res.cloudinary.com/story-sphere/image/upload/v1722181117/email-background_hneqzm.jpg';
+  static const String defaultChapterBackground = 'https://res.cloudinary.com/story-sphere/image/upload/v1722226874/fb6195ed51a8ee4ea4fd8cdd1ceb5791_ddkqlf.jpg';
   //CONFIG VALUES
   static const String defaultDateFormat = 'dd/MM/yyyy';
 

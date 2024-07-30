@@ -10,7 +10,7 @@ class Strings {
   static const String identityVerify = 'Xác thực danh tính'; 
   static const String forogotPasswordReminder = 'Không sao! Chúng tôi sẽ gửi mã xác nhận vào email để bạn cài đặt lại mật khẩu';
   static const String emailSentReminder1 = 'Chúng tôi vừa gửi mã xác thực vào email ';
-  static const String emailSentReminder2 = ', hãy điền mã bạn nhận được để cài lại mật khẩu';
+  static const String emailSentReminder2 = ', hãy điền mã bạn nhận được để tiếp tục';
   static const String didnotReceive = 'Chưa nhận được mã?';
   static const String reSend = 'Gửi lại';
   static const String updatePassword = 'Đặt lại mật khẩu';

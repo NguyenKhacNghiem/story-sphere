@@ -8,6 +8,7 @@ import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
+import 'package:storysphere_mobileapp/services/account_service.dart';
 import 'package:storysphere_mobileapp/services/forgot_passowrd_service.dart';
 import 'package:storysphere_mobileapp/views/forgot_password/fp_updatepass_page.dart';
 
@@ -111,7 +112,31 @@ class _FPEnteringOTPPage extends State<FPEnteringOTPPage> {
     int otp = int.tryParse(inputOtpCode) ?? 0;
     if (otp == trueOTP){
       if (widget.fromPageSU){
-         context.pushRoute(LogInPage(newAccount: true));
+         final result = AccountService().saveUser();
+            result.whenComplete(() {
+            result.then((value) {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text(Strings.registerTYTitle),
+                      content: Text(Strings.registrationThankyou),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          context.pushRoute(LogInPage(newAccount: true));
+                          },
+                          child: Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+                
+            });
+          });
+        
       } else {
          Navigator.push(
           context,

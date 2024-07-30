@@ -66,6 +66,24 @@ class AccountService {
     }
   }
 
+  
+  Future<http.Response> saveUser() async {
+    final url = Uri.parse('$_apiUrl/save-user');
+
+    debugPrint(url.toString());
+    final response = await http.post(url);
+
+    debugPrint(response.body);
+
+    if (response.statusCode == 200) {
+      // Success
+      return response;
+    } else {
+      // Error
+      throw Exception('Failed to send review');
+    }
+  }
+
   Future<http.Response> updateProfile(int userId, String displayName, String introduction, DateTime dateOfBirth, String? avt, String? cover) async {
     final url = Uri.parse('$_apiUrl/profile');
     final headers = {'Content-Type': 'application/json'};

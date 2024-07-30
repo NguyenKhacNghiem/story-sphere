@@ -108,9 +108,11 @@ module.exports = {
     ],
 
     forgetPasswordValidator: [
-        check("_id")
+        check("email")
         .notEmpty()
-        .withMessage("Vui lòng nhập mã người dùng"),
+        .withMessage("Vui lòng nhập email")
+        .isEmail()
+        .withMessage("Email không đúng định dạng"),
 
         check("password")
         .notEmpty()

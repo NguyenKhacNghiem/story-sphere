@@ -143,4 +143,20 @@ module.exports = {
         .notEmpty()
         .withMessage("Vui lòng nhập mã người dùng"),
     ],
+
+    saveUserValidator: [
+        check("username")
+        .notEmpty()
+        .withMessage("Vui lòng nhập tài khoản"),
+
+        check("password")
+        .notEmpty()
+        .withMessage("Vui lòng nhập mật khẩu"),
+
+        check("email")
+        .notEmpty()
+        .withMessage("Vui lòng nhập email")
+        .isEmail()
+        .withMessage("Email không đúng định dạng"),
+    ],
 };

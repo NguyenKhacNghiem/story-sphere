@@ -2827,3 +2827,34 @@
 [INFO]  30/07/2024 02:01:40 Cập nhật chương thành công
 [INFO]  30/07/2024 02:01:56 Cập nhật chương thành công
 [INFO]  30/07/2024 02:02:01 Cập nhật chương thành công
+[INFO]  30/07/2024 22:58:35 API server has been started.
+[ERROR] 30/07/2024 22:58:41 Illegal arguments: undefined, string
+[ERROR] 30/07/2024 22:59:00 Illegal arguments: undefined, string
+[INFO]  30/07/2024 22:59:33 API server has been started.
+[ERROR] 30/07/2024 22:59:38 password is not defined
+[INFO]  30/07/2024 22:59:57 API server has been started.
+[ERROR] 30/07/2024 23:00:00 username is not defined
+[INFO]  30/07/2024 23:00:24 API server has been started.
+[ERROR] 30/07/2024 23:00:25 Illegal arguments: undefined, string
+[INFO]  30/07/2024 23:02:02 Đăng ký tài khoản thành công
+[INFO]  30/07/2024 23:02:50 API server has been started.
+[ERROR] 30/07/2024 23:03:30 Illegal arguments: undefined, string
+[INFO]  30/07/2024 23:05:28 API server has been started.
+[INFO]  30/07/2024 23:05:44 API server has been started.
+[INFO]  30/07/2024 23:05:47 Đăng ký tài khoản thành công
+[INFO]  30/07/2024 23:14:11 API server has been started.
+[INFO]  30/07/2024 23:14:22 API server has been started.
+[INFO]  30/07/2024 23:14:36 API server has been started.
+[INFO]  30/07/2024 23:15:10 API server has been started.
+[INFO]  30/07/2024 23:15:23 API server has been started.
+[INFO]  30/07/2024 23:15:48 API server has been started.
+[INFO]  30/07/2024 23:16:29 API server has been started.
+[INFO]  30/07/2024 23:16:51 API server has been started.
+[INFO]  30/07/2024 23:16:57 API server has been started.
+[INFO]  30/07/2024 23:18:03 API server has been started.
+[ERROR] 30/07/2024 23:18:44 Xác nhận mật khẩu không chính xác
+[INFO]  30/07/2024 23:22:23 API server has been started.
+[INFO]  30/07/2024 23:25:10 Đăng ký tài khoản thành công
+[INFO]  30/07/2024 23:26:18 Đăng nhập thành công
+[ERROR] 30/07/2024 23:26:21 Thông tin đăng nhập không chính xác
+[INFO]  30/07/2024 23:26:26 Đăng nhập thành công

@@ -1,7 +1,5 @@
 // Import packages
 const express = require('express')
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
 const cors = require('cors');
 const mongoose = require("mongoose");
 require("dotenv").config();
@@ -24,12 +22,6 @@ const CONNECTION_STRING = process.env.CONNECTION_STRING;
 
 // Config projects
 const app = express()
-app.use(cookieParser('storysphere'))
-app.use(session({
-    secret: "storysphere",
-    resave: true,
-    saveUninitialized: true
-}))
 app.use(cors());
 app.use(express.json());  // get data from request in JSON format
 app.use(express.urlencoded({ extended: true })); // get data from request in URL-ENCODED format 

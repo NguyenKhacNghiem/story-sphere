@@ -63,12 +63,7 @@ async function register(req, res) {
     let otp = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000; // random OTP code in [1000, 9999]
     utils.sendEmail(email, otp);
 
-    req.session.username = username;
-    req.session.password = password;
-    req.session.email = email;
-    // req.session.otp = otp;
-
-    res.json({code: 0, message: "Vui lòng nhập mã OTP được gửi đến email của bạn"});
+    res.json({code: 0, message: "Vui lòng nhập mã OTP được gửi đến email của bạn", otp: otp, username: username, password: bcrypt.hashSync(password, 10), email: email});
 }
 
 function login(req, res) {
@@ -479,29 +474,21 @@ async function remove(req, res) {
 }
 
 function saveUser(req, res) {
-    let username = req.session.username;
-    let password = req.session.password;
-    let email = req.session.email;
-    // let otp = req.session.otp;
-
-    // if (req.body.otp - 0 !== otp) {
-    //     log.error("Mã OTP không chính xác.");
-    //     return res.json({code: 1, message: "Mã OTP không chính xác."});
-    // }
+    // Input validation
+    let result = validationResult(req);
+    if(result.errors.length > 0) {
+        log.error(result.errors[0].msg);
+        return res.json({code: 1, message: result.errors[0].msg});
+    }
 
     let newUser = new User({
-        username: username, 
-        password: bcrypt.hashSync(password, 10), // encrypt password
-        email: email
+        username: req.body.username, 
+        password: req.body.password,
+        email: req.body.email
     });
 
     newUser.save()
     .then(result => {        
-        delete req.session.username;
-        delete req.session.password;
-        delete req.session.email;
-        // delete req.session.otp;
-
         log.info("Đăng ký tài khoản thành công");
         res.json({code: 0, message: "Đăng ký tài khoản thành công", result: result});
     })

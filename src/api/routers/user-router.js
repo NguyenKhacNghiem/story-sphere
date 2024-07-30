@@ -12,7 +12,7 @@ router.post("/register", userValidator.registerValidator, (req, res) => {
     userController.register(req, res);
 })
 
-router.post("/save-user", (req, res) => {
+router.post("/save-user", userValidator.saveUserValidator, (req, res) => {
     userController.saveUser(req, res);
 })
 

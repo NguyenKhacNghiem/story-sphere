@@ -4,7 +4,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
@@ -13,9 +12,8 @@ import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/category.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
 import 'package:storysphere_mobileapp/models/user.dart';
-import 'package:storysphere_mobileapp/routing/router.gr.dart';
-import 'package:storysphere_mobileapp/services/account_service.dart';
 import 'package:storysphere_mobileapp/services/category_service.dart';
+import 'package:storysphere_mobileapp/services/cloud_service.dart';
 import 'package:storysphere_mobileapp/services/story_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 import 'package:storysphere_mobileapp/views/mywork/widgets/chapterlist_section.dart';
@@ -30,8 +28,8 @@ class EditStoryPage extends StatefulWidget {
 }
 
 class _EditStoryPage extends State<EditStoryPage> {
-  late int userId;
   File? _image;
+  String coverLinkPath ='';
   final TextEditingController coverController = TextEditingController();
   final TextEditingController storyNameController = TextEditingController();
   final TextEditingController storyContentOutlineController = TextEditingController();
@@ -48,7 +46,6 @@ class _EditStoryPage extends State<EditStoryPage> {
 
   @override
   void initState() {
-    _loadUserId();
     super.initState();
   }
   
@@ -64,7 +61,9 @@ class _EditStoryPage extends State<EditStoryPage> {
   Widget build(BuildContext context) {
     initData();
     fetchCategories();
-    fetchUser();
+    if (_image == null) {
+      coverLinkPath = widget.story.storyCover ?? Strings.defaultCover;
+    }
   
     return Scaffold(
       bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 2),
@@ -266,24 +265,6 @@ class _EditStoryPage extends State<EditStoryPage> {
     storyContentOutlineController.text = widget.story.storyContentOutline ?? '';
   }
 
-  
-Future<void> fetchUser() async{
-    if (currentUser == null) {
-    final result =  AccountService().getUserById(userId);
-      result.whenComplete(() {
-        result.then((value) {
-          if (value != null) {
-           currentUser = value;
-           debugPrint(currentUser!.displayName.toString());
-          }
-          else {
-            return null;
-          }
-        });
-      });
-  }
-    
-}
 
 Future<void> fetchCategories() async {
    if (listTag.isEmpty) {
@@ -414,22 +395,29 @@ Future<void> fetchCategories() async {
     });
   }
 
+
   Future<void> _pickImage(ImageSource source) async {
     final pickedFile = await ImagePicker().pickImage(source: source);
     if (pickedFile != null) {
-      setState(() {
-        _image = File(pickedFile.path);
-      });
+      try {
+        final response = await CloudService().uploadFile(pickedFile);
+        final responseData = json.decode(response.body);
+         if (responseData['code'] == 0 || responseData['code'] == 100) {
+          debugPrint('File upload successfully: ${response.body}');
+            setState(() {
+                _image = File(pickedFile.path);
+                coverLinkPath = responseData['url'];
+              });
+         }
+      } catch (e) {
+        debugPrint('Error sending review: $e');
+      }
+      
+      
     }
   }
 
-  Future<void> _loadUserId() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      userId = prefs.getInt('userId') ?? 100004;
-    });
-  }
-  
+
   void _showWarningDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -441,7 +429,7 @@ Future<void> fetchCategories() async {
             TextButton(
               child: Text('OK', style: FontConstant.buttonTextWhite,),
               onPressed: () {
-                
+                Navigator.pop(context);
               },
             ),
           ],
@@ -459,31 +447,60 @@ Future<void> fetchCategories() async {
       tags+= ',$tag';
     }
      var temptstoryContentString = storyContentOutlineController.text;
-
       newStory.storyContentOutline = temptstoryContentString;
       newStory.storyCover = coverController.text;
       newStory.storyName = storyNameController.text;
-      newStory.fkPublisherAccount = userId;
-      newStory.chapterCount = 0;
-      newStory.viewCount = 0;
-      newStory.bookAuthorName = currentUser?.displayName ?? '';
-      newStory.bookPublisherName = currentUser?.displayName ?? '';
-      newStory.selfComposedStory = true;
       //get selected category
       newStory.categoriesAndTags = categories;
       //get selected tags
       newStory.categoriesAndTags = '${newStory.categoriesAndTags}$tags';
-      newStory.storySellPrice = 0.0;
-      newStory.matureContent = false;
-      newStory.commercialActivated = false;
-      newStory.bookPublishDate = DateTime.now();
-      newStory.bookISBNcode = 'NOCODE${DateTime.now().toIso8601String()}';
+      newStory.storyId = widget.story.storyId;
+      newStory.storyCover = coverLinkPath;
 
       
     try {
-      final response = await StoryService().createStory(newStory);
+      final response = await StoryService().updateStory(newStory, widget.story.storyId ?? -1);
       if (response.statusCode == 200 || response.statusCode == 204) {
-          context.pushRoute(StoryDetailPage(story: widget.story));
+          final responseData = json.decode(response.body);
+         if (responseData['code'] == 0 || responseData['code'] == 100) {   
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text(Strings.storyAddedSuccessfully),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      setState(() {});
+                    },
+                    child: const Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
+        } else {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text(Strings.error),
+                content: Text(responseData['message']),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      setState(() {});
+                    },
+                    child: const Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
+        }
+         
       }
       
     } catch (e) {

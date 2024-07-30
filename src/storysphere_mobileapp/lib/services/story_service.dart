@@ -191,6 +191,33 @@ class StoryService {
       }
   }
 
+  //PUT API REQUESTS
+  Future<http.Response> updateStory(Story story, int id) async {
+    final url = Uri.parse('$_apiUrl/update/$id');
+    final headers = {'Content-Type': 'application/json'};
+    final Map<String, dynamic> data = {
+      'storyName': story.storyName,
+      'cover': story.storyCover,
+      'contentOutline': story.storyContentOutline,
+      'categoriesAndTags': story.categoriesAndTags,
+    };
+
+    final response = await http.put(
+      url,
+      headers: headers,
+      body: jsonEncode(data),
+    );
+
+    if (response.statusCode == 200) {
+      // Success
+      return response;
+    } else {
+      // Error
+      throw Exception('Failed to send review');
+    }
+  }
+
+
   //POST API REQUESTS
   Future<http.Response> createStory(Story story) async {
   final url = Uri.parse('$_apiUrl/create');

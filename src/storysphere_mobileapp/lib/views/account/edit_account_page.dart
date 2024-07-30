@@ -27,8 +27,8 @@ class _EditAccountPage extends State<EditAccountPage> {
   File? _image;
   File? _coverImgae;
   DateTime? _selectedDate;
-  String userAvatarLinkPath = '';
-  String userCoverLinkPath = '';
+  String userAvatarLinkPath = Strings.defaultAvatar;
+  String userCoverLinkPath = Strings.defaultBgImg;
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController userIntroductionController = TextEditingController();
  
@@ -43,7 +43,13 @@ class _EditAccountPage extends State<EditAccountPage> {
   @override
   Widget build(BuildContext context) {
     user = widget.user;
-    userAvatarLinkPath = user.avatar ?? Strings.defaultCover;
+    if (_image == null) {
+      userAvatarLinkPath = user.avatar ?? Strings.defaultCover;
+    }
+    if (_coverImgae == null) {
+      userCoverLinkPath = user.bgImg ?? Strings.defaultBgImg;
+    }
+    
    
     return Scaffold(
       bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 4),
@@ -236,20 +242,21 @@ class _EditAccountPage extends State<EditAccountPage> {
     if (pickedFile != null) {
       try {
         final response = await CloudService().uploadFile(pickedFile);
-        if (response.statusCode == 200){
+        final responseData = json.decode(response.body);
+         if (responseData['code'] == 0 || responseData['code'] == 100) {
+          debugPrint('File upload successfully: ${response.body}');
           if (avt) {
             setState(() {
                 _image = File(pickedFile.path);
+                userAvatarLinkPath = responseData['url'];
               });
           } else {
             setState(() {
               _coverImgae = File(pickedFile.path);
+              userCoverLinkPath = responseData['url'];
             });
           } 
-        } else {
-          
-        }
-        debugPrint('Review sent successfully: ${response.body}');
+         }
       } catch (e) {
         debugPrint('Error sending review: $e');
       }
@@ -293,7 +300,7 @@ class _EditAccountPage extends State<EditAccountPage> {
     DateTime dateOfBirth = _selectedDate ?? DateTime.now();
 
     try {
-      final response = await AccountService().updateProfile(user.userId ?? -1, displayName, introduction, dateOfBirth);
+      final response = await AccountService().updateProfile(user.userId ?? -1, displayName, introduction, dateOfBirth, userAvatarLinkPath, userCoverLinkPath);
       if (response.statusCode == 200) {
         debugPrint('Review sent successfully: ${response.body}');
         final responseData = json.decode(response.body);

@@ -65,7 +65,7 @@ class AccountService {
     }
   }
 
-  Future<http.Response> updateProfile(int userId, String displayName, String introduction, DateTime dateOfBirth) async {
+  Future<http.Response> updateProfile(int userId, String displayName, String introduction, DateTime dateOfBirth, String avt, String cover) async {
     final url = Uri.parse('$_apiUrl/profile');
     final headers = {'Content-Type': 'application/json'};
     String formattedDate = DateFormat('dd/MM/yyyy').format(dateOfBirth);
@@ -74,6 +74,8 @@ class AccountService {
       'displayName': displayName,
       'selfIntroduction': introduction,
       'dateOfBirth': formattedDate,
+      'avatar': avt,
+      'bgImg': cover,
     };
 
     debugPrint('${dateOfBirth.day}/${dateOfBirth.month}/${dateOfBirth.year}');

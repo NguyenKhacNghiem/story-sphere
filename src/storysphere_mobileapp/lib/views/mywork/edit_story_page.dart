@@ -28,8 +28,9 @@ class EditStoryPage extends StatefulWidget {
 }
 
 class _EditStoryPage extends State<EditStoryPage> {
-  File? _image;
-  String coverLinkPath ='';
+  XFile? _image;
+  final ImagePicker _picker = ImagePicker();
+  String? coverLinkPath;
   final TextEditingController coverController = TextEditingController();
   final TextEditingController storyNameController = TextEditingController();
   final TextEditingController storyContentOutlineController = TextEditingController();
@@ -43,9 +44,11 @@ class _EditStoryPage extends State<EditStoryPage> {
   List<Category> listTag = [];
   List<Category> dropdownBookCategories = [];
   List<Category> dropdownNovelCategories = [];
+  bool loading = true;
 
   @override
   void initState() {
+    initData();
     super.initState();
   }
   
@@ -59,11 +62,8 @@ class _EditStoryPage extends State<EditStoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    initData();
+
     fetchCategories();
-    if (_image == null) {
-      coverLinkPath = widget.story.storyCover ?? Strings.defaultCover;
-    }
   
     return Scaffold(
       bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 2),
@@ -93,7 +93,7 @@ class _EditStoryPage extends State<EditStoryPage> {
                     Text(Strings.previewCover, style: FontConstant.ratingPointDisplay,),
                     10.verticalSpace,
                     InkWell(
-                      onTap: (){_pickImage(ImageSource.gallery);},
+                      onTap: (){_pickImage();},
                       child: Container(
                         height: 155.sp,
                         width: 100.sp,
@@ -107,7 +107,7 @@ class _EditStoryPage extends State<EditStoryPage> {
                               child: Image.network(widget.story.storyCover ?? '', fit: BoxFit.cover,))
                           : ClipRRect(
                               borderRadius: BorderRadius.circular(5.sp),
-                              child: Image.file(_image!, fit: BoxFit.cover,))),
+                              child: Image.file(File(_image!.path), fit: BoxFit.cover,))),
                     ),
                     
                   ],
@@ -250,10 +250,34 @@ class _EditStoryPage extends State<EditStoryPage> {
             Wrap(
               children: 
                 listTag.map((item) => _buildCustomSelection(item)).toList()),
-
-            40.verticalSpace,
+            20.verticalSpace,
             ChapterListWriteSection(storyId: widget.story.storyId?? - 1),
-            40.verticalSpace
+            20.verticalSpace,
+            Center(
+              child: 
+            ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                            backgroundColor: ColorConstants.transparent,
+                            shadowColor: ColorConstants.transparent,
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
+                          ),
+                  onPressed: () {
+                    validationAndSubmit();
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: ColorConstants.buttonLightGreen,
+                      borderRadius: BorderRadius.circular(5.sp),
+                    ),
+                    
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 5.sp),
+                    child:
+                          Text(Strings.edit, style: FontConstant.buttonTextWhite,),
+                        )
+                  ))),
+                
+                40.verticalSpace,
           ],))
       ),
     );
@@ -263,6 +287,7 @@ class _EditStoryPage extends State<EditStoryPage> {
     coverController.text = widget.story.storyCover ?? '';
     storyNameController.text = widget.story.storyName ?? '';
     storyContentOutlineController.text = widget.story.storyContentOutline ?? '';
+    coverLinkPath = widget.story.storyCover ?? Strings.defaultCover;
   }
 
 
@@ -282,7 +307,7 @@ Future<void> fetchCategories() async {
 
               dropdownBookCategories = listTag.where((category) => 
                   category.categoryUrl == false && category.isCategory == true).toList();
-                    });
+            });
             return value;
           } else {
             return null;
@@ -293,7 +318,7 @@ Future<void> fetchCategories() async {
     
 }
 
-  Widget buildCategorySelection(){
+Widget buildCategorySelection(){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -339,10 +364,29 @@ Future<void> fetchCategories() async {
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: dropdownNovelCategories.map((Category item) {
+                      children: 
+                      isNonFiction 
+                      ? dropdownBookCategories.map((Category item) {
                         return InkWell(
                           onTap: () {
-                            selectedCategory = item;
+                            setState(() {
+                              selectedCategory = item;
+                            });
+                            
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 12.sp, horizontal: 16.sp),
+                            child: Text(item.categoryName ?? ''),
+                          ),
+                        );
+                      }).toList()
+                      : dropdownNovelCategories.map((Category item) {
+                        return InkWell(
+                          onTap: () {
+                            setState(() {
+                              selectedCategory = item;
+                            });
+                            
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: 12.sp, horizontal: 16.sp),
@@ -396,28 +440,6 @@ Future<void> fetchCategories() async {
   }
 
 
-  Future<void> _pickImage(ImageSource source) async {
-    final pickedFile = await ImagePicker().pickImage(source: source);
-    if (pickedFile != null) {
-      try {
-        final response = await CloudService().uploadFile(pickedFile);
-        final responseData = json.decode(response.body);
-         if (responseData['code'] == 0 || responseData['code'] == 100) {
-          debugPrint('File upload successfully: ${response.body}');
-            setState(() {
-                _image = File(pickedFile.path);
-                coverLinkPath = responseData['url'];
-              });
-         }
-      } catch (e) {
-        debugPrint('Error sending review: $e');
-      }
-      
-      
-    }
-  }
-
-
   void _showWarningDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -440,46 +462,60 @@ Future<void> fetchCategories() async {
 
   
   Future<void> validationAndSubmit() async {
-    Story newStory = Story();
+    loading = true;
+    if (loading) {
+      showDialog(
+      context: context,
+      barrierDismissible: false, // Ngăn người dùng tương tác với phần còn lại của màn hình
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Row(
+            children: [
+              CircularProgressIndicator(),
+              20.horizontalSpace,
+              Text('Đang lưu thay đổi...'),
+            ],
+          ),
+        );});
+    }
+
+    if (_image != null){
+       final result =  CloudService().uploadImage(_image);
+      result.whenComplete(() {
+        result.then((value) {
+          coverLinkPath = value;
+          updateStory();
+        });
+      });
+     
+    } else {
+      updateStory();
+    }
+    
+  }
+
+  Future<void> updateStory() async {
+    Story newStory = widget.story;
     String categories = selectedCategory!.categoryId.toString();
     String tags = '';
     for (int tag in selectedTags) {
       tags+= ',$tag';
     }
-     var temptstoryContentString = storyContentOutlineController.text;
-      newStory.storyContentOutline = temptstoryContentString;
+      newStory.storyContentOutline =  storyContentOutlineController.text;
       newStory.storyCover = coverController.text;
       newStory.storyName = storyNameController.text;
       //get selected category
       newStory.categoriesAndTags = categories;
       //get selected tags
       newStory.categoriesAndTags = '${newStory.categoriesAndTags}$tags';
-      newStory.storyId = widget.story.storyId;
       newStory.storyCover = coverLinkPath;
-
       
     try {
       final response = await StoryService().updateStory(newStory, widget.story.storyId ?? -1);
       if (response.statusCode == 200 || response.statusCode == 204) {
           final responseData = json.decode(response.body);
          if (responseData['code'] == 0 || responseData['code'] == 100) {   
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: const Text(Strings.storyAddedSuccessfully),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      setState(() {});
-                    },
-                    child: const Text('OK'),
-                  ),
-                ],
-              );
-            },
-          );
+          Navigator.of(context, rootNavigator: true).pop();
         } else {
           showDialog(
             context: context,
@@ -491,7 +527,9 @@ Future<void> fetchCategories() async {
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pop();
-                      setState(() {});
+                      setState(() {
+                        loading = false;
+                      });
                     },
                     child: const Text('OK'),
                   ),
@@ -504,10 +542,21 @@ Future<void> fetchCategories() async {
       }
       
     } catch (e) {
-      debugPrint('Error sending review: $e');
+      debugPrint('Error: $e');
     }
-    
   }
 
+  Future<void> _pickImage() async {
+    try {
+      final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
 
+      if (pickedFile != null) {
+        setState(() {
+          _image = pickedFile; // Update state with the picked file
+        });
+      }
+    } catch (e) {
+      print('Error picking image: $e');
+    }
+  }
 }

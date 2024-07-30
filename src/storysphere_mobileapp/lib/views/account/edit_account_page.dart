@@ -24,13 +24,14 @@ class EditAccountPage extends StatefulWidget {
 
 class _EditAccountPage extends State<EditAccountPage> {
   late User user;
-  File? _image;
-  File? _coverImgae;
+  XFile? _image;
+  XFile? _coverImgae;  final ImagePicker _picker = ImagePicker();
   DateTime? _selectedDate;
-  String userAvatarLinkPath = Strings.defaultAvatar;
-  String userCoverLinkPath = Strings.defaultBgImg;
+  String? userAvatarLinkPath;
+  String? userCoverLinkPath;
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController userIntroductionController = TextEditingController();
+  bool loading = false;
  
   
   @override
@@ -41,14 +42,24 @@ class _EditAccountPage extends State<EditAccountPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     user = widget.user;
+    userNameController.text = user.displayName ?? '';
+    userIntroductionController.text = user.selfIntroduction ?? '';
     if (_image == null) {
       userAvatarLinkPath = user.avatar ?? Strings.defaultCover;
     }
     if (_coverImgae == null) {
       userCoverLinkPath = user.bgImg ?? Strings.defaultBgImg;
     }
+    _selectedDate = user.dateOfBirth;
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+   
     
    
     return Scaffold(
@@ -71,7 +82,7 @@ class _EditAccountPage extends State<EditAccountPage> {
             Text(Strings.previewAvatar, style: FontConstant.ratingPointDisplay,),
                     10.verticalSpace,
                     InkWell(
-                      onTap: (){_pickImage(ImageSource.gallery, true);},
+                      onTap: (){_pickImage(true);},
                       child: Container(
                         height: 83.sp,
                         width: 83.sp,
@@ -85,14 +96,14 @@ class _EditAccountPage extends State<EditAccountPage> {
                               child: Image.network(user.avatar ?? '', fit: BoxFit.cover,))
                           : ClipRRect(
                               borderRadius: BorderRadius.circular(42.sp),
-                              child: Image.file(_image!, fit: BoxFit.cover,))),
+                              child: Image.file(File(_image!.path), fit: BoxFit.cover,))),
                     ),
             30.verticalSpace,
             //USER BACKGROUND IMAGE
             Text(Strings.previewCover, style: FontConstant.ratingPointDisplay,),
                       10.verticalSpace,
                       InkWell(
-                        onTap: (){_pickImage(ImageSource.gallery, false);},
+                        onTap: (){_pickImage(false);},
                         child: Container(
                           height: 150.sp,
                           width: 280.sp,
@@ -106,7 +117,7 @@ class _EditAccountPage extends State<EditAccountPage> {
                                 child: Image.network(user.bgImg ?? Strings.defaultBgImg, fit: BoxFit.cover,))
                             : ClipRRect(
                                 borderRadius: BorderRadius.circular(5.sp),
-                                child: Image.file(_coverImgae!, fit: BoxFit.cover,))),
+                                child: Image.file(File(_coverImgae!.path), fit: BoxFit.cover,))),
                       ),
           
             //USER NAME
@@ -198,8 +209,10 @@ class _EditAccountPage extends State<EditAccountPage> {
                     children: [
                   Text(
                       _selectedDate == null
+                      ? user.dateOfBirth == null
                           ? Strings.chooseDoB
-                          : '${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}',
+                          : user.dateOfBirth!.toString()
+                        : '${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}',
                       style: FontConstant.ratingPointDisplay,
                     ),
                   
@@ -235,36 +248,6 @@ class _EditAccountPage extends State<EditAccountPage> {
       ),
     );
   }
-
-
-  Future<void> _pickImage(ImageSource source, bool avt) async {
-    final pickedFile = await ImagePicker().pickImage(source: source);
-    if (pickedFile != null) {
-      try {
-        final response = await CloudService().uploadFile(pickedFile);
-        final responseData = json.decode(response.body);
-         if (responseData['code'] == 0 || responseData['code'] == 100) {
-          debugPrint('File upload successfully: ${response.body}');
-          if (avt) {
-            setState(() {
-                _image = File(pickedFile.path);
-                userAvatarLinkPath = responseData['url'];
-              });
-          } else {
-            setState(() {
-              _coverImgae = File(pickedFile.path);
-              userCoverLinkPath = responseData['url'];
-            });
-          } 
-         }
-      } catch (e) {
-        debugPrint('Error sending review: $e');
-      }
-      
-      
-    }
-  }
-
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
@@ -293,12 +276,76 @@ class _EditAccountPage extends State<EditAccountPage> {
     }
   }
 
+  Future<void> _pickImage(bool avt) async {
+    try {
+      final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
+      if (pickedFile != null) {
+        if (avt) {
+            setState(() {
+            _image = pickedFile; // Update state with the picked file
+          });
+        } else {
+          setState(() {
+            _coverImgae = pickedFile;
+          });
+        }
+      }
+    } catch (e) {
+      print('Error picking image: $e');
+    }
+  }
   
    Future<void> validationAndSubmit() async {
+    loading = true;
+    if (loading) {
+      showDialog(
+      context: context,
+      barrierDismissible: false, // Ngăn người dùng tương tác với phần còn lại của màn hình
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Row(
+            children: [
+              CircularProgressIndicator(),
+              20.horizontalSpace,
+              Text('Đang lưu thay đổi...'),
+            ],
+          ),
+        );});
+    }
+
+    if (_image != null || _coverImgae != null){
+      List<Future<void>> futures = [];
+      if (_image != null) {
+        futures.add(
+          CloudService().uploadImage(_image).then((value){
+            userAvatarLinkPath = value;
+          })
+        );
+      }
+      if (_coverImgae != null) {
+        futures.add(
+          CloudService().uploadImage(_coverImgae).then((value){
+            userCoverLinkPath = value;
+          })
+        );
+      }
+      await Future.wait(futures);
+      updateAccount();
+     
+    } else {
+      updateAccount();
+    }
+    
+  
+  }
+
+  Future<void> updateAccount() async {
     String displayName = userNameController.text;
     String introduction = userIntroductionController.text;
     DateTime dateOfBirth = _selectedDate ?? DateTime.now();
-
+    if (_image == null) userAvatarLinkPath = user.avatar;
+    if (_coverImgae == null) userCoverLinkPath = user.bgImg;
     try {
       final response = await AccountService().updateProfile(user.userId ?? -1, displayName, introduction, dateOfBirth, userAvatarLinkPath, userCoverLinkPath);
       if (response.statusCode == 200) {
@@ -333,6 +380,7 @@ class _EditAccountPage extends State<EditAccountPage> {
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pop();
+                       Navigator.of(context, rootNavigator: true).pop();
                       setState(() {});
                     },
                     child: const Text('OK'),

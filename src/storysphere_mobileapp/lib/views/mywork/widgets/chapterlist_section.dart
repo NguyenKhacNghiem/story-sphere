@@ -47,12 +47,8 @@ class _ChapterListWriteSection extends State<ChapterListWriteSection> {
                     return
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 8.sp), 
-                      child: InkWell(
-                        onTap: (){ 
-                          context.pushRoute(EditChapterPage(chapter: chapterList.elementAt(index)));
-                        },
-                        child: ChapterListWriteItemWidget(chapter: chapterList.elementAt(index),),
-                      ),
+                      child: ChapterListWriteItemWidget(chapter: chapterList.elementAt(index),),
+                      
                       
                     );
                 }),

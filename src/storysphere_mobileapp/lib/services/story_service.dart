@@ -45,12 +45,8 @@ class StoryService {
     
     final Uri uri = Uri.parse('$_apiUrl/filter').replace(queryParameters: queryParams);
 
-     debugPrint(uri.toString());
-
      try {
         final http.Response response = await http.get(uri);
-
-        debugPrint(response.body);
 
         if (response.statusCode == 200) {
           final Map<String, dynamic> temp = jsonDecode(response.body);
@@ -193,20 +189,34 @@ class StoryService {
 
   //PUT API REQUESTS
   Future<http.Response> updateStory(Story story, int id) async {
-    final url = Uri.parse('$_apiUrl/update/$id');
+    final url = Uri.parse('$_apiUrl/edit/$id');
     final headers = {'Content-Type': 'application/json'};
     final Map<String, dynamic> data = {
       'storyName': story.storyName,
       'cover': story.storyCover,
       'contentOutline': story.storyContentOutline,
       'categoriesAndTags': story.categoriesAndTags,
+
+      'authorName': story.bookAuthorName,
+      'publisherName': story.bookPublisherName,
+      'publishDate': story.bookPublishDate == null ? DateTime.now().toIso8601String() : story.bookPublishDate!.toIso8601String(),
+      'selfComposedStory': story.selfComposedStory,
+      'matureContent': story.matureContent,
+      'commercialActivated': story.commercialActivated,
+      'storySellPrice': story.storySellPrice,
+      'chapterCount': story.chapterCount,
     };
+
+    debugPrint(url.toString());
+    debugPrint(jsonEncode(data));
 
     final response = await http.put(
       url,
       headers: headers,
       body: jsonEncode(data),
     );
+
+    debugPrint(response.body);
 
     if (response.statusCode == 200) {
       // Success

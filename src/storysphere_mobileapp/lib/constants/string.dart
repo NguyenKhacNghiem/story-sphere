@@ -74,6 +74,9 @@ class Strings {
   static const String alertContent = 'Bạn đang thiết tên truyện hoặc thể loại!';
   static const String deleteStoryAlert = 'Bạn có chắc muốn xóa truyện này?';
   static const String deleteStory = 'Xóa truyện';
+  static const String deleteChapterAlert = 'Bạn có chắc muốn xóa chương này?';
+  static const String deleteChapter = 'Xóa chương';
+  static const String editChapterSucess = 'Cập nhật chương thành công!';
 
   //Story Details
   static const String readMore = 'Đọc thêm';

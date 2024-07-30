@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/models/user.dart';
 import 'package:storysphere_mobileapp/routing/api_services_url.dart';
 
@@ -65,7 +66,7 @@ class AccountService {
     }
   }
 
-  Future<http.Response> updateProfile(int userId, String displayName, String introduction, DateTime dateOfBirth, String avt, String cover) async {
+  Future<http.Response> updateProfile(int userId, String displayName, String introduction, DateTime dateOfBirth, String? avt, String? cover) async {
     final url = Uri.parse('$_apiUrl/profile');
     final headers = {'Content-Type': 'application/json'};
     String formattedDate = DateFormat('dd/MM/yyyy').format(dateOfBirth);
@@ -74,8 +75,8 @@ class AccountService {
       'displayName': displayName,
       'selfIntroduction': introduction,
       'dateOfBirth': formattedDate,
-      'avatar': avt,
-      'bgImg': cover,
+      'avatar': avt ?? Strings.defaultAvatar,
+      'bgImg': cover ?? Strings.defaultBgImg,
     };
 
     debugPrint('${dateOfBirth.day}/${dateOfBirth.month}/${dateOfBirth.year}');

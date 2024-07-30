@@ -27,6 +27,7 @@ class _EditChapterPage extends State<EditChapterPage> {
   final HtmlEditorController chapterController = HtmlEditorController();
   late HSEnhancedHtmlEditor contentEditor;
   late bool isKeyboardVisible;
+  bool firstLoad = true;
 
 
   @override
@@ -42,9 +43,11 @@ class _EditChapterPage extends State<EditChapterPage> {
 
   @override
   Widget build(BuildContext context) {
-    initData();
-    isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
-  
+    if (firstLoad) {
+       initData();
+       firstLoad = false;
+    }
+   
     return Scaffold(
       body: SingleChildScrollView(
         child: 
@@ -77,6 +80,7 @@ class _EditChapterPage extends State<EditChapterPage> {
    }
 
   initData(){
+    isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;  
     chapter = widget.chapter;
     titleController.text = chapter.chapterName ?? '';
 
@@ -107,7 +111,7 @@ class _EditChapterPage extends State<EditChapterPage> {
       ),);
      contentEditor = HSEnhancedHtmlEditor(
         controller: chapterController,
-        initialValue: '',
+        initialValue: chapter.chapterContent,
         initialHeight:  isKeyboardVisible ? 280.sp:  450.sp,
       );
     buttonList = Row(
@@ -122,7 +126,9 @@ class _EditChapterPage extends State<EditChapterPage> {
                             minimumSize: Size.zero,   // Remove minimum size constraints
                             tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
                           ),
-                  onPressed: () {},
+                  onPressed: () {
+                    validationAndSubmit(1);
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                       color: ColorConstants.formStrokeColor,
@@ -150,7 +156,7 @@ class _EditChapterPage extends State<EditChapterPage> {
                             tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
                           ),
                   onPressed: () {
-                   
+                   validationAndSubmit(2);
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -177,7 +183,7 @@ class _EditChapterPage extends State<EditChapterPage> {
 
   
   Future<void> validationAndSubmit(int status) async {
-    Chapter newchapter = Chapter();
+    Chapter newchapter = widget.chapter;
     String chapterTitle = titleController.text;
     newchapter.chapterName = chapterTitle;
     newchapter.chapterStatus = status;
@@ -190,6 +196,23 @@ class _EditChapterPage extends State<EditChapterPage> {
       try {
         final response = await ChapterService().updateChapter(newchapter, widget.chapter.chapterId ?? -1);
         debugPrint('Review sent successfully: ${response.body}');
+         showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text(Strings.editChapterSucess),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      setState(() {});
+                    },
+                    child: const Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
 
       } catch (e) {
         debugPrint('Error sending review: $e');

@@ -209,13 +209,13 @@ class _SignUpPage extends State<SignUpPage> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text(Strings.registerTYTitle),
+                title: Text(Strings.sendActivationEmail),
                 content: Text(Strings.registrationThankyou),
                 actions: <Widget>[
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
-                      context.pushRoute(LogInPage(newAccount: true));
+                       Navigator.of(context).pop();
+                        sendEmailHandle(email);
                     },
                     child: Text('OK'),
                   ),
@@ -234,7 +234,6 @@ class _SignUpPage extends State<SignUpPage> {
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pop();
-                      sendEmailHandle(email);
                     },
                     child: Text('OK'),
                   ),
@@ -260,9 +259,10 @@ class _SignUpPage extends State<SignUpPage> {
      try {
         final response = await ForgotPasswordService().verifyEmail(email);
         debugPrint('Request sent successfully: ${response.body}');
-         final responseData = json.decode(response.body);
-          email = responseData['email'];
-          otpCode = responseData['otp'];
+         final Map<String, dynamic> responseData = json.decode(response.body);
+         debugPrint(response.body);
+          email = responseData["email"];
+          otpCode = responseData["otp"];
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => FPEnteringOTPPage(email: email, otpCode: otpCode, userId: userId, fromPageSU: true,)),

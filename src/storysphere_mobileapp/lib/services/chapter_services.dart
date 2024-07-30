@@ -102,11 +102,44 @@ class ChapterService {
     }
   }
 
+  //PUT API REQUESTS
+  Future<http.Response> updateChapter(Chapter chapter, int id) async {
+    final url = Uri.parse('$_apiChapter/edit/$id');
+    final headers = {'Content-Type': 'application/json'};
+    final Map<String, dynamic> data = {
+      'chapterName': chapter.chapterName,
+      'chapterContent': chapter.chapterContent,
+      'chapterOrder': chapter.chapterOrder,
+      'chapterStatus': chapter.chapterStatus,
+      'matureContent': chapter.matureContent ?? false,
+      'commercialActivated': chapter.commercialActivated,
+      'chapterSellPrice': chapter.chapterSellPrice,
+    };
+
+    final response = await http.put(
+      url,
+      headers: headers,
+      body: jsonEncode(data),
+    );
+
+    debugPrint(response.body);
+
+    if (response.statusCode == 200) {
+      // Success
+      return response;
+    } else {
+      // Error
+      throw Exception('Failed to send review');
+    }
+  }
+
   //DELETE API REQUESTS
    Future<http.Response> deleteChapterById(int id) async {
     final Uri uri = Uri.parse('$_apiChapter/delete/$id');
+    debugPrint(uri.toString());
 
     final http.Response response = await http.delete(uri);
+    debugPrint(response.body);
 
     if (response.statusCode == 200 || response.statusCode == 204) {
     

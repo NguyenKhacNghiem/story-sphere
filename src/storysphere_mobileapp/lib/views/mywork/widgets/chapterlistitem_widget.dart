@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
@@ -7,6 +8,7 @@ import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/chapter.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/services/chapter_services.dart';
 
 
@@ -63,6 +65,9 @@ class _ChapterListWriteItemWidget extends State<ChapterListWriteItemWidget> {
     } else {
       return 
       InkWell(
+        onTap: (){
+           context.pushRoute(EditChapterPage(chapter: chapter));
+        },
         onLongPress: () {
           //handle when API delete ready
            setState(() {
@@ -77,7 +82,7 @@ class _ChapterListWriteItemWidget extends State<ChapterListWriteItemWidget> {
           if (showDeleteIcon)
             Positioned(
               bottom: 10,
-              left: 20,
+              right: 20,
               child: Container(
                 width: 50.sp,
                 height: 50.sp,
@@ -102,7 +107,7 @@ class _ChapterListWriteItemWidget extends State<ChapterListWriteItemWidget> {
 
   
   Future<void> handleDeleteStory() async {
-    try {
+    debugPrint('EEE');
       final response = await ChapterService().deleteChapterById(chapter.chapterId ?? -1);
       if (response.statusCode == 200) {
         debugPrint('Review sent successfully: ${response.body}');
@@ -114,6 +119,7 @@ class _ChapterListWriteItemWidget extends State<ChapterListWriteItemWidget> {
         } else {
           showDialog(
             context: context,
+            barrierDismissible: false, // Ngăn người dùng tương tác với phần còn lại của màn hình
             builder: (BuildContext context) {
               return AlertDialog(
                 title: const Text(Strings.error),
@@ -133,10 +139,7 @@ class _ChapterListWriteItemWidget extends State<ChapterListWriteItemWidget> {
         }
         
       }
-      
-    } catch (e) {
-      debugPrint('Error sending review: $e');
-    }
+   
   }
 
   void onDeletePressed() {
@@ -144,8 +147,8 @@ class _ChapterListWriteItemWidget extends State<ChapterListWriteItemWidget> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text(Strings.deleteStory),
-          content: const Text(Strings.deleteStoryAlert),
+          title: const Text(Strings.deleteChapter),
+          content: const Text(Strings.deleteChapterAlert),
           actions: [
             TextButton(
               child: const Text(Strings.cancel),
@@ -158,6 +161,7 @@ class _ChapterListWriteItemWidget extends State<ChapterListWriteItemWidget> {
               onPressed: () {
                 // Thêm logic xóa ở đây
                 handleDeleteStory();
+                debugPrint('Deleting...');
                 Navigator.of(context).pop();
               },
             ),

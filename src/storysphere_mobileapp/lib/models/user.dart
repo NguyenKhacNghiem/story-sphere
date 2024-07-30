@@ -82,7 +82,7 @@ class User {
       }
 
       // Try parsing as custom format
-      DateFormat inputFormat = DateFormat('dd/MM/yyyy HH:mm:ss');
+      DateFormat inputFormat = DateFormat('dd/MM/yyyy');
       dateTime = inputFormat.parse(inputDateTime);
       return dateTime;
     } catch (e) {

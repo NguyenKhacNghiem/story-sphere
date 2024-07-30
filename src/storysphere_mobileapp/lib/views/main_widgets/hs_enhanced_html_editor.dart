@@ -51,9 +51,9 @@ class _HSEnhancedHtmlEditor extends State<HSEnhancedHtmlEditor> {
           ),
           child: HtmlEditor(
             controller: widget.controller,
-            htmlEditorOptions: const HtmlEditorOptions(
+            htmlEditorOptions: HtmlEditorOptions(
               hint: "Kéo ngang thanh editor để xem thêm định dạng.",
-              initialText: '<div style="color: white;">&nbsp;</div>', // Initial text with white color
+              initialText: '<div style="color: white;">&nbsp;</div>$initialText', // Initial text with white color
             ),
             htmlToolbarOptions: const HtmlToolbarOptions(
               toolbarPosition: ToolbarPosition.aboveEditor,

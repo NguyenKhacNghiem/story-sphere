@@ -4,7 +4,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
@@ -13,9 +12,8 @@ import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
 import 'package:storysphere_mobileapp/models/category.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
 import 'package:storysphere_mobileapp/models/user.dart';
-import 'package:storysphere_mobileapp/routing/router.gr.dart';
-import 'package:storysphere_mobileapp/services/account_service.dart';
 import 'package:storysphere_mobileapp/services/category_service.dart';
+import 'package:storysphere_mobileapp/services/cloud_service.dart';
 import 'package:storysphere_mobileapp/services/story_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 import 'package:storysphere_mobileapp/views/mywork/widgets/chapterlist_section.dart';
@@ -30,8 +28,9 @@ class EditStoryPage extends StatefulWidget {
 }
 
 class _EditStoryPage extends State<EditStoryPage> {
-  late int userId;
-  File? _image;
+  XFile? _image;
+  final ImagePicker _picker = ImagePicker();
+  String? coverLinkPath;
   final TextEditingController coverController = TextEditingController();
   final TextEditingController storyNameController = TextEditingController();
   final TextEditingController storyContentOutlineController = TextEditingController();
@@ -45,10 +44,11 @@ class _EditStoryPage extends State<EditStoryPage> {
   List<Category> listTag = [];
   List<Category> dropdownBookCategories = [];
   List<Category> dropdownNovelCategories = [];
+  bool loading = true;
 
   @override
   void initState() {
-    _loadUserId();
+    initData();
     super.initState();
   }
   
@@ -62,9 +62,8 @@ class _EditStoryPage extends State<EditStoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    initData();
+
     fetchCategories();
-    fetchUser();
   
     return Scaffold(
       bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 2),
@@ -94,7 +93,7 @@ class _EditStoryPage extends State<EditStoryPage> {
                     Text(Strings.previewCover, style: FontConstant.ratingPointDisplay,),
                     10.verticalSpace,
                     InkWell(
-                      onTap: (){_pickImage(ImageSource.gallery);},
+                      onTap: (){_pickImage();},
                       child: Container(
                         height: 155.sp,
                         width: 100.sp,
@@ -108,7 +107,7 @@ class _EditStoryPage extends State<EditStoryPage> {
                               child: Image.network(widget.story.storyCover ?? '', fit: BoxFit.cover,))
                           : ClipRRect(
                               borderRadius: BorderRadius.circular(5.sp),
-                              child: Image.file(_image!, fit: BoxFit.cover,))),
+                              child: Image.file(File(_image!.path), fit: BoxFit.cover,))),
                     ),
                     
                   ],
@@ -251,10 +250,34 @@ class _EditStoryPage extends State<EditStoryPage> {
             Wrap(
               children: 
                 listTag.map((item) => _buildCustomSelection(item)).toList()),
-
-            40.verticalSpace,
+            20.verticalSpace,
             ChapterListWriteSection(storyId: widget.story.storyId?? - 1),
-            40.verticalSpace
+            20.verticalSpace,
+            Center(
+              child: 
+            ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                            backgroundColor: ColorConstants.transparent,
+                            shadowColor: ColorConstants.transparent,
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
+                          ),
+                  onPressed: () {
+                    validationAndSubmit();
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: ColorConstants.buttonLightGreen,
+                      borderRadius: BorderRadius.circular(5.sp),
+                    ),
+                    
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 5.sp),
+                    child:
+                          Text(Strings.edit, style: FontConstant.buttonTextWhite,),
+                        )
+                  ))),
+                
+                40.verticalSpace,
           ],))
       ),
     );
@@ -264,26 +287,9 @@ class _EditStoryPage extends State<EditStoryPage> {
     coverController.text = widget.story.storyCover ?? '';
     storyNameController.text = widget.story.storyName ?? '';
     storyContentOutlineController.text = widget.story.storyContentOutline ?? '';
+    coverLinkPath = widget.story.storyCover ?? Strings.defaultCover;
   }
 
-  
-Future<void> fetchUser() async{
-    if (currentUser == null) {
-    final result =  AccountService().getUserById(userId);
-      result.whenComplete(() {
-        result.then((value) {
-          if (value != null) {
-           currentUser = value;
-           debugPrint(currentUser!.displayName.toString());
-          }
-          else {
-            return null;
-          }
-        });
-      });
-  }
-    
-}
 
 Future<void> fetchCategories() async {
    if (listTag.isEmpty) {
@@ -301,7 +307,7 @@ Future<void> fetchCategories() async {
 
               dropdownBookCategories = listTag.where((category) => 
                   category.categoryUrl == false && category.isCategory == true).toList();
-                    });
+            });
             return value;
           } else {
             return null;
@@ -312,7 +318,7 @@ Future<void> fetchCategories() async {
     
 }
 
-  Widget buildCategorySelection(){
+Widget buildCategorySelection(){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -358,10 +364,29 @@ Future<void> fetchCategories() async {
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: dropdownNovelCategories.map((Category item) {
+                      children: 
+                      isNonFiction 
+                      ? dropdownBookCategories.map((Category item) {
                         return InkWell(
                           onTap: () {
-                            selectedCategory = item;
+                            setState(() {
+                              selectedCategory = item;
+                            });
+                            
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 12.sp, horizontal: 16.sp),
+                            child: Text(item.categoryName ?? ''),
+                          ),
+                        );
+                      }).toList()
+                      : dropdownNovelCategories.map((Category item) {
+                        return InkWell(
+                          onTap: () {
+                            setState(() {
+                              selectedCategory = item;
+                            });
+                            
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: 12.sp, horizontal: 16.sp),
@@ -414,22 +439,7 @@ Future<void> fetchCategories() async {
     });
   }
 
-  Future<void> _pickImage(ImageSource source) async {
-    final pickedFile = await ImagePicker().pickImage(source: source);
-    if (pickedFile != null) {
-      setState(() {
-        _image = File(pickedFile.path);
-      });
-    }
-  }
 
-  Future<void> _loadUserId() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      userId = prefs.getInt('userId') ?? 100004;
-    });
-  }
-  
   void _showWarningDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -441,7 +451,7 @@ Future<void> fetchCategories() async {
             TextButton(
               child: Text('OK', style: FontConstant.buttonTextWhite,),
               onPressed: () {
-                
+                Navigator.pop(context);
               },
             ),
           ],
@@ -452,45 +462,101 @@ Future<void> fetchCategories() async {
 
   
   Future<void> validationAndSubmit() async {
-    Story newStory = Story();
+    loading = true;
+    if (loading) {
+      showDialog(
+      context: context,
+      barrierDismissible: false, // Ngăn người dùng tương tác với phần còn lại của màn hình
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Row(
+            children: [
+              CircularProgressIndicator(),
+              20.horizontalSpace,
+              Text('Đang lưu thay đổi...'),
+            ],
+          ),
+        );});
+    }
+
+    if (_image != null){
+       final result =  CloudService().uploadImage(_image);
+      result.whenComplete(() {
+        result.then((value) {
+          coverLinkPath = value;
+          updateStory();
+        });
+      });
+     
+    } else {
+      updateStory();
+    }
+    
+  }
+
+  Future<void> updateStory() async {
+    Story newStory = widget.story;
     String categories = selectedCategory!.categoryId.toString();
     String tags = '';
     for (int tag in selectedTags) {
       tags+= ',$tag';
     }
-     var temptstoryContentString = storyContentOutlineController.text;
-
-      newStory.storyContentOutline = temptstoryContentString;
+      newStory.storyContentOutline =  storyContentOutlineController.text;
       newStory.storyCover = coverController.text;
       newStory.storyName = storyNameController.text;
-      newStory.fkPublisherAccount = userId;
-      newStory.chapterCount = 0;
-      newStory.viewCount = 0;
-      newStory.bookAuthorName = currentUser?.displayName ?? '';
-      newStory.bookPublisherName = currentUser?.displayName ?? '';
-      newStory.selfComposedStory = true;
       //get selected category
       newStory.categoriesAndTags = categories;
       //get selected tags
       newStory.categoriesAndTags = '${newStory.categoriesAndTags}$tags';
-      newStory.storySellPrice = 0.0;
-      newStory.matureContent = false;
-      newStory.commercialActivated = false;
-      newStory.bookPublishDate = DateTime.now();
-      newStory.bookISBNcode = 'NOCODE${DateTime.now().toIso8601String()}';
-
+      newStory.storyCover = coverLinkPath;
       
     try {
-      final response = await StoryService().createStory(newStory);
+      final response = await StoryService().updateStory(newStory, widget.story.storyId ?? -1);
       if (response.statusCode == 200 || response.statusCode == 204) {
-          context.pushRoute(StoryDetailPage(story: widget.story));
+          final responseData = json.decode(response.body);
+         if (responseData['code'] == 0 || responseData['code'] == 100) {   
+          Navigator.of(context, rootNavigator: true).pop();
+        } else {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text(Strings.error),
+                content: Text(responseData['message']),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      setState(() {
+                        loading = false;
+                      });
+                    },
+                    child: const Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
+        }
+         
       }
       
     } catch (e) {
-      debugPrint('Error sending review: $e');
+      debugPrint('Error: $e');
     }
-    
   }
 
+  Future<void> _pickImage() async {
+    try {
+      final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
 
+      if (pickedFile != null) {
+        setState(() {
+          _image = pickedFile; // Update state with the picked file
+        });
+      }
+    } catch (e) {
+      print('Error picking image: $e');
+    }
+  }
 }

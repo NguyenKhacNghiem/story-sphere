@@ -60,30 +60,30 @@ app.get("/logout", (req, res) => {
 })
 
 app.get("/story", (req, res) => {
-    // if(!req.session.username)
-    //     res.redirect("/login");
-    // else
+    if(!req.session.username)
+        res.redirect("/login");
+    else
         res.render("story");
 })
 
 app.get("/category", (req, res) => {
-    // if(!req.session.username)
-    //     res.redirect("/login");
-    // else
+    if(!req.session.username)
+        res.redirect("/login");
+    else
         res.render("category");
 })
 
 app.get("/user", (req, res) => {
-    // if(!req.session.username)
-    //     res.redirect("/login");
-    // else
+    if(!req.session.username)
+        res.redirect("/login");
+    else
         res.render("user");
 })
 
 app.get("/statistic", (req, res) => {
-    // if(!req.session.username)
-    //     res.redirect("/login");
-    // else
+    if(!req.session.username)
+        res.redirect("/login");
+    else
         res.render("statistic");
 })
 

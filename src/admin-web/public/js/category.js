@@ -286,7 +286,7 @@ function showModalStoryIn(_id) {
         if (json.code === 0) {
             json.result.forEach(story => {
                 rows += `<tr>
-                            <td><img src="https://cdn.thestorygraph.com/tramdo57b9nn0eewwszz8dme47v2" class="w-100"></td>
+                            <td><img src="${story.cover}" class="w-100"></td>
                             <td>${story._id}</td>
                             <td>${story.storyName}</td>
                             <td>${story.authorName}</td>

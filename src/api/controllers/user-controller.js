@@ -35,7 +35,7 @@ async function getAll(req, res) {
     }
 }
 
-function register(req, res) {
+async function register(req, res) {
     // Input validation
     let result = validationResult(req);
     if(result.errors.length > 0) {
@@ -43,31 +43,32 @@ function register(req, res) {
         return res.json({code: 1, message: result.errors[0].msg});
     }
 
-    let newUser = new User({
-        username: req.body.username, 
-        password: bcrypt.hashSync(req.body.password, 10), // encrypt password
-        email: req.body.email
-    });
+    let {username, password, email} = req.body;
 
-    // TODO: verify email when register new account
+    let user;
+
+    user = await User.findOne({username: username});
+    if(user) {
+        log.error("Tài khoản này đã tồn tại");
+        return res.json({code: 1, message: "Tài khoản này đã tồn tại"});
+    }
+
+    user = await User.findOne({email: email});
+    if(user) {
+        log.error("Email này đã tồn tại");
+        return res.json({code: 1, message: "Email này đã tồn tại"});
+    }
     
-    newUser.save()
-    .then(result => {        
-        log.info("Đăng ký tài khoản thành công");
-        res.json({code: 0, message: "Đăng ký tài khoản thành công", result: result});
-    })
-    .catch(error => {
-        let errorMessage = error.message;
-        log.error(errorMessage);
+    // NOTE: verify email when register new account
+    let otp = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000; // random OTP code in [1000, 9999]
+    utils.sendEmail(email, otp);
 
-        // Check type of error
-        if(errorMessage.includes("username"))
-            res.json({code: 1, message: "Tài khoản này đã tồn tại"});
-        else if(errorMessage.includes("email"))
-            res.json({code: 1, message: "Email này đã tồn tại"});
-        else
-            res.json({code: 1, message: "Đăng ký tài khoản thất bại"});
-    });
+    req.session.username = username;
+    req.session.password = password;
+    req.session.email = email;
+    // req.session.otp = otp;
+
+    res.json({code: 0, message: "Vui lòng nhập mã OTP được gửi đến email của bạn"});
 }
 
 function login(req, res) {
@@ -162,7 +163,9 @@ async function updateProfile(req, res) {
         // Change fields of record
         user.displayName = req.body.displayName; 
         user.selfIntroduction = req.body.selfIntroduction ? req.body.selfIntroduction : user.selfIntroduction ; 
-        user.dateOfBirth = req.body.dateOfBirth; 
+        user.dateOfBirth = req.body.dateOfBirth;
+        user.avatar = req.body.avatar ? req.body.avatar : user.avatar ; 
+        user.bgImg = req.body.bgImg ? req.body.bgImg : user.bgImg ; 
 
         await user.save();
 
@@ -326,8 +329,6 @@ function verifyEmail(req, res) {
     }
 }
 
-// TODO: Update avatar and bgImg
-
 async function search(req, res) {
     // // Input validation
     // let result = validationResult(req);
@@ -477,6 +478,39 @@ async function remove(req, res) {
     res.json({code: 0, message: "Xóa người dùng thành công"});
 }
 
+function saveUser(req, res) {
+    let username = req.session.username;
+    let password = req.session.password;
+    let email = req.session.email;
+    // let otp = req.session.otp;
+
+    // if (req.body.otp - 0 !== otp) {
+    //     log.error("Mã OTP không chính xác.");
+    //     return res.json({code: 1, message: "Mã OTP không chính xác."});
+    // }
+
+    let newUser = new User({
+        username: username, 
+        password: bcrypt.hashSync(password, 10), // encrypt password
+        email: email
+    });
+
+    newUser.save()
+    .then(result => {        
+        delete req.session.username;
+        delete req.session.password;
+        delete req.session.email;
+        // delete req.session.otp;
+
+        log.info("Đăng ký tài khoản thành công");
+        res.json({code: 0, message: "Đăng ký tài khoản thành công", result: result});
+    })
+    .catch(error => {
+        log.error(error.message);
+        res.json({code: 1, message: "Đăng ký tài khoản thất bại"});
+    });
+}
+
 module.exports = {
     getAll,
     register,
@@ -491,5 +525,6 @@ module.exports = {
     search,
     sort,
     lock,
-    remove
+    remove,
+    saveUser
 };

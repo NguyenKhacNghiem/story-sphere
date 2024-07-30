@@ -728,8 +728,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
-<<<<<<< Updated upstream
-=======
   intl:
     dependency: "direct main"
     description:
@@ -738,7 +736,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.17.0"
->>>>>>> Stashed changes
   io:
     dependency: transitive
     description:

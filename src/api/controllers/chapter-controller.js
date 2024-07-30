@@ -3,6 +3,7 @@ const { validationResult } = require('express-validator');
 const Chapter = require("../models/chapter");
 const Story = require("../models/story");
 const log = require('../logs/log');
+const utils = require("../utils");
 
 async function getAll(req, res) {
     let fk_storyId = req.query.fk_storyId || -1;
@@ -77,7 +78,7 @@ function create(req, res) {
         chapterOrder: req.body.chapterOrder,
         chapterStatus: req.body.chapterStatus,
         matureContent: req.body.matureContent,
-        wordsCount: req.body.wordsCount,
+        wordsCount: req.body.chapterContent.split(" ").length,
         commercialActivated: req.body.commercialActivated,
         chapterSellPrice: req.body.chapterSellPrice
     });
@@ -97,6 +98,47 @@ function create(req, res) {
         else
             res.json({code: 1, message: "Tạo chương mới thất bại"});            
     });
+}
+
+async function edit(req, res) {
+    try {
+        // Input validation
+        let result = validationResult(req);
+        if(result.errors.length > 0) {
+            log.error(result.errors[0].msg);
+            return res.json({code: 1, message: result.errors[0].msg});
+        }
+
+        let chapter = await Chapter.findOne({ _id: req.params.id }); // find one record by id
+
+        if(!chapter) {
+            log.error("Chương không tồn tại");
+            return res.json({code: 1, message: "Chương không tồn tại"});
+        }
+
+        // Change fields of record
+        chapter.chapterName = req.body.chapterName;
+        chapter.chapterContent = req.body.chapterContent;
+        chapter.chapterOrder = req.body.chapterOrder;
+        chapter.chapterStatus = req.body.chapterStatus;
+        chapter.matureContent = req.body.matureContent;
+        chapter.viewCount = req.body.viewCount ? req.body.viewCount : chapter.viewCount;
+        chapter.voteCount = req.body.voteCount ? req.body.voteCount : chapter.voteCount;
+        chapter.commentCount = req.body.commentCount ? req.body.commentCount : chapter.commentCount;
+        chapter.wordsCount = req.body.chapterContent.split(" ").length;
+        chapter.lastUpdate = utils.getCurrentDateTime();
+        chapter.commercialActivated = req.body.commercialActivated;
+        chapter.chapterSellPrice = req.body.chapterSellPrice;
+
+        await chapter.save();
+
+        log.info("Cập nhật chương thành công");
+        res.json({code: 0, message: "Cập nhật chương thành công"});
+    }
+    catch (error) {
+        log.error(error.message);
+        res.json({code: 1, message: "Cập nhật chương thất bại"});
+    }
 }
 
 async function publish(req, res) {
@@ -128,5 +170,6 @@ module.exports = {
     getAll,
     getOne,
     create,
+    edit,
     publish
 };

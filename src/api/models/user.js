@@ -49,11 +49,11 @@ let userSchema = new Schema({
     },
     avatar: {
         type: String,
-        default: "???", // TODO: replace with the default image url
+        default: "https://res.cloudinary.com/story-sphere/image/upload/v1722182000/user_ubzndq.png", // default avatar when register new account
     },
     bgImg: {
         type: String,
-        default: "???", // TODO: replace with the default image url
+        default: "https://res.cloudinary.com/story-sphere/image/upload/v1722181117/email-background_hneqzm.jpg", // default background when register new account
     },
     isLock: {
         type: Boolean,

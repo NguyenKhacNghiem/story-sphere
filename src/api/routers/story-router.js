@@ -20,6 +20,10 @@ router.post("/create", storyValidator.createValidator, (req, res) => {
     storyController.create(req, res);
 })
 
+router.put("/edit/:id", storyValidator.editValidator, (req, res) => {
+    storyController.edit(req, res);
+})
+
 router.get("/search", (req, res) => {
     storyController.search(req, res);
 })

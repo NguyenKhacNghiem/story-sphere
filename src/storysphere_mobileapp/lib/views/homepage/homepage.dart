@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
+import 'package:storysphere_mobileapp/constants/utils/responsive.dart';
 import 'package:storysphere_mobileapp/models/user.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/views/homepage/news_slider.dart';
@@ -57,6 +58,7 @@ class _HSHomePage extends State<HSHomePage> {
         return Scaffold(
             bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 0),
             body: SingleChildScrollView(
+              padding: Responsive.isMobile(context) ? const EdgeInsets.symmetric(vertical: 0, horizontal: 0) : EdgeInsets.symmetric(horizontal: 80.sp),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,

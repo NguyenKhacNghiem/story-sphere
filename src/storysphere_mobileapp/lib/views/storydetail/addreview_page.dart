@@ -7,6 +7,7 @@ import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
+import 'package:storysphere_mobileapp/constants/utils/responsive.dart';
 import 'package:storysphere_mobileapp/models/review.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
 import 'package:storysphere_mobileapp/services/review_service.dart';
@@ -100,7 +101,8 @@ class _AddReviewPage extends State<AddReviewPage> {
             // Main content
             Center(
               child:
-              Padding(padding: EdgeInsets.symmetric(vertical: 20.sp, horizontal: 20.sp),
+              Padding(
+                padding: Responsive.isMobile(context) ? EdgeInsets.symmetric(vertical: 20.sp, horizontal: 20.sp) : EdgeInsets.symmetric(vertical: 20.sp, horizontal: 80.sp),
               child: SingleChildScrollView(
                 controller: ScrollController(),
                 child: Column(

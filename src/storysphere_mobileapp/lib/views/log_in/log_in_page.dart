@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
+import 'package:storysphere_mobileapp/constants/utils/responsive.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/views/log_in/services/login_service.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -158,14 +159,15 @@ class _LogInPage extends State<LogInPage> {
                           shape: const CircleBorder(),
                         ),
                         child: 
-                        Container(
+                        Responsive.isMobile(context) 
+                        ? Container(
                           width: 53.sp,
                           height: 53.sp,
                           child: Image.network(
                             'http://pngimg.com/uploads/google/google_PNG19635.png',
                             fit:BoxFit.contain
                           ),
-                      ),
+                      ) : 0.verticalSpace,
                                         
                       ),
                     ),

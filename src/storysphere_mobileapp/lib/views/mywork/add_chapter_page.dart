@@ -8,6 +8,7 @@ import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
+import 'package:storysphere_mobileapp/constants/utils/responsive.dart';
 import 'package:storysphere_mobileapp/models/chapter.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
@@ -53,6 +54,7 @@ class _AddChapterPage extends State<AddChapterPage> {
   
     return Scaffold(
       body: SingleChildScrollView(
+        padding: Responsive.isMobile(context) ? EdgeInsets.all(0.sp) : EdgeInsets.symmetric(horizontal: 50.sp),
         child: 
         Padding(
           padding: EdgeInsets.all(20.sp),
@@ -63,7 +65,21 @@ class _AddChapterPage extends State<AddChapterPage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             40.verticalSpace,
-            Text(Strings.addNewChapter, style: FontConstant.headline1White,),
+            Row(children: [
+              InkWell(
+                onTap: () {
+                  context.pushRoute(EditStoryPage(story: widget.story));
+                },
+                child: const Icon(
+                  Icons.arrow_back, 
+                  color: ColorConstants.primaryText,
+                  size: 25,),
+              ),
+              10.horizontalSpace,
+              Text(Strings.addNewChapter, style: FontConstant.headline1White,),
+            ],),
+           
+            
             10.verticalSpace,
             //BUTTON LIST
             buttonList,

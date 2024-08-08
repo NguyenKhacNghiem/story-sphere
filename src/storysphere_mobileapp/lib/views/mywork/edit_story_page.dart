@@ -9,9 +9,11 @@ import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
+import 'package:storysphere_mobileapp/constants/utils/responsive.dart';
 import 'package:storysphere_mobileapp/models/category.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
 import 'package:storysphere_mobileapp/models/user.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/services/category_service.dart';
 import 'package:storysphere_mobileapp/services/cloud_service.dart';
 import 'package:storysphere_mobileapp/services/story_service.dart';
@@ -68,22 +70,34 @@ class _EditStoryPage extends State<EditStoryPage> {
     return Scaffold(
       bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 2),
       body: SingleChildScrollView(
+        padding: Responsive.isMobile(context) ?  EdgeInsets.all(0.sp) : EdgeInsets.symmetric(horizontal: 100.sp),
         child: 
         Padding( padding: EdgeInsets.symmetric(horizontal: 20.sp),
         child: 
         Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: Responsive.isMobile(context) ? CrossAxisAlignment.start : CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             50.verticalSpace,
-
-            Text(Strings.storyInfor, style: FontConstant.resultTitleDisplay,),
+            Row(children: [
+              InkWell(
+                onTap: () {
+                  context.pushRoute(MyWorksPage(userId: widget.story.fkPublisherAccount!));
+                },
+                child: const Icon(
+                  Icons.arrow_back, 
+                  color: ColorConstants.primaryText,
+                  size: 25,),
+              ),
+              10.horizontalSpace,
+              Text(Strings.storyInfor, style: FontConstant.resultTitleDisplay,),
+            ],),
             20.verticalSpace,
 
             //STORY COVER
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Column(
@@ -113,42 +127,42 @@ class _EditStoryPage extends State<EditStoryPage> {
                   ],
                 ),
               
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(Strings.coverLinkPath, style: FontConstant.linkDisplay,),
-                    10.verticalSpace,
-                    Container(
-                      width: 220.sp,
-                      height: 100.sp,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: ColorConstants.formStrokeColor,
-                          width: 1.sp,),
-                        borderRadius: BorderRadius.circular(5.sp),
-                      ),
-                      child:Padding(
-                          padding: EdgeInsets.all(5.sp),
-                          child: TextField(
-                            controller: coverController,
-                            style:  FontConstant.rateContentDisplay,
-                            maxLines: 3,
-                            decoration: const InputDecoration(
-                              hintText: Strings.coverLinkPath,
-                              fillColor: ColorConstants.transparent,
-                              border: InputBorder.none,
-                              enabledBorder: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                              errorBorder: InputBorder.none,
-                              disabledBorder: InputBorder.none,
-                              hintStyle: TextStyle(color: ColorConstants.secondaryText),
-                            ),
+                // Column(
+                //   mainAxisAlignment: MainAxisAlignment.end,
+                //   crossAxisAlignment: CrossAxisAlignment.end,
+                //   children: [
+                //     Text(Strings.coverLinkPath, style: FontConstant.linkDisplay,),
+                //     10.verticalSpace,
+                //     Container(
+                //       width: 220.sp,
+                //       height: 100.sp,
+                //       decoration: BoxDecoration(
+                //         border: Border.all(
+                //           color: ColorConstants.formStrokeColor,
+                //           width: 1.sp,),
+                //         borderRadius: BorderRadius.circular(5.sp),
+                //       ),
+                //       child:Padding(
+                //           padding: EdgeInsets.all(5.sp),
+                //           child: TextField(
+                //             controller: coverController,
+                //             style:  FontConstant.rateContentDisplay,
+                //             maxLines: 3,
+                //             decoration: const InputDecoration(
+                //               hintText: Strings.coverLinkPath,
+                //               fillColor: ColorConstants.transparent,
+                //               border: InputBorder.none,
+                //               enabledBorder: InputBorder.none,
+                //               focusedBorder: InputBorder.none,
+                //               errorBorder: InputBorder.none,
+                //               disabledBorder: InputBorder.none,
+                //               hintStyle: TextStyle(color: ColorConstants.secondaryText),
+                //             ),
                           
-                        ),
-                    ),),
-                  ],
-                )
+                //         ),
+                //     ),),
+                //   ],
+                // )
                 ],
               ),
           
@@ -402,7 +416,10 @@ Widget buildCategorySelection(){
 
   Widget _buildCustomSelection(Category item) {
     bool isSelected = selectedTags.contains(item.categoryId!);
-    return InkWell(
+    if (item.isCategory ?? false) {
+      return 0.verticalSpace;
+    } else {
+      return InkWell(
       onTap: () => _toggleSelection(item.categoryId ?? -1),
       borderRadius: BorderRadius.circular(25),
       child: Container(
@@ -427,6 +444,7 @@ Widget buildCategorySelection(){
         ],)
       ),
     );
+    }
   }
 
    void _toggleSelection(int item) {

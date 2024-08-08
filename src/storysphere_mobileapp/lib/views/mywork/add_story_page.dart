@@ -9,12 +9,14 @@ import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
+import 'package:storysphere_mobileapp/constants/utils/responsive.dart';
 import 'package:storysphere_mobileapp/models/category.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
 import 'package:storysphere_mobileapp/models/user.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/services/account_service.dart';
 import 'package:storysphere_mobileapp/services/category_service.dart';
+import 'package:storysphere_mobileapp/services/cloud_service.dart';
 import 'package:storysphere_mobileapp/services/story_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
 
@@ -29,7 +31,6 @@ class AddStoryPage extends StatefulWidget {
 
 class _AddStoryPage extends State<AddStoryPage> {
   late int storyId;
-  File? _image;
   final TextEditingController coverController = TextEditingController();
   final TextEditingController storyNameController = TextEditingController();
   final TextEditingController storyContentOutlineController = TextEditingController();
@@ -43,6 +44,10 @@ class _AddStoryPage extends State<AddStoryPage> {
   List<Category> listTag = [];
   List<Category> dropdownBookCategories = [];
   List<Category> dropdownNovelCategories = [];
+  bool loading = true;
+  XFile? _image;
+  final ImagePicker _picker = ImagePicker();
+  String? coverLinkPath;
   
   @override
   void dispose() {
@@ -60,22 +65,34 @@ class _AddStoryPage extends State<AddStoryPage> {
     return Scaffold(
       bottomNavigationBar: const SPBottomNavigationBar(selectedIndex: 2),
       body: SingleChildScrollView(
+        padding: Responsive.isMobile(context) ? EdgeInsets.all(0.sp) : EdgeInsets.symmetric(horizontal: 80.sp),
         child: 
         Padding( padding: EdgeInsets.symmetric(horizontal: 20.sp),
         child: 
         Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment:  Responsive.isMobile(context) ? CrossAxisAlignment.start : CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             50.verticalSpace,
-
-            Text(Strings.storyInfor, style: FontConstant.resultTitleDisplay,),
+            Row(children: [
+              InkWell(
+                onTap: () {
+                  context.pushRoute(MyWorksPage(userId: widget.userId));
+                },
+                child: const Icon(
+                  Icons.arrow_back, 
+                  color: ColorConstants.primaryText,
+                  size: 25,),
+              ),
+              10.horizontalSpace,
+              Text(Strings.storyInfor, style: FontConstant.resultTitleDisplay,),
+            ],),
             20.verticalSpace,
 
             //STORY COVER
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment:  Responsive.isMobile(context) ? MainAxisAlignment.start : MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Column(
@@ -85,7 +102,7 @@ class _AddStoryPage extends State<AddStoryPage> {
                     Text(Strings.previewCover, style: FontConstant.ratingPointDisplay,),
                     10.verticalSpace,
                     InkWell(
-                      onTap: (){_pickImage(ImageSource.gallery);},
+                      onTap: (){_pickImage();},
                       child: Container(
                         height: 155.sp,
                         width: 100.sp,
@@ -97,48 +114,50 @@ class _AddStoryPage extends State<AddStoryPage> {
                           ? const Icon(Icons.add_a_photo_outlined,) 
                           : ClipRRect(
                               borderRadius: BorderRadius.circular(5.sp),
-                              child: Image.file(_image!, fit: BoxFit.cover,))),
+                              child: Image.file(File(_image!.path), fit: BoxFit.cover,))),
                     ),
                     
                   ],
                 ),
+
+                // Responsive.isMobile(context) ? 0.horizontalSpace : 50.horizontalSpace,
               
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(Strings.coverLinkPath, style: FontConstant.ratingPointDisplay,),
-                    10.verticalSpace,
-                    Container(
-                      width: 220.sp,
-                      height: 100.sp,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: ColorConstants.formStrokeColor,
-                          width: 1.sp,),
-                        borderRadius: BorderRadius.circular(5.sp),
-                      ),
-                      child:Padding(
-                          padding: EdgeInsets.all(5.sp),
-                          child: TextField(
-                            controller: coverController,
-                            maxLines: 3,
-                            style:  FontConstant.rateContentDisplay,
-                            decoration: const InputDecoration(
-                              hintText: Strings.coverLinkPath,
-                              fillColor: ColorConstants.transparent,
-                              border: InputBorder.none,
-                              enabledBorder: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                              errorBorder: InputBorder.none,
-                              disabledBorder: InputBorder.none,
-                              hintStyle: TextStyle(color: ColorConstants.secondaryText),
-                            ),
+                // Column(
+                //   mainAxisAlignment: MainAxisAlignment.end,
+                //   crossAxisAlignment: CrossAxisAlignment.end,
+                //   children: [
+                //     Text(Strings.coverLinkPath, style: FontConstant.ratingPointDisplay,),
+                //     10.verticalSpace,
+                //     Container(
+                //       width: 220.sp,
+                //       height: 100.sp,
+                //       decoration: BoxDecoration(
+                //         border: Border.all(
+                //           color: ColorConstants.formStrokeColor,
+                //           width: 1.sp,),
+                //         borderRadius: BorderRadius.circular(5.sp),
+                //       ),
+                //       child:Padding(
+                //           padding: EdgeInsets.all(5.sp),
+                //           child: TextField(
+                //             controller: coverController,
+                //             maxLines: 3,
+                //             style:  FontConstant.rateContentDisplay,
+                //             decoration: const InputDecoration(
+                //               hintText: Strings.coverLinkPath,
+                //               fillColor: ColorConstants.transparent,
+                //               border: InputBorder.none,
+                //               enabledBorder: InputBorder.none,
+                //               focusedBorder: InputBorder.none,
+                //               errorBorder: InputBorder.none,
+                //               disabledBorder: InputBorder.none,
+                //               hintStyle: TextStyle(color: ColorConstants.secondaryText),
+                //             ),
                           
-                        ),
-                    ),),
-                  ],
-                )
+                //         ),
+                //     ),),
+                //   ],
+                // )
                 ],
               ),
           
@@ -433,62 +452,6 @@ Widget buildCategorySelection(){
     });
   }
 
-  Future<void> _pickImage(ImageSource source) async {
-    final pickedFile = await ImagePicker().pickImage(source: source);
-    if (pickedFile != null) {
-      setState(() {
-        _image = File(pickedFile.path);
-      });
-    }
-  }
-
-  Future<void> validationAndSubmit() async {
-    Story newStory = Story();
-    String categories = selectedCategory!.categoryId.toString();
-    String tags = '';
-    for (int tag in selectedTags) {
-      tags+= ',$tag';
-    }
-     var temptstoryContentString = storyContentOutlineController.text;
-
-      newStory.storyContentOutline = temptstoryContentString;
-      newStory.storyCover = coverController.text;
-      newStory.storyName = storyNameController.text;
-      newStory.fkPublisherAccount = widget.userId;
-      newStory.chapterCount = 0;
-      newStory.viewCount = 0;
-      newStory.bookAuthorName = currentUser?.displayName ?? '';
-      newStory.bookPublisherName = currentUser?.displayName ?? '';
-      newStory.selfComposedStory = true;
-      //get selected category
-      newStory.categoriesAndTags = categories;
-      //get selected tags
-      newStory.categoriesAndTags = '${newStory.categoriesAndTags}$tags';
-      newStory.storySellPrice = 0.0;
-      newStory.matureContent = false;
-      newStory.commercialActivated = false;
-      newStory.bookPublishDate = DateTime.now();
-      newStory.bookISBNcode = 'NOCODE${DateTime.now().toIso8601String()}';
-
-      
-    try {
-      final response = await StoryService().createStory(newStory);
-      if (response.statusCode == 200) {
-        debugPrint('Story create successfully: ${response.body}');
-         final Map<String, dynamic> temp = jsonDecode(response.body);
-          // Truy cập trường result
-          final result = temp['result'];
-          Story data = Story.fromJson(result);
-        
-          context.pushRoute(AddChapterPage(story: data));
-
-      }
-      
-    } catch (e) {
-      debugPrint('Error sending review: $e');
-    }
-    
-  }
 
   void _showWarningDialog(BuildContext context) {
     showDialog(
@@ -501,7 +464,7 @@ Widget buildCategorySelection(){
             TextButton(
               child: Text('OK', style: FontConstant.buttonTextWhite,),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.pop(context);
               },
             ),
           ],
@@ -510,7 +473,122 @@ Widget buildCategorySelection(){
     );
   }
 
+  
+  Future<void> validationAndSubmit() async {
+    loading = true;
+    if (loading) {
+      showDialog(
+      context: context,
+      barrierDismissible: false, // Ngăn người dùng tương tác với phần còn lại của màn hình
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Row(
+            children: [
+              CircularProgressIndicator(),
+              20.horizontalSpace,
+              Text('Đang lưu thay đổi...'),
+            ],
+          ),
+        );});
+    }
 
+    if (_image != null){
+       final result =  CloudService().uploadImage(_image);
+      result.whenComplete(() {
+        result.then((value) {
+          coverLinkPath = value;
+          updateStory();
+        });
+      });
+     
+    } else {
+      updateStory();
+    }
+    
+  }
 
+  Future<void> updateStory() async {
+    Story newStory = Story();
+    String categories = selectedCategory!.categoryId.toString();
+    String tags = '';
+    for (int tag in selectedTags) {
+      tags+= ',$tag';
+    }  
+      var temptstoryContentString = storyContentOutlineController.text;
+      newStory.storyContentOutline = temptstoryContentString;
+      newStory.storyCover = coverLinkPath;
+      newStory.storyName = storyNameController.text;
+      newStory.fkPublisherAccount = widget.userId;
+      newStory.chapterCount = 0;
+      newStory.viewCount = 0;
+      newStory.bookAuthorName = currentUser?.displayName ?? '';
+      newStory.bookPublisherName = currentUser?.displayName ?? '';
+      newStory.storySellPrice = 0.0;
+      newStory.matureContent = false;
+      newStory.commercialActivated = false;
+      newStory.bookPublishDate = DateTime.now();
+      newStory.bookISBNcode = 'NOCODE${DateTime.now().toIso8601String()}';
 
+      newStory.selfComposedStory = true;
+      //get selected category
+      newStory.categoriesAndTags = categories;
+      //get selected tags
+      newStory.categoriesAndTags = '${newStory.categoriesAndTags}$tags';
+      newStory.storyCover = coverLinkPath;
+      
+    try {
+      final response = await StoryService().createStory(newStory);
+      if (response.statusCode == 200) {
+        debugPrint('Story create successfully: ${response.body}');
+         final Map<String, dynamic> temp = jsonDecode(response.body);
+          // Truy cập trường result
+          final result = temp['result'];
+          Story data = Story.fromJson(result);
+          Navigator.of(context, rootNavigator: true).pop();
+        
+          context.pushRoute(AddChapterPage(story: data));
+        } else {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text(Strings.error),
+                content: Text('Error'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      setState(() {
+                        loading = false;
+                      });
+                    },
+                    child: const Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
+        }
+      
+    } catch (e) {
+      debugPrint('Error: $e');
+    }
+  }
+
+  
+  Future<void> _pickImage() async {
+    try {
+      final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
+      if (pickedFile != null) {
+        setState(() {
+          _image = pickedFile; // Update state with the picked file
+        });
+      }
+    } catch (e) {
+      print('Error picking image: $e');
+    }
+  }
+
+  
 }

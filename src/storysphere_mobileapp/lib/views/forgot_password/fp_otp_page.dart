@@ -6,6 +6,7 @@ import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:storysphere_mobileapp/constants/utils/responsive.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/services/account_service.dart';
 import 'package:storysphere_mobileapp/services/forgot_passowrd_service.dart';
@@ -44,14 +45,14 @@ class _FPEnteringOTPPage extends State<FPEnteringOTPPage> {
       backgroundColor: ColorConstants.bgWhite,
       body:  
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30.sp, vertical: 20.sp),
+        padding: Responsive.isMobile(context) ? EdgeInsets.symmetric(horizontal: 30.sp, vertical: 20.sp) :  EdgeInsets.symmetric(vertical: 20.sp, horizontal: 100.sp),
         child:
           Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Align(
-                  alignment: Alignment.topLeft,
+                  alignment: Responsive.isMobile(context) ? Alignment.topLeft : Alignment.center,
                   child:Text(Strings.identityVerify, style: FontConstant.titleBigDisplayGreen,)
                 ),
                 5.verticalSpace,
@@ -59,7 +60,7 @@ class _FPEnteringOTPPage extends State<FPEnteringOTPPage> {
                 30.verticalSpace,
 
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: Responsive.isMobile(context) ? const EdgeInsets.all(20.0) : EdgeInsets.symmetric(vertical: 20.sp, horizontal: 400.sp),
                   child: PinCodeTextField(
                     appContext: context,
                     length: 4,

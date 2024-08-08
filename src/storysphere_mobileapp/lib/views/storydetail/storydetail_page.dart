@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
+import 'package:storysphere_mobileapp/constants/utils/responsive.dart';
 import 'package:storysphere_mobileapp/models/story.dart';
 import 'package:storysphere_mobileapp/services/favbook_service.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/bottom_navigator.dart';
@@ -80,13 +82,22 @@ class _StoryDetailPage extends State<StoryDetailPage> {
             
             
             20.verticalSpace,
-            StoryContentOutlineWidget(data: story.storyContentOutline ?? ''),
+            Padding(
+              padding: Responsive.isMobile(context) ? EdgeInsets.all(0.sp) : EdgeInsets.symmetric(horizontal: 80.sp),
+              child: 
+            StoryContentOutlineWidget(data: story.storyContentOutline ?? '')),
 
             20.verticalSpace,
-            StoryChapterListWidget(story: story),
+             Padding(
+              padding: Responsive.isMobile(context) ? EdgeInsets.all(0.sp) : EdgeInsets.symmetric(horizontal: 80.sp),
+              child: 
+            StoryChapterListWidget(story: story)),
 
             20.verticalSpace,
-            StoryReviewWidget(story: story,)
+             Padding(
+              padding: Responsive.isMobile(context) ? EdgeInsets.all(0.sp) : EdgeInsets.symmetric(horizontal: 80.sp),
+              child: 
+            StoryReviewWidget(story: story,)),
 
           ],
         )

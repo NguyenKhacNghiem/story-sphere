@@ -6,7 +6,9 @@ import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
+import 'package:storysphere_mobileapp/main.dart';
 import 'package:storysphere_mobileapp/models/chapter.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/services/chapter_services.dart';
 import 'package:storysphere_mobileapp/views/main_widgets/hs_enhanced_html_editor.dart';
 
@@ -60,7 +62,20 @@ class _EditChapterPage extends State<EditChapterPage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             40.verticalSpace,
-            Text(Strings.editChapter, style: FontConstant.headline1White,),
+            Row(children: [
+              InkWell(
+                onTap: () {
+                  context.pushRoute(HSHomePage());
+                },
+                child: const Icon(
+                  Icons.arrow_back, 
+                  color: ColorConstants.primaryText,
+                  size: 25,),
+              ),
+              10.horizontalSpace,
+              Text(Strings.editChapter, style: FontConstant.headline1White,),
+            ],),
+           
             10.verticalSpace,
 
             //BUTTON LIST

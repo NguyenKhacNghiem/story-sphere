@@ -105,7 +105,7 @@ class Strings {
 
   //LABELS - FOR BUTTON
   static const String notificationLabel = 'Thông báo';
-  static const String fitestResult = 'Đúng nhất';
+  static const String fitestResult = 'Bình chọn';
   static const String newestResult = 'Mới nhất';
   static const String mostReadResult = 'Lượt đọc';
   static const String edit = 'Chỉnh sửa';

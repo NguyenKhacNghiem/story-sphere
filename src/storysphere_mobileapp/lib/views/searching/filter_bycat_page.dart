@@ -148,7 +148,12 @@ class _FilterByCategoryPage extends State<FilterByCategoryPage> {
             minimumSize: Size.zero,   // Remove minimum size constraints
             tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
           ),
-        onPressed:  () {}, 
+        onPressed:  () {
+          setState(() {
+            displayStoryList.sort((a, b) => b.viewCount ?? 0.compareTo(a.viewCount ?? 0));
+            selectedFilter = 0;
+          });
+        }, 
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(
@@ -179,7 +184,12 @@ class _FilterByCategoryPage extends State<FilterByCategoryPage> {
             minimumSize: Size.zero,   // Remove minimum size constraints
             tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
           ),
-        onPressed:  () {}, 
+        onPressed:  () {
+          setState(() {
+            displayStoryList.sort((b, a) => (a.lastUpdate ?? DateTime.now()).compareTo(b.lastUpdate ?? DateTime.now()));
+            selectedFilter = 1;
+          });
+        }, 
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(

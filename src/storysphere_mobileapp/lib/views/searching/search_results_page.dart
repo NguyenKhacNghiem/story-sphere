@@ -28,6 +28,7 @@ class _SearchingResultsPage extends State<SearchingResultsPage> {
   late Widget filterList;
   int selectedFilter = 0;
   List<Story> displayStoryList = [];
+  List<Story> fitestResultList = [];
   int currentPage = 1;
   int totalPages = 1;
   bool notFound = false;
@@ -112,6 +113,7 @@ class _SearchingResultsPage extends State<SearchingResultsPage> {
           if (value != null && value is PaginationResult<Story> ) {
             setState(() {
               displayStoryList = value.result;
+              fitestResultList = displayStoryList;
               currentPage = value.currentPage;
               totalPages = value.totalPages;
             });
@@ -142,7 +144,12 @@ class _SearchingResultsPage extends State<SearchingResultsPage> {
             minimumSize: Size.zero,   // Remove minimum size constraints
             tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
           ),
-        onPressed:  () {}, 
+        onPressed:  () {
+          setState(() {
+             displayStoryList.sort((a, b) => (b.ratingPoint ?? 0.0).compareTo(a.ratingPoint ?? 0.0));
+            selectedFilter = 0;
+          });
+        }, 
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(
@@ -173,7 +180,12 @@ class _SearchingResultsPage extends State<SearchingResultsPage> {
             minimumSize: Size.zero,   // Remove minimum size constraints
             tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
           ),
-        onPressed:  () {}, 
+        onPressed:  () {
+          setState(() {
+             displayStoryList.sort((a, b) => b.viewCount ?? 0.compareTo(a.viewCount ?? 0));
+             selectedFilter = 1;
+          });
+        }, 
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(
@@ -190,7 +202,7 @@ class _SearchingResultsPage extends State<SearchingResultsPage> {
                 children: [
                 IconsSVG.arrowSort,
                 5.horizontalSpace,
-                Text(Strings.newestResult, style: FontConstant.dropdownText,)
+                Text(Strings.mostReadResult, style: FontConstant.dropdownText,)
               ])),
         )
         ),
@@ -204,7 +216,12 @@ class _SearchingResultsPage extends State<SearchingResultsPage> {
             minimumSize: Size.zero,   // Remove minimum size constraints
             tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Shrink wrap the button
           ),
-        onPressed:  () {}, 
+        onPressed:  () {
+          setState(() {
+               displayStoryList.sort((b, a) => (a.lastUpdate ?? DateTime.now()).compareTo(b.lastUpdate ?? DateTime.now()));
+              selectedFilter = 2;
+          });
+        }, 
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(

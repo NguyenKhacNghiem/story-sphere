@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
 
+@RoutePage()
 class FPUpdateSuccessPage extends StatelessWidget {
    FPUpdateSuccessPage({super.key});
 

@@ -67,11 +67,21 @@ class AccountService {
   }
 
   
-  Future<http.Response> saveUser() async {
+  Future<http.Response> saveUser(String username, String password, String email) async {
     final url = Uri.parse('$_apiUrl/save-user');
+    final headers = {'Content-Type': 'application/json'};
+    final Map<String, dynamic> data = {
+      'username': username,
+      'password': password,
+      'email': email,
+    };
 
     debugPrint(url.toString());
-    final response = await http.post(url);
+    final response = await http.post(
+      url,
+      headers: headers,
+      body: jsonEncode(data),
+    );
 
     debugPrint(response.body);
 

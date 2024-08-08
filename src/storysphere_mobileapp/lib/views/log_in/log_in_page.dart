@@ -108,7 +108,9 @@ class _LogInPage extends State<LogInPage> {
                 if (_errorMessage.isNotEmpty)
                   Text(
                     _errorMessage,
-                    style: FontConstant.subTitleText.copyWith(color: ColorConstants.errorText),
+                    style: FontConstant.subTitleText.copyWith(
+                      color: ColorConstants.errorText,),
+                    textAlign: TextAlign.center,
                   ),
 
                 //or continute with
@@ -217,12 +219,12 @@ class _LogInPage extends State<LogInPage> {
           context.pushRoute(const HSHomePage());
       } else {
         setState(() {
-          _errorMessage = 'Login failed. Please check your credentials.';
+          _errorMessage = 'Đăng nhập thất bại. Vui lòng kiểm tra lại\nusername/email hoặc mật khẩu của bạn';
         });
       }
     } catch (e) {
       setState(() {
-        _errorMessage = 'An error occurred. Please try again.';
+        _errorMessage = 'Đã có lỗi xảy ra. Hãy thử kiểm tra kết nối internet của bạn và thử lại sau.';
       });
     }
   }

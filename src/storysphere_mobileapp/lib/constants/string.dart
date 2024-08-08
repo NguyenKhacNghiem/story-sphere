@@ -140,7 +140,7 @@ class Strings {
   static const String registerTYTitle = 'Đăng ký thành công!';
   static const String registrationThankyou =
       'Cảm ơn bạn đã đăng ký tài khoản với StorySphere. Bây giờ bạn có thể đăng nhập bằng tài khoản vừa tạo!';
-
+  static const String emailVerifyReminder = 'Chúng tôi sẽ gửi mã kích hoạt tài khoản vào địa chỉ email của bạn. Ấn tiếp tục để xác nhận.';
   static const String login = 'Đăng nhập';
   static const String signInWithGoogleButtonText = 'Đăng nhập với Google';
   static const String usernameOrEmail = 'Tên đăng nhập hoặc Email';

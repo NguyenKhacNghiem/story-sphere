@@ -103,5 +103,22 @@ class AppRouter extends $AppRouter {
           page: ReadingHistoryPage.page, 
           path: '/reading-history', 
           transitionsBuilder: TransitionsBuilders.noTransition),
+        CustomRoute(
+          page: FPEnteringOTPPage.page, 
+          path: '/otp-entering', 
+          transitionsBuilder: TransitionsBuilders.noTransition),
+         CustomRoute(
+          page: ForgotPasswordPage.page, 
+          path: '/otp-entering', 
+          transitionsBuilder: TransitionsBuilders.noTransition),
+        CustomRoute(
+          page: FPUpdatePassword.page, 
+          path: '/update-password', 
+          transitionsBuilder: TransitionsBuilders.noTransition),
+        CustomRoute(
+          page: FPUpdateSuccessPage.page, 
+          path: '/update-success', 
+          transitionsBuilder: TransitionsBuilders.noTransition),
+        
       ];
 }

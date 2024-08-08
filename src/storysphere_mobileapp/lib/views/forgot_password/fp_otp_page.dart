@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,14 +9,16 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/services/account_service.dart';
 import 'package:storysphere_mobileapp/services/forgot_passowrd_service.dart';
-import 'package:storysphere_mobileapp/views/forgot_password/fp_updatepass_page.dart';
 
+@RoutePage()
 class FPEnteringOTPPage extends StatefulWidget {
   final String email;
+  final String? username;
+  final String? password;
   final int otpCode;
   final int userId;
   final bool fromPageSU;
-  const FPEnteringOTPPage({super.key, required this.email, required this.otpCode, required this.userId, required this.fromPageSU});
+  const FPEnteringOTPPage({super.key, required this.email, required this.otpCode, required this.userId, required this.fromPageSU, this.password, this.username});
 
   @override
   State<FPEnteringOTPPage> createState() => _FPEnteringOTPPage();
@@ -78,7 +79,7 @@ class _FPEnteringOTPPage extends State<FPEnteringOTPPage> {
                       inactiveColor: ColorConstants.sliderGrey,
                     ),
                     onCompleted: (value) {
-                       checkOTP(value);
+                       checkOTP(value, context);
                     },
                   ),
                 ),
@@ -107,12 +108,12 @@ class _FPEnteringOTPPage extends State<FPEnteringOTPPage> {
     );
   }
 
-  void checkOTP(String inputOtpCode){
+  void checkOTP(String inputOtpCode, BuildContext context1){
     //check
     int otp = int.tryParse(inputOtpCode) ?? 0;
     if (otp == trueOTP){
       if (widget.fromPageSU){
-         final result = AccountService().saveUser();
+         final result = AccountService().saveUser(widget.username!, widget.password!, widget.email);
             result.whenComplete(() {
             result.then((value) {
               showDialog(
@@ -124,8 +125,9 @@ class _FPEnteringOTPPage extends State<FPEnteringOTPPage> {
                       actions: <Widget>[
                         TextButton(
                           onPressed: () {
-                            Navigator.of(context).pop();
-                          context.pushRoute(LogInPage(newAccount: true));
+                            Navigator.pop(context);
+                            context1.pushRoute(LogInPage(newAccount: true));
+                            
                           },
                           child: Text('OK'),
                         ),
@@ -137,11 +139,9 @@ class _FPEnteringOTPPage extends State<FPEnteringOTPPage> {
             });
           });
         
-      } else {
-         Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => FPUpdatePassword(userId: trueUserId,)),
-        );
+      } 
+      else {
+        context.pushRoute(FPUpdatePassword(email: trueEmail,));
       }
        
     } else {

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
@@ -8,9 +9,10 @@ import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/services/forgot_passowrd_service.dart';
 import 'package:storysphere_mobileapp/views/forgot_password/fp_success_page.dart';
 
+@RoutePage()
 class FPUpdatePassword extends StatefulWidget {
-  final int userId;
-  const FPUpdatePassword({super.key, required this.userId});
+  final String email;
+  const FPUpdatePassword({super.key, required this.email});
 
   @override
   State<FPUpdatePassword> createState() => _FPUpdatePassword();
@@ -110,12 +112,12 @@ class _FPUpdatePassword extends State<FPUpdatePassword> {
    }
 
    Future<void> updatePassword() async {
-    int userId = widget.userId;
+    String email = widget.email;
     String password = _passwordController.text;
     String confirmEnterPassword = _confirmPasswordController.text;
      //send API
       try {
-        final response = await ForgotPasswordService().resetPassword(userId, password,confirmEnterPassword); 
+        final response = await ForgotPasswordService().resetPassword(email, password,confirmEnterPassword); 
         if(response.statusCode == 200) {
           debugPrint('Request sent successfully: ${response.body}');
            final responseData = json.decode(response.body);

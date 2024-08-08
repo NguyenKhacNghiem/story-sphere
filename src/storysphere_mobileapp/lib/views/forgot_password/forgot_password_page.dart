@@ -2,14 +2,13 @@ import 'dart:convert';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:storysphere_mobileapp/constants/string.dart';
 import 'package:storysphere_mobileapp/constants/utils/color_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/constants/utils/icon_svg.dart';
+import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/services/forgot_passowrd_service.dart';
-import 'package:storysphere_mobileapp/views/forgot_password/fp_otp_page.dart';
 
 @RoutePage()
 class ForgotPasswordPage extends StatefulWidget {
@@ -101,10 +100,7 @@ class _ForgotPasswordPage extends State<ForgotPasswordPage> {
          final responseData = json.decode(response.body);
           email = responseData['email'];
           otpCode = responseData['otp'];
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => FPEnteringOTPPage(email: email, otpCode: otpCode, userId: userId, fromPageSU: false,)),
-          );
+          context.pushRoute(FPEnteringOTPPage(email: email, otpCode: otpCode, userId: userId, fromPageSU: false,));
          
       } catch (e) {
         debugPrint('Error sending review: $e');

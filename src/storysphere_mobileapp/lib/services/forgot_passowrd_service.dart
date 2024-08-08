@@ -32,13 +32,13 @@ class ForgotPasswordService {
     }
   }
 
-  Future<http.Response> resetPassword(int id, String password, String confirmPassword) async {
+  Future<http.Response> resetPassword(String email, String password, String confirmPassword) async {
     final url = Uri.parse(_apiResetpassword);
     final headers = {'Content-Type': 'application/json'};
     final Map<String, dynamic> data = {
-      '_id ': id,
-      'password ': password,
-      'confirmPassword ': confirmPassword
+      'email': email,
+      'password': password,
+      'confirmPassword': confirmPassword
     };
 
     final response = await http.put(

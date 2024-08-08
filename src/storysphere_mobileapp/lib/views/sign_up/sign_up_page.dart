@@ -9,7 +9,6 @@ import 'package:storysphere_mobileapp/constants/utils/font_constant.dart';
 import 'package:storysphere_mobileapp/routing/router.gr.dart';
 import 'package:storysphere_mobileapp/services/account_service.dart';
 import 'package:storysphere_mobileapp/services/forgot_passowrd_service.dart';
-import 'package:storysphere_mobileapp/views/forgot_password/fp_otp_page.dart';
 
 @RoutePage()
 class SignUpPage extends StatefulWidget {
@@ -205,17 +204,18 @@ class _SignUpPage extends State<SignUpPage> {
       if (response.statusCode == 200) {
         final responseData = json.decode(response.body);
         if (responseData['code'] == 0 || responseData['code'] == 100) {
+           password = responseData['password'];
           showDialog(
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text(Strings.sendActivationEmail),
-                content: Text(Strings.registrationThankyou),
+                title: const Text(Strings.sendActivationEmail),
+                content: const Text(Strings.emailVerifyReminder),
                 actions: <Widget>[
                   TextButton(
                     onPressed: () {
-                       Navigator.of(context).pop();
-                        sendEmailHandle(email);
+                      Navigator.of(context).pop();
+                      sendEmailHandle(email, password);
                     },
                     child: Text('OK'),
                   ),
@@ -252,9 +252,10 @@ class _SignUpPage extends State<SignUpPage> {
     
   }
 
-  Future<void> sendEmailHandle(String email) async {
+  Future<void> sendEmailHandle(String email, String password) async {
     int otpCode = -1;
     int userId = -1;
+    String username = _usernameController.text;
     //send POST request
      try {
         final response = await ForgotPasswordService().verifyEmail(email);
@@ -263,11 +264,7 @@ class _SignUpPage extends State<SignUpPage> {
          debugPrint(response.body);
           email = responseData["email"];
           otpCode = responseData["otp"];
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => FPEnteringOTPPage(email: email, otpCode: otpCode, userId: userId, fromPageSU: true,)),
-          );
-         
+          context.pushRoute(FPEnteringOTPPage(email: email, otpCode: otpCode, userId: userId, fromPageSU: true, password: password, username: username,));
       } catch (e) {
         debugPrint('Error sending review: $e');
       }

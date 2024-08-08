@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:cloudinary/cloudinary.dart';
 
 class NewsSliderHomepageWidget extends StatefulWidget {
   @override
@@ -9,7 +11,10 @@ class NewsSliderHomepageWidget extends StatefulWidget {
 
 class _NewsSliderHomepageWidgetState extends State<NewsSliderHomepageWidget> {
 
-    List<String> imgList = [];
+  List<String> imgList = [];
+  //Cách để thêm banner: 
+  // 1. Upload trên cloudinary
+  // 2. Gắn tag 'banner' cho ảnh
 
   @override
   void initState() {
@@ -18,23 +23,40 @@ class _NewsSliderHomepageWidgetState extends State<NewsSliderHomepageWidget> {
   }
 
   Future<void> fetchFileContent() async {
-    //File with Image IDs
-    const url = 'https://drive.google.com/uc?export=download&id=1Ee6YJ2lYGCq-49NlFLpjAuQ-HZK0a695';
-    
+    final apiKey = '812141854164164';
+    final apiSecret = 'XK19xo3om-m7Mz1Q6lK4lzQ2B6E';
+    final cloudName = 'story-sphere';
+    final collectionName = 'banner'; // Collection name
+
+    final url = 'https://api.cloudinary.com/v1_1/$cloudName/resources/image/tags/$collectionName';
+    final auth = 'Basic ' + base64Encode(utf8.encode('$apiKey:$apiSecret'));
 
     try {
-      final response = await http.get(Uri.parse(url));
+      final response = await http.get(
+        Uri.parse(url),
+        headers: {'Authorization': auth},
+      );
+
+      List<String> imgs = [];
 
       if (response.statusCode == 200) {
-        setState(() {
-          imgList = response.body.split(',');
+        final data = json.decode(response.body);
+        final images = data['resources'];
+        for (var image in images) {
+          print('Image URL: ${image['secure_url']}');
+          imgs.add(image['secure_url']);
+        }
+
+         setState(() {
+          imgList = imgs;
         });
       } else {
-        throw Exception('Failed to load file');
+        print('Failed to load images: ${response.statusCode}');
       }
-    } catch (e) {}
+    } catch (e) {
+      print('Error: $e');
+    }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +76,7 @@ class _NewsSliderHomepageWidgetState extends State<NewsSliderHomepageWidget> {
               ),
               items: imgList.map((item) => Container(
                 child: Center(
-                  child: Image.network('https://drive.google.com/uc?export=view&id=$item', fit: BoxFit.cover, width: 1000)
+                  child: Image.network(item, fit: BoxFit.cover, width: 1000)
                 ),
               )).toList(),
             ),

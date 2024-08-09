@@ -2,10 +2,10 @@ class APIUrlSerivces {
   //STORY SPHERE API
   //DEVELOPE
     //static const server = 'http://localhost:3000/';
-    static const server = 'http://192.168.1.6:3000/'; //call from physical device
+    //static const server = 'http://192.168.1.6:3000/'; //call from physical device
 
   //Stagging
-  //static const server = 'http://localhost:3000/';
+  static const server = 'https://story-sphere-j0c8.onrender.com/';
 
   //login
   static const loginService = '${server}user/login';
